@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "ngh": "ng build --prod --env=prod --output-hashing none --base-href \"https://mh-rafi.github.io/crewnie-frontend/\"",
+    "publish": "npm run ngh && angular-cli-ghpages"
   },
   "private": true,
   "dependencies": {

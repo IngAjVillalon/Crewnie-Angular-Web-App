@@ -1,6 +1,13 @@
 # CrewnieFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
+[Project Demo](https://mh-rafi.github.io/crewnie-frontend/)
+
+## Publish demo to github pages.
+#### Prerequisite
+Insatall "angular-cli-ghpages" globally. Run "npm install -g angular-cli-ghpages"
+
+#### After every git commit and push
+Run "npm run publish".
 
 ## Development server
 
