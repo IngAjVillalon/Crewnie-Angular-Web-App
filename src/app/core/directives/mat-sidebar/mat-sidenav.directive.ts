@@ -8,7 +8,7 @@ import { MatSidebarHelperService } from './mat-sidenav.service';
 @Directive({
     selector: '[matSidebarHelper]'
 })
-export class FuseMatSidenavHelperDirective implements OnInit, OnDestroy
+export class MatSidenavHelperDirective implements OnInit, OnDestroy
 {
     // matchMediaSubscription: Subscription;
     @HostBinding('class.mat-is-locked-open') isLockedOpen = true;
