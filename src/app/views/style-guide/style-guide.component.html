@@ -1,30 +1,73 @@
 <div fxLayout="row wrap">
 
   <div fxFlex="50" fxLayout="row wrap">
-    <div fxFlex="30">
-      <button mat-flat-button wide primary="true" class="mb-1">Active State</button>
-
-      <button mat-fab>
-        <mat-icon aria-label="Example">favorite</mat-icon>
-      </button>
-      <button mat-mini-fab color="warn">
-          <mat-icon aria-label="Example">favorite</mat-icon>
-      </button>
+    <div fxFlex="33.33">
+      <div m-05>
+          <button mat-flat-button wide mb-1 primary="true">Flat Button</button>
+          <br>
+          <button mat-fab m-05>
+            <mat-icon aria-label="Example">favorite</mat-icon>
+          </button>
+          <button mat-mini-fab m-05 color="warn">
+              <mat-icon aria-label="Example">favorite</mat-icon>
+          </button>
+      </div>
+      
     </div>
 
-    <div fxFlex="30">
-      <button mat-stroked-button wide color="primary" class="mb-1">Active state</button>
-      <button mat-stroked-button small color="primary"> <mat-icon>dashboard</mat-icon> Active state</button>
+    <div fxFlex="33.33">
+      <div m-05>
+        <button mat-stroked-button icon wide mb-1 color="primary"><mat-icon>dashboard</mat-icon>Stroked</button>
+        <button mat-stroked-button small wide icon color="primary"> <mat-icon>dashboard</mat-icon> Stroked Small</button>
+      </div>
     </div>
 
-    <div fxFlex="30">
-      <button mat-button color="">Normal</button>
-      <button mat-button color="primary">Active</button>
+    <div fxFlex="33.33">
+      <div m-05>
+        <button mat-button>Normal</button>
+        <button mat-button color="primary">Primary</button>
+      </div>
     </div>
 
-    <div fxFlex="70">
-      <button mat-flat-button disabled color="primary">Normal</button>
-      <button mat-button color="primary">Active</button>
+    <div fxFlex="33.33">
+      <div m-05>
+        <button mat-flat-button m-05 wide disabled color="primary">Disabled</button>
+        <button mat-mini-fab m-05 color="primary" disabled><mat-icon>dashboard</mat-icon></button>
+      </div>
+    </div>
+
+    <div fxFlex="33.33">
+      <div m-05>
+          <mat-form-field full>
+            <input matInput placeholder="Input text" value="Test value">
+          </mat-form-field>
+      </div>
+    </div>
+    <div fxFlex="33.33">
+      <div m-05>
+        <textarea outline full></textarea>
+      </div>
+    </div>
+
+    <div fxFlex="33.33">
+      <div m-05>
+        <h5>Sweet Alerts</h5>
+        <button mat-raised-button  mr-1 color="primary" (click)="sayOk()">Success</button>
+        <button mat-raised-button blue color-white (click)="confirm()">Confirm</button>
+      </div>
+    </div>
+
+    <div fxFlex="33.33">
+      <div m-05>
+        <p color-primary>Lorem ipsum dolor sit amet.</p>
+        <p color-accent>Lorem ipsum dolor sit amet.</p>
+        <p color-warn>Lorem ipsum dolor sit amet.</p>
+        <p color-green>Lorem ipsum dolor sit amet.</p>
+        <p color-blue>Lorem ipsum dolor sit amet.</p>
+        <p color-black>Lorem ipsum dolor sit amet.</p>
+        <p color-gray>Lorem ipsum dolor sit amet.</p>
+        <p color-gray-light>Lorem ipsum dolor sit amet.</p>
+      </div>
     </div>
     
   </div>

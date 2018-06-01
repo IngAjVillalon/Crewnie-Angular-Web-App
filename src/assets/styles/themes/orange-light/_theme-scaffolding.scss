@@ -1,0 +1,65 @@
+// Text colors
+[color-primary] {
+    color: mat-color($primary);
+}
+[color-accent] {
+    color: mat-color($accent);
+}
+[color-warn] {
+    color: mat-color($warn);
+}
+.color-green,
+[color-green] {
+    color: mat-color($green);
+}
+.color-blue,
+[color-blue] {
+    color: mat-color($blue);
+}
+.color-white,
+[color-white] {
+    color: #ffffff;
+}
+[color-black] {
+    color: #000000;
+}
+[color-gray] {
+    color: rgba(0,0,0, .5);
+}
+[color-gray-light] {
+    color: rgba(0,0,0, .2);
+}
+
+// Backgrounds
+[primary] {
+    background-color: mat-color($primary);
+}
+[accent] {
+    background-color: mat-color($accent);
+}
+[warn] {
+    background-color: mat-color($warn);
+}
+.green,
+[green] {
+    background-color: mat-color($green);
+}
+.blue,
+[blue] {
+    background-color: mat-color($blue);
+}
+[black] {
+    background-color: #000000;
+}
+[gray] {
+    background-color: rgba(0,0,0, .5);
+}
+[gray-light] {
+    background-color: rgba(0,0,0, .2);
+}
+
+// Disabled button for color="primary"
+button[color="primary"][disabled] {
+    background-color: mat-color($primary, 200) !important;
+    color: #ffffff !important;
+}
