@@ -1,0 +1,73 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+@import 'palettes';
+
+$primary: mat-palette($palette-primary);
+$accent:  mat-palette($palette-accent);
+$warn:  mat-palette($palette-warn);
+$green:  mat-palette($palette-green);
+$blue:  mat-palette($palette-blue);
+
+$mat-theme: mat-light-theme($primary, $accent, $warn);
+
+// mat-color($accent) ==> ;
+
+.mat-orange-light {
+    @include angular-material-theme($mat-theme);
+
+    // Text colors
+    [color-primary] {
+        color: mat-color($primary);
+    }
+    [color-accent] {
+        color: mat-color($accent);
+    }
+    [color-warn] {
+        color: mat-color($warn);
+    }
+    [color-green] {
+        color: mat-color($green);
+    }
+    [color-blue] {
+        color: mat-color($blue);
+    }
+    [color-white] {
+        color: #ffffff;
+    }
+    [color-black] {
+        color: #000000;
+    }
+    [color-gray] {
+        color: rgba(0,0,0, .5);
+    }
+    [color-gray-light] {
+        color: rgba(0,0,0, .2);
+    }
+
+    // Backgrounds
+    [primary] {
+        background-color: mat-color($primary);
+    }
+    [accent] {
+        background-color: mat-color($accent);
+    }
+    [warn] {
+        background-color: mat-color($warn);
+    }
+    [green] {
+        background-color: mat-color($green);
+    }
+    [blue] {
+        background-color: mat-color($blue);
+    }
+    [black] {
+        background-color: #000000;
+    }
+    [gray] {
+        background-color: rgba(0,0,0, .5);
+    }
+    [gray-light] {
+        background-color: rgba(0,0,0, .2);
+    }
+}

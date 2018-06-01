@@ -1,11 +1,32 @@
-<div fxLayout="row" fxLayoutWrap="wrap">
+<div fxLayout="row wrap">
 
-  <div fxFlex="15" fxLayout="column">
-    <button mat-flat-button primary="true">Active State</button>
-    <button mat-button primary="true">Active State</button>
-    <button mat-mini-fab>
-      <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-    </button>
+  <div fxFlex="50" fxLayout="row wrap">
+    <div fxFlex="30">
+      <button mat-flat-button wide primary="true" class="mb-1">Active State</button>
+
+      <button mat-fab>
+        <mat-icon aria-label="Example">favorite</mat-icon>
+      </button>
+      <button mat-mini-fab color="warn">
+          <mat-icon aria-label="Example">favorite</mat-icon>
+      </button>
+    </div>
+
+    <div fxFlex="30">
+      <button mat-stroked-button wide color="primary" class="mb-1">Active state</button>
+      <button mat-stroked-button small color="primary"> <mat-icon>dashboard</mat-icon> Active state</button>
+    </div>
+
+    <div fxFlex="30">
+      <button mat-button color="">Normal</button>
+      <button mat-button color="primary">Active</button>
+    </div>
+
+    <div fxFlex="70">
+      <button mat-flat-button disabled color="primary">Normal</button>
+      <button mat-button color="primary">Active</button>
+    </div>
+    
   </div>
 
 </div>
