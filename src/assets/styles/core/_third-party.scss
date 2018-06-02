@@ -1,0 +1,10 @@
+
+// ============== External library adjustments =================
+.swal2-popup, 
+.swal2-modal {
+    border-radius: 0 !important;
+}
+.swal-button {
+    margin: 0 2rem !important;
+    min-width: 100px !important;
+  }

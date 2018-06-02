@@ -1,63 +1,77 @@
 // Text colors
-[color-primary] {
+.t-color-primary,
+[t-color-primary] {
     color: mat-color($primary);
 }
-[color-accent] {
+.t-color-accent,
+[t-color-accent] {
     color: mat-color($accent);
 }
-[color-warn] {
+.t-color-warn,
+[t-color-warn] {
     color: mat-color($warn);
 }
-.color-green,
-[color-green] {
-    color: mat-color($green);
+.t-color-success,
+[t-color-success] {
+    color: mat-color($success);
 }
-.color-blue,
-[color-blue] {
-    color: mat-color($blue);
+.t-color-info,
+[t-color-info] {
+    color: mat-color($info);
 }
-.color-white,
-[color-white] {
+.t-color-white,
+[t-color-white] {
     color: #ffffff;
 }
-[color-black] {
+.t-color-black,
+[t-color-black] {
     color: #000000;
 }
-[color-gray] {
+.t-color-gray,
+[t-color-gray] {
     color: rgba(0,0,0, .5);
 }
-[color-gray-light] {
+.t-color-gray-light,
+[t-color-gray-light] {
     color: rgba(0,0,0, .2);
 }
 
 // Backgrounds
-[primary] {
+.t-primary,
+[t-primary] {
     background-color: mat-color($primary);
 }
-[accent] {
+.t-accent,
+[t-accent] {
     background-color: mat-color($accent);
 }
-[warn] {
+.t-warn,
+[t-warn] {
     background-color: mat-color($warn);
 }
-.green,
-[green] {
-    background-color: mat-color($green);
+.t-success,
+[t-success] {
+    background-color: mat-color($success);
 }
-.blue,
-[blue] {
-    background-color: mat-color($blue);
+.t-info,
+[t-info] {
+    background-color: mat-color($info);
 }
-[black] {
+.t-black,
+[t-black] {
     background-color: #000000;
 }
-[gray] {
+.t-gray,
+[t-gray] {
     background-color: rgba(0,0,0, .5);
 }
-[gray-light] {
+.t-gray-light,
+[t-gray-light] {
     background-color: rgba(0,0,0, .2);
 }
 
+
+// ************* Exceptions, only for crewnie *******************
 // Disabled button for color="primary"
 button[color="primary"][disabled] {
     background-color: mat-color($primary, 200) !important;

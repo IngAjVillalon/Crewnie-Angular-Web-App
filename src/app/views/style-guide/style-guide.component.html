@@ -2,13 +2,13 @@
 
   <div fxFlex="50" fxLayout="row wrap">
     <div fxFlex="33.33">
-      <div m-05>
-          <button mat-flat-button wide mb-1 primary="true">Flat Button</button>
+      <div t-m-05>
+          <button mat-flat-button t-wide t-mb-1 primary="true">Flat Button</button>
           <br>
-          <button mat-fab m-05>
+          <button mat-fab t-m-05>
             <mat-icon aria-label="Example">favorite</mat-icon>
           </button>
-          <button mat-mini-fab m-05 color="warn">
+          <button mat-mini-fab t-m-05 color="warn">
               <mat-icon aria-label="Example">favorite</mat-icon>
           </button>
       </div>
@@ -16,57 +16,73 @@
     </div>
 
     <div fxFlex="33.33">
-      <div m-05>
-        <button mat-stroked-button icon wide mb-1 color="primary"><mat-icon>dashboard</mat-icon>Stroked</button>
-        <button mat-stroked-button small wide icon color="primary"> <mat-icon>dashboard</mat-icon> Stroked Small</button>
+      <div t-m-05>
+        <button mat-stroked-button t-icon t-wide t-mb-1 color="primary"><mat-icon>dashboard</mat-icon>Stroked</button>
+        <button mat-stroked-button t-small t-wide t-icon color="primary"> <mat-icon>dashboard</mat-icon> Stroked Small</button>
       </div>
     </div>
 
     <div fxFlex="33.33">
-      <div m-05>
+      <div t-m-05>
         <button mat-button>Normal</button>
         <button mat-button color="primary">Primary</button>
       </div>
     </div>
 
     <div fxFlex="33.33">
-      <div m-05>
-        <button mat-flat-button m-05 wide disabled color="primary">Disabled</button>
-        <button mat-mini-fab m-05 color="primary" disabled><mat-icon>dashboard</mat-icon></button>
+      <div t-m-05>
+        <button mat-flat-button t-m-05 t-wide disabled color="primary">Disabled</button>
+        <button mat-mini-fab t-m-05 color="primary" disabled><mat-icon>dashboard</mat-icon></button>
       </div>
     </div>
 
     <div fxFlex="33.33">
-      <div m-05>
-          <mat-form-field full>
+      <div t-m-05>
+          <mat-form-field t-full>
             <input matInput placeholder="Input text" value="Test value">
           </mat-form-field>
       </div>
     </div>
     <div fxFlex="33.33">
-      <div m-05>
-        <textarea outline full></textarea>
+      <div t-m-05>
+        <div t-textarea>
+          <label for="textarea">
+            Example textarea
+          </label>
+          <textarea t-wide id="textarea"></textarea>
+        </div>
       </div>
     </div>
 
     <div fxFlex="33.33">
-      <div m-05>
+      <div t-m-05>
         <h5>Sweet Alerts</h5>
-        <button mat-raised-button  mr-1 color="primary" (click)="sayOk()">Success</button>
-        <button mat-raised-button blue color-white (click)="confirm()">Confirm</button>
+        <button mat-raised-button  t-mr-1 color="primary" (click)="sayOk()">Success</button>
+        <button mat-raised-button t-info t-color-white (click)="confirm()">Confirm</button>
       </div>
     </div>
 
-    <div fxFlex="33.33">
-      <div m-05>
-        <p color-primary>Lorem ipsum dolor sit amet.</p>
-        <p color-accent>Lorem ipsum dolor sit amet.</p>
-        <p color-warn>Lorem ipsum dolor sit amet.</p>
-        <p color-green>Lorem ipsum dolor sit amet.</p>
-        <p color-blue>Lorem ipsum dolor sit amet.</p>
-        <p color-black>Lorem ipsum dolor sit amet.</p>
-        <p color-gray>Lorem ipsum dolor sit amet.</p>
-        <p color-gray-light>Lorem ipsum dolor sit amet.</p>
+    <div fxFlex="100">
+      <div t-m-05>
+        <h1 t-h1 t-font-light t-color-primary>This is 42px light heading 1</h1>
+        <h2 t-h2 t-font-light t-color-primary>This is 32px light heading 2</h2>
+        <h3 t-h3 t-font-normal>This is 24px nornal heading 3</h3>
+        <h3 t-h3 t-font-light>This is 24px light heading 3</h3>
+        <h3 t-h3 t-font-extra-light>This is 24px extra light heading 3</h3>
+        <h3 t-h3 t-font-bold>This is 24px bold heading 3</h3>
+        <h4 t-h4 t-font-light>This is 18px light heading 4</h4>
+        <h5 t-h5 t-font-light>This is 16px light heading 5</h5>
+        <h6 t-h6 t-font-light>This is 14px light heading 6</h6>
+      </div>
+      <div t-m-05>
+        <p t-color-primary>Lorem ipsum dolor sit amet.</p>
+        <p t-color-accent>Lorem ipsum dolor sit amet.</p>
+        <p t-color-warn>Lorem ipsum dolor sit amet.</p>
+        <p t-color-success>Lorem ipsum dolor sit amet.</p>
+        <p t-color-info>Lorem ipsum dolor sit amet.</p>
+        <p t-color-black>Lorem ipsum dolor sit amet.</p>
+        <p t-color-gray>Lorem ipsum dolor sit amet.</p>
+        <p t-color-gray-light>Lorem ipsum dolor sit amet.</p>
       </div>
     </div>
     
