@@ -1,23 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { RouterModule } from '@angular/router';
 import { MatSidenavHelperDirective } from './directives/mat-sidebar/mat-sidenav.directive';
-// import { MatSidebarHelperService } from './directives/mat-sidebar/mat-sidenav.service';
+
+
+import { BlankLayoutComponent } from './components/blank-layout/blank-layout.component';
 
 const declarations = [
+  BlankLayoutComponent,
   MatSidenavHelperDirective
 ]
 
 @NgModule({
   imports: [
     CommonModule,
-    // SweetAlert2Module.forRoot({
-    //     buttonsStyling: false,
-    //     customClass: 'modal-content',
-    //     confirmButtonClass: 'mat-flat-button',
-    //     cancelButtonClass: 'btn'
-    // })
-  
+    RouterModule
   ],
   declarations: declarations,
   exports: declarations

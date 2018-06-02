@@ -6,7 +6,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   color: $foreground;
@@ -182,11 +182,37 @@ a, a:focus, a:hover {
 [t-clear] {
   clear: both;
 }
-.t-full,
-[t-full] {
+
+
+//==================== Widths =====================
+.t-width-full,
+[t-width-full] {
   width: 100%;
 }
-
+.t-width-lg,
+[t-width-lg] {
+  width: 1200px;
+}
+.t-width-md,
+[t-width-md] {
+  width: 980px;
+}
+.t-width-sm,
+[t-width-sm] {
+  width: 640px;
+}
+.t-width-xs,
+[t-width-xs] {
+  width: 300px;
+}
+.t-width-100,
+[t-width-100] {
+  width: 100px;
+}
+.t-width-200,
+[t-width-200] {
+  width: 200px;
+}
 //================== Componet specific Attributes and classes ============
 button.t-wide,
 button[t-wide] {

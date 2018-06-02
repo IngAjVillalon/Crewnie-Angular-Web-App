@@ -1,17 +1,22 @@
 //============== Headings ===============
+p {
+    margin: 0 0 16px;
+}
+h1,
 .t-h1,
 [t-h1] {
     font-size: 42px;
     line-height: 1.2;
     margin: 0 0 24px;
 }
-
+h2,
 .t-h2,
 [t-h2] {
     font-size: 32px;
     line-height: 1.3;
     margin: 0 0 24px;
 }
+h3,
 .t-h3,
 [t-h3] {
     font-size: 24px;
@@ -19,13 +24,14 @@
     margin: 0 0 24px;
 }
 
+h4,
 .t-h4,
 [t-h4] {
     font-size: 18px;
     line-height: 1.5;
     margin: 0 0 24px;
 }
-
+h5,
 .t-h5,
 [t-h5] {
     font-size: 16px;
@@ -33,6 +39,7 @@
     margin: 0 0 24px;
 }
 
+h6,
 .t-h6,
 [t-h6] {
     font-size: 14px;
@@ -41,8 +48,8 @@
 }
 
 //=================== Font Weights ==================
-.t-font-normal,
-[t-font-normal] {
+.t-font-regular,
+[t-font-regular] {
     font-weight: normal;
 }
 
