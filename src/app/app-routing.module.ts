@@ -3,10 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { BlankLayoutComponent } from './core/components/blank-layout/blank-layout.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'session/signin'
-  // },
+  { 
+    path: '', 
+    redirectTo: 'session/signin', 
+    pathMatch: 'full' 
+  },
   {
     path: 'style',
     loadChildren: './views/style-guide/style-guide.module#StyleGuideModule'
