@@ -1,14 +1,16 @@
-<div>
+<div class="signin-wrap">
   <div class="session-container" fxLayout="row wrap">
-    <div fxFlex="50">
+    <div fxFlex="50" t-color-white>
       <div t-width-xs>
-          <h3 t-font-regular t-width-200>You don't have an account?</h3>
+          <img class="session-logo" src="../../../../assets//images/logo.png" alt="">
+          <h3 t-font-regular t-width-200 t-mb-05>You don't have an account?</h3>
           <p class="session-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, 
             harum id. Sit odio similique consectetur voluptatum sunt dolores doloribus?</p>
-          <button mat-stroked-button color="primary">Sign Up</button>
+          <button mat-stroked-button t-wide color="primary">Sign Up</button>
       </div>
     </div>
-    <div fxFlex="50">
+    <div fxFlex="50" fxLayout="row">
+      <span fxFlex></span>
       <mat-card class="session-card">
         <h2 t-font-light t-color-primary t-mb-1>Welcome back</h2>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
@@ -20,9 +22,9 @@
             <input matInput type="password" placeholder="Password">
           </mat-form-field>
           <mat-checkbox color="primary">Remember me</mat-checkbox>
-          <div t-mb-05 fxLayout="row wrap">
+          <div t-mb-05 t-mt-05 fxLayout="row wrap">
             <span fxFlex></span>
-            <button mat-flat-button color="primary">Sign in</button>
+            <button mat-flat-button t-wide color="primary">Sign in</button>
           </div>
           <div fxLayout="row wrap">
             <span fxFlex></span>
