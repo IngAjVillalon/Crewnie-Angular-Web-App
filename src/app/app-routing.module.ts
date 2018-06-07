@@ -5,7 +5,7 @@ import { BlankLayoutComponent } from './core/components/blank-layout/blank-layou
 const routes: Routes = [
   { 
     path: '', 
-    redirectTo: 'session/signin', 
+    redirectTo: 'sessions/signin', 
     pathMatch: 'full' 
   },
   {
@@ -17,14 +17,18 @@ const routes: Routes = [
     component: BlankLayoutComponent,
     children: [
       {
-        path: 'session',
+        path: 'sessions',
         loadChildren: './views/sessions/sessions.module#SessionsModule'
-      }
+      },
+      {
+        path: 'profile-setup',
+        loadChildren: './views/profile-setup/profile-setup.module#ProfileSetupModule'
+      },
     ]
   },
   {
     path: '**',
-    redirectTo: 'session/404'
+    redirectTo: 'sessions/404'
   }
 ];
 

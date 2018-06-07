@@ -8,6 +8,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     CommonMatsModule,
     SessionsRoutingModule
   ],
-  declarations: [SignInComponent, SignUpComponent, VerifyEmailComponent, ForgotPasswordComponent]
+  declarations: [SignInComponent, SignUpComponent, VerifyEmailComponent, ForgotPasswordComponent, NotFoundComponent]
 })
 export class SessionsModule { }

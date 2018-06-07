@@ -5,7 +5,9 @@ import {
   MatIconModule,
   MatInputModule,
   MatCardModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatStepperModule,
+  MatSelectModule
 } from '@angular/material';
 
 const matModules = [
@@ -13,7 +15,9 @@ const matModules = [
   MatIconModule,
   MatInputModule,
   MatCardModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatStepperModule,
+  MatSelectModule
 ]
 
 @NgModule({

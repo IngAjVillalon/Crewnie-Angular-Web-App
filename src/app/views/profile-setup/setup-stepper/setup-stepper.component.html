@@ -1,0 +1,26 @@
+<div class="profile-setup-page">
+  <mat-horizontal-stepper>
+    <mat-step [stepControl]="selectTypeForm">
+        <form [formGroup]="selectTypeForm">
+
+          <ng-template matStepLabel>Profile</ng-template>
+          <mat-card class="center-card">
+            <h4 t-color-primary t-font-light>Let's create your account</h4>
+            <mat-form-field>
+              <mat-select placeholder="Type">
+                <mat-option *ngFor="let type of profileTypeOptions" [value]="type">
+                  {{ type }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-card>
+          
+          <div class="setup-footer" fxLayout="row">
+            <span fxFlex></span>
+            <button mat-flat-button t-wide matStepperNext color="primary">Next</button>
+          </div>
+        </form>
+    </mat-step>
+  
+  </mat-horizontal-stepper>
+</div>
