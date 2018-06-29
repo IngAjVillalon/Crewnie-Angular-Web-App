@@ -1,25 +1,104 @@
 <div class="profile-setup-page">
-  <mat-horizontal-stepper>
-    <mat-step [stepControl]="selectTypeForm">
-        <form [formGroup]="selectTypeForm">
+  <div class="setup-header-left">
+    <img class="profile-setup-logo" src="../../../../assets//images/icon-logo.png" alt="">
+  </div>
 
-          <ng-template matStepLabel>Profile</ng-template>
-          <mat-card class="center-card">
-            <h4 t-color-primary t-font-light>Let's create your account</h4>
-            <mat-form-field>
-              <mat-select placeholder="Type">
-                <mat-option *ngFor="let type of profileTypeOptions" [value]="type">
-                  {{ type }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </mat-card>
-          
-          <div class="setup-footer" fxLayout="row">
+  <mat-horizontal-stepper>
+    <!-- STEP 1 -->
+    <mat-step [stepControl]="selectTypeForm">
+        <ng-template matStepLabel>Profile</ng-template>
+        <div class="setup-center-contents">
+          <h1 class="step-title" t-font-regular>Welcome to Crewnie</h1>
+          <form [formGroup]="selectTypeForm">
+            <mat-card class="center-card">
+              <h4 t-color-primary t-font-light>Let's create your account</h4>
+
+              <div fxLayout="column" fxLayoutAlign="center center" class="form-profile-box">
+                <p t-color-primary>Select a profile</p>
+                <mat-form-field>
+                  <mat-select placeholder="Type">
+                    <mat-option *ngFor="let type of profileTypeOptions" [value]="type">
+                      {{ type }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="profile-textarea">
+                  <textarea matInput cdkAutosizeMinRows="5"
+                  placeholder="Director" 
+                  matTextareaAutosize="true"></textarea>
+                </mat-form-field>
+                <!-- <div t-textarea>
+                    <label for="textarea">
+                      Example textarea
+                    </label>
+                    <textarea t-wide id="textarea"></textarea>
+                </div> -->
+              </div>
+              
+
+            </mat-card>
+          </form>
+        </div>
+
+        <div class="setup-footer" fxLayout="row">
+          <span fxFlex></span>
+          <button mat-flat-button t-wide matStepperNext color="primary">Next</button>
+        </div>
+    </mat-step>
+
+    <!-- STEP 2 -->
+    <mat-step [stepControl]="personalInfoForm">
+        <ng-template matStepLabel>Personal Info</ng-template>
+
+        <div class="setup-center-contents">
+          <form [formGroup]="personalInfoForm">
+              <div class="setup-center-contents">
+                <mat-card>
+                  <h4 t-color-primary t-font-light>Personal information</h4>
+
+                  <div fxLayout="row wrap">
+                    <div fxFlex="50">
+                      <mat-form-field class="field">
+                        <input matInput type="text" placeholder="First Name">
+                      </mat-form-field>
+                    </div>
+                    <div fxFlex="50">
+                      <mat-form-field class="field">
+                        <input matInput type="text" placeholder="Last Name">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div fxLayout="row wrap">
+                      <div fxFlex="33.33">
+                        <mat-form-field class="field">
+                          <input matInput type="text" placeholder="Nick Name">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex="33.33">
+                        <mat-form-field class="field">
+                          <input matInput type="text" placeholder="Gender">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex="33.33">
+                        <mat-form-field class="field">
+                          <input matInput [matDatepicker]="birthDatePicker" placeholder="Birth date">
+                          <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+                          <mat-datepicker #birthDatePicker></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                </mat-card>
+              </div>
+          </form>
+        </div>
+
+        <div class="setup-footer" fxLayout="row">
             <span fxFlex></span>
             <button mat-flat-button t-wide matStepperNext color="primary">Next</button>
-          </div>
-        </form>
+        </div>
     </mat-step>
   
   </mat-horizontal-stepper>

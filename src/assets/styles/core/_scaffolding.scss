@@ -184,6 +184,15 @@ a, a:focus, a:hover {
 }
 
 
+//==================== Texts =====================
+.t-text-center,
+[t-text-center] {
+  text-align: center
+}
+
+
+
+
 //==================== Widths =====================
 .t-width-full,
 [t-width-full] {
@@ -211,6 +220,10 @@ a, a:focus, a:hover {
 }
 .t-width-200,
 [t-width-200] {
+  width: 200px;
+}
+.t-width-300,
+[t-width-300] {
   width: 200px;
 }
 //================== Componet specific Attributes and classes ============

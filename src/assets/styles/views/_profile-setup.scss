@@ -1,15 +1,66 @@
 .profile-setup-page {
+    background-color: #444;
+    min-height: 100%;
+    .setup-header-left {
+        position: fixed;
+        background: #000000;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        top: 0;
+        z-index: 99;
+    }
+    .profile-setup-logo {
+        height: 42px;
+        width: auto;
+        margin: 0 16px;
+    }
+
+    .mat-stepper-horizontal {
+        background-color: transparent !important;
+    }
+
+    .mat-horizontal-stepper-header-container {
+        position: fixed;
+        top: 0px;
+        width: calc(100% - 100px);
+        right: 0;
+        z-index: 101;
+        .mat-horizontal-stepper-header[aria-selected="true"] {
+            background: #222222;
+        }
+        .mat-step-label {
+            color: #ffffff !important;
+        }
+        .mat-stepper-horizontal-line {
+            border-top-color: #cccccc !important;
+        }
+    }
+
     .mat-horizontal-content-container {
-        padding: 0;
+        padding: 72px 0 0 0;
+        .step-title {
+            font-size: 36px;
+            margin: 16px 0 0 0;
+            color: #ffffff;
+        }
+    }
+
+    .setup-center-contents {
+        max-width: 1000px;
+        margin: 0 auto 2rem;
+    }
+    .center-card {
+        margin-top: 16px;
+    }
+    .setup-footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 52px;
+        background: #000000;
     }
 }
 
-.center-card {
-    max-width: 1000px;
-    margin: 0 auto 2rem;
-}
-.setup-footer {
-    width: 100%;
-    height: 52px;
-    background: #333333;
-}
+

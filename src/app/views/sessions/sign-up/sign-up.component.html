@@ -1,3 +1,47 @@
-<p>
-  sign-up works!
-</p>
+<div class="signin-wrap">
+  <div class="session-container" fxLayout="row wrap" fxLayout.lt-md="column wrap">
+
+    <div fxFlex="50" fxLayout="row">
+      <span fxFlex></span>
+      <mat-card class="session-card">
+        <h2 t-font-light t-color-primary t-mb-1>Welcome to Crewnie</h2>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+        <form action="" class="t-pt-1">
+          <mat-form-field t-width-full>
+            <input matInput type="text" placeholder="Name">
+          </mat-form-field>
+          <mat-form-field t-width-full>
+            <input matInput type="text" placeholder="Email">
+          </mat-form-field>
+          <mat-form-field t-width-full>
+            <input matInput type="password" placeholder="Password">
+          </mat-form-field>
+          <mat-checkbox color="primary">Remember me</mat-checkbox>
+          
+          <div t-mb-05 t-mt-05 fxLayout="row wrap">
+            <div fxFlex="50" fxLayout="row wrap">
+              <mat-checkbox color="primary"></mat-checkbox>
+              <p fxFlex="80" t-ml-05 t-mb-0>I've read and agree to <a href="#" class="t-color-primary">terms and conditions</a></p>
+            </div>
+            <div fxFlex="50" fxLayoutAlign="end end">
+              <button mat-flat-button t-wide color="primary">Sign Up</button>
+            </div>
+          </div>
+
+        </form>
+      </mat-card>
+    </div>
+
+    <div fxFlex="50" t-color-white fxLayout="row">
+      <span fxFlex></span>
+      <div t-width-xs>
+          <img class="session-logo" src="../../../../assets//images/logo.png" alt="">
+          <h3 t-font-regular t-width-200 t-mb-05>You don't have an account?</h3>
+          <p class="session-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, 
+            harum id. Sit odio similique consectetur voluptatum sunt dolores doloribus?</p>
+          <button mat-stroked-button t-wide color="primary" routerLink="/sessions/signin">Sign In</button>
+      </div>
+    </div>
+
+  </div>
+</div>
