@@ -527,7 +527,7 @@
                 
                   <div fxFlex="100" class="setup-profile-photo-wrapper">
                       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" >
-                        <div fxFlex="35" class="setup-profile-profile-photo-wrapper">
+                        <div fxFlex="35" class="setup-profile-profile-photo-wrapper" (click)="changeProfilePhoto()">
                           <div class="setup-profile-profile-photo">
                               <img src="/assets/images/cloud-upload.png">
                           </div>
@@ -540,12 +540,79 @@
               <div fxLayout="row wrap" fxLayoutAlign="center center">
                 
                   <div fxFlex="100" class="setup-profile-details-wrapper">
-                      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" >
+                      
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" >
                         <div fxFlex="35" class="setup-profile-profile-details-basic">
                             <h4 t-color-primary t-font-light class="setup-profile-details-basic__name">Argenis Vega, 33</h4> 
                             <h4 t-color-primary t-font-light class="setup-profile-details-basic__profession">B. A. Graphic Design</h4> 
                             <h4 t-color-primary t-font-light class="setup-profile-details-basic__address">CDMX, México</h4> 
-                            
+                        </div>
+                      </div>
+                      
+                      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                        <div fxFlex="90" class="setup-profile-profile-details-basic">
+                      
+                          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                              <mat-form-field class="field">
+                                <input matInput type="text" placeholder="Email">
+                              </mat-form-field>
+                            </div>
+                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                              <mat-form-field class="field">
+                                <input matInput type="text" placeholder="Languages">
+                              </mat-form-field>
+                            </div>
+                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                              <mat-form-field class="field">
+                                <input matInput type="text" placeholder="Company">
+                              </mat-form-field>
+                            </div>
+                          </div>
+
+                          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                              <mat-form-field class="field">
+                                <input matInput type="text" placeholder="Phone">
+                              </mat-form-field>
+                            </div>
+                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                              <mat-form-field class="field">
+                                <input matInput type="text" placeholder="Age">
+                              </mat-form-field>
+                            </div>
+                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                              <mat-form-field class="field">
+                                <input matInput type="text" placeholder="Agency">
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          
+                          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                              <mat-form-field class="field">
+                                <input matInput type="text" placeholder="Mobile">
+                              </mat-form-field>
+                            </div>
+                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                              <mat-form-field class="field">
+                                <input matInput type="text" placeholder="Union">
+                              </mat-form-field>
+                            </div>
+                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                              <mat-form-field class="field">
+                                  <mat-select placeholder="Experience">
+                                      <mat-option [value]="'0Year'">None</mat-option>
+                                      <mat-option [value]="'1Year'">1 años</mat-option>
+                                      <mat-option [value]="'2Year'">2 años</mat-option>
+                                      <mat-option [value]="'3Year'">3 años</mat-option>
+                                      <mat-option [value]="'5Year'">5 años</mat-option>
+                                      <mat-option [value]="'10Year'">10 años</mat-option>
+                                    </mat-select>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                      
                         </div>
                       </div>
                   </div>

@@ -17,7 +17,8 @@ export class SetupStepperComponent implements OnInit {
 
   public personalInfoForm: FormGroup;
   public carrierForm: FormGroup;
-  public profileForm: FormGroup
+  public profileForm: FormGroup;
+  
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +29,7 @@ export class SetupStepperComponent implements OnInit {
     this.buildSelectTypeForm();
     this.buildPersonalInfoForm();
     this.buildCarrierForm();
+    this.buildProfileForm();
   }
 
   buildSelectTypeForm() {
@@ -47,7 +49,7 @@ export class SetupStepperComponent implements OnInit {
       
     })
   }
-
+  
   buildProfileForm() {
     this.profileForm = this.fb.group({
       
@@ -74,6 +76,11 @@ export class SetupStepperComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+  
+  changeProfilePhoto()
+  {
+    console.log('Change Profile Photo');
   }
 
   // Footer jump fix
