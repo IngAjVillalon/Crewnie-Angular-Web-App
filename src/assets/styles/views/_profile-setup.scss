@@ -49,7 +49,7 @@
 
   .setup-center-contents {
     max-width: 1000px;
-    margin: 0 auto 2rem;
+    margin: 2rem auto 6rem;
   }
   .center-card {
     margin-top: 16px;
@@ -60,6 +60,15 @@
     width: 100%;
     height: 52px;
     background: #000000;
+    transition: all .3s ease-in;
+    button.next {
+      height: 100%;
+      float: right;
+    }
+    button.prev {
+      height: 100%;
+      float: left;
+    }
   }
 
   .setup-terms-text {
@@ -139,7 +148,6 @@
   .setup-secondary-profession-title {
     margin-top: 25px;
     margin-bottom: 0px;
-    font-weight: 400;
     font-size: 2rem;
   }
 
@@ -234,7 +242,7 @@
     text-align: center;
     color: #000;
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 300;
   }
 
@@ -245,4 +253,16 @@
     font-size: 1.3rem;
     font-weight: 300;
   }
+
+}
+
+
+// DIALOGS =============
+.cover-letter-upload-zone {
+  border: 1px solid mat-color($primary);
+  padding: 20px;
+  background: rgba(216, 216, 216, 0.4);
+}
+.setup-profile-upload-icon {
+  width: 52px;
 }

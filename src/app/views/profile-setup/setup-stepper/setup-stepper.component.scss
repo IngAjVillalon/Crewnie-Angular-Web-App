@@ -1,7 +1,17 @@
 .profile-textarea {
     width: 80%;
     margin-bottom: 360px;
+    textarea {
+        min-height: 120px;
+    }
 }
 .field {
     width: calc(100% - 16px)
+}
+.select-profile-type {
+    margin-bottom: 40px;
+}
+
+.setup-footer {
+    opacity: 0;
 }

@@ -190,6 +190,10 @@ a, a:focus, a:hover {
   text-align: center
 }
 
+[t-text-muted]
+.t-text-muted {
+  color: #cccccc;
+}
 
 
 
@@ -264,14 +268,22 @@ button[t-small] {
 // ================ New component styles ================
 .t-textarea,
 [t-textarea] {
+  position: relative;
   label {
     color: mat-color($primary);
-    font-size: 12px;
+    position: absolute;
+    font-size: 18px;
+    left: 16px;
+    top: 14px;
+    font-weight: 300;
+    z-index: 99;
   }
   textarea {
-    border: 1px solid;
+    border: 1px solid #cccccc;
     min-height: 80px;
-    padding-left: 8px;
+    padding-left: 16px;
+    padding-top: 55px;
+    box-sizing: border-box;
     &:focus {
       outline: 0;
       border-color: mat-color($primary);

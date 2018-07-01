@@ -1,9 +1,9 @@
 <div class="profile-setup-page">
   <div class="setup-header-left">
-    <img class="profile-setup-logo" src="../../../../assets//images/icon-logo.png" alt="">
+    <img class="profile-setup-logo" src="/assets//images/icon-logo.png" alt="">
   </div>
 
-  <mat-horizontal-stepper>
+  <mat-horizontal-stepper (animationDone)="stepAnimationDone($event)" (selectionChange)="selectionChange($event)">
     <!-- STEP 1 -->
     <mat-step [stepControl]="selectTypeForm">
       <ng-template matStepLabel>Profile</ng-template>
@@ -15,23 +15,23 @@
 
             <div fxLayout="column" fxLayoutAlign="center center" class="form-profile-box">
               <p t-color-primary>Select a profile</p>
-              <mat-form-field>
+              <mat-form-field class="select-profile-type">
                 <mat-select placeholder="Type">
                   <mat-option *ngFor="let type of profileTypeOptions" [value]="type">
                     {{ type }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-
+<!-- 
               <mat-form-field class="profile-textarea">
                 <textarea matInput cdkAutosizeMinRows="5" placeholder="Director" matTextareaAutosize="true"></textarea>
-              </mat-form-field>
-              <!-- <div t-textarea>
-                    <label for="textarea">
-                      Example textarea
-                    </label>
-                    <textarea t-wide id="textarea"></textarea>
-                </div> -->
+              </mat-form-field> -->
+              <div t-textarea class="profile-textarea">
+                  <label for="textarea">
+                    Label
+                  </label>
+                  <textarea t-width-full id="textarea"></textarea>
+              </div>
             </div>
 
 
@@ -39,9 +39,9 @@
         </form>
       </div>
 
-      <div class="setup-footer" fxLayout="row">
+      <div class="setup-footer footer-0" fxLayout="row">
         <span fxFlex></span>
-        <button mat-flat-button t-wide matStepperNext color="primary">Next</button>
+        <button mat-flat-button t-wide matStepperNext color="primary" class="next">Next</button>
       </div>
     </mat-step>
 
@@ -240,9 +240,10 @@
         </form>
       </div>
 
-      <div class="setup-footer" fxLayout="row">
-        <span fxFlex></span>
-        <button mat-flat-button t-wide matStepperNext color="primary">Next</button>
+      <div class="setup-footer footer-1" fxLayout="row">
+          <button mat-flat-button t-wide matStepperPrevious color="primary" class="prev">Previous</button>
+          <span fxFlex></span>
+          <button mat-flat-button t-wide matStepperNext color="primary" class="next">Next</button>
       </div>
     </mat-step>
 
@@ -256,16 +257,16 @@
             <mat-card>
               <h4 t-color-primary t-font-light>Carrier</h4>
 
-              <div fxLayout="row wrap">
+              <div fxLayout="row wrap" t-mb-1>
                 <div fxFlex="50">
                   <mat-form-field class="field">
                     <input matInput type="text" placeholder="Main Profession" [matAutocomplete]="mainProfession">
                     <mat-icon matSuffix>arrow_drop_down</mat-icon>
                     <mat-autocomplete #mainProfession="matAutocomplete">
-                      <mat-option [value]="UXDesigner">Actor</mat-option>
-                      <mat-option [value]="UXDesigner">Director</mat-option>
-                      <mat-option [value]="UXDesigner">Photpgrapher</mat-option>
-                      <mat-option [value]="UXDesigner">UI/UX Designer</mat-option>
+                      <mat-option [value]="'UXDesigner'">Actor</mat-option>
+                      <mat-option [value]="'UXDesigner'">Director</mat-option>
+                      <mat-option [value]="'UXDesigner'">Photpgrapher</mat-option>
+                      <mat-option [value]="'UXDesigner'">UI/UX Designer</mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
                 </div>
@@ -292,8 +293,8 @@
                 <div fxFlex="30">
                   <!-- <mat-form-field class="field"> -->
                   <div class="setup-upload-coverletter">
-                    <mat-label class="setup-upload-coverletter-label">Upload Cover Letter</mat-label>
-                    <button mat-button color="primary" class="setup-upload-coverletter-button">Upload Cover Letter</button>
+                    <mat-label class="setup-upload-coverletter-label">Cover Letter</mat-label>
+                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Upload Cover Letter</button>
                   </div>
                   <!-- </mat-form-field> -->
                 </div>
@@ -318,10 +319,10 @@
                     <input matInput type="text" placeholder="Secondary Profession" [matAutocomplete]="secondaryProfession">
                     <mat-icon matSuffix>arrow_drop_down</mat-icon>
                     <mat-autocomplete #secondaryProfession="matAutocomplete">
-                      <mat-option [value]="UXDesigner">Actor</mat-option>
-                      <mat-option [value]="UXDesigner">Director</mat-option>
-                      <mat-option [value]="UXDesigner">Photpgrapher</mat-option>
-                      <mat-option [value]="UXDesigner">UI/UX Designer</mat-option>
+                      <mat-option [value]="'UXDesigner'">Actor</mat-option>
+                      <mat-option [value]="'UXDesigner'">Director</mat-option>
+                      <mat-option [value]="'UXDesigner'">Photpgrapher</mat-option>
+                      <mat-option [value]="'UXDesigner'">UI/UX Designer</mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
                 </div>
@@ -348,8 +349,8 @@
                 <div fxFlex="20">
                   <!-- <mat-form-field class="field"> -->
                   <div class="setup-upload-coverletter">
-                    <mat-label class="setup-upload-coverletter-label">Upload Cover Letter</mat-label>
-                    <button mat-button color="primary" class="setup-upload-coverletter-button">Upload Cover Letter</button>
+                    <mat-label class="setup-upload-coverletter-label">Cover Letter</mat-label>
+                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Upload Cover Letter</button>
                   </div>
                   <!-- </mat-form-field> -->
                 </div>
@@ -374,10 +375,10 @@
                     <input matInput type="text" placeholder="Secondary Profession 2" [matAutocomplete]="secondaryProfession">
                     <mat-icon matSuffix>arrow_drop_down</mat-icon>
                     <mat-autocomplete #secondaryProfession="matAutocomplete">
-                      <mat-option [value]="UXDesigner">Actor</mat-option>
-                      <mat-option [value]="UXDesigner">Director</mat-option>
-                      <mat-option [value]="UXDesigner">Photpgrapher</mat-option>
-                      <mat-option [value]="UXDesigner">UI/UX Designer</mat-option>
+                      <mat-option [value]="'UXDesigner'">Actor</mat-option>
+                      <mat-option [value]="'UXDesigner'">Director</mat-option>
+                      <mat-option [value]="'UXDesigner'">Photpgrapher</mat-option>
+                      <mat-option [value]="'UXDesigner'">UI/UX Designer</mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
                 </div>
@@ -404,8 +405,8 @@
                 <div fxFlex="20">
                   <!-- <mat-form-field class="field"> -->
                   <div class="setup-upload-coverletter">
-                    <mat-label class="setup-upload-coverletter-label">Upload Cover Letter</mat-label>
-                    <button mat-button color="primary" class="setup-upload-coverletter-button">Upload Cover Letter</button>
+                    <mat-label class="setup-upload-coverletter-label">Cover Letter</mat-label>
+                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Upload Cover Letter</button>
                   </div>
                   <!-- </mat-form-field> -->
                 </div>
@@ -430,10 +431,10 @@
                     <input matInput type="text" placeholder="Secondary Profession 3" [matAutocomplete]="secondaryProfession">
                     <mat-icon matSuffix>arrow_drop_down</mat-icon>
                     <mat-autocomplete #secondaryProfession="matAutocomplete">
-                      <mat-option [value]="UXDesigner">Actor</mat-option>
-                      <mat-option [value]="UXDesigner">Director</mat-option>
-                      <mat-option [value]="UXDesigner">Photpgrapher</mat-option>
-                      <mat-option [value]="UXDesigner">UI/UX Designer</mat-option>
+                      <mat-option [value]="'UXDesigner'">Actor</mat-option>
+                      <mat-option [value]="'UXDesigner'">Director</mat-option>
+                      <mat-option [value]="'UXDesigner'">Photpgrapher</mat-option>
+                      <mat-option [value]="'UXDesigner'">UI/UX Designer</mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
                 </div>
@@ -460,8 +461,8 @@
                 <div fxFlex="20">
                   <!-- <mat-form-field class="field"> -->
                   <div class="setup-upload-coverletter">
-                    <mat-label class="setup-upload-coverletter-label">Upload Cover Letter</mat-label>
-                    <button mat-button color="primary" class="setup-upload-coverletter-button">Upload Cover Letter</button>
+                    <mat-label class="setup-upload-coverletter-label">Cover Letter</mat-label>
+                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Upload Cover Letter</button>
                   </div>
                   <!-- </mat-form-field> -->
                 </div>
@@ -488,9 +489,10 @@
         </form>
       </div>
 
-      <div class="setup-footer" fxLayout="row">
-        <span fxFlex></span>
-        <button mat-flat-button t-wide matStepperNext color="primary">Next</button>
+      <div class="setup-footer footer-2" fxLayout="row">
+          <button mat-flat-button t-wide matStepperPrevious color="primary" class="prev">Previous</button>
+          <span fxFlex></span>
+          <button mat-flat-button t-wide matStepperNext color="primary" class="next">Next</button>
       </div>
     </mat-step>
 
@@ -510,7 +512,10 @@
                   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="setup-profile-coverphoto">
                     <div fxFlex="35" >
                       
-                        <h4 t-color-primary t-font-light class="setup-profile-cover-photo-title"> <img src="../../../../assets/images/cloud-upload.png" class="setup-profile-cover-photo-icon">UPLOAD COVER PHOTO</h4> 
+                        <h4 t-color-primary t-font-light class="setup-profile-cover-photo-title"> 
+                          <img src="/assets/images/cloud-upload.png" class="setup-profile-cover-photo-icon">
+                          UPLOAD COVER PHOTO
+                        </h4>
                     </div>
                     
                   </div>
@@ -524,7 +529,7 @@
                       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" >
                         <div fxFlex="35" class="setup-profile-profile-photo-wrapper">
                           <div class="setup-profile-profile-photo">
-                              <img src="../../../../assets/images/cloud-upload.png">
+                              <img src="/assets/images/cloud-upload.png">
                           </div>
                             
                         </div>
@@ -543,26 +548,18 @@
                             
                         </div>
                       </div>
-                    </div>
+                  </div>
               </div>
-
-              
-
-              
-
-              
-
-
-
 
             </mat-card>
           </div>
         </form>
       </div>
 
-      <div class="setup-footer" fxLayout="row">
+      <div class="setup-footer footer-3" fxLayout="row">
+        <button mat-flat-button t-wide matStepperPrevious color="primary" class="prev">Previous</button>
         <span fxFlex></span>
-        <button mat-flat-button t-wide matStepperNext color="primary">Next</button>
+        <button mat-flat-button t-wide matStepperNext color="primary" class="next">Next</button>
       </div>
     </mat-step>
 

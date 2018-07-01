@@ -6,6 +6,8 @@ import { CommonMatsModule } from '../../core/modules/common-mats.module';
 
 import { ProfileSetupRoutingModule } from './profile-setup-routing.module';
 import { SetupStepperComponent } from './setup-stepper/setup-stepper.component';
+import { CoverPhotoDialogComponent } from './cover-photo-dialog/cover-photo-dialog.component';
+import { CoverLetterDialogComponent } from './cover-letter-dialog/cover-letter-dialog.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { SetupStepperComponent } from './setup-stepper/setup-stepper.component';
     FlexLayoutModule,
     ProfileSetupRoutingModule
   ],
-  declarations: [SetupStepperComponent]
+  declarations: [SetupStepperComponent, CoverPhotoDialogComponent, CoverLetterDialogComponent],
+  entryComponents: [CoverPhotoDialogComponent, CoverLetterDialogComponent]
 })
 export class ProfileSetupModule { }
