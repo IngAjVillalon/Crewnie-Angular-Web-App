@@ -12,6 +12,7 @@ export class SetupStepperComponent implements OnInit {
 
   public personalInfoForm: FormGroup;
   public carrierForm: FormGroup;
+  public profileForm: FormGroup;
   
 
   constructor(
@@ -22,6 +23,7 @@ export class SetupStepperComponent implements OnInit {
     this.buildSelectTypeForm();
     this.buildPersonalInfoForm();
     this.buildCarrierForm();
+    this.buildProfileForm();
   }
 
   buildSelectTypeForm() {
@@ -41,10 +43,21 @@ export class SetupStepperComponent implements OnInit {
       
     })
   }
+  
+  buildProfileForm() {
+    this.profileForm = this.fb.group({
+      
+    })
+  }
 
   changeProfileCoverPhoto()
   {
     console.log('Change Profile Cover Photo');
+  }
+  
+  changeProfilePhoto()
+  {
+    console.log('Change Profile Photo');
   }
 
 }
