@@ -1,66 +1,248 @@
 .profile-setup-page {
-    background-color: #444;
-    min-height: 100%;
-    .setup-header-left {
-        position: fixed;
-        background: #000000;
-        height: 72px;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        top: 0;
-        z-index: 99;
-    }
-    .profile-setup-logo {
-        height: 42px;
-        width: auto;
-        margin: 0 16px;
-    }
+  background-color: #444;
+  min-height: 100%;
+  .setup-header-left {
+    position: fixed;
+    background: #000000;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+  }
+  .profile-setup-logo {
+    height: 42px;
+    width: auto;
+    margin: 0 16px;
+  }
 
-    .mat-stepper-horizontal {
-        background-color: transparent !important;
-    }
+  .mat-stepper-horizontal {
+    background-color: transparent !important;
+  }
 
-    .mat-horizontal-stepper-header-container {
-        position: fixed;
-        top: 0px;
-        width: calc(100% - 100px);
-        right: 0;
-        z-index: 101;
-        .mat-horizontal-stepper-header[aria-selected="true"] {
-            background: #222222;
-        }
-        .mat-step-label {
-            color: #ffffff !important;
-        }
-        .mat-stepper-horizontal-line {
-            border-top-color: #cccccc !important;
-        }
+  .mat-horizontal-stepper-header-container {
+    position: fixed;
+    top: 0px;
+    width: calc(100% - 100px);
+    right: 0;
+    z-index: 101;
+    .mat-horizontal-stepper-header[aria-selected="true"] {
+      background: #222222;
     }
+    .mat-step-label {
+      color: #ffffff !important;
+    }
+    .mat-stepper-horizontal-line {
+      border-top-color: #cccccc !important;
+    }
+  }
 
-    .mat-horizontal-content-container {
-        padding: 72px 0 0 0;
-        .step-title {
-            font-size: 36px;
-            margin: 16px 0 0 0;
-            color: #ffffff;
-        }
+  .mat-horizontal-content-container {
+    padding: 72px 0 0 0;
+    .step-title {
+      font-size: 36px;
+      margin: 16px 0 0 0;
+      color: #ffffff;
     }
+  }
 
-    .setup-center-contents {
-        max-width: 1000px;
-        margin: 0 auto 2rem;
-    }
-    .center-card {
-        margin-top: 16px;
-    }
-    .setup-footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 52px;
-        background: #000000;
-    }
+  .setup-center-contents {
+    max-width: 1000px;
+    margin: 0 auto 2rem;
+  }
+  .center-card {
+    margin-top: 16px;
+  }
+  .setup-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 52px;
+    background: #000000;
+  }
+
+  .setup-terms-text {
+    margin: 0;
+    margin-right: 15px;
+    text-align: right;
+    line-height: 4;
+  }
+
+  .setup-terms-text a {
+    color: #fc4000;
+    text-decoration: underline;
+  }
+
+  .setup-checkbox {
+    display: block;
+  }
+
+  .checkbox-label {
+    display: block;
+    color: #fc4000;
+    text-align: center;
+  }
+
+  .setup-checkbox-holder {
+    display: flex;
+  }
+
+  .setup-checkbox-holder-checkbox {
+    margin: 0 auto;
+  }
+
+  .setup-secondary-profession {
+      margin: 30px 0;
+  }
+
+  .setup-upload-coverletter {
+    display: block;
+    width: 100%;
+  }
+  .setup-upload-coverletter-label {
+    width: 100%;
+    display: block;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: -20px;
+    color: #fc4000;
+  }
+
+  .setup-upload-coverletter-button {
+    width: 90%;
+    display: block;
+    text-align: center;
+    margin-left: 20px;
+    border: 2px solid #fc4000;
+    margin: 5px 5px 5px 20px;
+  }
+
+  .setup-upload-coverletter-side {
+      display: block;
+  }
+
+  .setup-upload-coverletter-side-button {
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border: 2px solid #fc4000;
+    margin-top: 6px;
+    margin-left: 5px;
+  }
+
+  .setup-upload-coverletter-side-button mat-icon {
+    //   color: #fc4000;
+  }
+
+  .setup-secondary-profession-title {
+    margin-top: 25px;
+    margin-bottom: 0px;
+    font-weight: 400;
+    font-size: 2rem;
+  }
+
+  .setup-secondary-profession-subtitle {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    font-weight: normal;
+   
+  }
+
+  .setup-profile-card {
+    margin-top: 40px;
+    padding: 0;
+  }
+  .setup-profile-cover-photo-wrapper {
+    width: 100%;
+    height: 250px;
+    background-color: #D8D8D8;
+  }
+
+  .setup-profile-coverphoto {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .setup-profile-cover-photo-title {
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  .setup-profile-cover-photo-icon {
+    display: inline-block;
+    width: 60px;
+    height: 52px;
+    margin-bottom: -15px;
+    margin-right: 20px;
+    margin-left: -5px;
+  }
+
+  .setup-profile-photo-wrapper {
+    width: 100%;
+    height: auto;
+    background-color: #FFFFFF;
+    padding: 10px;
+  }
+
+  .setup-profile-profile-photo-wrapper {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .setup-profile-profile-photo {
+    width: 140px;
+    height: 140px;
+    display: block;
+    margin: 0 auto;
+    background-color: #d8d8d8;
+    padding: 20px;
+    padding-top: 26px;
+    border: 4px solid #FFF;
+    margin-top: -80px;
+    border-radius: 80px;
+  }
+
+
+  .setup-profile-details-wrapper {
+    width: 100%;
+    height: auto;
+    background-color: #FFFFFF;
+  }
+
+  .setup-profile-profile-details-basic {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .setup-profile-details-basic__name {
+    text-align: center;
+    text-align: center;
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 400;
+  }
+
+  .setup-profile-details-basic__profession {
+    text-align: center;
+    color: #000;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 300;
+  }
+
+  .setup-profile-details-basic__address {
+    text-align: center;
+    color: #000;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 300;
+  }
 }
-
-

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validator, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-setup-stepper',
@@ -11,6 +11,9 @@ export class SetupStepperComponent implements OnInit {
   public profileTypeOptions = ['Director', 'Actor'];
 
   public personalInfoForm: FormGroup;
+  public carrierForm: FormGroup;
+  
+
   constructor(
     private fb: FormBuilder
   ) { }
@@ -18,6 +21,7 @@ export class SetupStepperComponent implements OnInit {
   ngOnInit() {
     this.buildSelectTypeForm();
     this.buildPersonalInfoForm();
+    this.buildCarrierForm();
   }
 
   buildSelectTypeForm() {
@@ -30,6 +34,17 @@ export class SetupStepperComponent implements OnInit {
     this.personalInfoForm = this.fb.group({
       
     })
+  }
+  
+  buildCarrierForm() {
+    this.carrierForm = this.fb.group({
+      
+    })
+  }
+
+  changeProfileCoverPhoto()
+  {
+    console.log('Change Profile Cover Photo');
   }
 
 }
