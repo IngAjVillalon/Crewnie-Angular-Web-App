@@ -20,7 +20,7 @@ const routes: Routes = [
     component: ForgotPasswordComponent
   },
   {
-    path: 'verify-emial',
+    path: 'verify-email',
     component: VerifyEmailComponent
   },
   {

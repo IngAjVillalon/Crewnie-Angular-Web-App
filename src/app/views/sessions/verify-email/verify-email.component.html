@@ -1,3 +1,24 @@
-<p>
-  verify-email works!
-</p>
+<div class="signin-wrap">
+  <div class="session-container" fxLayout="row wrap" fxLayout.lt-md="column wrap">
+    <div class="email-verify-wrap" t-color-white>
+      <mat-card class="session-card">
+        <div class="t-text-center">
+          <h2 t-font-light t-color-primary t-mb-1>Email Verificaiton</h2>
+          <img t-m-1 src="assets/images/email.png" alt="">
+          <h4 t-font-uppercase t-font-regular>Please validate your email address</h4>
+          <p>Please check your email, and click on the validation 
+            link to activate your account.</p>
+          <button mat-flat-button t-width-full t-mb-1 color="primary">
+            Resend verification code
+          </button>
+          <div fxLayout="row wrap">
+            <button mat-button fxFlex="49">Cancel</button>
+            <span fxFlex="2"></span>
+            <button fxFlex="49" mat-button mat-stroked-button color="primary">I'm ready now</button>
+          </div>
+        </div>        
+      </mat-card>
+    </div>
+
+  </div>
+</div>
