@@ -9,6 +9,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { EmailVerifyDialogComponent } from './email-verify-dialog/email-verify-dialog.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CommonMatsModule,
     SessionsRoutingModule
   ],
-  declarations: [SignInComponent, SignUpComponent, VerifyEmailComponent, ForgotPasswordComponent, NotFoundComponent]
+  declarations: [SignInComponent, 
+    SignUpComponent, VerifyEmailComponent, 
+    ForgotPasswordComponent, NotFoundComponent, 
+    EmailVerifyDialogComponent],
+    entryComponents: [ EmailVerifyDialogComponent ]
 })
 export class SessionsModule { }

@@ -18,7 +18,6 @@ export class SetupStepperComponent implements OnInit {
   public personalInfoForm: FormGroup;
   public carrierForm: FormGroup;
   public profileForm: FormGroup;
-  
 
   constructor(
     private fb: FormBuilder,
@@ -101,7 +100,7 @@ export class SetupStepperComponent implements OnInit {
     this.selectedStepIndex = e.selectedIndex;
     let footer:any = document.getElementsByClassName(`footer-${this.selectedStepIndex}`)[0];
     footer.style = "opacity: 0;display: none";
-
+    
   }
 
   
