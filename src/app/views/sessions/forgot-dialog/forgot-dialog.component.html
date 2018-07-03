@@ -1,0 +1,15 @@
+<div class="email-verify-wrap">
+  <div class="t-text-center">
+    <h2 t-font-light t-color-primary t-mb-1>Forgot password</h2>
+    <img t-m-1 src="assets/images/lock.png" alt="">
+    <p>Please check your email, and click on the validation link to reset your password.</p>
+    <mat-form-field t-width-full t-mb-05>
+      <input matInput type="text" placeholder="Email">
+    </mat-form-field>
+    <div fxLayout="row wrap" mat-dialog-actions>
+      <button mat-button fxFlex="49" [mat-dialog-close]>Cancel</button>
+      <span fxFlex="2"></span>
+      <button fxFlex="49" mat-button mat-flat-button color="primary">Submit</button>
+    </div>
+  </div>        
+</div>

@@ -6,7 +6,7 @@
       <mat-card class="session-card">
         <h2 t-font-light t-color-primary t-mb-1>Welcome to Crewnie</h2>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
-        <form action="" class="t-pt-1">
+        <form class="t-pt-1" [formGroup]="signupForm" (ngSubmit)="signUp()">
           <mat-form-field t-width-full>
             <input matInput type="text" placeholder="Name">
           </mat-form-field>

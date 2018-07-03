@@ -9,6 +9,7 @@ import {
   MatStepperModule,
   MatSelectModule,
   MatDatepickerModule,
+  MatDialogModule,
   MatNativeDateModule,
   MatAutocompleteModule,
   MatDividerModule
@@ -23,6 +24,7 @@ const matModules = [
   MatStepperModule,
   MatSelectModule,
   MatDatepickerModule,
+  MatDialogModule,
   MatNativeDateModule,
   MatAutocompleteModule,
   MatDividerModule
