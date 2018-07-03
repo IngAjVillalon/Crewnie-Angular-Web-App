@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validator, Validators, FormControl } from '@ang
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { CoverPhotoDialogComponent } from '../cover-photo-dialog/cover-photo-dialog.component';
 import { CoverLetterDialogComponent } from '../cover-letter-dialog/cover-letter-dialog.component';
+import { ProfilePhotoDialogComponent } from '../profile-photo-dialog/profile-photo-dialog.component';
 
 @Component({
   selector: 'app-setup-stepper',
@@ -59,7 +60,8 @@ export class SetupStepperComponent implements OnInit {
   changeProfileCoverPhoto()
   {
     const dialogRef = this.dialog.open(CoverPhotoDialogComponent, {
-      width: '450px',
+      width: '650px',
+      // height: '650px',
       data: { }
     });
 
@@ -80,7 +82,16 @@ export class SetupStepperComponent implements OnInit {
   
   changeProfilePhoto()
   {
-    console.log('Change Profile Photo');
+    const dialogRef = this.dialog.open(ProfilePhotoDialogComponent, {
+      width: '450px',
+      height: '515px',
+      data: { }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
   }
 
   // Footer jump fix

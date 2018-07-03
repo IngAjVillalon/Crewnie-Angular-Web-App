@@ -8,6 +8,7 @@ import { ProfileSetupRoutingModule } from './profile-setup-routing.module';
 import { SetupStepperComponent } from './setup-stepper/setup-stepper.component';
 import { CoverPhotoDialogComponent } from './cover-photo-dialog/cover-photo-dialog.component';
 import { CoverLetterDialogComponent } from './cover-letter-dialog/cover-letter-dialog.component';
+import { ProfilePhotoDialogComponent } from './profile-photo-dialog/profile-photo-dialog.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { CoverLetterDialogComponent } from './cover-letter-dialog/cover-letter-d
     FlexLayoutModule,
     ProfileSetupRoutingModule
   ],
-  declarations: [SetupStepperComponent, CoverPhotoDialogComponent, CoverLetterDialogComponent],
-  entryComponents: [CoverPhotoDialogComponent, CoverLetterDialogComponent]
+  declarations: [SetupStepperComponent, CoverPhotoDialogComponent, CoverLetterDialogComponent, ProfilePhotoDialogComponent],
+  entryComponents: [CoverPhotoDialogComponent, CoverLetterDialogComponent, ProfilePhotoDialogComponent]
 })
 export class ProfileSetupModule { }
