@@ -1,8 +1,12 @@
 .signin-wrap {
-    position: relative;
     background: url('../images/session-bg.png');
+    position: relative;
     height: 100%;
     z-index: 1;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     &:after {
         position: absolute;
         bottom: 0;
