@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BlankLayoutComponent } from './core/components/blank-layout/blank-layout.component';
+import { SidenavLayoutComponent } from './core/components/sidenav-layout/sidenav-layout.component';
 
 const routes: Routes = [
   { 
@@ -27,13 +28,23 @@ const routes: Routes = [
     ]
   },
   {
+    path: '',
+    component: SidenavLayoutComponent,
+    children: [
+      {
+        path: 'profile',
+        loadChildren: './views/profile/profile.module#ProfileModule'
+      }
+    ]
+  },
+  {
     path: '**',
     redirectTo: 'sessions/404'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

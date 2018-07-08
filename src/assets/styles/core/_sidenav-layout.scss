@@ -1,0 +1,56 @@
+.sidenav-layout-wrap {
+    .mat-drawer-container {
+        min-height: 100vh;
+    }
+    .header-top { 
+        height: 68px;
+
+        .propic-topbar {
+            height: 42px;
+            width: auto;
+            margin: 16px;
+        }
+        .logo-topbar {
+            height: 38px;
+            width: auto;
+        }
+    }
+    .header-bottom {
+        height: 42px;
+        background: #000000;
+    }
+
+    .main-sidebar {
+        width: 240px;
+        min-height: 100vh;
+        border-right: 1px solid #ccc;
+        .user-intro-wrap {
+            padding: 16px;
+            p {
+                color: rgba(0, 0, 0, .7)
+            }
+            .propic-wrap {
+                width: 120px;
+                
+                img {
+                    width: 100%;
+                    border-radius: 50%;
+                    border: 3px solid #15de15;
+                }
+            }
+        }
+        .quick-menu {
+            button {
+                padding: 0;
+                min-width: 24px;
+            }
+        }
+        .side-navigation {
+            a {
+                
+            }
+        }
+    }
+    .content-center {
+    }
+}

@@ -1,0 +1,63 @@
+<div class="sidenav-layout-wrap">
+  <!-- header top -->
+  <div class="header-top" fxLayout="row wrap">
+    <!-- <button matSidenavToggler="profile-left-sidenav"></button> -->
+    <div fxFlex="30" fxLayout="row wrap" fxLayoutAlign="start center">
+      <img class="propic-topbar" src="assets/images/profile-pic-2.png" alt="">
+      <img class="logo-topbar" src="assets/images/crewnie-logo-black.png" alt="">
+    </div>
+
+    <div class="search-wrap">
+
+    </div>
+
+    <div class="topbar-right">
+      
+    </div>
+  </div>
+
+  <!-- header bottom -->
+  <div class="header-bottom">
+
+  </div>
+
+  <div class="content-center">
+
+    <mat-sidenav-container>
+        <mat-sidenav 
+        class="main-sidebar"
+        position="start" 
+        opened="true" 
+        [mode]="'side'"
+        matSidebarHelper="profile-left-sidenav"
+        mat-is-locked-open="gt-md"
+        >
+          <div class="user-intro-wrap" fxLayout="column" fxLayoutAlign="center center">
+            <div class="propic-wrap">
+              <img src="assets/images/profile-pic-2.png" alt="">
+            </div>
+            <h4 t-color-primary t-mb-0>Jhone Doe</h4>
+            <p t-m-0>Lic. en Diseño Gráfico</p>
+            <p t-m-0>CDMX, México</p>
+          </div>
+
+          <div class="quick-menu" fxLayout="row wrap">
+            <button mat-button fxFlex="33.33"><mat-icon>email</mat-icon></button>
+            <button mat-button fxFlex="33.33"><mat-icon>person_add</mat-icon></button>
+            <button mat-button fxFlex="33.33"><mat-icon>business_center</mat-icon></button>
+          </div>
+
+          <div class="side-navigation">
+            <a href="" routerLink="/profile">Profile</a>
+            <a href="" routerLink="/profile">Portfolio</a>
+            <a href="" routerLink="/profile">Rentals</a>
+          </div>
+          
+        </mat-sidenav>
+
+        <div class="">
+          <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-container>
+  </div>
+</div>

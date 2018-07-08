@@ -12,7 +12,8 @@ import {
   MatDialogModule,
   MatNativeDateModule,
   MatAutocompleteModule,
-  MatDividerModule
+  MatDividerModule,
+  MatSidenavModule
 } from '@angular/material';
 
 const matModules = [
@@ -27,7 +28,8 @@ const matModules = [
   MatDialogModule,
   MatNativeDateModule,
   MatAutocompleteModule,
-  MatDividerModule
+  MatDividerModule,
+  MatSidenavModule
 ]
 
 @NgModule({

@@ -6,20 +6,32 @@ import { MatSidenav } from '@angular/material';
 })
 export class MatSidebarHelperService
 {
-    matSidebars: MatSidenav[];
+    sidenavInstances: MatSidenav[];
 
     constructor()
     {
-        this.matSidebars = [];
+        this.sidenavInstances = [];
     }
 
-    setSidenav(id, instance)
+    /**
+     * Set sidenav
+     *
+     * @param id
+     * @param instance
+     */
+    setSidenav(id, instance): void
     {
-        this.matSidebars[id] = instance;
+        this.sidenavInstances[id] = instance;
     }
 
-    getSidenav(id)
-    {
-        return this.matSidebars[id];
+    /**
+     * Get sidenav
+     *
+     * @param id
+     * @returns {any}
+     */
+    getSidenav(id): any
+    {   console.log(this.sidenavInstances)
+        return this.sidenavInstances[id];
     }
 }
