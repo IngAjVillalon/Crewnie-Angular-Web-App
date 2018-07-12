@@ -1,0 +1,243 @@
+.basic-info-wrapper {
+  width: 100%;
+  display: block;
+}
+
+.basic-info {
+  width: 100%;
+  height: 100vh;
+  display: block;
+}
+
+.basic-info-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+
+  .cover-photo {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .profile-photo {
+    // width: 100%;
+
+    .photo-container {
+      background-color: #fff;
+      margin-top: -50%;
+      border: 5px solid #fff;
+      border-radius: 50%;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .social-items {
+    position: absolute;
+    right: 5px;
+
+    .social-items__item {
+    }
+  }
+
+  .profile-introduction {
+    width: 100%;
+    padding: 15px 0px 0px 25px;
+    margin-bottom: 30px;
+
+    .name {
+      color: #fc4000;
+      text-align: center;
+      font-weight: 700;
+      font-size: 42px;
+      margin: 0;
+    }
+    .profession {
+      color: #262626;
+      text-align: center;
+      font-weight: 400;
+      font-size: 16px;
+      margin: 0;
+    }
+    .address {
+      color: #262626;
+      text-align: center;
+      font-weight: 400;
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+
+  .profile-details {
+    width: 100%;
+    margin: 10px 0px;
+    // padding-left: 65px;
+
+    .details-label {
+      color: #fc4000;
+      text-align: left;
+      font-weight: 400;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .details-text {
+      color: #262626;
+      text-align: left;
+      font-weight: 400;
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+
+  .info-divider {
+    width: 100%;
+    overflow: hidden;
+    margin: 30px 0px;
+  }
+
+  .profile-bio {
+    width: 100%;
+
+    .title {
+      color: #fc4000;
+      font-size: 42px;
+      font-weight: 400;
+      text-align: left;
+      margin: 0;
+    }
+    .details-text {
+      width: 90%;
+      color: #555555;
+      font-size: 16px;
+      font-weight: 400;
+      text-align: justify;
+      margin: 0;
+    }
+  }
+
+  .profile-certification {
+    width: 100%;
+
+    .title {
+      color: #fc4000;
+      font-size: 42px;
+      font-weight: 400;
+      text-align: left;
+      margin: 0;
+    }
+
+    .certification-badge {
+      width: 90px;
+      margin-top: 15px;
+      margin-right: 20px;
+      display: inline-block;
+
+      img {
+        width: 50px;
+        height: 50px;
+        margin-left: 20px;
+      }
+      .badge-title {
+        color: #262626;
+        text-align: center;
+        font-weight: 400;
+        font-size: 13px;
+        margin: 0;
+      }
+    }
+  }
+
+  .profile-endrosments {
+    width: 100%;
+    margin-bottom: 30px;
+
+    .title {
+      color: #fc4000;
+      font-size: 42px;
+      font-weight: 400;
+      text-align: left;
+      margin: 0;
+    }
+
+    .skills-wrap {
+      width: 100%;
+      margin-top: 15px;
+
+      .skills {
+        width: 100%;
+        margin-top: 10px;
+
+        .skill-title {
+          background-color: #ffa994;
+          display: inline-block;
+          border-radius: 25px;
+
+          h3 {
+            margin: 0;
+            padding: 7px 30px 7px 30px;
+            font-size: 16px;
+            font-weight: 400;
+          }
+        }
+      }
+
+      .skill-endrosments {
+        display: inline-block;
+        width: 80%;
+
+        .endoresements-img-profile {
+          width: 40px;
+          height: 40px;
+          padding-right: 45px;
+
+          a {
+            color: #fc4000;
+            width: 38px;
+            height: 38px;
+            display: inline-block;
+            border: 2px solid #FFF;
+            border-radius: 25px;
+            background-color: #fff;
+            margin-right: -20px;
+
+            img {
+              width: inherit;
+              height: inherit;
+            }
+          }
+        }
+
+        .endrosments-profile-links {
+            color: #555555;
+            font-weight: 600;
+            font-size: 16px;
+
+            .first-profile {
+                color: #fc4000;
+            }
+            .more-people {
+                color: #000;
+            }
+        }
+      }
+
+      .view-more {
+        color: #fc4000;
+        font-size: 20px;
+        font-weight: 400 !important;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.basic-info-widgets {
+}

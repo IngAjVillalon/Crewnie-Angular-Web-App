@@ -13,7 +13,8 @@ import {
   MatNativeDateModule,
   MatAutocompleteModule,
   MatDividerModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatListModule
 } from '@angular/material';
 
 const matModules = [
@@ -29,7 +30,8 @@ const matModules = [
   MatNativeDateModule,
   MatAutocompleteModule,
   MatDividerModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatListModule
 ]
 
 @NgModule({
