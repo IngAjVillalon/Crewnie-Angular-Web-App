@@ -107,7 +107,7 @@ export class MatSidenavTogglerDirective
     @HostListener('click')
     onClick()
     {
-        console.log(this._matSidenavHelperService.getSidenav(this.id))
+        // console.log(this._matSidenavHelperService.getSidenav(this.id))
         this._matSidenavHelperService.getSidenav(this.id).toggle();
     }
 }

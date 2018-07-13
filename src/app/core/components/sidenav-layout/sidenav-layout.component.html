@@ -1,63 +1,101 @@
 <div class="sidenav-layout-wrap">
   <!-- header top -->
   <div class="header-top" fxLayout="row wrap">
-    <!-- <button matSidenavToggler="profile-left-sidenav"></button> -->
-    <div fxFlex="30" fxLayout="row wrap" fxLayoutAlign="start center">
+    <div fxFlex="30.33" fxLayout="row wrap" fxLayoutAlign="start center">
       <img class="propic-topbar" src="assets/images/profile-pic-2.png" alt="">
       <img class="logo-topbar" src="assets/images/crewnie-logo-black.png" alt="">
     </div>
 
-    <div class="search-wrap">
-
+    <div fxFlex="33.33" class="search-wrap" fxLayoutAlign="center center">
+      <div class="search-bar">
+        <mat-icon>search</mat-icon>
+        <input type="text" placeholder="Search">
+      </div>
     </div>
 
-    <div class="topbar-right">
-      
+
+    <div class="topbar-right" fxFlex="33.33" fxLayout="row wrap" fxLayoutAlign="end center">
+      <button mat-icon-button fxFlex="5" class="topbar-right-button">
+        <mat-icon>notifications_none</mat-icon>
+      </button>
+      <button mat-icon-button fxFlex="5" class="topbar-right-button">
+        <mat-icon>calendar_today</mat-icon>
+      </button>
+      <button mat-icon-button fxFlex="5" class="topbar-right-button">
+        <mat-icon>mail_outline</mat-icon>
+      </button>
+      <button mat-icon-button fxFlex="5" class="topbar-right-button">
+        <mat-icon>chat</mat-icon>
+      </button>
     </div>
   </div>
 
   <!-- header bottom -->
-  <div class="header-bottom">
+  <div class="header-bottom" fxLayout="row wrap">
+      <button mat-icon-button
+      style="color: #ffffff" 
+      matSidenavToggler="profile-left-sidenav">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="header-bottom-left" fxLayout="row wrap" fxLayoutAlign="start center">
+          <button mat-button fxFlex="10" class="header-bottom-left-button">
+            Newsfeed
+          </button>
+          <button mat-button fxFlex="10" class="header-bottom-left-button">
+            Profile
+          </button>
+          <button mat-button fxFlex="10" class="header-bottom-left-button active">
+            Projects
+          </button>
+          <button mat-button fxFlex="10" class="header-bottom-left-button">
+            Jobs
+          </button>
+          <button mat-button fxFlex="10" class="header-bottom-left-button">
+            Rentals
+          </button>
+        </div>
 
   </div>
 
   <div class="content-center">
 
     <mat-sidenav-container>
-        <mat-sidenav 
-        class="main-sidebar"
-        position="start" 
-        opened="true" 
-        [mode]="'side'"
-        matSidebarHelper="profile-left-sidenav"
-        mat-is-locked-open="gt-md"
-        >
-          <div class="user-intro-wrap" fxLayout="column" fxLayoutAlign="center center">
-            <div class="propic-wrap">
-              <img src="assets/images/profile-pic-2.png" alt="">
-            </div>
-            <h4 t-color-primary t-mb-0>Jhone Doe</h4>
-            <p t-m-0>Lic. en Diseño Gráfico</p>
-            <p t-m-0>CDMX, México</p>
+      <mat-sidenav class="main-sidebar" position="start" opened="true" [mode]="'side'" matSidebarHelper="profile-left-sidenav"
+        mat-is-locked-open="gt-md">
+        <div class="user-intro-wrap" fxLayout="column" fxLayoutAlign="center center">
+          <div class="propic-wrap">
+            <img src="assets/images/profile-pic-2.png" alt="">
           </div>
-
-          <div class="quick-menu" fxLayout="row wrap">
-            <button mat-button fxFlex="33.33"><mat-icon>email</mat-icon></button>
-            <button mat-button fxFlex="33.33"><mat-icon>person_add</mat-icon></button>
-            <button mat-button fxFlex="33.33"><mat-icon>business_center</mat-icon></button>
-          </div>
-
-          <div class="side-navigation">
-            <a matRipple routerLink="/portfolio" routerLinkActive="active">Profile</a>
-            <a matRipple routerLink="/profile" routerLinkActive="active">Portfolio</a>
-            <a href="" routerLink="/" routerLinkActive="active">Rentals</a>
-          </div>
-          
-        </mat-sidenav>
-
-        <div class="">
-          <router-outlet></router-outlet>
+          <h4 t-color-primary t-mb-0>Jhone Doe</h4>
+          <p t-m-0>Lic. en Diseño Gráfico</p>
+          <p t-m-0>CDMX, México</p>
         </div>
+
+        <div class="quick-menu" fxLayout="row wrap">
+          <button mat-button fxFlex="33.33">
+            <mat-icon>email</mat-icon>
+          </button>
+          <button mat-button fxFlex="33.33">
+            <mat-icon>person_add</mat-icon>
+          </button>
+          <button mat-button fxFlex="33.33">
+            <mat-icon>business_center</mat-icon>
+          </button>
+        </div>
+
+        <div class="side-navigation">
+          <mat-nav-list class="side-navigation-nav-list">
+              <a mat-list-item routerLink="/profile/info" routerLinkActive="active">Profile </a>
+              <a mat-list-item routerLink="/profile/portfolio" routerLinkActive="active">Portfolio </a>
+              <a mat-list-item routerLinkActive="active">Rentals </a>
+          </mat-nav-list>
+        </div>
+
+      </mat-sidenav>
+
+      <div class="profile-items-container">
+        <router-outlet></router-outlet>
+      </div>
     </mat-sidenav-container>
   </div>
 </div>

@@ -14,7 +14,7 @@ import {
   MatAutocompleteModule,
   MatDividerModule,
   MatSidenavModule,
-  MatRippleModule
+  MatListModule
 } from '@angular/material';
 
 const matModules = [
@@ -31,7 +31,7 @@ const matModules = [
   MatAutocompleteModule,
   MatDividerModule,
   MatSidenavModule,
-  MatRippleModule
+  MatListModule
 ]
 
 @NgModule({
