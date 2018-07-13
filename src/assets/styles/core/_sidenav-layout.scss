@@ -40,6 +40,7 @@
             }
         }
         .quick-menu {
+            margin: 0 0 16px;
             button {
                 padding: 0;
                 min-width: 24px;
@@ -47,7 +48,20 @@
         }
         .side-navigation {
             a {
-                
+                position: relative;
+                display: block;
+                height: 42px;
+                line-height: 42px;
+                color: #000000;
+                padding: 0 16px;
+                box-sizing: border-box;
+                border-bottom: 1px solid #cccccc;
+                &:first-child {
+                    border-top: 1px solid #cccccc;
+                }
+                &.active {
+                    border-right: 2px solid mat-color($primary);
+                }
             }
         }
     }
