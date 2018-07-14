@@ -1,3 +1,94 @@
-<p>
-  portfolio works!
-</p>
+<div class="portfolio-wrapper">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="0px">
+    
+    <div fxFlex="70" class="portfolio-container">
+
+      <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="0px" class="portfolio-item-categoris">
+          
+        <div fxFlex="6">
+          <button mat-button class="portfolio-item-button active">All</button>
+        </div>
+        <div fxFlex="6">
+          <button mat-button class="portfolio-item-button"><mat-icon>movies</mat-icon></button>
+        </div>
+        <div fxFlex="6">
+            <button mat-button class="portfolio-item-button"><mat-icon>local_movies</mat-icon></button>
+        </div>
+        <div fxFlex="6">
+            <button mat-button class="portfolio-item-button"><mat-icon>library_music</mat-icon></button>
+        </div>
+        <div fxFlex="6">
+            <button mat-button class="portfolio-item-button"><mat-icon>description</mat-icon></button>
+        </div>
+      </div>
+
+    </div>
+    
+    <div fxFlex="50" class="portfolio-container">
+    
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="0px">
+    
+        <div fxFlex="90">
+          <mat-form-field class="filter-chip-list">
+            <mat-chip-list #chipList>
+              <mat-chip class="tag" *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
+                {{fruit.name}}
+                <mat-icon matChipRemove *ngIf="removable">clear</mat-icon>
+              </mat-chip>
+              <mat-chip class="tag active" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
+                #Pilot
+                <mat-icon matChipRemove *ngIf="removable">clear</mat-icon>
+              </mat-chip>
+              <input placeholder="Filter portfolio..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+              <!-- <mat-icon matSuffix>filter_list</mat-icon> -->
+              <button mat-icon-button>
+                <mat-icon matSuffix>search</mat-icon>
+              </button>
+            </mat-chip-list>
+          </mat-form-field>
+        </div>
+    
+        <div fxFlex="5">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon matSuffix>swap_vert</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu" class="sort-menu">
+              <!-- <button mat-menu-item>Most Recent <mat-icon matSuffix>check</mat-icon></button> -->
+              <button mat-menu-item>Most Recent</button>
+              <button mat-menu-item>Most Popular</button>
+              <button mat-menu-item>A - Z</button>
+              <button mat-menu-item>Z - A</button>
+            </mat-menu>
+        </div>
+  
+      </div>
+
+    </div>
+
+
+    <div fxFlex="90" class="portfolio-container">
+
+      <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px">
+
+        <div fxFlex="24" *ngFor="let item of portfolioItems">
+          <div class="portfolio-item-image">
+              <img src="assets/images/profile-pic.png">
+              <h3 class="title">{{item.title}}</h3>
+              <h3 class="views">{{item.views}} views - {{item.day}} days</h3>
+              <h3 class="tag" *ngFor="let t of item.tags">#{{t}}</h3>
+
+              <button mat-icon-button class="favourit"><mat-icon>favorite_border</mat-icon></button>
+              <button mat-icon-button class="comments"><mat-icon>comment</mat-icon></button>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+
+    
+
+  </div>
+</div>
