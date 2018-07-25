@@ -30,7 +30,8 @@ export class PortfolioComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruits: Fruit[] = [
+
+  tags: Fruit[] = [
     {name: '#Videos'},
     {name: '#Pilot'}
   ];
@@ -56,7 +57,7 @@ export class PortfolioComponent implements OnInit {
 
     // Add our fruit
     if ((value || '').trim()) {
-      this.fruits.push({name: value.trim()});
+      this.tags.push({name: value.trim()});
     }
 
     // Reset the input value
@@ -66,10 +67,10 @@ export class PortfolioComponent implements OnInit {
   }
 
   remove(fruit: Fruit): void {
-    const index = this.fruits.indexOf(fruit);
+    const index = this.tags.indexOf(fruit);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.tags.splice(index, 1);
     }
   }
 
