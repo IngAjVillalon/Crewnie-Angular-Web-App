@@ -25,6 +25,7 @@ export class PortfolioComponent implements OnInit {
   isImage: Boolean = false;
   isAudio: Boolean = false;
   isScript: Boolean = false;
+  isAudioWide: Boolean = false;
 
   visible = true;
   selectable = true;
@@ -93,6 +94,15 @@ export class PortfolioComponent implements OnInit {
       this.isAudio = true;
     }else if(portfolio === 4) {
       this.isScript = true;
+    }
+
+  }
+
+  selectPortfolioItemWide(isWide: number) {
+    if(isWide == 0) {
+      this.isAudioWide = false;
+    }else if(isWide == 1) {
+      this.isAudioWide = true;
     }
 
   }
