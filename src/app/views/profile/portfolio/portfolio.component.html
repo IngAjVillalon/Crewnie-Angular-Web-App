@@ -1,91 +1,868 @@
 <div class="portfolio-wrapper">
   <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="0px">
-    
+
     <div fxFlex="70" class="portfolio-container">
 
-      <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="0px" class="portfolio-item-categoris">
-          
-        <div fxFlex="6">
-          <button mat-button class="portfolio-item-button active">All</button>
+      <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="0px">
+
+        <div fxFlex="80" class="portfolio-item-categoris">
+
+          <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
+            <div fxFlex="6">
+              <button mat-button class="portfolio-item-button" [class.active]="isAllProtfolio" (click)="selectPortfolio(0)">All</button>
+            </div>
+            <div fxFlex="6">
+              <button mat-button class="portfolio-item-button" [class.active]="isImage" (click)="selectPortfolio(1)">
+                <mat-icon>photo_library</mat-icon>
+              </button>
+            </div>
+            <div fxFlex="6">
+              <button mat-button class="portfolio-item-button" [class.active]="isVideo" (click)="selectPortfolio(2)">
+                <mat-icon>video_library</mat-icon>
+              </button>
+            </div>
+            <div fxFlex="6">
+              <button mat-button class="portfolio-item-button" [class.active]="isAudio" (click)="selectPortfolio(3)">
+                <mat-icon>library_music</mat-icon>
+              </button>
+            </div>
+            <div fxFlex="6">
+              <button mat-button class="portfolio-item-button" [class.active]="isScript" (click)="selectPortfolio(4)">
+                <mat-icon>description</mat-icon>
+              </button>
+            </div>
+          </div>
         </div>
-        <div fxFlex="6">
-          <button mat-button class="portfolio-item-button"><mat-icon>movies</mat-icon></button>
-        </div>
-        <div fxFlex="6">
-            <button mat-button class="portfolio-item-button"><mat-icon>local_movies</mat-icon></button>
-        </div>
-        <div fxFlex="6">
-            <button mat-button class="portfolio-item-button"><mat-icon>library_music</mat-icon></button>
-        </div>
-        <div fxFlex="6">
-            <button mat-button class="portfolio-item-button"><mat-icon>description</mat-icon></button>
-        </div>
+
       </div>
 
     </div>
-    
+
     <div fxFlex="50" class="portfolio-container">
-    
+
       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="0px">
-    
-        <div fxFlex="90">
+
+        <div fxFlex="60">
           <mat-form-field class="filter-chip-list">
             <mat-chip-list #chipList>
-              <mat-chip class="tag" *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable" (removed)="remove(tag)">
+              <mat-chip class="tag" *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(tag)">
                 {{tag.name}}
                 <mat-icon matChipRemove *ngIf="removable">clear</mat-icon>
               </mat-chip>
-              
+
               <input placeholder="Filter portfolio..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
               <!-- <mat-icon matSuffix>filter_list</mat-icon> -->
-              <button mat-icon-button>
+              <button mat-icon-button >
                 <mat-icon matSuffix>search</mat-icon>
               </button>
             </mat-chip-list>
           </mat-form-field>
         </div>
-    
+
         <div fxFlex="5">
-          <button mat-icon-button [matMenuTriggerFor]="menu">
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="btn-simple">
             <mat-icon matSuffix>swap_vert</mat-icon>
           </button>
 
           <mat-menu #menu="matMenu" class="sort-menu">
-              <!-- <button mat-menu-item>Most Recent <mat-icon matSuffix>check</mat-icon></button> -->
-              <button mat-menu-item>Most Recent</button>
-              <button mat-menu-item>Most Popular</button>
-              <button mat-menu-item>A - Z</button>
-              <button mat-menu-item>Z - A</button>
-            </mat-menu>
+            <!-- <button mat-menu-item>Most Recent <mat-icon matSuffix>check</mat-icon></button> -->
+            <button mat-menu-item>Most Recent</button>
+            <button mat-menu-item>Most Popular</button>
+            <button mat-menu-item>A - Z</button>
+            <button mat-menu-item>Z - A</button>
+          </mat-menu>
         </div>
-  
+
       </div>
 
     </div>
 
+    <div fxFlex="100" class="portfolio-container" *ngIf="isImage">
 
-    <div fxFlex="90" class="portfolio-container">
+      <div fxLayout="row wrap" fxLayoutAlign="start start">
 
-      <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px">
+        <div fxFlex="33.33">
+          <div class="portfolio-item-square">
 
-        <div fxFlex="24" *ngFor="let item of portfolioItems">
-          <div class="portfolio-item-image">
+            <div class="image-wrapper">
+              <div class="image-overlay">
+                <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>favorite</mat-icon><span>5</span>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>comment</mat-icon> <span>9</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
               <img src="assets/images/profile-pic.png">
-              <h3 class="title">{{item.title}}</h3>
-              <h3 class="views">{{item.views}} views - {{item.day}} days</h3>
-              <h3 class="tag" *ngFor="let t of item.tags">#{{t}}</h3>
 
-              <button mat-icon-button class="favourit"><mat-icon>favorite_border</mat-icon></button>
-              <button mat-icon-button class="comments"><mat-icon>comment</mat-icon></button>
+            </div>
           </div>
         </div>
-        
+
+        <div fxFlex="33.33">
+          <div class="portfolio-item-square">
+
+            <div class="image-wrapper">
+              <div class="image-overlay">
+                <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>favorite</mat-icon><span>5</span>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>comment</mat-icon> <span>9</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <img src="assets/images/profile-pic.png">
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <div fxFlex="33.33">
+          <div class="portfolio-item-square">
+
+            <div class="image-wrapper">
+              <div class="image-overlay">
+                <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>favorite</mat-icon><span>5</span>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>comment</mat-icon> <span>9</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <img src="assets/images/profile-pic.png">
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <div fxFlex="33.33">
+          <div class="portfolio-item-square">
+
+            <div class="image-wrapper">
+              <div class="image-overlay">
+                <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>favorite</mat-icon><span>5</span>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>comment</mat-icon> <span>9</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <img src="assets/images/profile-pic.png">
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <div fxFlex="33.33">
+          <div class="portfolio-item-square">
+
+            <div class="image-wrapper">
+              <div class="image-overlay">
+                <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>favorite</mat-icon><span>5</span>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>comment</mat-icon> <span>9</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <img src="assets/images/profile-pic.png">
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+        <div fxFlex="33.33">
+          <div class="portfolio-item-square">
+
+            <div class="image-wrapper">
+              <div class="image-overlay">
+                <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>favorite</mat-icon><span>5</span>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon>comment</mat-icon> <span>9</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <img src="assets/images/profile-pic.png">
+
+            </div>
+
+
+          </div>
+        </div>
+
       </div>
-      
+
     </div>
 
-    
+
+    <div fxFlex="100" class="portfolio-container"*ngIf="isVideo" >
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="0px">
+
+        <div fxFlex="33">
+          <div class="portfolio-item-square media-item video-item">
+
+            <div class="image-wrapper">
+              <div class="overlay">
+
+                <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">favorite_border</mat-icon>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">comment</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100" class="action play-button">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">play_circle_outline</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100%" class="action duration">
+                    <div class="time-duration">
+                      <span>88:88:88</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <img src="assets/images/profile-pic.png">
+
+            </div>
+
+            <div class="footer">
+              <h4 class="title">Short #1</h4>
+              <p class="item-views">172 views - 3 days ago</p>
+              <div class="tag-list">
+                <a href="#" class="tag">#Video</a>
+                <a href="#" class="tag">#Pilot</a>
+                <a href="#" class="tag">#Production</a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div fxFlex="33">
+          <div class="portfolio-item-square media-item video-item">
+
+            <div class="image-wrapper">
+              <div class="overlay">
+
+                <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">favorite_border</mat-icon>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">comment</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100" class="action play-button">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">play_circle_outline</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100%" class="action duration">
+                    <div class="time-duration">
+                      <span>88:88:88</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <img src="assets/images/profile-pic.png">
+
+            </div>
+
+            <div class="footer">
+              <h4 class="title">Short #1</h4>
+              <p class="item-views">172 views - 3 days ago</p>
+              <div class="tag-list">
+                <a href="#" class="tag">#Video</a>
+                <a href="#" class="tag">#Pilot</a>
+                <a href="#" class="tag">#Production</a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div fxFlex="33">
+          <div class="portfolio-item-square media-item video-item">
+
+            <div class="image-wrapper">
+              <div class="overlay">
+
+                <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">favorite_border</mat-icon>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">comment</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100" class="action play-button">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">play_circle_outline</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100%" class="action duration">
+                    <div class="time-duration">
+                      <span>88:88:88</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <img src="assets/images/profile-pic.png">
+
+            </div>
+
+            <div class="footer">
+              <h4 class="title">Short #1</h4>
+              <p class="item-views">172 views - 3 days ago</p>
+              <div class="tag-list">
+                <a href="#" class="tag">#Video</a>
+                <a href="#" class="tag">#Pilot</a>
+                <a href="#" class="tag">#Production</a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div fxFlex="33">
+          <div class="portfolio-item-square media-item video-item">
+
+            <div class="image-wrapper">
+              <div class="overlay">
+
+                <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">favorite_border</mat-icon>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">comment</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100" class="action play-button">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">play_circle_outline</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100%" class="action duration">
+                    <div class="time-duration">
+                      <span>88:88:88</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <img src="assets/images/profile-pic.png">
+
+            </div>
+
+            <div class="footer">
+              <h4 class="title">Short #1</h4>
+              <p class="item-views">172 views - 3 days ago</p>
+              <div class="tag-list">
+                <a href="#" class="tag">#Video</a>
+                <a href="#" class="tag">#Pilot</a>
+                <a href="#" class="tag">#Production</a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div fxFlex="33">
+          <div class="portfolio-item-square media-item video-item">
+
+            <div class="image-wrapper">
+              <div class="overlay">
+
+                <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">favorite_border</mat-icon>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">comment</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100" class="action play-button">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">play_circle_outline</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100%" class="action duration">
+                    <div class="time-duration">
+                      <span>88:88:88</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <img src="assets/images/profile-pic.png">
+
+            </div>
+
+            <div class="footer">
+              <h4 class="title">Short #1</h4>
+              <p class="item-views">172 views - 3 days ago</p>
+              <div class="tag-list">
+                <a href="#" class="tag">#Video</a>
+                <a href="#" class="tag">#Pilot</a>
+                <a href="#" class="tag">#Production</a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div fxFlex="33">
+          <div class="portfolio-item-square media-item video-item">
+
+            <div class="image-wrapper">
+              <div class="overlay">
+
+                <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">favorite_border</mat-icon>
+                    </button>
+                  </div>
+                  <div fxFlex="20%" class="action">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">comment</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100" class="action play-button">
+                    <button mat-flat-button class="simple-button">
+                      <mat-icon color="primary">play_circle_outline</mat-icon>
+                    </button>
+                  </div>
+
+                  <div fxFlex="100%" class="action duration">
+                    <div class="time-duration">
+                      <span>88:88:88</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <img src="assets/images/profile-pic.png">
+
+            </div>
+
+            <div class="footer">
+              <h4 class="title">Short #1</h4>
+              <p class="item-views">172 views - 3 days ago</p>
+              <div class="tag-list">
+                <a href="#" class="tag">#Video</a>
+                <a href="#" class="tag">#Pilot</a>
+                <a href="#" class="tag">#Production</a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div fxFlex="100" class="portfolio-container"*ngIf="isAudio" >
+
+        <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="0px">
+
+          <div fxFlex="33">
+            <div class="portfolio-item-square media-item audio-item">
+
+              <div class="image-wrapper">
+                <div class="overlay">
+
+                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">favorite_border</mat-icon>
+                      </button>
+                    </div>
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">comment</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100" class="action play-button">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">play_circle_outline</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100%" class="action duration">
+                      <div class="time-duration">
+                        <span>88:88:88</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <img src="assets/images/profile-pic.png">
+
+              </div>
+
+              <div class="footer">
+                <h4 class="title">Short #1</h4>
+                <p class="item-views">172 views - 3 days ago</p>
+                <div class="tag-list">
+                  <a href="#" class="tag">#Track</a>
+                  <a href="#" class="tag">#Pilot</a>
+                  <a href="#" class="tag">#Production</a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div fxFlex="33">
+            <div class="portfolio-item-square media-item audio-item">
+
+              <div class="image-wrapper">
+                <div class="overlay">
+
+                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">favorite_border</mat-icon>
+                      </button>
+                    </div>
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">comment</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100" class="action play-button">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">play_circle_outline</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100%" class="action duration">
+                      <div class="time-duration">
+                        <span>88:88:88</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <img src="assets/images/profile-pic.png">
+
+              </div>
+
+              <div class="footer">
+                <h4 class="title">Short #1</h4>
+                <p class="item-views">172 views - 3 days ago</p>
+                <div class="tag-list">
+                  <a href="#" class="tag">#Track</a>
+                  <a href="#" class="tag">#Pilot</a>
+                  <a href="#" class="tag">#Production</a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div fxFlex="33">
+            <div class="portfolio-item-square media-item audio-item">
+
+              <div class="image-wrapper">
+                <div class="overlay">
+
+                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">favorite_border</mat-icon>
+                      </button>
+                    </div>
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">comment</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100" class="action play-button">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">play_circle_outline</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100%" class="action duration">
+                      <div class="time-duration">
+                        <span>88:88:88</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <img src="assets/images/profile-pic.png">
+
+              </div>
+
+              <div class="footer">
+                <h4 class="title">Short #1</h4>
+                <p class="item-views">172 views - 3 days ago</p>
+                <div class="tag-list">
+                  <a href="#" class="tag">#Track</a>
+                  <a href="#" class="tag">#Pilot</a>
+                  <a href="#" class="tag">#Production</a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div fxFlex="33">
+            <div class="portfolio-item-square media-item audio-item">
+
+              <div class="image-wrapper">
+                <div class="overlay">
+
+                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">favorite_border</mat-icon>
+                      </button>
+                    </div>
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">comment</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100" class="action play-button">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">play_circle_outline</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100%" class="action duration">
+                      <div class="time-duration">
+                        <span>88:88:88</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <img src="assets/images/profile-pic.png">
+
+              </div>
+
+              <div class="footer">
+                <h4 class="title">Short #1</h4>
+                <p class="item-views">172 views - 3 days ago</p>
+                <div class="tag-list">
+                  <a href="#" class="tag">#Track</a>
+                  <a href="#" class="tag">#Pilot</a>
+                  <a href="#" class="tag">#Production</a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div fxFlex="33">
+            <div class="portfolio-item-square media-item audio-item">
+
+              <div class="image-wrapper">
+                <div class="overlay">
+
+                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">favorite_border</mat-icon>
+                      </button>
+                    </div>
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">comment</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100" class="action play-button">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">play_circle_outline</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100%" class="action duration">
+                      <div class="time-duration">
+                        <span>88:88:88</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <img src="assets/images/profile-pic.png">
+
+              </div>
+
+              <div class="footer">
+                <h4 class="title">Short #1</h4>
+                <p class="item-views">172 views - 3 days ago</p>
+                <div class="tag-list">
+                  <a href="#" class="tag">#Track</a>
+                  <a href="#" class="tag">#Pilot</a>
+                  <a href="#" class="tag">#Production</a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div fxFlex="33">
+            <div class="portfolio-item-square media-item audio-item">
+
+              <div class="image-wrapper">
+                <div class="overlay">
+
+                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">favorite_border</mat-icon>
+                      </button>
+                    </div>
+                    <div fxFlex="20%" class="action">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">comment</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100" class="action play-button">
+                      <button mat-flat-button class="simple-button">
+                        <mat-icon color="primary">play_circle_outline</mat-icon>
+                      </button>
+                    </div>
+
+                    <div fxFlex="100%" class="action duration">
+                      <div class="time-duration">
+                        <span>88:88:88</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <img src="assets/images/profile-pic.png">
+
+              </div>
+
+              <div class="footer">
+                <h4 class="title">Short #1</h4>
+                <p class="item-views">172 views - 3 days ago</p>
+                <div class="tag-list">
+                  <a href="#" class="tag">#Track</a>
+                  <a href="#" class="tag">#Pilot</a>
+                  <a href="#" class="tag">#Production</a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
 
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material';
+import {MatChipInputEvent, MatButtonToggleGroup} from '@angular/material';
 
 export interface Fruit {
   name: string;
@@ -20,10 +20,11 @@ export interface portfolioItems {
 })
 export class PortfolioComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  isAllProtfolio: Boolean = true;
+  isVideo: Boolean = false;
+  isImage: Boolean = false;
+  isAudio: Boolean = false;
+  isScript: Boolean = false;
 
   visible = true;
   selectable = true;
@@ -41,13 +42,14 @@ export class PortfolioComponent implements OnInit {
     {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
     {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
     {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
-    {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
-    {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
-    {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
-    {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
-    {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
-    {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
   ];
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+
 
 
 
@@ -72,6 +74,27 @@ export class PortfolioComponent implements OnInit {
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
+  }
+
+  selectPortfolio(portfolio: number) {
+    this.isAllProtfolio = false;
+    this.isImage = false;
+    this.isVideo = false;
+    this.isAudio = false;
+    this.isScript = false;
+
+    if( portfolio === 0) {
+      this.isAllProtfolio = true;
+    }else if(portfolio === 1) {
+      this.isImage = true;
+    }else if(portfolio === 2) {
+      this.isVideo = true;
+    }else if(portfolio === 3) {
+      this.isAudio = true;
+    }else if(portfolio === 4) {
+      this.isScript = true;
+    }
+
   }
 
 }

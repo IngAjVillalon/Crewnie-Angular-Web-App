@@ -19,6 +19,7 @@ export class SetupStepperComponent implements OnInit {
   public personalInfoForm: FormGroup;
   public carrierForm: FormGroup;
   public profileForm: FormGroup;
+  public socialForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -30,6 +31,7 @@ export class SetupStepperComponent implements OnInit {
     this.buildPersonalInfoForm();
     this.buildCarrierForm();
     this.buildProfileForm();
+    this.buildSocialForm();
   }
 
   buildSelectTypeForm() {
@@ -40,19 +42,25 @@ export class SetupStepperComponent implements OnInit {
 
   buildPersonalInfoForm() {
     this.personalInfoForm = this.fb.group({
-      
+
     })
   }
-  
+
   buildCarrierForm() {
     this.carrierForm = this.fb.group({
-      
+
     })
   }
-  
+
   buildProfileForm() {
     this.profileForm = this.fb.group({
-      
+
+    })
+  }
+
+  buildSocialForm() {
+    this.socialForm = this.fb.group({
+
     })
   }
 
@@ -78,7 +86,7 @@ export class SetupStepperComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-  
+
   changeProfilePhoto()
   {
     const dialogRef = this.dialog.open(ProfilePhotoDialogComponent, {
@@ -99,21 +107,20 @@ export class SetupStepperComponent implements OnInit {
     let footer:any = document.getElementsByClassName(`footer-${this.selectedStepIndex}`)[0];
 
     if(footer) {
-      footer.style = "opacity: 1;opacity: 1";
+      footer.style = 'opacity: 1;opacity: 1';
     } else {
       footer = document.getElementsByClassName(`footer-0`)[0];
-      footer.style = "display: block;opacity: 1";
+      footer.style = 'display: block;opacity: 1';
     }
-    
   }
 
   selectionChange(e) {
     this.selectedStepIndex = e.selectedIndex;
-    let footer:any = document.getElementsByClassName(`footer-${this.selectedStepIndex}`)[0];
-    footer.style = "opacity: 0;display: none";
-    
+    const footer:any = document.getElementsByClassName(`footer-${this.selectedStepIndex}`)[0];
+    footer.style = 'opacity: 0;display: none';
+
   }
 
-  
+
 
 }
