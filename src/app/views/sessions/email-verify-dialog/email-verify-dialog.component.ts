@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+export interface DialogData {
+  isUserReady: boolean;
+}
 
 @Component({
   selector: 'app-email-verify-dialog',
@@ -7,9 +13,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmailVerifyDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<EmailVerifyDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private authservice: AuthService
+  ) { }
 
   ngOnInit() {
   }
 
+
+  userIsReady(): void{
+    // this.data.isUserReady = true;
+    this.dialogRef.close(true);
+  }
+
+  resendVarificationCode() {
+    // this.authservice.
+  }
 }

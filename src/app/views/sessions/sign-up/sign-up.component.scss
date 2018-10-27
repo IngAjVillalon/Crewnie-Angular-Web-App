@@ -1,0 +1,49 @@
+.password-strength-bar {
+  position: absolute !important;
+  top: -5px !important;
+  right: -10px !important;
+
+  .strengthBar {
+    display: block !important;
+    margin: 0 0 0 0px !important;
+    padding: 0 !important;
+    vertical-align: 2px !important;
+    transform: rotate(180deg) !important;
+
+    li {
+      border-radius: 15px !important;
+      display: block !important;
+      height: 5px !important;
+      margin-right: 0px !important;
+      width: 5px !important;
+      margin-bottom: 1px !important;
+      transform: rotate(-180deg) !important;
+    }
+  }
+}
+
+.social-signup-title {
+  text-align: center;
+  color: #fc4000;
+  font-size: 15px;
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 10px;
+
+}
+
+.social-buttons {
+  width: 100%;
+  text-align: center;
+}
+
+.social-sign-in-google {
+  background-color: #fc4000 !important;
+  color: #ffffff !important;
+  margin: 5px;
+
+  i {
+    color: #ffffff;
+    font-size: 25px;
+  }
+}

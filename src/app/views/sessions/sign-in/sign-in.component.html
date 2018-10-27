@@ -4,7 +4,7 @@
       <div t-width-xs>
           <img class="session-logo" src="../../../../assets//images/logo.png" alt="">
           <h3 t-font-regular t-width-200 t-mb-05>You don't have an account?</h3>
-          <p class="session-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, 
+          <p class="session-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum,
             harum id. Sit odio similique consectetur voluptatum sunt dolores doloribus?</p>
           <button mat-stroked-button t-wide color="primary" routerLink="/sessions/signup">Sign Up</button>
       </div>
@@ -14,12 +14,12 @@
       <mat-card class="session-card">
         <h2 t-font-light t-color-primary t-mb-1>Welcome back</h2>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
-        <form action="" class="t-pt-1">
+        <form action="" class="t-pt-1" [formGroup]="signinForm" (ngSubmit)="signIn()">
           <mat-form-field t-width-full>
-            <input matInput type="text" placeholder="Email">
+            <input matInput type="text" placeholder="Email" formControlName="email">
           </mat-form-field>
           <mat-form-field t-width-full>
-            <input matInput type="password" placeholder="Password">
+            <input matInput type="password" placeholder="Password" formControlName="password">
           </mat-form-field>
           <mat-checkbox color="primary">Remember me</mat-checkbox>
           <div t-mb-05 t-mt-05 fxLayout="row wrap">

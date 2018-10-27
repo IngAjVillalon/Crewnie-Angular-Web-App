@@ -34,27 +34,23 @@
   <div class="header-bottom" fxLayout="row wrap">
       <button mat-icon-button
       fxHide.gt-md="true"
-      style="color: #ffffff" 
+      style="color: #ffffff"
       matSidenavToggler="profile-left-sidenav">
         <mat-icon>menu</mat-icon>
       </button>
 
       <div class="header-bottom-left" fxLayout="row wrap" fxLayoutAlign="start center">
-          <button mat-button fxFlex="10" class="header-bottom-left-button">
-            Newsfeed
-          </button>
-          <button mat-button fxFlex="10" class="header-bottom-left-button">
+
+          <button mat-button fxFlex="10" class="header-bottom-left-button" routerLink="/profile" routerLinkActive="active">
             Profile
           </button>
-          <button mat-button fxFlex="10" class="header-bottom-left-button active">
+          <button mat-button fxFlex="10" class="header-bottom-left-button" routerLink="/project" routerLinkActive="active">
             Projects
           </button>
-          <button mat-button fxFlex="10" class="header-bottom-left-button">
+          <button mat-button fxFlex="10" class="header-bottom-left-button" routerLink="/profile/jobs" routerLinkActive="active">
             Jobs
           </button>
-          <button mat-button fxFlex="10" class="header-bottom-left-button">
-            Rentals
-          </button>
+
         </div>
 
   </div>
@@ -89,7 +85,6 @@
           <mat-nav-list class="side-navigation-nav-list">
               <a mat-list-item routerLink="/profile/info" routerLinkActive="active">Profile </a>
               <a mat-list-item routerLink="/profile/portfolio" routerLinkActive="active">Portfolio </a>
-              <a mat-list-item routerLinkActive="active">Rentals </a>
           </mat-nav-list>
         </div>
 

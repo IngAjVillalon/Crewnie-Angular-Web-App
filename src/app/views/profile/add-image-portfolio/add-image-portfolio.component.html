@@ -1,0 +1,113 @@
+<!-- <div class="add-image-wrapper"> -->
+
+<div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px" class="add-image-wrapper">
+
+  <div fxFlex="100" class="item-container">
+
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="container">
+
+      <div fxFlex="25" class="add-item-wrapper">
+
+        <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="0px">
+
+          <div fxFlex="90" class="item">
+            <h4 class="title">Add Picture</h4>
+          </div>
+
+          <div fxFlex="90" class="item">
+            <mat-form-field class="add-title-input">
+              <mat-label>Title</mat-label>
+              <input matInput placeholder="Add a title for you pic">
+            </mat-form-field>
+
+
+          </div>
+
+          <div fxFlex="90" class="item">
+            <!-- <mat-form-field class="add-description-input" appearance="outline"> -->
+            <mat-form-field class="add-description-input">
+              <mat-label>Description</mat-label>
+              <textarea matInput placeholder="Add a little description to your pic" matAutosize="true"
+                matAutosizeMinRows="4"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="90" class="item">
+            <mat-form-field class="add-place-input">
+              <mat-label>Location</mat-label>
+              <input matInput placeholder="Add place to your pic">
+              <mat-icon matSuffix color="primary">location_on</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="90" class="item">
+            <mat-form-field class="add-place-input">
+              <mat-label>Date</mat-label>
+              <input matInput placeholder="Add date to your pic">
+              <mat-icon matSuffix color="primary">calendar_today</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="90" class="item">
+            <mat-checkbox color="primary" class="add-quality-input">High Quality</mat-checkbox>
+          </div>
+
+          <div fxFlex="90" class="item">
+            <mat-form-field class="add-category-input">
+              <mat-chip-list #chipList>
+                <mat-chip class="tag-chips" *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
+                  (removed)="remove(fruit)">
+                  {{fruit}}
+                  <mat-icon matChipRemove *ngIf="removable">clear</mat-icon>
+                </mat-chip>
+                <input placeholder="Category" #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
+                  [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+              </mat-chip-list>
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                  {{fruit}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div fxFlex="75" class="item-preview-wrapper">
+
+        <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px" class="item-preview-container">
+
+          <div fxFlex="100" class="item-preview">
+            <img src="https://indac.org/wp-content/uploads/2017/03/1ac5b0f4b4fc81902cedcfa56936933f.jpg">
+          </div>
+          <div fxFlex></div>
+
+          <div fxFlex="100" class="item-comment-wrapper">
+            <mat-form-field class="add-comment-input">
+              <mat-label>Comment</mat-label>
+              <textarea matInput placeholder="Add a comment to your pic" matTextareaAutosize="true" matAutosizeMinRows="4"></textarea>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div fxFlex="100" fxLayout="row" class="save-item-wrapper">
+    <div fxFlex></div>
+    <button mat-flat-button color="primary" class="btn-save">SAVE</button>
+  </div>
+  <button mat-icon-button class="btn-close" routerLink="/profile/portfolio">
+      <mat-icon>close</mat-icon>
+    </button>
+
+</div>
+
+<!-- </div> -->

@@ -22,21 +22,79 @@
     img {
       width: 100%;
     }
+
+    input {
+      opacity: 0;
+      position: absolute;
+      z-index: 1;
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    input:hover {
+      opacity: 0;
+    }
   }
 
   .profile-photo {
     // width: 100%;
 
     .photo-container {
+      position: relative;
+      width: 160px;
+      height: 160px;
       background-color: #fff;
       margin-top: -50%;
       border: 5px solid #fff;
       border-radius: 50%;
+      overflow: hidden;
 
       img {
         width: 100%;
       }
+
+      input {
+        opacity: 0;
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+
+        // width: 100%;
+        // height: 50px;
+        // max-height: 50px;
+        // color: #000;
+      }
+
+      input:hover {
+        opacity: 0;
+      }
+
     }
+  }
+
+  .btn-save-cover-photo {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.63);
+    border-radius: 3px !important;
+    z-index: 99;
+  }
+
+  .btn-save-profile-photo {
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.55);
+    border-radius: 3px !important;
+    right: 0;
+    width: 100%;
+    z-index: 99;
   }
 
   .social-items {
@@ -72,6 +130,10 @@
       font-size: 16px;
       margin: 0;
     }
+  }
+
+  .profile-introduction.edit-profile {
+    margin-bottom: 0px !important;
   }
 
   .profile-details {
@@ -202,7 +264,7 @@
             width: 38px;
             height: 38px;
             display: inline-block;
-            border: 2px solid #FFF;
+            border: 2px solid #fff;
             border-radius: 25px;
             background-color: #fff;
             margin-right: -20px;
@@ -215,16 +277,16 @@
         }
 
         .endrosments-profile-links {
-            color: #555555;
-            font-weight: 600;
-            font-size: 16px;
+          color: #555555;
+          font-weight: 600;
+          font-size: 16px;
 
-            .first-profile {
-                color: #fc4000;
-            }
-            .more-people {
-                color: #000;
-            }
+          .first-profile {
+            color: #fc4000;
+          }
+          .more-people {
+            color: #000;
+          }
         }
       }
 
@@ -244,4 +306,48 @@
 }
 
 .basic-info-widgets {
+}
+
+.edit-name {
+  color: #fc4000;
+  text-align: center;
+  font-size: 20px;
+  margin: 0;
+  width: 100%;
+}
+.edit-age,
+.edit-profession,
+.edit-address {
+  color: #fc4000;
+  text-align: center;
+  font-size: 15px;
+  margin: 0;
+  width: 100%;
+}
+
+.edit-contacts {
+  color: #fc4000;
+  text-align: left;
+  font-size: 15px;
+  margin: 0;
+  width: 90%;
+}
+
+.bio-text {
+  height: 150px;
+  min-height: 100px;
+}
+
+.profile-photo {
+  position: relative;
+}
+.profile-photo-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.44);
+  top: 0;
+  background-repeat: no-repeat;
+  background-size: 60px;
+  background-position: center;
 }

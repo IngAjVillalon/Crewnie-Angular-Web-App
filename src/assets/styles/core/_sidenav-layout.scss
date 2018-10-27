@@ -1,6 +1,6 @@
 .sidenav-layout-wrap {
   .mat-drawer-container {
-    min-height: 100vh;
+    min-height: calc(100vh - 110px);
   }
   .header-top {
     height: 68px;
@@ -114,19 +114,19 @@
         // border-top: 1px solid #dfdfdf;
         border-bottom: 1px solid #dfdfdf;
       }
-      
+
       .side-navigation-nav-list  a:first-child{
         border-top: 1px solid #dfdfdf;
         border-bottom: 1px solid #dfdfdf;
       }
-      
+
       .side-navigation-nav-list .active{
         border-right: 4px solid #fc4000;
       }
     }
   }
   .content-center {
-      
+
   }
 
   .profile-items-container {

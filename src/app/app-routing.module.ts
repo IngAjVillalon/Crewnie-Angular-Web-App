@@ -4,10 +4,10 @@ import { BlankLayoutComponent } from './core/components/blank-layout/blank-layou
 import { SidenavLayoutComponent } from './core/components/sidenav-layout/sidenav-layout.component';
 
 const routes: Routes = [
-  { 
-    path: '', 
-    redirectTo: 'sessions/signin', 
-    pathMatch: 'full' 
+  {
+    path: '',
+    redirectTo: 'sessions/signin',
+    pathMatch: 'full'
   },
   {
     path: 'style',
@@ -34,7 +34,12 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: './views/profile/profile.module#ProfileModule'
+      },
+      {
+        path: 'project',
+        loadChildren: './views/project/project.module#ProjectModule'
       }
+
     ]
   },
   {

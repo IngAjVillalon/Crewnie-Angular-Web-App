@@ -3,3 +3,36 @@
 @import "mat-adjust";
 @import "third-party";
 @import "sidenav-layout";
+
+.fab-action-button .fab-menu .fab-toggle {
+  background-color: #fc4000 !important;
+}
+
+.fab-action-button .item mat-icon {
+  color: #fc4000;
+}
+
+.fab-action-button .active-fab .item .fab-item {
+  background-color: #fc4000 !important;
+   mat-icon {
+     color: #ffffff;
+   }
+}
+
+.strengthBar {
+  display: block !important;
+  margin: 0 0 0 0px !important;
+  padding: 0 !important;
+  vertical-align: 2px !important;
+  transform: rotate(180deg) !important;
+}
+
+.strengthBar .point {
+  border-radius: 15px !important;
+  display: block !important;
+  height: 5px !important;
+  margin-right: 0px !important;
+  width: 5px !important;
+  margin-bottom: 1px !important;
+  transform: rotate(-180deg) !important;
+}

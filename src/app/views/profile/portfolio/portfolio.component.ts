@@ -1,6 +1,7 @@
+import { ViewVideoPortfolioComponent } from './../view-video-portfolio/view-video-portfolio.component';
 import { Component, OnInit } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent, MatButtonToggleGroup} from '@angular/material';
+import {MatChipInputEvent} from '@angular/material';
 
 export interface Fruit {
   name: string;
@@ -45,13 +46,9 @@ export class PortfolioComponent implements OnInit {
     {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
   ];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
-
-
+  ngOnInit() {}
 
 
   add(event: MatChipInputEvent): void {

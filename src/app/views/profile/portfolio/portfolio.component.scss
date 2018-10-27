@@ -224,21 +224,31 @@ button {
 .media-item {
   position: relative;
   width: 100%;
-  min-width: auto;
-  min-height: auto;
-  margin-bottom: 35px;
 }
 
-.portfolio-item-square.media-item.video-item .image-wrapper {
+.video-item .image-wrapper,
+.media-item.audio-item .image-wrapper {
   max-width: 100%;
-  max-height: 230px;
+  max-height: 280px;
+  min-height: 280px;
   overflow: hidden;
 }
 
-.portfolio-item-square.media-item.audio-item .image-wrapper {
-  max-width: 100%;
-  max-height: 300px;
-  overflow: hidden;
+.item-image {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  background-color: #000;
+}
+
+.item-image img {
+  object-fit: contain !important;
+  object-position: center !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .media-item .overlay {
@@ -278,17 +288,17 @@ button {
   text-align: right !important;
 }
 
-.action.duration .time-duration {
+.time-duration {
   width: 100%;
-  padding: 5px 15px;
-  background-color: rgba(0, 0, 0, 0.5);
+  padding: 3px 10px;
+  background-color: rgba(97, 97, 97, 0.5);
   border-radius: 3px;
 }
 
-.action.duration .time-duration span {
+.time-duration span {
   color: #ffffff;
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .media-item .footer {
@@ -305,7 +315,7 @@ button {
   font-size: 20px;
   font-weight: 500;
   line-height: 1;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
 }
 
 .media-item .footer .item-views {
@@ -428,32 +438,178 @@ button {
   min-height: 250px;
 }
 
-.item-script .title {
+.item-script .script-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 230px;
+  padding: 15px;
+}
+
+.script-image-wrapper img {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.script-image-wrapper .script-title {
   position: relative;
   width: 100%;
   color: #fff;
   font-size: 20px;
   font-weight: 500;
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 0px;
 }
 
-.item-script .description {
+.script-image-wrapper .script-description {
   color: #fff;
   text-align: center;
   font-size: 17px;
-  margin: 20px 40px;
+  margin: 10px 40px;
 }
-.item-script .author {
+.script-image-wrapper .script-author {
   color: #fff;
   text-align: center;
-  width: 100%;
-  position: absolute;
-  bottom: 10px;
+  margin: 0;
 }
+
+.fixed-top-row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  .item-left {
+    text-align: left;
+
+    span {
+      color: #fff;
+      font-weight: 500;
+      margin-left: -5px;
+    }
+  }
+
+  .item-right {
+    text-align: right;
+
+    span {
+      color: #fff;
+      font-weight: 500;
+      margin-right: -5px;
+    }
+  }
+}
+
+.fixed-bottom-row {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  .item-left {
+    text-align: center;
+  }
+
+  .item-right {
+    text-align: center;
+    margin-right: 10px;
+
+    .time-duration {
+      width: max-content;
+      padding: 1px 5px;
+      background-color: rgba(97, 97, 97, 0.5);
+      border-radius: 1px;
+    }
+  }
+}
+
+.script-image-wrapper .top-buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  .btn-favourit {
+    text-align: center;
+  }
+
+  .btn-comment {
+    text-align: center;
+  }
+}
+
+.script-info-wrapper .title {
+  color: #fc4000;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  margin: 10px 0 0 0;
+}
+
+.script-info-wrapper .item-views {
+  color: #999999;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  margin: 5px 0;
+}
+
+.script-info-wrapper .item-tags {
+  display: block;
+  margin: 0;
+
+  .tag {
+    color: #fc4000;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 5px;
+  }
+}
+
 .script-wide {
   width: 100%;
-  background-color: #34428f;
+  margin-bottom: 20px;
 }
+
+// =============
+
+.icon-wrapper-small {
+  max-width: 40px !important;
+}
+
+.script-intro {
+  position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.script-intro .script-title,
+.script-intro .script-description,
+.script-intro .script-author {
+  color: #ffffff;
+  text-align: center;
+}
+
+
+.image-item .image-wrapper {
+  max-width: 100%;
+    max-height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+    overflow: hidden;
+}
+
+.fab-action-button {
+  position: fixed !important;
+  right: 35px !important;
+  bottom: 10px !important;
+
+
+}
+
 

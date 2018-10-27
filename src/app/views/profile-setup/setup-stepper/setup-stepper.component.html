@@ -10,31 +10,26 @@
       <div class="setup-center-contents">
         <h1 class="step-title" t-font-regular>Welcome to Crewnie</h1>
         <form [formGroup]="selectTypeForm">
+
           <mat-card class="center-card">
             <h4 t-color-primary t-font-light>Let's create your account</h4>
-
             <div fxLayout="column" fxLayoutAlign="center center" class="form-profile-box">
               <p t-color-primary>Select a profile</p>
+
               <mat-form-field class="select-profile-type">
-                <mat-select placeholder="Type">
+                <mat-select placeholder="Type" formControlName="profileType">
                   <mat-option *ngFor="let type of profileTypeOptions" [value]="type">
                     {{ type }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-<!--
-              <mat-form-field class="profile-textarea">
-                <textarea matInput cdkAutosizeMinRows="5" placeholder="Director" matTextareaAutosize="true"></textarea>
-              </mat-form-field> -->
-              <div t-textarea class="profile-textarea">
-                  <label for="textarea">
-                    Label
-                  </label>
-                  <textarea t-width-full id="textarea"></textarea>
+
+              <div class="profile-textarea">
+                <mat-form-field>
+                  <textarea matInput placeholder="Label" formControlName="profileLabel" class="text-area"></textarea>
+                </mat-form-field>
               </div>
             </div>
-
-
           </mat-card>
         </form>
       </div>
@@ -58,26 +53,25 @@
               <div fxLayout="row wrap">
                 <div fxFlex="50">
                   <mat-form-field class="field">
-                    <input matInput type="text" placeholder="First Name">
+                    <input matInput type="text" placeholder="First Name" formControlName="firstName">
                   </mat-form-field>
                 </div>
                 <div fxFlex="50">
                   <mat-form-field class="field">
-                    <input matInput type="text" placeholder="Last Name">
+                    <input matInput type="text" placeholder="Last Name" formControlName="lastName">
                   </mat-form-field>
                 </div>
               </div>
 
               <div fxLayout="row wrap">
-                <div fxFlex="33.33">
+                <div fxFlex="30">
                   <mat-form-field class="field">
-                    <input matInput type="text" placeholder="Nick Name">
+                    <input matInput type="text" placeholder="Nick Name"  formControlName="nickName">
                   </mat-form-field>
                 </div>
-                <div fxFlex="33.33">
+                <div fxFlex="25">
                   <mat-form-field class="field">
-                    <!-- <input matInput type="text" placeholder="Gender"> -->
-                    <mat-select placeholder="Gender">
+                    <mat-select placeholder="Gender"  formControlName="gender">
                       <mat-option [value]="'male'">Male</mat-option>
                       <mat-option [value]="'female'">Female</mat-option>
                       <mat-option [value]="'others'">Others</mat-option>
@@ -85,11 +79,17 @@
                   </mat-form-field>
 
                 </div>
-                <div fxFlex="33.33">
+                <div fxFlex="25">
                   <mat-form-field class="field">
-                    <input matInput [matDatepicker]="birthDatePicker" placeholder="Birth date">
+                    <input matInput [matDatepicker]="birthDatePicker" placeholder="Birth date"  formControlName="birthDate">
                     <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #birthDatePicker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <div fxFlex="20">
+                  <mat-form-field class="field">
+                    <input matInput type="text" placeholder="Age"  formControlName="age">
                   </mat-form-field>
                 </div>
               </div>
@@ -103,29 +103,40 @@
               <div fxLayout="row wrap">
                 <div fxFlex="100">
                   <mat-form-field class="field">
-                    <input matInput type="text" placeholder="Address">
+                    <input matInput type="text" placeholder="Address" formControlName="address">
                     <mat-icon matSuffix>place</mat-icon>
                   </mat-form-field>
                 </div>
               </div>
 
               <div fxLayout="row wrap">
+
                 <div fxFlex="50">
                   <mat-form-field class="field">
-                    <input matInput type="text" placeholder="Email">
+                    <input matInput type="text" placeholder="Email" formControlName="email">
                   </mat-form-field>
                 </div>
+
+                <div fxFlex="50">
+                  <mat-form-field class="field">
+                    <input matInput type="text" placeholder="Languages" formControlName="languages">
+                  </mat-form-field>
+                </div>
+
+
+
               </div>
 
               <div fxLayout="row wrap">
-                <div fxFlex="50">
+                <div fxFlex="40">
                   <mat-form-field class="field">
-                    <input matInput type="text" placeholder="Company">
+                    <input matInput type="text" placeholder="Company" formControlName="company">
                   </mat-form-field>
                 </div>
-                <div fxFlex="10">
+
+                <div fxFlex="20">
                   <mat-form-field class="field">
-                    <mat-select placeholder="Experience">
+                    <mat-select placeholder="Experience" formControlName="experience">
                       <mat-option [value]="'0Year'">None</mat-option>
                       <mat-option [value]="'1Year'">1 Years</mat-option>
                       <mat-option [value]="'2Year'">2 Years</mat-option>
@@ -137,82 +148,70 @@
                 </div>
                 <div fxFlex="35">
                   <mat-form-field class="field">
-                    <input matInput type="text" placeholder="Union">
+                    <input matInput type="text" placeholder="Union" formControlName="unionName">
                   </mat-form-field>
                 </div>
 
                 <div fxFlex="5">
                   <div class="setup-checkbox">
-                    <!-- <mat-form-field class="field"> -->
                     <mat-label class="checkbox-label">Union</mat-label>
                     <div class="setup-checkbox-holder">
-                      <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox"></mat-checkbox>
+                      <mat-checkbox matInput color="primary" class="setup-checkbox-holder-checkbox" formControlName="isUnion"></mat-checkbox>
                     </div>
-                    <!-- </mat-form-field> -->
                   </div>
                 </div>
+
+
 
               </div>
 
               <div fxLayout="row wrap">
-                <div fxFlex="60">
-                  <mat-form-field class="field">
-                    <input matInput type="text" placeholder="Languages">
-                  </mat-form-field>
-                </div>
+
               </div>
 
               <div fxLayout="row wrap">
-                <div fxFlex="38">
+                <div fxFlex="50">
                   <mat-form-field class="field">
-                    <input matInput type="text" placeholder="Phone Number">
+                    <input matInput type="text" placeholder="Phone Number" formControlName="phoneNumberPersonal">
                   </mat-form-field>
                 </div>
-                <div fxFlex="5">
+                <!-- <div fxFlex="5">
                   <div class="setup-checkbox">
-                    <!-- <mat-form-field class="field"> -->
                     <mat-label class="checkbox-label">Mobile</mat-label>
                     <div class="setup-checkbox-holder">
                       <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox"></mat-checkbox>
                     </div>
-                    <!-- </mat-form-field> -->
                   </div>
-                </div>
-                <div fxFlex="7">
+                </div> -->
+                <!-- <div fxFlex="7">
                   <div class="setup-checkbox">
-                    <!-- <mat-form-field class="field"> -->
                     <mat-label class="checkbox-label">Personal</mat-label>
                     <div class="setup-checkbox-holder">
                       <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox"></mat-checkbox>
                     </div>
-                    <!-- </mat-form-field> -->
                   </div>
-                </div>
-                <div fxFlex="38">
+                </div> -->
+                <div fxFlex="50">
                   <mat-form-field class="field">
-                    <input matInput type="text" placeholder="Phone Number">
+                    <input matInput type="text" placeholder="Mobile Number" formControlName="mobileNumberPersonal">
                   </mat-form-field>
                 </div>
-                <div fxFlex="5">
+                <!-- <div fxFlex="5">
                   <div class="setup-checkbox">
-                    <!-- <mat-form-field class="field"> -->
                     <mat-label class="checkbox-label">Mobile</mat-label>
                     <div class="setup-checkbox-holder">
                       <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox"></mat-checkbox>
                     </div>
-                    <!-- </mat-form-field> -->
                   </div>
-                </div>
-                <div fxFlex="7">
+                </div> -->
+                <!-- <div fxFlex="7">
                   <div class="setup-checkbox">
-                    <!-- <mat-form-field class="field"> -->
                     <mat-label class="checkbox-label">Personal</mat-label>
                     <div class="setup-checkbox-holder">
                       <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox"></mat-checkbox>
                     </div>
-                    <!-- </mat-form-field> -->
                   </div>
-                </div>
+                </div> -->
               </div>
 
               <div fxLayout="row wrap">
@@ -222,18 +221,12 @@
                   </p>
                 </div>
                 <div class="setup-checkbox">
-                  <!-- <mat-form-field class="field"> -->
                   <mat-label class="checkbox-label">Agree</mat-label>
                   <div class="setup-checkbox-holder">
-                    <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox"></mat-checkbox>
+                    <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox" formControlName="agreeTOC"></mat-checkbox>
                   </div>
-
-                  <!-- </mat-form-field> -->
                 </div>
               </div>
-
-
-
 
             </mat-card>
           </div>
@@ -241,9 +234,9 @@
       </div>
 
       <div class="setup-footer footer-1" fxLayout="row">
-          <button mat-flat-button t-wide matStepperPrevious color="primary" class="prev">Previous</button>
-          <span fxFlex></span>
-          <button mat-flat-button t-wide matStepperNext color="primary" class="next">Next</button>
+        <button mat-flat-button t-wide matStepperPrevious color="primary" class="prev">Previous</button>
+        <span fxFlex></span>
+        <button mat-flat-button t-wide matStepperNext color="primary" class="next">Next</button>
       </div>
     </mat-step>
 
@@ -260,43 +253,39 @@
               <div fxLayout="row wrap" t-mb-1>
                 <div fxFlex="50">
                   <mat-form-field class="field">
-                    <input matInput type="text" placeholder="Main Profession" [matAutocomplete]="mainProfession">
+                    <input matInput type="text" placeholder="Main Profession" [matAutocomplete]="mainProfession" formControlName="mainProfession">
                     <mat-icon matSuffix>arrow_drop_down</mat-icon>
                     <mat-autocomplete #mainProfession="matAutocomplete">
-                      <mat-option [value]="'UXDesigner'">Actor</mat-option>
-                      <mat-option [value]="'UXDesigner'">Director</mat-option>
-                      <mat-option [value]="'UXDesigner'">Photpgrapher</mat-option>
-                      <mat-option [value]="'UXDesigner'">UI/UX Designer</mat-option>
+                      <mat-option [value]="'Actor'">Actor</mat-option>
+                      <mat-option [value]="'Director'">Director</mat-option>
+                      <mat-option [value]="'Photpgrapher'">Photpgrapher</mat-option>
+                      <mat-option [value]="'UI/UX Designer'">UI/UX Designer</mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
                 </div>
                 <div fxFlex="15">
                   <mat-form-field class="field">
-                    <mat-select placeholder="Union">
-                      <mat-option [value]="'male'">Select One</mat-option>
-                      <mat-option [value]="'female'">Female</mat-option>
-                      <mat-option [value]="'others'">Others</mat-option>
+                    <mat-select placeholder="Union" formControlName="mainProfessionUnion">
+                      <mat-option [value]="''">Select One</mat-option>
+                      <mat-option [value]="'Union 1'">Union 1</mat-option>
+                      <mat-option [value]="'Union '">Union 2</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
 
                 <div fxFlex="5">
                   <div class="setup-checkbox">
-                    <!-- <mat-form-field class="field"> -->
-                    <mat-label class="checkbox-label">Union</mat-label>
+                    <mat-label class="checkbox-label" >Union</mat-label>
                     <div class="setup-checkbox-holder">
-                      <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox"></mat-checkbox>
+                      <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox" formControlName="isMainProfessionUnion"></mat-checkbox>
                     </div>
-                    <!-- </mat-form-field> -->
                   </div>
                 </div>
                 <div fxFlex="30">
-                  <!-- <mat-form-field class="field"> -->
                   <div class="setup-upload-coverletter">
                     <mat-label class="setup-upload-coverletter-label">Cover Letter</mat-label>
-                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Upload Cover Letter</button>
+                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Write A Cover Letter</button>
                   </div>
-                  <!-- </mat-form-field> -->
                 </div>
               </div>
 
@@ -306,14 +295,15 @@
                 </div>
               </div>
 
-              <div fxLayout="row wrap">
+              <!-- <div fxLayout="row wrap">
                 <div fxFlex="100">
-                  <h4 t-color-primary t-font-light class="setup-secondary-profession-title">Are You A Pro With Something Else?</h4>
+                  <h4 t-color-primary t-font-light class="setup-secondary-profession-title">Are You A Pro With
+                    Something Else?</h4>
                   <p matLine class="setup-secondary-profession-subtitle">You can add upto 3 secondary professions</p>
                 </div>
-              </div>
+              </div> -->
 
-              <div fxLayout="row wrap" class="setup-secondary-profession">
+              <!-- <div fxLayout="row wrap" class="setup-secondary-profession">
                 <div fxFlex="50">
                   <mat-form-field class="field">
                     <input matInput type="text" placeholder="Secondary Profession" [matAutocomplete]="secondaryProfession">
@@ -338,25 +328,21 @@
 
                 <div fxFlex="5">
                   <div class="setup-checkbox">
-                    <!-- <mat-form-field class="field"> -->
                     <mat-label class="checkbox-label">Union</mat-label>
                     <div class="setup-checkbox-holder">
                       <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox"></mat-checkbox>
                     </div>
-                    <!-- </mat-form-field> -->
                   </div>
                 </div>
                 <div fxFlex="20">
-                  <!-- <mat-form-field class="field"> -->
                   <div class="setup-upload-coverletter">
                     <mat-label class="setup-upload-coverletter-label">Cover Letter</mat-label>
-                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Upload Cover Letter</button>
+                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Upload
+                      Cover Letter</button>
                   </div>
-                  <!-- </mat-form-field> -->
                 </div>
 
                 <div fxFlex="10">
-                  <!-- <mat-form-field class="field"> -->
                   <div class="setup-upload-coverletter-side">
                     <button mat-button color="primary" class="setup-upload-coverletter-side-button" disabled>
                       <mat-icon>remove</mat-icon>
@@ -365,11 +351,10 @@
                       <mat-icon>add</mat-icon>
                     </button>
                   </div>
-                  <!-- </mat-form-field> -->
                 </div>
-              </div>
+              </div> -->
 
-              <div fxLayout="row wrap" class="setup-secondary-profession">
+              <!-- <div fxLayout="row wrap" class="setup-secondary-profession">
                 <div fxFlex="50">
                   <mat-form-field class="field">
                     <input matInput type="text" placeholder="Secondary Profession 2" [matAutocomplete]="secondaryProfession">
@@ -394,25 +379,21 @@
 
                 <div fxFlex="5">
                   <div class="setup-checkbox">
-                    <!-- <mat-form-field class="field"> -->
                     <mat-label class="checkbox-label">Union</mat-label>
                     <div class="setup-checkbox-holder">
                       <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox"></mat-checkbox>
                     </div>
-                    <!-- </mat-form-field> -->
                   </div>
                 </div>
                 <div fxFlex="20">
-                  <!-- <mat-form-field class="field"> -->
                   <div class="setup-upload-coverletter">
                     <mat-label class="setup-upload-coverletter-label">Cover Letter</mat-label>
-                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Upload Cover Letter</button>
+                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Upload
+                      Cover Letter</button>
                   </div>
-                  <!-- </mat-form-field> -->
                 </div>
 
                 <div fxFlex="10">
-                  <!-- <mat-form-field class="field"> -->
                   <div class="setup-upload-coverletter-side">
                     <button mat-button color="primary" class="setup-upload-coverletter-side-button" disabled>
                       <mat-icon>remove</mat-icon>
@@ -421,11 +402,10 @@
                       <mat-icon>add</mat-icon>
                     </button>
                   </div>
-                  <!-- </mat-form-field> -->
                 </div>
-              </div>
+              </div> -->
 
-              <div fxLayout="row wrap" class="setup-secondary-profession">
+              <!-- <div fxLayout="row wrap" class="setup-secondary-profession">
                 <div fxFlex="50">
                   <mat-form-field class="field">
                     <input matInput type="text" placeholder="Secondary Profession 3" [matAutocomplete]="secondaryProfession">
@@ -450,25 +430,21 @@
 
                 <div fxFlex="5">
                   <div class="setup-checkbox">
-                    <!-- <mat-form-field class="field"> -->
                     <mat-label class="checkbox-label">Union</mat-label>
                     <div class="setup-checkbox-holder">
                       <mat-checkbox color="primary" class="setup-checkbox-holder-checkbox"></mat-checkbox>
                     </div>
-                    <!-- </mat-form-field> -->
                   </div>
                 </div>
                 <div fxFlex="20">
-                  <!-- <mat-form-field class="field"> -->
                   <div class="setup-upload-coverletter">
                     <mat-label class="setup-upload-coverletter-label">Cover Letter</mat-label>
-                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Upload Cover Letter</button>
+                    <button mat-button color="primary" class="setup-upload-coverletter-button" (click)="openCoverletterdialog()">Upload
+                      Cover Letter</button>
                   </div>
-                  <!-- </mat-form-field> -->
                 </div>
 
                 <div fxFlex="10">
-                  <!-- <mat-form-field class="field"> -->
                   <div class="setup-upload-coverletter-side">
                     <button mat-button color="primary" class="setup-upload-coverletter-side-button" disabled>
                       <mat-icon>remove</mat-icon>
@@ -477,12 +453,8 @@
                       <mat-icon>add</mat-icon>
                     </button>
                   </div>
-                  <!-- </mat-form-field> -->
                 </div>
-              </div>
-
-
-
+              </div> -->
 
             </mat-card>
           </div>
@@ -490,9 +462,9 @@
       </div>
 
       <div class="setup-footer footer-2" fxLayout="row">
-          <button mat-flat-button t-wide matStepperPrevious color="primary" class="prev">Previous</button>
-          <span fxFlex></span>
-          <button mat-flat-button t-wide matStepperNext color="primary" class="next">Next</button>
+        <button mat-flat-button t-wide matStepperPrevious color="primary" class="prev">Previous</button>
+        <span fxFlex></span>
+        <button mat-flat-button t-wide matStepperNext color="primary" class="next">Next</button>
       </div>
     </mat-step>
 
@@ -501,23 +473,18 @@
       <ng-template matStepLabel>Profile</ng-template>
 
       <div class="setup-center-contents">
-        <form [formGroup]="carrierForm">
+        <form [formGroup]="profileForm">
           <div class="setup-center-contents">
             <mat-card class="setup-profile-card">
-              <!-- <h4 t-color-primary t-font-light>Profile</h4> -->
 
               <div fxLayout="row wrap" fxLayoutAlign="center center">
 
-                <div fxFlex="100" class="setup-profile-cover-photo-wrapper" (click)="changeProfileCoverPhoto()">
+                <!-- <div fxFlex="100" class="setup-profile-cover-photo-wrapper" (click)="changeProfileCoverPhoto()"> -->
+                <div fxFlex="100" class="setup-profile-cover-photo-wrapper">
                   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="setup-profile-coverphoto">
-                    <div fxFlex="35" >
+                    <img [src]='sanitizer.bypassSecurityTrustUrl(coverPhotoURL)' class="setup-profile-cover-photo-icon">
 
-                        <h4 t-color-primary t-font-light class="setup-profile-cover-photo-title">
-                          <img src="assets/images/cloud-upload.png" class="setup-profile-cover-photo-icon">
-                          UPLOAD COVER PHOTO
-                        </h4>
-                    </div>
-
+                    <input type="file" id="avatar" name="" (change)="changeCoverPhoto($event)" accept="image/png, image/jpeg" />
                   </div>
                 </div>
 
@@ -525,97 +492,101 @@
 
               <div fxLayout="row wrap" fxLayoutAlign="center center">
 
-                  <div fxFlex="100" class="setup-profile-photo-wrapper">
-                      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" >
-                        <div fxFlex="35" class="setup-profile-profile-photo-wrapper" (click)="changeProfilePhoto()">
-                          <div class="setup-profile-profile-photo">
-                              <img src="assets/images/cloud-upload.png">
-                          </div>
-
-                        </div>
+                <div fxFlex="100" class="setup-profile-photo-wrapper">
+                  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                    <!-- <div fxFlex="35" class="setup-profile-profile-photo-wrapper" (click)="changeProfilePhoto()"> -->
+                    <div fxFlex="35" class="setup-profile-profile-photo-wrapper">
+                      <div class="setup-profile-profile-photo">
+                        <!-- <img src="assets/images/cloud-upload.png"> -->
+                        <img [src]='sanitizer.bypassSecurityTrustUrl(profilePhotoURL)'>
+                        <input type="file" id="avatar" name="" (change)="changeProfilePic($event)" accept="image/png, image/jpeg" />
                       </div>
+
                     </div>
+                  </div>
+                </div>
               </div>
 
               <div fxLayout="row wrap" fxLayoutAlign="center center">
 
-                  <div fxFlex="100" class="setup-profile-details-wrapper">
+                <div fxFlex="100" class="setup-profile-details-wrapper">
 
-                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" >
-                        <div fxFlex="35" class="setup-profile-profile-details-basic">
-                            <h4 t-color-primary t-font-light class="setup-profile-details-basic__name">Argenis Vega, 33</h4>
-                            <h4 t-color-primary t-font-light class="setup-profile-details-basic__profession">B. A. Graphic Design</h4>
-                            <h4 t-color-primary t-font-light class="setup-profile-details-basic__address">CDMX, México</h4>
-                        </div>
-                      </div>
+                  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
 
-                      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-                        <div fxFlex="90" class="setup-profile-profile-details-basic">
-
-                          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Email">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Languages">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Company">
-                              </mat-form-field>
-                            </div>
-                          </div>
-
-                          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Phone">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Age">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Agency">
-                              </mat-form-field>
-                            </div>
-                          </div>
-
-                          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Mobile">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Union">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                  <mat-select placeholder="Experience">
-                                      <mat-option [value]="'0Year'">None</mat-option>
-                                      <mat-option [value]="'1Year'">1 años</mat-option>
-                                      <mat-option [value]="'2Year'">2 años</mat-option>
-                                      <mat-option [value]="'3Year'">3 años</mat-option>
-                                      <mat-option [value]="'5Year'">5 años</mat-option>
-                                      <mat-option [value]="'10Year'">10 años</mat-option>
-                                    </mat-select>
-                              </mat-form-field>
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
+                    <div fxFlex="35" class="setup-profile-profile-details-basic">
+                      <h4 t-color-primary t-font-light class="setup-profile-details-basic__name">{{personalInfoForm.controls.firstName.value}} {{personalInfoForm.controls.lastName.value}}, {{personalInfoForm.controls.age.value}}</h4>
+                      <h4 t-color-primary t-font-light class="setup-profile-details-basic__profession">{{carrierForm.controls.mainProfession.value}}</h4>
+                      <h4 t-color-primary t-font-light class="setup-profile-details-basic__address">{{personalInfoForm.controls.address.value}}</h4>
+                    </div>
                   </div>
+
+                  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                    <div fxFlex="90" class="setup-profile-profile-details-basic">
+
+                      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Email" value="{{personalInfoForm.controls.email.value}}" formControlName="profileEmail">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Languages" value="{{personalInfoForm.controls.languages.value}}" formControlName="profileLanguages">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Company" value="{{personalInfoForm.controls.company.value}}" formControlName="profileCompany">
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Phone" value="{{personalInfoForm.controls.phoneNumberPersonal.value}}" formControlName="profilePhone">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Age" value="{{personalInfoForm.controls.age.value}}"  formControlName="profileAge">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Agency" formControlName="profileAgency">
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Mobile" value="{{personalInfoForm.controls.mobileNumberPersonal.value}}" formControlName="profileMobile">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Union" value="{{personalInfoForm.controls.unionName.value}}" formControlName="profileUnion">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <mat-select placeholder="Experience"  value="{{personalInfoForm.controls.experience.value}}" formControlName="profileExperience">
+                              <mat-option [value]="'0Year'">None</mat-option>
+                              <mat-option [value]="'1Year'">1 años</mat-option>
+                              <mat-option [value]="'2Year'">2 años</mat-option>
+                              <mat-option [value]="'3Year'">3 años</mat-option>
+                              <mat-option [value]="'5Year'">5 años</mat-option>
+                              <mat-option [value]="'10Year'">10 años</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
               </div>
 
             </mat-card>
@@ -626,12 +597,12 @@
       <div class="setup-footer footer-3" fxLayout="row">
         <button mat-flat-button t-wide matStepperPrevious color="primary" class="prev">Previous</button>
         <span fxFlex></span>
-        <button mat-flat-button t-wide matStepperNext color="primary" class="next">Next</button>
+        <button mat-flat-button t-wide matStepperNext color="primary" class="next" (click)="updateUserProfile()">Save</button>
       </div>
     </mat-step>
 
     <!-- STEP 5 -->
-    <mat-step [stepControl]="socialForm">
+    <!-- <mat-step [stepControl]="socialForm">
       <ng-template matStepLabel>Social Accounts</ng-template>
 
       <div class="setup-center-contents">
@@ -644,12 +615,12 @@
 
                 <div fxFlex="100" class="setup-profile-cover-photo-wrapper" (click)="changeProfileCoverPhoto()">
                   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="setup-profile-coverphoto">
-                    <div fxFlex="35" >
+                    <div fxFlex="35">
 
-                        <h4 t-color-primary t-font-light class="setup-profile-cover-photo-title">
-                          <img src="assets/images/cloud-upload.png" class="setup-profile-cover-photo-icon">
-                          UPLOAD COVER PHOTO
-                        </h4>
+                      <h4 t-color-primary t-font-light class="setup-profile-cover-photo-title">
+                        <img src="assets/images/cloud-upload.png" class="setup-profile-cover-photo-icon">
+                        UPLOAD COVER PHOTO
+                      </h4>
                     </div>
 
                   </div>
@@ -659,97 +630,98 @@
 
               <div fxLayout="row wrap" fxLayoutAlign="center center">
 
-                  <div fxFlex="100" class="setup-profile-photo-wrapper">
-                      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" >
-                        <div fxFlex="35" class="setup-profile-profile-photo-wrapper" (click)="changeProfilePhoto()">
-                          <div class="setup-profile-profile-photo">
-                              <img src="assets/images/cloud-upload.png">
-                          </div>
-
-                        </div>
+                <div fxFlex="100" class="setup-profile-photo-wrapper">
+                  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                    <div fxFlex="35" class="setup-profile-profile-photo-wrapper" (click)="changeProfilePhoto()">
+                      <div class="setup-profile-profile-photo">
+                        <img src="assets/images/cloud-upload.png">
                       </div>
+
                     </div>
+                  </div>
+                </div>
               </div>
 
               <div fxLayout="row wrap" fxLayoutAlign="center center">
 
-                  <div fxFlex="100" class="setup-profile-details-wrapper">
+                <div fxFlex="100" class="setup-profile-details-wrapper">
 
-                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" >
-                        <div fxFlex="35" class="setup-profile-profile-details-basic">
-                            <h4 t-color-primary t-font-light class="setup-profile-details-basic__name">Argenis Vega, 33</h4>
-                            <h4 t-color-primary t-font-light class="setup-profile-details-basic__profession">B. A. Graphic Design</h4>
-                            <h4 t-color-primary t-font-light class="setup-profile-details-basic__address">CDMX, México</h4>
-                        </div>
-                      </div>
-
-                      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-                        <div fxFlex="90" class="setup-profile-profile-details-basic">
-
-                          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Email">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Languages">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Company">
-                              </mat-form-field>
-                            </div>
-                          </div>
-
-                          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Phone">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Age">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Agency">
-                              </mat-form-field>
-                            </div>
-                          </div>
-
-                          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Mobile">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                <input matInput type="text" placeholder="Union">
-                              </mat-form-field>
-                            </div>
-                            <div fxFlex="33.33" class="setup-profile-profile-details-basic">
-                              <mat-form-field class="field">
-                                  <mat-select placeholder="Experience">
-                                      <mat-option [value]="'0Year'">None</mat-option>
-                                      <mat-option [value]="'1Year'">1 años</mat-option>
-                                      <mat-option [value]="'2Year'">2 años</mat-option>
-                                      <mat-option [value]="'3Year'">3 años</mat-option>
-                                      <mat-option [value]="'5Year'">5 años</mat-option>
-                                      <mat-option [value]="'10Year'">10 años</mat-option>
-                                    </mat-select>
-                              </mat-form-field>
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
+                  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                    <div fxFlex="35" class="setup-profile-profile-details-basic">
+                      <h4 t-color-primary t-font-light class="setup-profile-details-basic__name">Argenis Vega, 33</h4>
+                      <h4 t-color-primary t-font-light class="setup-profile-details-basic__profession">B. A. Graphic
+                        Design</h4>
+                      <h4 t-color-primary t-font-light class="setup-profile-details-basic__address">CDMX, México</h4>
+                    </div>
                   </div>
+
+                  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                    <div fxFlex="90" class="setup-profile-profile-details-basic">
+
+                      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Email">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Languages">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Company">
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Phone">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Age">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Agency">
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Mobile">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <input matInput type="text" placeholder="Union">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.33" class="setup-profile-profile-details-basic">
+                          <mat-form-field class="field">
+                            <mat-select placeholder="Experience">
+                              <mat-option [value]="'0Year'">None</mat-option>
+                              <mat-option [value]="'1Year'">1 años</mat-option>
+                              <mat-option [value]="'2Year'">2 años</mat-option>
+                              <mat-option [value]="'3Year'">3 años</mat-option>
+                              <mat-option [value]="'5Year'">5 años</mat-option>
+                              <mat-option [value]="'10Year'">10 años</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
               </div>
 
             </mat-card>
@@ -760,9 +732,9 @@
       <div class="setup-footer footer-4" fxLayout="row">
         <button mat-flat-button t-wide matStepperPrevious color="primary" class="prev">Previous</button>
         <span fxFlex></span>
-        <button mat-flat-button t-wide matStepperNext color="primary" class="next">Next</button>
+        <button mat-flat-button t-wide matStepperNext color="primary" class="next" (click)="updateUserProfile()">Next</button>
       </div>
-    </mat-step>
+    </mat-step> -->
 
   </mat-horizontal-stepper>
 </div>
