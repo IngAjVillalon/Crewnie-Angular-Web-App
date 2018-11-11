@@ -6,9 +6,9 @@
         <div fxFlex="100">
 
           <div class="basic-info-content" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="0px">
-            <div fxFlex="100" class="cover-photo">
+            <div fxFlex="100" class="cover-photo" *ngIf="currentUser" >
               <img [src]='sanitizer.bypassSecurityTrustUrl(currentUser.coverPhotoUrl)' class="setup-profile-cover-photo-icon">
-              <div class="profile-photo-overlay" style="background-image: url('../../../../assets/images/cloud-upload.png')" *ngIf="edit">
+              <div class="profile-photo-overlay" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/assets%2Fprofile-photo-upload.png?alt=media&token=37de1e7c-ec51-4041-b5b0-e5506902eea6')" *ngIf="edit">
                 <input type="file" (change)="changeCoverPhoto($event)" accept=".png,.jpg" >
               </div>
             </div>
@@ -20,11 +20,11 @@
 
           <div class="basic-info-content" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="0px">
 
-            <div fxFlex="13" class="profile-photo">
+            <div fxFlex="13" class="profile-photo" *ngIf="currentUser" >
               <div class="photo-container">
-                <!-- <img [src]='profilePicture || sanitizer.bypassSecurityTrustUrl(currentUser.profilePhotoUrl)'> -->
-                <img [src]='profilePicture'>
-                <div class="profile-photo-overlay" style="background-image: url('../../../../assets/images/cloud-upload.png')" *ngIf="edit">
+                <img [src]='profilePicture || sanitizer.bypassSecurityTrustUrl(currentUser.profilePhotoUrl)'>
+                <!-- <img [src]='profilePicture'> -->
+                <div class="profile-photo-overlay" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/assets%2Fprofile-photo-upload.png?alt=media&token=37de1e7c-ec51-4041-b5b0-e5506902eea6')" *ngIf="edit">
                   <input type="file" (change)="changeProfilePic($event)" accept=".png,.jpg" >
                 </div>
                 <button mat-button color="warn" class="btn-save-profile-photo" *ngIf="edit" (click)="saveProfilePhoto()" >
@@ -37,7 +37,7 @@
             </div>
 
             <div fxFlex="25" class="social-items">
-              <button mat-icon-button color="warn" class="social-items__item" (click)="uploadProfilePhoto()">
+              <button mat-icon-button color="warn" class="social-items__item">
                 <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
               </button>
               <button mat-icon-button color="warn" class="social-items__item">
@@ -57,7 +57,7 @@
 
           <div class="basic-info-content" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="0px" *ngIf="!edit">
 
-            <div fxFlex="50" class="profile-introduction">
+            <div fxFlex="50" class="profile-introduction" *ngIf="currentUser" >
               <h3 matLine t-font-light class="name">{{currentUser.firstName }} {{currentUser.lastName }},
                 {{currentUser.age}}</h3>
               <h3 matLine class="profession">{{currentUser.mainProfession}}</h3>
@@ -112,7 +112,7 @@
 
           </div>
 
-          <div class="basic-info-content" fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="0px" *ngIf="!edit">
+          <div class="basic-info-content" fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="0px" *ngIf="!edit && currentUser">
 
             <div fxFlex="30" class="profile-details">
               <h3 matLine class="details-label">Email:</h3>
@@ -219,7 +219,7 @@
 
           </div>
 
-          <div class="basic-info-content" fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="0px" *ngIf="!edit">
+          <div class="basic-info-content" fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="0px" *ngIf="!edit && currentUser">
 
             <div fxFlex="90" class="info-divider">
               <mat-divider></mat-divider>

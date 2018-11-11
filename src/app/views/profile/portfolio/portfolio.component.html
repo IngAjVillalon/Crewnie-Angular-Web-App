@@ -6,28 +6,28 @@
 
       <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="0px">
 
-        <div fxFlex="80" class="portfolio-item-categoris">
+        <div fxFlex="80" fxFlex.lt-sm="100" class="portfolio-item-categoris">
 
           <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
-            <div fxFlex="6">
+            <div fxFlex="6" fxFlex.lt-sm="15">
               <button mat-button class="portfolio-item-button" [class.active]="isAllProtfolio" (click)="selectPortfolio(0)">All</button>
             </div>
-            <div fxFlex="6">
+            <div fxFlex="6"  fxFlex.lt-sm="15">
               <button mat-button class="portfolio-item-button" [class.active]="isImage" (click)="selectPortfolio(1)">
                 <mat-icon>photo_library</mat-icon>
               </button>
             </div>
-            <div fxFlex="6">
+            <div fxFlex="6"  fxFlex.lt-sm="15">
               <button mat-button class="portfolio-item-button" [class.active]="isVideo" (click)="selectPortfolio(2)">
                 <mat-icon>video_library</mat-icon>
               </button>
             </div>
-            <div fxFlex="6">
+            <div fxFlex="6" fxFlex.lt-sm="15">
               <button mat-button class="portfolio-item-button" [class.active]="isAudio" (click)="selectPortfolio(3)">
                 <mat-icon>library_music</mat-icon>
               </button>
             </div>
-            <div fxFlex="6">
+            <div fxFlex="6" fxFlex.lt-sm="15">
               <button mat-button class="portfolio-item-button" [class.active]="isScript" (click)="selectPortfolio(4)">
                 <mat-icon>description</mat-icon>
               </button>
@@ -43,7 +43,7 @@
 
       <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="0px">
 
-        <div fxFlex="60">
+        <div fxFlex="60" fxFlex.lt-md="80">
           <mat-form-field class="filter-chip-list">
             <mat-chip-list #chipList>
               <mat-chip class="tag" *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable"
@@ -54,7 +54,6 @@
 
               <input placeholder="Filter portfolio..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
-              <!-- <mat-icon matSuffix>filter_list</mat-icon> -->
               <button mat-icon-button>
                 <mat-icon matSuffix>search</mat-icon>
               </button>
@@ -76,17 +75,17 @@
           </mat-menu>
         </div>
 
-        <div fxFlex="5" class="icon-wrapper-small">
+        <!-- <div fxFlex="5" class="icon-wrapper-small">
           <button mat-icon-button class="btn-simple" *ngIf="isAudio" (click)="selectPortfolioItemWide('0')">
             <mat-icon [class.active]="!isAudioWide">apps</mat-icon>
           </button>
-        </div>
+        </div> -->
 
-        <div fxFlex="5" class="icon-wrapper-small">
+        <!-- <div fxFlex="5" class="icon-wrapper-small">
           <button mat-icon-button class="btn-simple" *ngIf="isAudio" (click)="selectPortfolioItemWide('1')">
             <mat-icon [class.active]="isAudioWide">reorder</mat-icon>
           </button>
-        </div>
+        </div> -->
 
 
       </div>
@@ -97,2341 +96,316 @@
 
       <div fxLayout="row wrap" fxLayoutAlign="start start">
 
-        <div fxFlex="33.33" *ngIf="isAllProtfolio">
-          <div class="portfolio-item-square">
+          <div fxFlex.gt-md="33.33" fxFlex.md="50" fxFlex.xs="100" fxFlex.gt-xs="50" *ngFor="let portfolio of filteredPortfolios">
 
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
+            <div class="portfolio-item-square"  *ngIf="portfolio.portfolioType=='image'">
 
-              <div fxFlex="100">
+              <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item image-item">
 
-                <div class="image-wrapper">
+                <div fxFlex="100">
 
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg">
-                    </div>
-                  </div>
+                  <div class="image-wrapper">
 
-                  <div class="overlay">
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button" routerLink="/profile/portfolio/video">
-                        <!-- <button mat-flat-button class="simple-button"  (click)="openDialog()"> -->
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
+                    <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image portfolio-image">
+                      <div fxFlex="100">
+                        <img [src]='sanitizer.bypassSecurityTrustUrl(portfolio.portfolioThumb)'>
                       </div>
                     </div>
 
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
+                    <div class="overlay">
 
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">theaters</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        <div fxFlex="33.33" *ngIf="isAllProtfolio">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="https://images-na.ssl-images-amazon.com/images/I/51tDjE5h5WL.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button" routerLink="/profile/portfolio/audio">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">music_note</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        <div fxFlex="33.33" *ngIf="isAllProtfolio">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-
-                    <div fxFlex="100">
-                      <img src="http://proxy53.hellorf.com/ak0/shutterstock/videos/17872060/thumb/1.jpg">
-                    </div>
-
-                  </div>
-
-                  <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="5px" class="script-intro">
-
-                    <div fxFlex="20">
-                      <h4 class="script-title">Title</h4>
-                    </div>
-                    <div fxFlex="50">
-                      <p class="script-description">Plot: When Dev finds out his wife is cheating on him, he secretly
-                        blackmails his wife and her lover as a form of revenge.When Dev finds out his wife is cheating
-                        on him, he secretly blackmails his wife and her lover as a form of revenge.</p>
-                    </div>
-                  </div>
-
-                  <div class="overlay">
                       <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+
+                        <div fxFlex="100" class="action play-button">
+                          <button mat-flat-button class="simple-button" [routerLink]="['/profile/portfolio/image']" [queryParams]="{userId: userID,id: portfolio.portfolioId}">
+                            <mat-icon style="color:#fff">photo_size_select_actual</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
+                        <div fxFlex="20" class="item-left">
+                          <button mat-icon-button class="btn-simple">
+                            <mat-icon style="color:#fff">favorite</mat-icon>
+                          </button><span style="color:#fff">{{portfolio.portfolioItemFavs}}</span>
+                        </div>
+                        <div fxFlex="20" class="item-right">
+                          <span style="color:#fff">{{portfolio.portfolioItemComments}}</span>
+                          <button mat-icon-button class="btn-simple">
+                            <mat-icon style="color:#fff">comment</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
+                        <div fxFlex="10" class="item-left">
+                          <mat-icon style="color:#fff">photo</mat-icon>
+                        </div>
+                        <div fxFlex="40" fxLayout="row" class="item-right">
+                          <div fxFlex></div>
+                          <div class="time-duration">
+                            <span>by @expert_image</span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="portfolio-item-square" *ngIf="portfolio.portfolioType=='video'">
+
+                <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
+
+                  <div fxFlex="100">
+
+                    <div class="image-wrapper">
+
+                      <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
+                        <div fxFlex="100">
+                          <img [src]='sanitizer.bypassSecurityTrustUrl(portfolio.portfolioThumb)'>
+                        </div>
+                      </div>
+
+                      <div class="overlay">
+
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
                           <div fxFlex="100" class="action play-button">
-                            <button mat-flat-button class="simple-button" routerLink="/profile/portfolio/script">
-                              <mat-icon style="color:#fff">pageview</mat-icon>
+                            <button mat-flat-button class="simple-button" [routerLink]="['/profile/portfolio/video']" [queryParams]="{userId: userID,id: portfolio.portfolioId}">
+                              <mat-icon style="color:#fff">play_circle_outline</mat-icon>
                             </button>
                           </div>
                         </div>
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
 
-                      <div fxFlex="10" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite_border</mat-icon>
-                        </button>
-                      </div>
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
+                          <div fxFlex="20" class="item-left">
+                            <button mat-icon-button class="btn-simple">
+                              <mat-icon style="color:#fff">favorite</mat-icon>
+                            </button>
+                            <!-- <span style="color:#fff">120</span> -->
+                          </div>
+                          <div fxFlex="20" class="item-right">
+                            <!-- <span style="color:#fff">20</span> -->
+                            <button mat-icon-button class="btn-simple">
+                              <mat-icon style="color:#fff">comment</mat-icon>
+                            </button>
+                          </div>
+                        </div>
 
-                      <div fxFlex="10" class="item-right">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
+                          <div fxFlex="10" class="item-left">
+                            <mat-icon style="color:#fff">theaters</mat-icon>
+                          </div>
+                          <div fxFlex="20" fxLayout="row" class="item-right">
+                            <div fxFlex></div>
+                            <div class="time-duration">
+                              <span>8:88</span>
+                            </div>
+                          </div>
+                        </div>
+
+
+
                       </div>
 
                     </div>
+                  </div>
+                  <div fxFlex></div>
 
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">receipt</mat-icon>
+                  <div fxFlex="100">
+                    <div class="footer">
+                      <a routerLink="/profile/portfolio/video" ><h4 class="title">{{portfolio.portfolioItemTitle}}</h4></a>
+                      <p class="item-views">{{portfolio.portfolioItemViews}} views - 3 days ago</p>
+                      <div class="tag-list">
+                        <a href="#" class="tag" *ngFor="let tag of portfolio.portfolioItemCategories" >#{{tag}}</a>
                       </div>
 
-                      <div fxFlex="40" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>by @Author</span>
+                    </div>
+                  </div>
+
+                </div>
+
+            </div>
+
+            <div class="portfolio-item-square" *ngIf="portfolio.portfolioType=='audio'">
+
+                <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
+
+                  <div fxFlex="100">
+
+                    <div class="image-wrapper">
+
+                      <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
+                        <div fxFlex="100">
+                          <img [src]='sanitizer.bypassSecurityTrustUrl(portfolio.portfolioThumb)'>
                         </div>
                       </div>
 
+                      <div class="overlay">
+
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                          <div fxFlex="100" class="action play-button">
+                            <button mat-flat-button class="simple-button" [routerLink]="['/profile/portfolio/audio']" [queryParams]="{userId: userID,id: portfolio.portfolioId}">
+                              <mat-icon style="color:#fff">play_circle_outline</mat-icon>
+                            </button>
+                          </div>
+                        </div>
+
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
+                          <div fxFlex="20" class="item-left">
+                            <button mat-icon-button class="btn-simple">
+                              <mat-icon style="color:#fff">favorite</mat-icon>
+                            </button><span style="color:#fff">120</span>
+                          </div>
+                          <div fxFlex="20" class="item-right">
+                            <span style="color:#fff">20</span>
+                            <button mat-icon-button class="btn-simple">
+                              <mat-icon style="color:#fff">comment</mat-icon>
+                            </button>
+                          </div>
+                        </div>
+
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
+                          <div fxFlex="10" class="item-left">
+                            <mat-icon style="color:#fff">theaters</mat-icon>
+                          </div>
+                          <div fxFlex="20" fxLayout="row" class="item-right">
+                            <div fxFlex></div>
+                            <div class="time-duration">
+                              <span>8:88</span>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                      </div>
+
                     </div>
+                  </div>
+                  <div fxFlex></div>
 
+                  <div fxFlex="100">
+                    <div class="footer">
+                      <a routerLink="/profile/portfolio/video" ><h4 class="title">{{portfolio.portfolioItemTitle}}</h4></a>
+                      <p class="item-views">{{portfolio.portfolioItemViews}} views - 3 days ago</p>
+                      <div class="tag-list">
+                        <a href="#" class="tag" *ngFor="let tag of portfolio.portfolioItemCategories" >#{{tag}}</a>
+                      </div>
 
-
+                    </div>
                   </div>
 
                 </div>
-
-
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
 
             </div>
 
-          </div>
-        </div>
+            <div class="portfolio-item-square" *ngIf="portfolio.portfolioType=='script'">
 
-        <div fxFlex="33.33" *ngIf="isImage || isAllProtfolio">
-          <div class="portfolio-item-square">
+              <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
 
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item image-item">
+                <div fxFlex="100">
 
-              <div fxFlex="100">
+                  <div class="image-wrapper">
 
-                <div class="image-wrapper">
+                    <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
 
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="assets/images/1.jpg">
+                      <div fxFlex="100">
+                        <img [src]='sanitizer.bypassSecurityTrustUrl(portfolio.portfolioThumb)'>
+                      </div>
+
                     </div>
-                  </div>
 
-                  <div class="overlay">
+                    <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="5px" class="script-intro">
 
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button" routerLink="/profile/portfolio/image">
-                          <mat-icon style="color:#fff">photo_size_select_actual</mat-icon>
-                        </button>
+                      <div fxFlex="20">
+                        <h4 class="script-title">Title</h4>
+                      </div>
+                      <div fxFlex="50">
+                        <p class="script-description">Plot: {{portfolio.portfolioItemDescription}}</p>
                       </div>
                     </div>
 
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">photo</mat-icon>
-                      </div>
-                      <div fxFlex="40" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>by @expert_image</span>
+                    <div class="overlay">
+                      <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
+                        <div fxFlex="100" class="action play-button">
+                          <button mat-flat-button class="simple-button" [routerLink]="['/profile/portfolio/script']" [queryParams]="{userId: userID,id: portfolio.portfolioId}">
+                            <mat-icon style="color:#fff">pageview</mat-icon>
+                          </button>
                         </div>
                       </div>
-                    </div>
+                      <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
 
-
-
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        <div fxFlex="33.33" *ngIf="isImage || isAllProtfolio">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item image-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="assets/images/2.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button" routerLink="/profile/portfolio/image">
-                          <mat-icon style="color:#fff">photo_size_select_actual</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">photo</mat-icon>
-                      </div>
-                      <div fxFlex="40" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>by @expert_image</span>
+                        <div fxFlex="10" class="item-left">
+                          <button mat-icon-button class="btn-simple">
+                            <mat-icon style="color:#fff">favorite_border</mat-icon>
+                          </button>
                         </div>
-                      </div>
-                    </div>
 
-
-
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        <div fxFlex="33.33" *ngIf="isImage || isAllProtfolio">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item image-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="assets/images/3.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button" routerLink="/profile/portfolio/image">
-                          <mat-icon style="color:#fff">photo_size_select_actual</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">photo</mat-icon>
-                      </div>
-                      <div fxFlex="40" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>by @expert_image</span>
+                        <div fxFlex="10" class="item-right">
+                          <button mat-icon-button class="btn-simple">
+                            <mat-icon style="color:#fff">comment</mat-icon>
+                          </button>
                         </div>
+
                       </div>
-                    </div>
 
+                      <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
 
-
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        <div fxFlex="33.33" *ngIf="isImage || isAllProtfolio">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item image-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="assets/images/4.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button" routerLink="/profile/portfolio/image">
-                          <mat-icon style="color:#fff">photo_size_select_actual</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">photo</mat-icon>
-                      </div>
-                      <div fxFlex="40" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>by @expert_image</span>
+                        <div fxFlex="10" class="item-left">
+                          <mat-icon style="color:#fff">receipt</mat-icon>
                         </div>
-                      </div>
-                    </div>
 
-
-
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div fxFlex="100" class="portfolio-container" *ngIf="isVideo || isAllProtfolio">
-
-      <div fxLayout="row wrap" fxLayoutAlign="start start">
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">theaters</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
+                        <div fxFlex="40" fxLayout="row" class="item-right">
+                          <div fxFlex></div>
+                          <div class="time-duration">
+                            <span>by @Author</span>
+                          </div>
                         </div>
+
                       </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
 
                     </div>
 
                   </div>
 
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">theaters</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">theaters</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">theaters</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">theaters</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">theaters</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">theaters</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button><span style="color:#fff">120</span>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-                        <span style="color:#fff">20</span>
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">theaters</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-
-      </div>
-
-    </div>
-
-
-    <div fxFlex="100" class="portfolio-container" *ngIf="isAudio && !isAudioWide || isAllProtfolio">
-
-      <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="0px">
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="https://images-na.ssl-images-amazon.com/images/I/51tDjE5h5WL.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">music_note</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="https://images-na.ssl-images-amazon.com/images/I/51tDjE5h5WL.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">music_note</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="https://images-na.ssl-images-amazon.com/images/I/51tDjE5h5WL.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">music_note</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="https://images-na.ssl-images-amazon.com/images/I/51tDjE5h5WL.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">music_note</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-                    <div fxFlex="100">
-                      <img src="https://images-na.ssl-images-amazon.com/images/I/51tDjE5h5WL.jpg">
-                    </div>
-                  </div>
-
-                  <div class="overlay">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-                      <div fxFlex="20" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite</mat-icon>
-                        </button>
-                      </div>
-                      <div fxFlex="20" class="item-right">
-
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">music_note</mat-icon>
-                      </div>
-                      <div fxFlex="20" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>8:88</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">play_circle_outline</mat-icon>
-                        </button>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-      </div>
-
-    </div>
-
-    <!-- <div fxFlex="100" class="portfolio-container" *ngIf="isAudio && isAudioWide">
-
-      <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="0px">
-
-        <div fxFlex="100" class="portfolio-item-wide media-item audio-item">
-
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
-
-            <div fxFlex="20">
-              <div class="image-wrapper">
-                <img src="assets/images/profile-pic.png">
-              </div>
-            </div>
-
-            <div fxFlex="80">
-
-              <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                <div fxFlex="60">
-                  <h4 class="title">Short #1</h4>
-                  <p class="sub-title">Joyride Music</p>
                 </div>
                 <div fxFlex></div>
-                <div fxFlex="35">
 
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Track</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-                </div>
-              </div>
-
-              <div fxLayout="column wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                <div fxFlex="100" class="audio-frequency-wrapper">
-                  <h4>Visualisation Goes Here</h4>
-                </div>
-
-                <div fxFlex="100" class="audio-duration-wrapper">
-                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                    <div fxFlex="5">
-                      <h4 class="time text-left">02:50</h4>
-                    </div>
-                    <div fxFlex></div>
-                    <div fxFlex="5">
-                      <h4 class="time text-right">06:30</h4>
-                    </div>
-                  </div>
-                </div>
-
-                <div fxFlex="100" class="comment-wrapper">
-                  <mat-form-field>
-                    <input matInput placeholder="Write a comment" type='text'>
-                    <mat-icon matPrefix>comment</mat-icon>
-                  </mat-form-field>
-                </div>
-
-                <div fxFlex="100" class="share-wrapper">
-                  <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px">
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon style="color:#fc4000">favorite</mat-icon>
-                      </button> <span>305</span>
-                    </div>
-
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon>repeat</mat-icon>
-                      </button> <span>125</span>
-                    </div>
-
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon>share</mat-icon>
-                      </button> <span>share</span>
-                    </div>
-
-
-                    <div fxFlex></div>
-                  </div>
-                </div>
-              </div>
-
-
-
-            </div>
-
-          </div>
-
-
-
-
-
-        </div>
-
-        <div fxFlex="100" class="portfolio-item-wide media-item audio-item">
-
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
-
-            <div fxFlex="20">
-              <div class="image-wrapper">
-                <img src="assets/images/profile-pic.png">
-              </div>
-            </div>
-
-            <div fxFlex="80">
-
-              <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                <div fxFlex="60">
-                  <h4 class="title">Short #1</h4>
-                  <p class="sub-title">Joyride Music</p>
-                </div>
-                <div fxFlex></div>
-                <div fxFlex="35">
-
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Track</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-                </div>
-              </div>
-
-              <div fxLayout="column wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                <div fxFlex="100" class="audio-frequency-wrapper">
-                  <h4>Visualisation Goes Here</h4>
-                </div>
-
-                <div fxFlex="100" class="audio-duration-wrapper">
-                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                    <div fxFlex="5">
-                      <h4 class="time text-left">02:50</h4>
-                    </div>
-                    <div fxFlex></div>
-                    <div fxFlex="5">
-                      <h4 class="time text-right">06:30</h4>
-                    </div>
-                  </div>
-                </div>
-
-                <div fxFlex="100" class="comment-wrapper">
-                  <mat-form-field>
-                    <input matInput placeholder="Write a comment" type='text'>
-                    <mat-icon matPrefix>comment</mat-icon>
-                  </mat-form-field>
-                </div>
-
-                <div fxFlex="100" class="share-wrapper">
-                  <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px">
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon style="color:#fc4000">favorite</mat-icon>
-                      </button> <span>305</span>
-                    </div>
-
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon>repeat</mat-icon>
-                      </button> <span>125</span>
-                    </div>
-
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon>share</mat-icon>
-                      </button> <span>share</span>
-                    </div>
-
-
-                    <div fxFlex></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div fxFlex="100" class="portfolio-item-wide media-item audio-item">
-
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
-
-            <div fxFlex="20">
-              <div class="image-wrapper">
-                <img src="assets/images/profile-pic.png">
-              </div>
-            </div>
-
-            <div fxFlex="80">
-
-              <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                <div fxFlex="60">
-                  <h4 class="title">Short #1</h4>
-                  <p class="sub-title">Joyride Music</p>
-                </div>
-                <div fxFlex></div>
-                <div fxFlex="35">
-
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Track</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-                </div>
-              </div>
-
-              <div fxLayout="column wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                <div fxFlex="100" class="audio-frequency-wrapper">
-                  <h4>Visualisation Goes Here</h4>
-                </div>
-
-                <div fxFlex="100" class="audio-duration-wrapper">
-                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                    <div fxFlex="5">
-                      <h4 class="time text-left">02:50</h4>
-                    </div>
-                    <div fxFlex></div>
-                    <div fxFlex="5">
-                      <h4 class="time text-right">06:30</h4>
-                    </div>
-                  </div>
-                </div>
-
-                <div fxFlex="100" class="comment-wrapper">
-                  <mat-form-field>
-                    <input matInput placeholder="Write a comment" type='text'>
-                    <mat-icon matPrefix>comment</mat-icon>
-                  </mat-form-field>
-                </div>
-
-                <div fxFlex="100" class="share-wrapper">
-                  <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px">
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon style="color:#fc4000">favorite</mat-icon>
-                      </button> <span>305</span>
-                    </div>
-
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon>repeat</mat-icon>
-                      </button> <span>125</span>
-                    </div>
-
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon>share</mat-icon>
-                      </button> <span>share</span>
-                    </div>
-
-
-                    <div fxFlex></div>
-                  </div>
-                </div>
-              </div>
-
-
-
-            </div>
-
-          </div>
-
-
-
-
-
-        </div>
-
-        <div fxFlex="100" class="portfolio-item-wide media-item audio-item">
-
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
-
-            <div fxFlex="20">
-              <div class="image-wrapper">
-                <img src="assets/images/profile-pic.png">
-              </div>
-            </div>
-
-            <div fxFlex="80">
-
-              <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                <div fxFlex="60">
-                  <h4 class="title">Short #1</h4>
-                  <p class="sub-title">Joyride Music</p>
-                </div>
-                <div fxFlex></div>
-                <div fxFlex="35">
-
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Track</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-                </div>
-              </div>
-
-              <div fxLayout="column wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                <div fxFlex="100" class="audio-frequency-wrapper">
-                  <h4>Visualisation Goes Here</h4>
-                </div>
-
-                <div fxFlex="100" class="audio-duration-wrapper">
-                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="5px">
-                    <div fxFlex="5">
-                      <h4 class="time text-left">02:50</h4>
-                    </div>
-                    <div fxFlex></div>
-                    <div fxFlex="5">
-                      <h4 class="time text-right">06:30</h4>
-                    </div>
-                  </div>
-                </div>
-
-                <div fxFlex="100" class="comment-wrapper">
-                  <mat-form-field>
-                    <input matInput placeholder="Write a comment" type='text'>
-                    <mat-icon matPrefix>comment</mat-icon>
-                  </mat-form-field>
-                </div>
-
-                <div fxFlex="100" class="share-wrapper">
-                  <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px">
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon style="color:#fc4000">favorite</mat-icon>
-                      </button> <span>305</span>
-                    </div>
-
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon>repeat</mat-icon>
-                      </button> <span>125</span>
-                    </div>
-
-                    <div fxFlex="10" class="share-item">
-                      <button mat-icon-button class="btn-simple">
-                        <mat-icon>share</mat-icon>
-                      </button> <span>share</span>
-                    </div>
-
-
-                    <div fxFlex></div>
-                  </div>
-                </div>
-              </div>
-
-
-
-            </div>
-
-          </div>
-
-
-
-
-
-        </div>
-
-      </div>
-
-    </div> -->
-
-    <div fxFlex="100" class="portfolio-container" *ngIf="isScript || isAllProtfolio">
-
-      <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="0px">
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-
-                    <div fxFlex="100">
-                      <img src="http://proxy53.hellorf.com/ak0/shutterstock/videos/17872060/thumb/1.jpg">
+                <div fxFlex="100">
+                  <div class="footer">
+                    <h4 class="title">{{portfolio.portfolioItemTitle}}</h4>
+                    <p class="item-views">{{portfolio.portfolioItemViews}} views - 3 days ago</p>
+                    <div class="tag-list">
+                      <a href="#" class="tag" *ngFor="let tag of portfolio.portfolioItemCategories">#{{tag}}</a>
                     </div>
 
                   </div>
-
-                  <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="5px" class="script-intro">
-
-                    <div fxFlex="20">
-                      <h4 class="script-title">Title</h4>
-                    </div>
-                    <div fxFlex="50">
-                      <p class="script-description">Plot: When Dev finds out his wife is cheating on him, he secretly
-                        blackmails his wife and her lover as a form of revenge.When Dev finds out his wife is cheating
-                        on
-                        him, he secretly blackmails his wife and her lover as a form of revenge.</p>
-                    </div>
-
-
-                  </div>
-
-
-                  <div class="overlay">
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-
-                      <div fxFlex="10" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite_border</mat-icon>
-                        </button>
-                      </div>
-
-                      <div fxFlex="10" class="item-right">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">receipt</mat-icon>
-                      </div>
-
-                      <div fxFlex="40" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>by @Author</span>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">chrome_reader_mode</mat-icon>
-                        </button>
-                      </div>
-
-                    </div>
-
-                  </div>
-
                 </div>
 
-
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
               </div>
 
             </div>
 
           </div>
+
         </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-
-                    <div fxFlex="100">
-                      <img src="http://proxy53.hellorf.com/ak0/shutterstock/videos/17872060/thumb/1.jpg">
-                    </div>
-
-                  </div>
-
-                  <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="5px" class="script-intro">
-
-                    <div fxFlex="20">
-                      <h4 class="script-title">Title</h4>
-                    </div>
-                    <div fxFlex="50">
-                      <p class="script-description">Plot: When Dev finds out his wife is cheating on him, he secretly
-                        blackmails his wife and her lover as a form of revenge.When Dev finds out his wife is cheating
-                        on
-                        him, he secretly blackmails his wife and her lover as a form of revenge.</p>
-                    </div>
-
-
-                  </div>
-
-
-                  <div class="overlay">
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-
-                      <div fxFlex="10" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite_border</mat-icon>
-                        </button>
-                      </div>
-
-                      <div fxFlex="10" class="item-right">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">receipt</mat-icon>
-                      </div>
-
-                      <div fxFlex="40" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>by @Author</span>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">chrome_reader_mode</mat-icon>
-                        </button>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-
-                    <div fxFlex="100">
-                      <img src="http://proxy53.hellorf.com/ak0/shutterstock/videos/17872060/thumb/1.jpg">
-                    </div>
-
-                  </div>
-
-                  <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="5px" class="script-intro">
-
-                    <div fxFlex="20">
-                      <h4 class="script-title">Title</h4>
-                    </div>
-                    <div fxFlex="50">
-                      <p class="script-description">Plot: When Dev finds out his wife is cheating on him, he secretly
-                        blackmails his wife and her lover as a form of revenge.When Dev finds out his wife is cheating
-                        on
-                        him, he secretly blackmails his wife and her lover as a form of revenge.</p>
-                    </div>
-
-
-                  </div>
-
-
-                  <div class="overlay">
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-
-                      <div fxFlex="10" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite_border</mat-icon>
-                        </button>
-                      </div>
-
-                      <div fxFlex="10" class="item-right">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">receipt</mat-icon>
-                      </div>
-
-                      <div fxFlex="40" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>by @Author</span>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">chrome_reader_mode</mat-icon>
-                        </button>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-        <div fxFlex="33.33">
-          <div class="portfolio-item-square">
-
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" class="media-item video-item">
-
-              <div fxFlex="100">
-
-                <div class="image-wrapper">
-
-                  <div fxLayout="column wrap" fxLayoutAlign="center stretch" class="item-image">
-
-                    <div fxFlex="100">
-                      <img src="http://proxy53.hellorf.com/ak0/shutterstock/videos/17872060/thumb/1.jpg">
-                    </div>
-
-                  </div>
-
-                  <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="5px" class="script-intro">
-
-                    <div fxFlex="20">
-                      <h4 class="script-title">Title</h4>
-                    </div>
-                    <div fxFlex="50">
-                      <p class="script-description">Plot: When Dev finds out his wife is cheating on him, he secretly
-                        blackmails his wife and her lover as a form of revenge.When Dev finds out his wife is cheating
-                        on
-                        him, he secretly blackmails his wife and her lover as a form of revenge.</p>
-                    </div>
-
-
-                  </div>
-
-
-                  <div class="overlay">
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-top-row">
-
-                      <div fxFlex="10" class="item-left">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">favorite_border</mat-icon>
-                        </button>
-                      </div>
-
-                      <div fxFlex="10" class="item-right">
-                        <button mat-icon-button class="btn-simple">
-                          <mat-icon style="color:#fff">comment</mat-icon>
-                        </button>
-                      </div>
-
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
-
-                      <div fxFlex="10" class="item-left">
-                        <mat-icon style="color:#fff">receipt</mat-icon>
-                      </div>
-
-                      <div fxFlex="40" fxLayout="row" class="item-right">
-                        <div fxFlex></div>
-                        <div class="time-duration">
-                          <span>by @Author</span>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="action-wrapper">
-
-                      <div fxFlex="100" class="action play-button">
-                        <button mat-flat-button class="simple-button">
-                          <mat-icon style="color:#fff">chrome_reader_mode</mat-icon>
-                        </button>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-
-              </div>
-              <div fxFlex></div>
-
-              <div fxFlex="100">
-                <div class="footer">
-                  <h4 class="title">Short #1</h4>
-                  <p class="item-views">172 views - 3 days ago</p>
-                  <div class="tag-list">
-                    <a href="#" class="tag">#Video</a>
-                    <a href="#" class="tag">#Pilot</a>
-                    <a href="#" class="tag">#Production</a>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-
-      </div>
 
     </div>
-
-
 
   </div>
-
 
 </div>
 
 <ngc-float-button class="fab-action-button" icon="add" color="primary">
-  <ngc-float-item-button icon="photo" class="active-fab" routerLink="/profile/portfolio/add/image"></ngc-float-item-button>
-  <ngc-float-item-button icon="movie_filter"></ngc-float-item-button>
-  <ngc-float-item-button icon="music_note"></ngc-float-item-button>
-  <ngc-float-item-button icon="note"></ngc-float-item-button>
+  <!-- <ngc-float-item-button icon="photo" class="active-fab" routerLink="/profile/portfolio/add/image"></ngc-float-item-button> -->
+  <ngc-float-item-button icon="photo" routerLink="/profile/portfolio/add/image"></ngc-float-item-button>
+  <ngc-float-item-button icon="movie_filter"  routerLink="/profile/portfolio/add/video"></ngc-float-item-button>
+  <ngc-float-item-button icon="music_note"  routerLink="/profile/portfolio/add/audio"></ngc-float-item-button>
+  <ngc-float-item-button icon="note" routerLink="/profile/portfolio/add/script"></ngc-float-item-button>
 </ngc-float-button>

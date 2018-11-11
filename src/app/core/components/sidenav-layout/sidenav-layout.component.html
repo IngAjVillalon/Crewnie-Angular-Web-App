@@ -1,12 +1,12 @@
 <div class="sidenav-layout-wrap">
   <!-- header top -->
-  <div class="header-top" fxLayout="row wrap">
-    <div fxFlex="30.33" fxLayout="row wrap" fxLayoutAlign="start center">
-      <img class="propic-topbar" src="assets/images/profile-pic-2.png" alt="">
+  <div class="header-top" fxLayout="row wrap" fxLayout.xs="column">
+    <div fxFlex="30.33" fxFlex.xs="100" fxLayout="row wrap" fxLayoutAlign="start center">
+      <img fxHide.xs="true" class="propic-topbar" src="assets/images/profile-pic-2.png" alt="">
       <img class="logo-topbar" src="assets/images/crewnie-logo-black.png" alt="">
     </div>
 
-    <div fxFlex="33.33" class="search-wrap" fxLayoutAlign="center center">
+    <div fxFlex="33.33" fxFlex.xs="100" class="search-wrap" fxLayoutAlign="center center">
       <div class="search-bar">
         <mat-icon>search</mat-icon>
         <input type="text" placeholder="Search">
@@ -14,7 +14,7 @@
     </div>
 
 
-    <div class="topbar-right" fxFlex="33.33" fxLayout="row wrap" fxLayoutAlign="end center">
+    <div class="topbar-right" fxFlex="33.33" fxFlex.xs="100" fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
       <button mat-icon-button fxFlex="5" class="topbar-right-button">
         <mat-icon>notifications_none</mat-icon>
       </button>
@@ -28,7 +28,10 @@
         <mat-icon>chat</mat-icon>
       </button>
     </div>
+
   </div>
+
+
 
   <!-- header bottom -->
   <div class="header-bottom" fxLayout="row wrap">
@@ -41,7 +44,7 @@
 
       <div class="header-bottom-left" fxLayout="row wrap" fxLayoutAlign="start center">
 
-          <button mat-button fxFlex="10" class="header-bottom-left-button" routerLink="/profile" routerLinkActive="active">
+          <button mat-button fxFlex="10" class="header-bottom-left-button" [routerLink]="['/profile']" routerLinkActive="active">
             Profile
           </button>
           <button mat-button fxFlex="10" class="header-bottom-left-button" routerLink="/project" routerLinkActive="active">
@@ -83,8 +86,8 @@
 
         <div class="side-navigation">
           <mat-nav-list class="side-navigation-nav-list">
-              <a mat-list-item routerLink="/profile/info" routerLinkActive="active">Profile </a>
-              <a mat-list-item routerLink="/profile/portfolio" routerLinkActive="active">Portfolio </a>
+              <a mat-list-item [routerLink]="['/profile/info']" routerLinkActive="active">Profile </a>
+              <a mat-list-item [routerLink]="['/profile/portfolio']" routerLinkActive="active">Portfolio </a>
           </mat-nav-list>
         </div>
 

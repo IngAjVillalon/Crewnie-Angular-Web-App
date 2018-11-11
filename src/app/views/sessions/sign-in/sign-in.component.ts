@@ -109,6 +109,18 @@ export class SignInComponent implements OnInit {
     return true;
   }
 
+  signUpWithGmali() {
+    this.authService
+      .signUpWithGmail()
+      .then(() => {
+        this.router.navigate(["/profile/info"]);
+      })
+      .catch(_error => {
+        this.error = _error;
+        this.router.navigate(["/sessions/signup"]);
+      });
+  }
+
   // sendResetEmail() {
   //   this.clearErrorMessage();
 

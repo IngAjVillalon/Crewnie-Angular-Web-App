@@ -1,9 +1,18 @@
+import { ActiveUser } from 'src/app/core/models/models';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { ViewVideoPortfolioComponent } from './../view-video-portfolio/view-video-portfolio.component';
 import { Component, OnInit } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs/Observable';
+import { User } from 'firebase';
 
-export interface Fruit {
+export interface Tag {
   name: string;
 }
 
@@ -12,6 +21,23 @@ export interface portfolioItems {
   views: number;
   day: number;
   tags: Array<String>;
+}
+
+export interface portfolioItem {
+  portfolioId?: string;
+  portfolioType?: string;
+  portfolioThumb?: string;
+  portfolioFile?: string;
+  portfolioItemTitle?: string;
+  portfolioItemDescription?: string;
+  portfolioItemDate?: firebase.firestore.Timestamp;
+  portfolioItemLocation?: string;
+  portfolioItemQuality?: boolean;
+  portfolioItemCategories?: Array<string>;
+  portfolioItemViews?: number;
+  portfolioItemComments?: number;
+  portfolioItemFavs?: number;
+
 }
 
 @Component({
@@ -34,19 +60,39 @@ export class PortfolioComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  tags: Fruit[] = [
-    {name: '#Videos'},
-    {name: '#Pilot'}
-  ];
+  tags: Tag[] = [];
 
-  portfolioItems: portfolioItems[] = [
-    {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
-    {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
-    {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
-    {title: 'Crewnie Website', views: 172, day: 3, tags:['Video','Pilot','Production']},
-  ];
+  userID: string;
+  user$: Observable<User>;
+  currentUser$: AngularFirestoreDocument<ActiveUser>;
+  user: User;
+  currentUser: ActiveUser;
 
-  constructor() {}
+  portfolios$: AngularFirestoreCollection<portfolioItem>;
+  portfolios: portfolioItem[];
+  filteredPortfolios: portfolioItem[];
+
+  constructor(
+    public sanitizer: DomSanitizer,
+    private afAuth: AngularFireAuth,
+    private db: AngularFirestore,
+  ) {
+
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.user = user;
+        this.userID = user.uid;
+        console.log('UserID'+this.userID);
+
+        this.portfolios$ = this.db.collection('users').doc(this.userID).collection('portfolio');
+        this.portfolios$.valueChanges().subscribe(portfolios => {
+          this.portfolios = portfolios;
+          this.filteredPortfolios = portfolios;
+        });
+
+      }
+    });
+  }
 
   ngOnInit() {}
 
@@ -58,20 +104,24 @@ export class PortfolioComponent implements OnInit {
     // Add our fruit
     if ((value || '').trim()) {
       this.tags.push({name: value.trim()});
+      this.filterPortfolioItems()
     }
 
     // Reset the input value
     if (input) {
       input.value = '';
     }
+
   }
 
-  remove(fruit: Fruit): void {
+  remove(fruit: Tag): void {
     const index = this.tags.indexOf(fruit);
 
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
+
+    this.filterPortfolioItems()
   }
 
   selectPortfolio(portfolio: number) {
@@ -83,15 +133,21 @@ export class PortfolioComponent implements OnInit {
 
     if( portfolio === 0) {
       this.isAllProtfolio = true;
+      this.filteredPortfolios = this.portfolios;
     }else if(portfolio === 1) {
       this.isImage = true;
+      this.filteredPortfolios = ('image') ? this.portfolios.filter(p=> p.portfolioType.toLocaleLowerCase().includes('image')) : this.portfolios;
     }else if(portfolio === 2) {
       this.isVideo = true;
+      this.filteredPortfolios = ('video') ? this.portfolios.filter(p=> p.portfolioType.toLocaleLowerCase().includes('video')) : this.portfolios;
     }else if(portfolio === 3) {
       this.isAudio = true;
+      this.filteredPortfolios = ('audio') ? this.portfolios.filter(p=> p.portfolioType.toLocaleLowerCase().includes('audio')) : this.portfolios;
     }else if(portfolio === 4) {
       this.isScript = true;
+      this.filteredPortfolios = ('script') ? this.portfolios.filter(p=> p.portfolioType.toLocaleLowerCase().includes('script')) : this.portfolios;
     }
+
 
   }
 
@@ -100,6 +156,17 @@ export class PortfolioComponent implements OnInit {
       this.isAudioWide = false;
     }else if(isWide == 1) {
       this.isAudioWide = true;
+    }
+
+  }
+
+  filterPortfolioItems() {
+    if(this.tags.length) {
+      this.tags.forEach((tag)=> {
+        this.filteredPortfolios = ('image') ? this.portfolios.filter(p=> p.portfolioItemTitle.toLocaleLowerCase().includes(tag.name)) : this.portfolios;
+      });
+    }else {
+      this.filteredPortfolios = this.portfolios;
     }
 
   }

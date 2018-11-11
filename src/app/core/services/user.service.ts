@@ -1,36 +1,38 @@
-import { AuthService } from './auth.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Injectable } from '@angular/core';
-
+import { AuthService } from "./auth.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import {
+  AngularFirestore,
+  AngularFirestoreDocument
+} from "@angular/fire/firestore";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/switchMap";
 import "rxjs/add/observable/of";
 import { ActiveUser } from "../models/models";
-import { User } from 'firebase';
+import { User } from "firebase";
+import { promise } from "protractor";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-
 export class UserService {
-
   userID: String;
   user$: any;
 
-  currentUser$;
+  currentUser$: AngularFirestoreDocument<ActiveUser>;
+  currentUser: ActiveUser;
   user: ActiveUser;
 
   constructor(
     private afAuth: AngularFireAuth,
-    private afs: AngularFirestore,
+    private db: AngularFirestore,
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService
   ) {
-    this.user$ =  this.afAuth.authState.subscribe(user => {
+    this.user$ = this.afAuth.authState.subscribe(user => {
       // if(user) {
       //   this.user = user;
       //   console.log(user.uid);
@@ -38,9 +40,13 @@ export class UserService {
       //   return this.afs.doc<ActiveUser>('users/${user.uid}').valueChanges();
       // }
     });
-   }
+  }
 
-   public getUserProfile() {
-    return this.user.uid;
-   }
+  public getUserProfile(userId: string) {
+    this.currentUser$ = this.db.doc<ActiveUser>("users/" + userId);
+    this.currentUser$.valueChanges().subscribe(user => {
+      this.currentUser = user;
+      return  this.currentUser;
+    });
+  }
 }

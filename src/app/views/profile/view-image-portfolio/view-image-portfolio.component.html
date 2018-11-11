@@ -1,73 +1,147 @@
 <div class="view-image-portfolio-wrapper">
 
-  <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="0px">
+  <button mat-button class="btn-goback" (click)="goBack()">
+    <mat-icon class="mat-18">close</mat-icon>
+  </button>
 
-    <div fxFlex="25" class="view-container-left">
-      <!-- <img src="assets/images/1.jpg"> -->
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" fxLayoutGap="0px" *ngIf="portfolioItem">
+
+
+    <div fxFlex="70" fxFlex.lt-md="100" class="view-container-left">
+
+      <div class="image-item-wrapper">
+        <img [src]='sanitizer.bypassSecurityTrustUrl(portfolioItem.portfolioThumb)'>
+      </div>
+
+      <div class="item-overlay top">
+        <h4 class="title">{{portfolioItem.portfolioItemTitle}}</h4>
+      </div>
+
+
+      <!-- <div class="item-overlay bottom">
+
+        <div fxFlex="100" fxLayout class="social-buttons" fxLayoutAlign="center center">
+          <div fxFlex></div>
+          <button mat-button class="btn-share">
+              <span class="fav-count">{{portfolioItem.portfolioItemComments}} Comments</span>
+            <mat-icon >chat_bubble_outline</mat-icon>
+          </button>
+
+
+          <button mat-button class="btn-share">
+            <mat-icon >share</mat-icon>
+          </button>
+
+          <button mat-button class="btn-share">
+            <mat-icon >fullscreen</mat-icon>
+          </button>
+        </div>
+
+      </div> -->
+
+
     </div>
 
-    <div fxFlex="50" class="view-container-center">
-
-      <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="0px">
-
-        <div fxFlex="100" class="image-item-wrapper">
-          <img src="assets/images/1.jpg">
-        </div>
-
-        <div fxFlex="100" class="item-info">
-            <h4 class="title">Title Of the Picture Goes Here</h4>
-        </div>
-        <div fxFlex="100" fxLayout class="social-buttons" fxLayoutAlign="center center">
-            <!-- <span class="total-views">5000</span> -->
-            <div fxFlex></div>
-            <span class="total-favs">230</span>
-            <button mat-icon-button class="btn-share">
-              <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-            </button>
+    <div fxFlex="30" fxFlex.lt-md="100" class="view-container-right" *ngIf="currentUser">
 
 
-            <button mat-icon-button class="btn-share">
-              <mat-icon aria-label="Example icon-button with a heart icon">share</mat-icon>
-            </button>
+      <div class="right-sidebar-top">
+
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="main-user-info">
+          <div fxFlex="10%" class="user-avater">
+            <a routerLink="/profile/info"><img [src]='sanitizer.bypassSecurityTrustUrl(currentUser.profilePhotoUrl)'
+                class="avater"></a>
           </div>
-        <div fxFlex="100" class="item-info">
+          <div fxFlex="75">
+            <div class="user-info">
+              <a routerLink="/profile/info" class="user-name">
+                <h4 mat-line>{{portfolioItem.portfolioItemDescription}}</h4>
+              </a>
+              <p mat-line>
+                <a href="" *ngFor="let tag of portfolioItem.portfolioItemCategories">#{{tag}}</a>
+              </p>
 
-            <!-- <p class="published">Published on Mar 1, 2018</p> -->
-          <mat-list class="user">
-            <!-- <h3 mat-subheader>Folders</h3> -->
-            <mat-list-item>
-              <mat-icon mat-list-icon>account_circle</mat-icon>
-              <h4 mat-line>Jhon Dow Smith</h4>
-              <p mat-line>Jan 1, 2016 @ Centran Park</p>
-            </mat-list-item>
-            <p class="description">Mark Sisson is a former endurance athlete turned nutrition author and entrepreneur. In 2006, he began his popular health blog, Mark’s Daily Apple, where he’s blogged every day for 12+ years. Mark is the founder of Primal Kitchen Foods and best-selling author of several books including The... </p>
-
-            <!-- <mat-divider></mat-divider> -->
-
-          </mat-list>
-        </div>
-
-
-
-        <div fxFlex="100" class="item-comments">
-          <mat-form-field class="item-comment-box">
-            <textarea matInput placeholder="Leave a comment"></textarea>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="100" class="item-comments">
-          <h4 class="comment-user">@baby_boom:<span> Great Pic</span></h4>
-          <h4 class="comment-user">@baby_boom:<span> Awesome PhotoAwesome PhotoAwesome PhotoAwesome PhotoAwesome Photo</span></h4>
-          <h4 class="comment-user">@baby_boom:<span> Looking Gorgious</span></h4>
-          <h4 class="comment-user">@baby_boom:<span> Nice</span></h4>
+            </div>
+          </div>
         </div>
 
       </div>
 
+      <div class="user-comments">
 
-    </div>
-    <div fxFlex="25" class="view-container-right">
-      <!-- <img src="assets/images/1.jpg"> -->
+        <div class="main-comment">
+          <h4 class="user-name">Jhon Doe</h4>
+          <p class="user-comment">Well! Thats prity good Well! Thats prity goodWell! Thats prity good...
+          </p>
+          <div class="user-comment-data">
+            <a class="like">Like</a>
+            <a class="reply">Reply</a>
+            <p class="comment-date">Nov 17, 2017, 10:36</p>
+          </div>
+          <button mat-button class="delete-comment">
+            <mat-icon class="mat-18">close</mat-icon>
+          </button>
+
+          <div class="comment-reply">
+            <h4 class="user-name">Jhon Doe</h4>
+            <p class="user-comment">Well! Thats prity good Well! Thats prity goodWell! Thats prity good...
+            </p>
+            <div class="user-comment-data">
+              <a class="like">Like</a>
+              <a class="reply">Reply</a>
+              <p class="comment-date">Nov 17, 2017, 10:36</p>
+            </div>
+            <button mat-button class="delete-comment">
+              <mat-icon class="mat-18">close</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="main-comment">
+          <h4 class="user-name">Jhon Doe</h4>
+          <p class="user-comment">Well! Thats prity good Well! Thats prity goodWell! Thats prity good...
+          </p>
+          <div class="user-comment-data">
+            <a class="like">Like</a>
+            <a class="reply">Reply</a>
+            <p class="comment-date">Nov 17, 2017, 10:36</p>
+          </div>
+          <button mat-button class="delete-comment">
+            <mat-icon class="mat-18">close</mat-icon>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="portfolio-item-likes">
+        <div class="item-like-count">{{portfolioItem.portfolioItemFavs}} Likes</div>
+        <div class="item-publish-date">{{portfolioItem.portfolioItemDate.toDate() | date: 'mediumDate'}}</div>
+      </div>
+
+      <form>
+      <div class="user-comment-input">
+        <mat-form-field class="item-comment-box">
+          <textarea matInput placeholder="Add a comment"></textarea>
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="AddComment()">
+            <mat-icon>send</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button mat-button class="btn-edit-content" [matMenuTriggerFor]="more">
+          <mat-icon aria-label="Example icon-button with a heart icon">more_vert</mat-icon>
+        </button>
+
+        <mat-menu #more="matMenu">
+          <button mat-menu-item [routerLink]="['/profile/portfolio/update/image']" [queryParams]="{userId: userId,id: portfolioItem.portfolioId}">
+            <mat-icon>edit</mat-icon>Edit
+          </button>
+          <button mat-menu-item (click)="deletePortfolioItem()">
+            <mat-icon>delete</mat-icon>Delete
+          </button>
+        </mat-menu>
+
+      </div>
+    </form>
     </div>
 
   </div>

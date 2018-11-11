@@ -18,6 +18,7 @@ import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { MatInputModule } from "@angular/material";
 
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -27,7 +28,8 @@ import { MatInputModule } from "@angular/material";
     MatInputModule,
     AppRoutingModule,
     PasswordStrengthBarModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

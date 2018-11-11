@@ -24,6 +24,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/core/services/auth.service";
 import { User } from "firebase";
 import { FormGroup, FormControl } from "@angular/forms";
+import { finalize } from "rxjs/operators";
 
 interface currentUser {
   uid?: string;
@@ -72,8 +73,8 @@ export class BasicInfoComponent implements OnInit {
   edit = false;
   coverPhoto: string =
     "https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/cover-photo%2Fcover-photo.png?alt=media&token=f517768f-c699-464a-855c-79408f3d4426";
-  profilePicture: any =
-    "";
+  profilePicture: any = "";
+  profileUrl: Observable<string | null>;
 
   file;
   file2;
@@ -124,6 +125,8 @@ export class BasicInfoComponent implements OnInit {
           this.profilePicture = user.profilePhotoUrl;
           console.log(this.currentUser.email);
         });
+      }else {
+        this.router.navigate(["/sessions/signin"]);
       }
     });
   }
@@ -142,94 +145,52 @@ export class BasicInfoComponent implements OnInit {
       const ref = this.afStorage.ref(filePath);
       const downloadURL = ref.getDownloadURL().subscribe(url => {
         const Url = url; // for ts
-        this.currentUser.coverPhotoUrl = url; // with this you can use it in the html
+        this.coverPhoto = Url; // with this you can use it in the html
         console.log(Url);
       });
     });
+  }
 
-
+  public saveCoverPhoto() {
+    this.currentUser.coverPhotoUrl = this.coverPhoto;
   }
 
   public changeProfilePic(event: any) {
 
-    var url: any;
-
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-
       const reader = new FileReader();
-      reader.onload = e => this.profilePicture = reader.result;
-
+      reader.onload = e => (this.profilePicture = reader.result);
+      console.log(this.profilePicture);
       reader.readAsDataURL(file);
-  }
+    }
 
     this.file = event.target.files[0];
     const id = Math.random()
       .toString(36)
       .substring(2);
     const file = this.file;
-    this.filePath = "/cover-photo/" + id;
-    const fileRef = this.afStorage.ref("cover-photo/"); // Add this line to get the path as a ref
-    this.uploadTask = this.afStorage.upload(this.filePath, this.file);
-    this.uploadTask.pause();
-    this.uploadProgress = this.uploadTask.percentageChanges();
-    console.log(this.uploadProgress);
-
-    // then(() => {
-    //   const ref = this.afStorage.ref(filePath);
-    //   const downloadURL = ref.getDownloadURL().subscribe(url => {
-    //     const Url = url; // for ts
-    //     this.currentUser.profilePhotoUrl = url; // with this you can use it in the html
-    //     console.log(Url);
-    //   });
-    // });
-  }
-
-  uploadProfilePhoto() {
-    this.uploadTask.resume()
-    console.log(this.uploadProgress);
-    const ref = this.afStorage.ref(this.filePath);
-    const downloadURL = ref.getDownloadURL().subscribe(url => {
-          const Url = url; // for ts
-          this.currentUser.profilePhotoUrl = url; // with this you can use it in the html
-          console.log(Url);
-        });
-  }
-
-  public saveCoverPhoto(event: any) {
-    this.file2 = event.target.files[0];
-    const id = Math.random()
-      .toString(36)
-      .substring(2);
-    const file = this.file;
-    const filePath = "/cover-photo/" + id;
-    const fileRef = this.afStorage.ref("cover-photo/"); // Add this line to get the path as a ref
+    const filePath = "/profile-photo/" + id;
+    const fileRef = this.afStorage.ref("profile-photo/"); // Add this line to get the path as a ref
     const task = this.afStorage.upload(filePath, this.file).then(() => {
       const ref = this.afStorage.ref(filePath);
       const downloadURL = ref.getDownloadURL().subscribe(url => {
         const Url = url; // for ts
-        this.currentUser.coverPhotoUrl = url; // with this you can use it in the html
+        this.profilePicture = Url;
         console.log(Url);
       });
     });
   }
 
   public saveProfilePhoto() {
-    console.log(this.profilePicture);
-
-    const id = Math.random()
-      .toString(36)
-      .substring(2);
-    const file = this.file;
-    const filePath = "/cover-photo";
-    const fileRef = this.afStorage.ref(filePath); // Add this line to get the path as a ref
-    const task = this.afStorage.upload(filePath, this.file);
-    this.downloadURL = fileRef.getDownloadURL();
-    this.downloadURL.subscribe(url => {
-      this.profilePicture = url;
-      console.log(url);
-    });
+    this.currentUser.profilePhotoUrl = this.profilePicture;
   }
+
+
+
+
+
+
 
   editPage() {
     console.log(this.userID);
@@ -272,7 +233,6 @@ export class BasicInfoComponent implements OnInit {
     }
 
     console.log(this.currentUser);
-    // this.currentUser.profilePic = this.profilePicture;
     // this.currentUser.coverPhoto = this.coverPhoto;
 
     this.db

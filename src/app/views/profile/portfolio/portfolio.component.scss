@@ -153,7 +153,8 @@ button {
   max-height: 370px;
   min-width: 340px;
   min-height: 340px;
-  margin-bottom: 10px;
+  margin: 0 auto;
+  margin-bottom: 10px !important;
 }
 
 .portfolio-item-square .image-wrapper {
@@ -249,6 +250,10 @@ button {
   object-position: center !important;
   width: 100% !important;
   height: 100% !important;
+}
+
+.item-image.portfolio-image img {
+  object-fit: cover !important;
 }
 
 .media-item .overlay {
@@ -613,3 +618,36 @@ button {
 }
 
 
+@media screen and (max-width: 599px) {
+
+  .portfolio-item-square {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+}
+
+@media screen and (min-width: 600px) and (max-width: 959px) {
+  .portfolio-wrapper {
+    padding-top: 5px !important;
+  }
+
+  .portfolio-container {
+    margin-bottom: 5px !important;
+  }
+
+  .portfolio-item-square {
+    max-width: 100%;
+    padding: 0 10px;
+    padding-left: 5px !important;
+    padding-right: 0;
+    margin-bottom: 5px !important;
+  }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1279px) {
+  .portfolio-item-square {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+}

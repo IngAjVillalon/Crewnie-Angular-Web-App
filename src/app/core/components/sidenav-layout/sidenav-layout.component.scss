@@ -1,0 +1,26 @@
+@media screen and (max-width: 480px) {
+  .sidenav-layout-wrap .header-top {
+    position: relative;
+    height: 150px !important;
+
+    .propic-topbar {
+      position: absolute;
+      margin: 2px 5px;
+    }
+
+    .logo-topbar {
+      width: -webkit-fill-available !important;
+      object-fit: contain !important;
+      margin: 5px 0px;
+    }
+
+    .search-wrap {
+      padding: 0 !important;
+    }
+
+    .search-bar {
+      width: 95% !important;
+    }
+
+  }
+}

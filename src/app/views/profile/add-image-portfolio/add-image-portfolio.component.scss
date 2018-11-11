@@ -12,7 +12,7 @@
 .add-item-wrapper,
 .item-preview-wrapper {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 40px);
 }
 
 .item-preview-container {
@@ -95,6 +95,7 @@
   width: 100%;
   background-color: black;
   max-height: 40px !important;
+  z-index: 999;
 }
 
 .save-item-wrapper .btn-save {
@@ -103,15 +104,15 @@
 }
 
 .item-preview {
+  position: relative;
   width: 100%;
   height: 100%;
-  max-height: 700px !important;
+  // max-height: 700px !important;
   background-color: #f9f9f9;
+  // background-color: #000000;
 }
 
 .item-preview img {
-  // display: block;
-  // margin: 0 auto;
   object-fit: contain !important;
   object-position: center !important;
   width: 100% !important;
@@ -120,13 +121,149 @@
 
 .add-image-wrapper .btn-close {
   position: absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 20px;
-  color: #fc4000;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    width: 40px;
+    padding: 0px;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    color: #fc4000;
+}
 
-  mat-icon {
-    font-size: 40px;
+.item-preview-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.44);
+  top: 0;
+  background-repeat: no-repeat;
+  background-size: 60px;
+  background-position: center;
+  opacity: 0;
+
+  .upload-msg-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    top: 60%;
+    font-weight: 400;
+  }
+  input {
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+  }
+}
+
+.item-preview-overlay:hover {
+  opacity: 1;
+}
+
+// Drop Zone
+
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 300px;
+  border: 2px dashed #f16624;
+  border-radius: 5px;
+  background: white;
+  margin: 10px 0;
+
+  &.hovering {
+    border: 2px solid #f16624;
+    color: #dadada !important;
+  }
+}
+
+progress::-webkit-progress-value {
+  transition: width 0.1s ease;
+}
+
+
+
+.uploading-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(16, 16, 16, 0.29);
+
+  .spinner {
+    position: absolute;
+    left: 48%;
+    top: 40%;
+  }
+
+  .uploading-message {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: #f9f9f9;
+    font-size: 20px;
+    font-weight: 400;
+  }
+}
+
+
+@media screen and (max-width: 599px) {
+  .item-preview-wrapper {
+    max-height: 100vw !important;
+  }
+  .add-item-wrapper {
+    padding-bottom: 40px !important;
+    margin-bottom: 340px !important;
+  }
+  .item-preview-container {
+    width: 100%;
+    height: 100vw !important;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 959px) {
+  .item-preview-wrapper {
+    max-height: 50% !important;
+  }
+
+  .add-item-wrapper {
+    padding-bottom: 340px !important;
+  }
+
+
+}
+
+.item .upload-btn-wrapper {
+  all: unset;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+
+  .btn {
+    border: 1px solid #fc4000;
+    color: #fc4000;
+    background-color: white;
+    padding: 5px 20px;
+    border-radius: 0px;
+    font-size: 20px;
+    width: 100%;
     font-weight: 300;
+  }
+
+  input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
   }
 }

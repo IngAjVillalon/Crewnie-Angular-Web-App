@@ -141,3 +141,22 @@ export interface ActiveUser {
   coverPhotoUrl?: string;
   profilePhotoUrl?: string;
 }
+
+
+
+export interface portfolioItem {
+  portfolioId?: string;
+  portfolioUserId?: string;
+  portfolioType: string;
+  portfolioThumb: string;
+  portfolioFile: string;
+  portfolioItemTitle: string;
+  portfolioItemDescription: string;
+  portfolioItemLocation: string;
+  portfolioItemDate: firebase.firestore.Timestamp;
+  portfolioItemCategories: Array<string>;
+  portfolioItemQuality: boolean;
+  portfolioItemViews: number;
+  portfolioItemComments: number;
+  portfolioItemFavs: number;
+}

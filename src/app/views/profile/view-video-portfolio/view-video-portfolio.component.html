@@ -1,394 +1,113 @@
-<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="view-video-portfolio-wrapper">
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="view-video-portfolio-wrapper" *ngIf="portfolioItem">
 
 
   <div fxFlex="75" class="video-container">
 
     <div class="video-top">
-      <button mat-icon-button class="btn-goback" (click)="goBack()">
-        <mat-icon>keyboard_arrow_left</mat-icon>
+      <a href="">
+        <h4 class="video-title">{{portfolioItem.portfolioItemTitle}}</h4>
+      </a>
+
+
+    </div>
+
+
+    <div class="btn-overlay">
+
+      <button mat-button class="btn-favorite">
+        <span class="fav-count">{{portfolioItem.portfolioItemComments}} Comments</span>
+        <mat-icon>chat_bubble_outline</mat-icon>
       </button>
-      <a href=""><h4 class="video-title">Carl Sagan - The Pale Blue Dot</h4></a>
+
+
+      <button mat-button class="btn-favorite">
+        <span class="fav-count">{{portfolioItem.portfolioItemFavs}} Likes</span>
+        <mat-icon>favorite_border</mat-icon>
+      </button>
+
+      <button mat-button class="btn-favorite">
+        <span class="fav-count">Share</span>
+        <mat-icon>share</mat-icon>
+      </button>
 
 
     </div>
 
+    <video #videoPreview id="currentVideoPreview" controls autoplay >
+      <!-- <source [src]='sanitizer.bypassSecurityTrustUrl(portfolioItem.portfolioVideo)' type="video/mp4"> -->
+      <!-- <source src="http://static.videogular.com/assets/videos/videogular.ogg" type="video/ogg"> -->
+      <!-- <source src="http://static.videogular.com/assets/videos/videogular.webm" type="video/webm"> -->
+      Your browser does not support HTML5 video.
+    </video>
 
-    <vg-player>
-      <vg-overlay-play></vg-overlay-play>
-      <vg-buffering></vg-buffering>
-
-      <vg-scrub-bar>
-        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
-      </vg-scrub-bar>
-      <div class="btn-overlay">
-
-        <button mat-button class="btn-favorite">
-          <span class="fav-count">52 Comments</span>
-          <mat-icon>chat_bubble_outline</mat-icon>
-        </button>
-
-        <button mat-button class="btn-favorite">
-          <span class="fav-count">5 Shares</span>
-          <mat-icon>share</mat-icon>
-        </button>
-
-        <button mat-button class="btn-favorite">
-          <span class="fav-count">290 Likes</span>
-          <mat-icon>favorite_border</mat-icon>
-        </button>
-
-      </div>
-
-      <vg-controls>
-        <vg-play-pause>
-          <mat-icon>play</mat-icon>
-        </vg-play-pause>
-        <vg-playback-button></vg-playback-button>
-
-        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
-
-        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
-
-        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
-        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
-
-        <vg-track-selector></vg-track-selector>
-        <vg-mute></vg-mute>
-        <vg-volume></vg-volume>
-
-        <vg-fullscreen></vg-fullscreen>
-      </vg-controls>
-
-      <video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin>
-        <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
-        <source src="http://static.videogular.com/assets/videos/videogular.ogg" type="video/ogg">
-        <source src="http://static.videogular.com/assets/videos/videogular.webm" type="video/webm">
-
-        <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
-          srclang="en" default>
-        <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"
-          srclang="es">
-      </video>
-    </vg-player>
-
-
-
+    <!-- <audio autoplay controls>
+      <source src="https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/testZone%2FSampleAudio_0.7mb.mp3?alt=media&token=a93d11da-39e0-43d7-b1e1-8d2090275e09" type="audio/mp3">
+      <source src="horse.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio> -->
 
   </div>
 
-  <div fxFlex="25" class="video-sidebar">
+  <div fxFlex="30" class="view-container-right" *ngIf="portfolioItem && currentUser">
+    <button mat-button class="btn-goback" (click)="goBack()">
+      <mat-icon class="mat-18">close</mat-icon>
+    </button>
 
-    <div class="video-sidebar-content-wrapper">
+    <div class="right-sidebar-top">
 
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="main-user-info">
+        <div fxFlex="10%" class="user-avater">
+          <a routerLink="/profile/info"><img [src]='sanitizer.bypassSecurityTrustUrl(currentUser.profilePhotoUrl)' class="avater"></a>
+        </div>
+        <div fxFlex="80">
+          <div class="user-info">
+            <a routerLink="/profile/info" class="user-name">
+              <h4 mat-line>{{portfolioItem.portfolioItemDescription}}</h4>
+            </a>
+            <p mat-line>
+              <a href="" *ngFor="let tag of portfolioItem.portfolioItemCategories">#{{tag}}</a>
+            </p>
 
-      <div class="video-sidebar-top">
-
-        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-          <div fxFlex="10%" class="user-avater">
-            <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                class="avater"></a>
-          </div>
-          <div fxFlex="80">
-            <div class="user-info">
-              <a routerLink="/profile/info" class="user-name">
-                <h4 mat-line>Jhon Dow Smith</h4>
-              </a>
-              <p mat-line>Jan 1, 2016 @Centran Park</p>
-              <!-- <div class="tag-list">
-                    <a routerLink="/profile/portfolio" class="tag">#Video</a>
-                    <a routerLink="/profile/portfolio" class="tag">#Pilot</a>
-                    <a routerLink="/profile/portfolio" class="tag">#Production</a>
-                  </div> -->
-            </div>
           </div>
         </div>
-
-        <button mat-button class="btn-close-video-sidebar" (click)="goBack()">
-          <mat-icon>close</mat-icon>
-        </button>
       </div>
-
-      <div class="video-description">
-        <p class="description">Mark Sisson is a former endurance athlete turned nutrition author and entrepreneur.
-          In 2006, he began his popular health blog, Mark’s Daily Apple, where he’s blogged every day for 12+
-          years...</p>
-
-
-      </div>
-
-
-
-      <div class="video-comments">
-
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith <span> 2 weeks ago</span></h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-
-                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-                  <div fxFlex="10%" class="user-avater">
-                    <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                        class="avater"></a>
-                  </div>
-                  <div fxFlex="80">
-                    <div class="user-info">
-                      <a routerLink="/profile/info" class="user-name">
-                        <h4 mat-line>Jhon Dow Smith <span> 2 weeks ago</span></h4>
-                      </a>
-                      <p mat-line class="comment-text">As they say in Tamil Nadu.. </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil insteadAs they say in
-                  Tamil Nadu.. "we dont Speak tamil insteadAs they say in Tamil Nadu.. "we dont Speak tamil instead
-                  we breath tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="video-comment">
-          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="video-user-info">
-            <div fxFlex="10%" class="user-avater">
-              <a routerLink="/profile/info"><img src="http://alexwinter.com/media/images/grand_piano_poster_wide.jpg"
-                  class="avater"></a>
-            </div>
-            <div fxFlex="80">
-              <div class="user-info">
-                <a routerLink="/profile/info" class="user-name">
-                  <h4 mat-line>Jhon Dow Smith</h4>
-                </a>
-                <p mat-line class="comment-text">As they say in Tamil Nadu.. "we dont Speak tamil instead we breath
-                  tamil". True gift to man kind!﻿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
 
     </div>
 
-    <div class="video-user-comment-input">
+    <div class="user-comments">
+      <h4 class="user-name">Jhon Doe</h4>
+      <p class="user-comment">Well! Thats prity good...</p>
+      <div class="user-comment-data">
+        <a class="like">Like</a>
+        <a class="reply">Reply</a>
+        <p class="comment-date">Nov 17, 2017, 10:36</p>
+      </div>
+    </div>
+
+    <div class="portfolio-item-likes">
+      <div class="item-like-count">{{portfolioItem.portfolioItemFavs}} Likes</div>
+      <div class="item-publish-date">{{portfolioItem.portfolioItemDate.toDate() | date:'mediumDate'}}</div>
+    </div>
+
+    <div class="user-comment-input">
       <mat-form-field class="item-comment-box">
-        <textarea matInput placeholder="Leave a comment"></textarea>
+        <textarea matInput placeholder="Add a comment"></textarea>
       </mat-form-field>
+
+      <button mat-button class="btn-edit-content" [matMenuTriggerFor]="more">
+        <mat-icon aria-label="Example icon-button with a heart icon">more_vert</mat-icon>
+      </button>
+
+      <mat-menu #more="matMenu">
+          <button mat-menu-item [routerLink]="['/profile/portfolio/update/video']" [queryParams]="{userId: userId,id: portfolioItem.portfolioId}" >
+            <mat-icon>edit</mat-icon>Edit
+        </button>
+        <button mat-menu-item (click)="deletePortfolioItem()">
+          <mat-icon>delete</mat-icon>Delete
+        </button>
+      </mat-menu>
+
     </div>
-
-
   </div>
-
 
 </div>
