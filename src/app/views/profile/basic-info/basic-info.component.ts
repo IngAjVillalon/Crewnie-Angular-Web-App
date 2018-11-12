@@ -53,6 +53,17 @@ interface currentUser {
   styleUrls: ["./basic-info.component.scss"]
 })
 export class BasicInfoComponent implements OnInit {
+
+  profileImageFile;
+  coverImageFile;
+
+  profilePhotoChanged:boolean = false;
+  coverPhotoChanged:boolean = false;
+  isUpdating:boolean = false;
+
+  currentProfilePhotoUrl;
+  currentCoverPhotoUrl;
+
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   uploadProgress: Observable<number>;
@@ -105,6 +116,7 @@ export class BasicInfoComponent implements OnInit {
     public sanitizer: DomSanitizer,
     private afAuth: AngularFireAuth,
     private db: AngularFirestore,
+    private storage: AngularFireStorage,
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
@@ -124,6 +136,9 @@ export class BasicInfoComponent implements OnInit {
           this.email = user.email;
           this.profilePicture = user.profilePhotoUrl;
           console.log(this.currentUser.email);
+          this.currentProfilePhotoUrl = this.currentUser.profilePhotoUrl;
+          this.currentCoverPhotoUrl = this.currentUser.coverPhotoUrl;
+          this.setCoveAndProfilePhoto(this.currentUser.coverPhotoUrl, this.currentUser.profilePhotoUrl);
         });
       }else {
         this.router.navigate(["/sessions/signin"]);
@@ -133,63 +148,82 @@ export class BasicInfoComponent implements OnInit {
 
   ngOnInit() {}
 
-  public changeCoverPhoto(event: any) {
-    this.file = event.target.files[0];
-    const id = Math.random()
-      .toString(36)
-      .substring(2);
-    const file = this.file;
-    const filePath = "/cover-photo/" + id;
-    const fileRef = this.afStorage.ref("cover-photo/"); // Add this line to get the path as a ref
-    const task = this.afStorage.upload(filePath, this.file).then(() => {
-      const ref = this.afStorage.ref(filePath);
-      const downloadURL = ref.getDownloadURL().subscribe(url => {
-        const Url = url; // for ts
-        this.coverPhoto = Url; // with this you can use it in the html
-        console.log(Url);
-      });
-    });
+  private setCoveAndProfilePhoto(coverPhotoUrl: string, profilePhotoUrl: string) {
+    setTimeout(()=>{
+      var cover_img_element = document.getElementById('coverPhotoImage');
+      var profile_img_element = document.getElementById('profilePhotoImage');
+      if(cover_img_element) {
+        cover_img_element.setAttribute('src', coverPhotoUrl);
+      }
+      if(profile_img_element) {
+        profile_img_element.setAttribute('src', profilePhotoUrl);
+      }
+    }, 1000);
   }
 
-  public saveCoverPhoto() {
-    this.currentUser.coverPhotoUrl = this.coverPhoto;
-  }
 
-  public changeProfilePic(event: any) {
-
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = e => (this.profilePicture = reader.result);
-      console.log(this.profilePicture);
-      reader.readAsDataURL(file);
+  selectProfileImageFileToUpload(event) {
+    this.profileImageFile = event.target.files[0]
+    var type = this.profileImageFile.type
+    var videoNode = document.querySelector('image');
+    var fileURL = URL.createObjectURL(this.profileImageFile)
+    var profile_img_element = document.getElementById('profilePhotoImage');
+    if(profile_img_element) {
+      profile_img_element.setAttribute('src', fileURL);
+      this.profilePhotoChanged = true;
     }
 
-    this.file = event.target.files[0];
-    const id = Math.random()
-      .toString(36)
-      .substring(2);
-    const file = this.file;
-    const filePath = "/profile-photo/" + id;
-    const fileRef = this.afStorage.ref("profile-photo/"); // Add this line to get the path as a ref
-    const task = this.afStorage.upload(filePath, this.file).then(() => {
-      const ref = this.afStorage.ref(filePath);
+  }
+
+  selectCoverImageFileToUpload(event) {
+    this.coverImageFile = event.target.files[0]
+    var type = this.profileImageFile.type
+    var videoNode = document.querySelector('image');
+    var fileURL = URL.createObjectURL(this.coverImageFile)
+    var profile_img_element = document.getElementById('coverPhotoImage');
+    if(profile_img_element) {
+      profile_img_element.setAttribute('src', fileURL);
+      this.coverPhotoChanged = true;
+    }
+
+  }
+
+
+  startProfileImageUpload() {
+    const path = `portfolio/${new Date().getTime()}_${this.profileImageFile.name}`;
+    const customMetadata = { app: 'My AngularFire-powered PWA!' };
+
+    this.task = this.storage.upload(path, this.profileImageFile, { customMetadata });
+    this.task.then(() => {
+      const ref = this.storage.ref(path);
       const downloadURL = ref.getDownloadURL().subscribe(url => {
-        const Url = url; // for ts
-        this.profilePicture = Url;
+        const Url = url;
+        this.currentProfilePhotoUrl = Url;
         console.log(Url);
+        if(this.coverPhotoChanged) {
+          this.startCoverImageUpload();
+        }else {
+          this.saveProfileData();
+        }
       });
     });
   }
 
-  public saveProfilePhoto() {
-    this.currentUser.profilePhotoUrl = this.profilePicture;
+  startCoverImageUpload() {
+    const path = `portfolio/${new Date().getTime()}_${this.coverImageFile.name}`;
+    const customMetadata = { app: 'My AngularFire-powered PWA!' };
+
+    this.task = this.storage.upload(path, this.coverImageFile, { customMetadata });
+    this.task.then(() => {
+      const ref = this.storage.ref(path);
+      const downloadURL = ref.getDownloadURL().subscribe(url => {
+        const Url = url;
+        this.currentCoverPhotoUrl = Url;
+        console.log(Url);
+        this.saveProfileData();
+      });
+    });
   }
-
-
-
-
-
 
 
   editPage() {
@@ -198,7 +232,7 @@ export class BasicInfoComponent implements OnInit {
     this.edit = true;
   }
 
-  savePage() {
+  saveProfileData() {
     this.edit = false;
 
     if (this.profileDataFrom.get("email").touched) {
@@ -238,6 +272,26 @@ export class BasicInfoComponent implements OnInit {
     this.db
       .collection("users")
       .doc(this.currentUser.uid)
-      .update(this.currentUser);
+      .update(this.currentUser).then(() => {
+        this.isUpdating = false;
+      });
+  }
+
+  saveProfileChanges() {
+    this.isUpdating = true;
+    if(this.profilePhotoChanged) {
+      this.startProfileImageUpload();
+    }else if(this.coverPhotoChanged) {
+      this.startCoverImageUpload();
+    }else {
+      this.saveProfileData();
+    }
+  }
+
+  cancelSavePage() {
+    this.edit = false;
+    if(this.profilePhotoChanged || this.coverPhotoChanged) {
+      this.setCoveAndProfilePhoto(this.currentUser.coverPhotoUrl, this.currentUser.profilePhotoUrl);
+    }
   }
 }

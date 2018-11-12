@@ -129,8 +129,12 @@ export class UpdateImagePortfolioComponent implements OnInit {
 
       setTimeout(()=>{
         var elmnt = document.getElementById('portfolioFileImage');
+        var elmnt2 = document.getElementById('portfolioFileImage2');
         if(elmnt) {
-          elmnt.setAttribute('src', this.portfolioItem.portfolioFile);
+          elmnt.setAttribute('src', this.portfolioImageUrl);
+        }
+        if(elmnt2) {
+          elmnt2.setAttribute('src', this.portfolioImageUrl);
         }
 
       }, 1000)
@@ -258,13 +262,21 @@ export class UpdateImagePortfolioComponent implements OnInit {
   }
 
   selectFileToUpload(event) {
-    this.fileChanged = true;
     this.imageFile = event.target.files[0]
     var type = this.imageFile.type
     var videoNode = document.querySelector('image');
     var fileURL = URL.createObjectURL(this.imageFile)
     var elmnt = document.getElementById('portfolioFileImage');
-    elmnt.setAttribute('src', fileURL);
+    var elmnt2 = document.getElementById('portfolioFileImage2');
+    if(elmnt) {
+      elmnt.setAttribute('src', fileURL);
+      this.fileChanged = true;
+    }
+
+    if(elmnt2) {
+      elmnt2.setAttribute('src', fileURL);
+      this.fileChanged = true;
+    }
   }
 
   startFileUpload() {

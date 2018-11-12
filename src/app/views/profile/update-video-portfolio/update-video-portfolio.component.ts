@@ -148,8 +148,12 @@ export class UpdateVideoPortfolioComponent implements OnInit {
 
       setTimeout(()=>{
         var element = document.getElementById('currentVideoPreview');
+        var element2 = document.getElementById('currentVideoPreview2');
         if(element) {
           element.innerHTML='<source src="'+this.portfolioItem.portfolioFile+'" type="video/mp4">';
+        }
+        if(element2) {
+          element2.innerHTML='<source src="'+this.portfolioItem.portfolioFile+'" type="video/mp4">';
         }
 
         this.portfolioScriptUrl = this.portfolioItem.portfolioFile;

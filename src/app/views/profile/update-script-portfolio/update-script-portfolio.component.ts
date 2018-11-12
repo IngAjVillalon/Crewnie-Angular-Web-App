@@ -143,11 +143,21 @@ export class UpdateScriptPortfolioComponent implements OnInit {
 
       this.portfolioThumbImageUrl = this.portfolioItem.portfolioThumb;
 
+
+
       setTimeout(()=>{
-        var elmnt = document.getElementById('portfolioScript');
-        elmnt.setAttribute('data', this.portfolioItem.portfolioFile);
-        this.portfolioScriptUrl = this.portfolioItem.portfolioFile;
-      }, 1000)
+        var elmnt = document.getElementById('scriptPreview');
+        var elementMobileScriptView = document.getElementById('mobileScriptView');
+        if(elmnt) {
+          elmnt.setAttribute('data', this.portfolioItem.portfolioFile);
+        }
+
+        if(elementMobileScriptView) {
+          elementMobileScriptView.setAttribute('href', this.portfolioItem.portfolioFile);
+          elementMobileScriptView.innerHTML = "TAP TO VIEW SCRIPT";
+        }
+
+      }, 1000);
 
     });
 

@@ -144,7 +144,7 @@
                         <div fxFlex="40" fxLayout="row" class="item-right">
                           <div fxFlex></div>
                           <div class="time-duration">
-                            <span>by @expert_image</span>
+                            <!-- <span>by @expert_image</span> -->
                           </div>
                         </div>
                       </div>
@@ -187,10 +187,10 @@
                             <button mat-icon-button class="btn-simple">
                               <mat-icon style="color:#fff">favorite</mat-icon>
                             </button>
-                            <!-- <span style="color:#fff">120</span> -->
+                            <span style="color:#fff">{{portfolio.portfolioItemFavs}}</span>
                           </div>
                           <div fxFlex="20" class="item-right">
-                            <!-- <span style="color:#fff">20</span> -->
+                            <span style="color:#fff">{{portfolio.portfolioItemComments}}</span>
                             <button mat-icon-button class="btn-simple">
                               <mat-icon style="color:#fff">comment</mat-icon>
                             </button>
@@ -204,7 +204,7 @@
                           <div fxFlex="20" fxLayout="row" class="item-right">
                             <div fxFlex></div>
                             <div class="time-duration">
-                              <span>8:88</span>
+                              <!-- <span>8:88</span> -->
                             </div>
                           </div>
                         </div>
@@ -220,7 +220,7 @@
                   <div fxFlex="100">
                     <div class="footer">
                       <a routerLink="/profile/portfolio/video" ><h4 class="title">{{portfolio.portfolioItemTitle}}</h4></a>
-                      <p class="item-views">{{portfolio.portfolioItemViews}} views - 3 days ago</p>
+                      <p class="item-views">{{portfolio.portfolioItemViews}} views on {{portfolio.portfolioItemDate.toDate() | date:'mediumDate'}}</p>
                       <div class="tag-list">
                         <a href="#" class="tag" *ngFor="let tag of portfolio.portfolioItemCategories" >#{{tag}}</a>
                       </div>
@@ -260,10 +260,10 @@
                           <div fxFlex="20" class="item-left">
                             <button mat-icon-button class="btn-simple">
                               <mat-icon style="color:#fff">favorite</mat-icon>
-                            </button><span style="color:#fff">120</span>
+                            </button><span style="color:#fff">{{portfolio.portfolioItemFavs}}</span>
                           </div>
                           <div fxFlex="20" class="item-right">
-                            <span style="color:#fff">20</span>
+                            <span style="color:#fff">{{portfolio.portfolioItemComments}}</span>
                             <button mat-icon-button class="btn-simple">
                               <mat-icon style="color:#fff">comment</mat-icon>
                             </button>
@@ -272,12 +272,12 @@
 
                         <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" class="fixed-bottom-row">
                           <div fxFlex="10" class="item-left">
-                            <mat-icon style="color:#fff">theaters</mat-icon>
+                            <mat-icon style="color:#fff">library_music</mat-icon>
                           </div>
                           <div fxFlex="20" fxLayout="row" class="item-right">
                             <div fxFlex></div>
                             <div class="time-duration">
-                              <span>8:88</span>
+                              <!-- <span>8:88</span> -->
                             </div>
                           </div>
                         </div>
@@ -293,7 +293,7 @@
                   <div fxFlex="100">
                     <div class="footer">
                       <a routerLink="/profile/portfolio/video" ><h4 class="title">{{portfolio.portfolioItemTitle}}</h4></a>
-                      <p class="item-views">{{portfolio.portfolioItemViews}} views - 3 days ago</p>
+                      <p class="item-views">{{portfolio.portfolioItemViews}} views on {{portfolio.portfolioItemDate.toDate() | date:'mediumDate'}}</p>
                       <div class="tag-list">
                         <a href="#" class="tag" *ngFor="let tag of portfolio.portfolioItemCategories" >#{{tag}}</a>
                       </div>
@@ -380,7 +380,7 @@
                 <div fxFlex="100">
                   <div class="footer">
                     <h4 class="title">{{portfolio.portfolioItemTitle}}</h4>
-                    <p class="item-views">{{portfolio.portfolioItemViews}} views - 3 days ago</p>
+                    <p class="item-views">{{portfolio.portfolioItemViews}} views on {{portfolio.portfolioItemDate.toDate() | date:'mediumDate'}}</p>
                     <div class="tag-list">
                       <a href="#" class="tag" *ngFor="let tag of portfolio.portfolioItemCategories">#{{tag}}</a>
                     </div>

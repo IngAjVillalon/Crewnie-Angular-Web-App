@@ -195,7 +195,7 @@ item-preview-overlay {
   min-height: 40px !important;
 
   mat-icon {
-    color: #fff;
+    color: #fc4000;
   }
 }
 
@@ -349,4 +349,20 @@ progress::-webkit-progress-value {
   }
 
 
+}
+
+@media screen and (max-width: 599px) {
+
+  .item-container {
+    overflow: auto !important;
+  }
+
+  .add-item-wrapper {
+    padding-bottom: 40px !important;
+  }
+
+  .item-preview-wrapper {
+    width: 100% !important;
+    max-height: 100vw !important;
+  }
 }

@@ -69,7 +69,7 @@
 
       <div class="user-comments">
 
-        <div class="main-comment">
+        <!-- <div class="main-comment">
           <h4 class="user-name">Jhon Doe</h4>
           <p class="user-comment">Well! Thats prity good Well! Thats prity goodWell! Thats prity good...
           </p>
@@ -95,18 +95,17 @@
               <mat-icon class="mat-18">close</mat-icon>
             </button>
           </div>
-        </div>
+        </div> -->
 
-        <div class="main-comment">
-          <h4 class="user-name">Jhon Doe</h4>
-          <p class="user-comment">Well! Thats prity good Well! Thats prity goodWell! Thats prity good...
-          </p>
+        <div class="main-comment" *ngFor="let comment of commentItem">
+          <h4 class="user-name">{{comment.commentUserName}}</h4>
+          <p class="user-comment">{{comment.commentText}}</p>
           <div class="user-comment-data">
             <a class="like">Like</a>
             <a class="reply">Reply</a>
-            <p class="comment-date">Nov 17, 2017, 10:36</p>
+            <p class="comment-date">{{comment.commentDate.toDate() | date: 'mediumDate'}}</p>
           </div>
-          <button mat-button class="delete-comment">
+          <button mat-button class="delete-comment" (click)="deleteComment(comment.commentId)">
             <mat-icon class="mat-18">close</mat-icon>
           </button>
         </div>
@@ -118,11 +117,11 @@
         <div class="item-publish-date">{{portfolioItem.portfolioItemDate.toDate() | date: 'mediumDate'}}</div>
       </div>
 
-      <form>
+      <form [formGroup]="commentForm">
       <div class="user-comment-input">
         <mat-form-field class="item-comment-box">
-          <textarea matInput placeholder="Add a comment"></textarea>
-          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="AddComment()">
+          <textarea matInput placeholder="Add a comment" formControlName="commentText"></textarea>
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addComment()">
             <mat-icon>send</mat-icon>
           </button>
         </mat-form-field>
@@ -141,6 +140,7 @@
         </mat-menu>
 
       </div>
+
     </form>
     </div>
 

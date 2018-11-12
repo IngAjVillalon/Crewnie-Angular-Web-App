@@ -160,3 +160,13 @@ export interface portfolioItem {
   portfolioItemComments: number;
   portfolioItemFavs: number;
 }
+
+
+export interface commentItem {
+  commentId?: string;
+  commentDate?: firebase.firestore.Timestamp;
+  commentText?: string;
+  commentUserId?: string;
+  commentUserName?: string;
+  commentLike?: number;
+}

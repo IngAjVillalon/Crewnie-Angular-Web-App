@@ -5,22 +5,16 @@
 
       <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="container">
 
-        <div fxFlex="75" fxFlex.xs="100" fxHide.xs="false" class="item-preview-wrapper">
-
-          <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px" class="item-preview-container">
-
-            <div fxFlex="100" class="item-preview">
-              <object id="portfolioScript" type="application/pdf" data="https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/assets%2Fscript-place-holder.pdf?alt=media&token=9a6db991-1e56-43e7-8499-94e40d48d888"></object>
-            </div>
-
-          </div>
-
-        </div>
 
         <div fxFlex="25" fxFlex.xs="100" class="add-item-wrapper">
 
           <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="0px">
 
+
+            <div fxFlex="90" class="item">
+                <a id="mobilePdfPreview" href="" target="blank">No Script Selected</a>
+                <p id="script-filename"></p>
+            </div>
 
             <div fxFlex="90" class="item">
               <h4 class="title">Add Picture</h4>
@@ -69,7 +63,7 @@
             </div>
 
             <div fxFlex="90" class="item">
-              <mat-checkbox color="primary" class="add-quality-input" formControlName="portfolioQuality">High Quality</mat-checkbox>
+              <mat-checkbox color="primary" class="add-quality-input" formControlName="portfolioQuality"><mat-label class="title">High Quality</mat-label></mat-checkbox>
             </div>
 
             <div fxFlex="90" class="item">
@@ -93,7 +87,7 @@
             </div>
 
             <div fxFlex="90" class="item">
-                <mat-label class="item-title">Add Thumbnail</mat-label>
+                <mat-label class="title">Add Thumbnail</mat-label>
                 <div class="item-thumb-wrapper">
                   <img [src]='sanitizer.bypassSecurityTrustUrl(portfolioThumbImageUrl)' id="videoThumb">
                   <div class="item-preview-overlay" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/assets%2Fprofile-photo-upload.png?alt=media&token=37de1e7c-ec51-4041-b5b0-e5506902eea6')">
@@ -113,7 +107,7 @@
           <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px" class="item-preview-container">
 
             <div fxFlex="100" class="item-preview">
-              <object id="portfolioScript" type="application/pdf" data="https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/assets%2Fscript-place-holder.pdf?alt=media&token=9a6db991-1e56-43e7-8499-94e40d48d888"></object>
+              <object id="portfolioScript2" type="application/pdf" data=""></object>
             </div>
 
           </div>

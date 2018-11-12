@@ -226,6 +226,7 @@ export class AddVideoPortfolioComponent implements OnInit {
 
     const data = {
       portfolioId:  id,      // photoURL: user.photoURL,
+      portfolioUserId: this.currentUser.uid,
       portfolioType: 'video',
       portfolioThumb: this.portfolioThumbImageUrl,
       portfolioFile: this.portfolioVideoUrl,

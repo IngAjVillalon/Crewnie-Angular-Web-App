@@ -3,7 +3,54 @@
 
     <div fxFlex="100" class="item-container">
 
-      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="container">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="container">
+
+        <div fxFlex="75" fxHide.xs="false" class="item-preview-wrapper">
+
+          <vg-player>
+
+            <div class="audio-thumb">
+              <div class="audio-artwork">
+                <img [src]='sanitizer.bypassSecurityTrustUrl(portfolioThumbImageUrl)'>
+              </div>
+
+            </div>
+            <vg-overlay-play>
+
+            </vg-overlay-play>
+            <vg-buffering></vg-buffering>
+
+            <vg-scrub-bar>
+              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+              <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+            </vg-scrub-bar>
+
+            <vg-controls>
+              <vg-play-pause>
+                <mat-icon>play</mat-icon>
+              </vg-play-pause>
+              <vg-playback-button></vg-playback-button>
+
+              <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+              <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+              <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+              <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+              <vg-track-selector></vg-track-selector>
+              <vg-mute></vg-mute>
+              <vg-volume></vg-volume>
+
+              <vg-fullscreen></vg-fullscreen>
+            </vg-controls>
+
+            <audio [vgMedia]="media" #media id="myAudio" preload="auto">
+              <source src="" type="audio/*">
+            </audio>
+          </vg-player>
+
+        </div>
 
         <div fxFlex="25" class="add-item-wrapper">
 
@@ -92,7 +139,7 @@
 
         </div>
 
-        <div fxFlex="75" class="item-preview-wrapper">
+        <div fxFlex="75" fxHide.xs="true" class="item-preview-wrapper">
 
           <vg-player>
 
@@ -111,24 +158,6 @@
               <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
               <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
             </vg-scrub-bar>
-            <!-- <div class="btn-overlay">
-
-                    <button mat-button class="btn-favorite">
-                      <span class="fav-count">52 Comments</span>
-                      <mat-icon>chat_bubble_outline</mat-icon>
-                    </button>
-
-                    <button mat-button class="btn-favorite">
-                      <span class="fav-count">5 Shares</span>
-                      <mat-icon>share</mat-icon>
-                    </button>
-
-                    <button mat-button class="btn-favorite">
-                      <span class="fav-count">290 Likes</span>
-                      <mat-icon>favorite_border</mat-icon>
-                    </button>
-
-                  </div> -->
 
             <vg-controls>
               <vg-play-pause>
@@ -150,7 +179,7 @@
               <vg-fullscreen></vg-fullscreen>
             </vg-controls>
 
-            <audio [vgMedia]="media" #media id="myAudio" preload="auto">
+            <audio [vgMedia]="media" #media id="myAudio2" preload="auto">
               <source src="" type="audio/*">
             </audio>
           </vg-player>

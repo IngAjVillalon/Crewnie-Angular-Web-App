@@ -1,4 +1,4 @@
-import { ActiveUser } from "src/app/core/models/models";
+import { ActiveUser, portfolioItem, commentItem } from "src/app/core/models/models";
 import { AuthService } from "src/app/core/services/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { Location, DatePipe } from "@angular/common";
@@ -6,26 +6,12 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { AngularFireAuth } from "@angular/fire/auth";
 import {
   AngularFirestore,
-  AngularFirestoreDocument
+  AngularFirestoreDocument,
+  AngularFirestoreCollection
 } from "@angular/fire/firestore";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AngularFireStorage } from "@angular/fire/storage";
-
-export interface portfolioItem {
-  portfolioId?: string;
-  portfolioType?: string;
-  portfolioThumb?: string;
-  portfolioFile?: string;
-  portfolioItemTitle?: string;
-  portfolioItemDescription?: string;
-  portfolioItemDate?: string;
-  portfolioItemLocation?: string;
-  portfolioItemQuality?: boolean;
-  portfolioItemCategories?: Array<string>;
-  portfolioItemViews?: number;
-  portfolioItemComments?: number;
-  portfolioItemFavs?: number;
-}
+import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
   selector: "app-view-image-portfolio",
@@ -40,6 +26,13 @@ export class ViewImagePortfolioComponent implements OnInit {
   portfolioId;
   portfolioItem$: AngularFirestoreDocument<portfolioItem>;
   portfolioItem: portfolioItem;
+
+  commentItem$: AngularFirestoreCollection<commentItem>;
+  commentItem: commentItem[];
+
+  public commentForm= new FormGroup({
+    commentText: new FormControl("")
+  });
 
   constructor(
     private _location: Location,
@@ -71,6 +64,16 @@ export class ViewImagePortfolioComponent implements OnInit {
       this.portfolioItem = portfolio;
       console.log(this.portfolioItem);
     });
+
+    this.commentItem$ = this.db
+      .collection("users")
+      .doc(this.userId)
+      .collection("portfolio")
+      .doc(this.portfolioId).collection('comments', ref => ref.orderBy('commentDate'));
+    this.commentItem$.valueChanges().subscribe(comment => {
+      this.commentItem = comment;
+      console.log(this.commentItem);
+    });
   }
 
   ngOnInit() {}
@@ -99,7 +102,32 @@ export class ViewImagePortfolioComponent implements OnInit {
       );
   }
 
-  AddComment() {
+  public addComment() {
 
+    const id = this.db.createId();
+    const userRef: AngularFirestoreDocument<any> = this.db.doc('users/'+this.currentUser.uid+'/portfolio/'+this.portfolioId+'/comments/'+id);
+    const comment = {
+      commentId: id,
+      commentDate: new Date(),
+      commentText: this.commentForm.controls.commentText.value,
+      commentUserId: this.currentUser.uid,
+      commentUserName: this.currentUser.displayName,
+      commentLike: 0
+    };
+
+
+    userRef.set(comment, { merge: true }).then(() => {
+      console.log('comment added');
+      this.commentForm.get('commentText').setValue('');
+    })
+    .catch(_error => {
+      console.log('Portfolio Not Saved');
+    });
+  }
+
+  public deleteComment(commentId: string) {
+    console.log(commentId, this.portfolioItem.portfolioUserId);
+    const userRef: AngularFirestoreDocument<any> = this.db.doc('users/'+this.portfolioItem.portfolioUserId+'/portfolio/'+this.portfolioItem.portfolioId+'/comments/'+commentId);
+    userRef.delete();
   }
 }

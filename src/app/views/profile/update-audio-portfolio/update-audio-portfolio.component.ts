@@ -120,7 +120,15 @@ export class UpdateAudioPortfolioComponent implements OnInit {
       this.tags = this.portfolioItem.portfolioItemCategories;
       setTimeout(() => {
         var elmnt = document.getElementById("myAudio");
-        elmnt.setAttribute("src", this.portfolioItem.portfolioFile);
+        var elmnt2 = document.getElementById("myAudio2");
+
+        if(elmnt) {
+          elmnt.setAttribute("src", this.portfolioItem.portfolioFile);
+        }
+        if(elmnt2) {
+          elmnt2.setAttribute("src", this.portfolioItem.portfolioFile);
+        }
+
 
         this.portfolioForm.patchValue({
           portfolioTitle: this.portfolioItem.portfolioItemTitle,
@@ -217,11 +225,11 @@ export class UpdateAudioPortfolioComponent implements OnInit {
 
   selectFileToUpload(event) {
     this.fileChanged = true;
-    this.videoFile = event.target.files[0]
-    var type = this.videoFile.type
-    var videoNode = document.querySelector('audio')
-    var canPlay = videoNode.canPlayType(type)
-    var fileURL = URL.createObjectURL(this.videoFile)
+    this.videoFile = event.target.files[0];
+    var type = this.videoFile.type;
+    var videoNode = document.querySelector('audio');
+    var canPlay = videoNode.canPlayType(type);
+    var fileURL = URL.createObjectURL(this.videoFile);
     document.getElementById('myAudio').innerHTML='<source src="'+fileURL+'" type="audio/mp3">';
     videoNode.load();
     this.openSnackBar('New Audio File Selected', 'ok');

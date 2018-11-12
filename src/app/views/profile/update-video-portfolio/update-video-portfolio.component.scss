@@ -135,7 +135,7 @@
   min-height: 40px !important;
 
   mat-icon {
-    color: #fff;
+    color: #fc4000;
   }
 }
 
@@ -266,4 +266,32 @@ progress::-webkit-progress-value {
   width: 100%;
   position: relative;
   border: 1px solid rgba(252, 64, 0, 0.30);
+}
+
+@media screen and (max-width: 599px) {
+
+  .item-container .container {
+    overflow: scroll !important;
+    margin-bottom: 60px !important;
+
+    .add-item-wrapper {
+      overflow-y: unset;
+    }
+  }
+
+
+  .item-preview-wrapper {
+    max-height: 100vw !important;
+
+    .item-preview-container {
+      height: 100% !important;
+
+      .item-preview {
+        padding-bottom: 0;
+        background-color: #000000;
+      }
+    }
+  }
+
+
 }

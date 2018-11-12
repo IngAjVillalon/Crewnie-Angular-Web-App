@@ -1,5 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="view-video-portfolio-wrapper" *ngIf="portfolioItem">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="view-video-portfolio-wrapper"
+  *ngIf="portfolioItem">
 
+  <button mat-button class="btn-goback" (click)="goBack()">
+    <mat-icon class="mat-18">close</mat-icon>
+  </button>
 
   <div fxFlex="75" class="video-container">
 
@@ -12,7 +16,7 @@
     </div>
 
 
-    <div class="btn-overlay">
+    <!-- <div class="btn-overlay">
 
       <button mat-button class="btn-favorite">
         <span class="fav-count">{{portfolioItem.portfolioItemComments}} Comments</span>
@@ -31,9 +35,9 @@
       </button>
 
 
-    </div>
+    </div> -->
 
-    <video #videoPreview id="currentVideoPreview" controls autoplay >
+    <video #videoPreview id="currentVideoPreview" controls autoplay>
       <!-- <source [src]='sanitizer.bypassSecurityTrustUrl(portfolioItem.portfolioVideo)' type="video/mp4"> -->
       <!-- <source src="http://static.videogular.com/assets/videos/videogular.ogg" type="video/ogg"> -->
       <!-- <source src="http://static.videogular.com/assets/videos/videogular.webm" type="video/webm"> -->
@@ -48,16 +52,14 @@
 
   </div>
 
-  <div fxFlex="30" class="view-container-right" *ngIf="portfolioItem && currentUser">
-    <button mat-button class="btn-goback" (click)="goBack()">
-      <mat-icon class="mat-18">close</mat-icon>
-    </button>
+  <div fxFlex="30" fxFlex.xs="100" class="view-container-right" *ngIf="portfolioItem && currentUser">
 
     <div class="right-sidebar-top">
 
-      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="main-user-info">
+      <div fxLayout="row"  fxLayoutAlign="start start" fxLayoutGap="5px" class="main-user-info">
         <div fxFlex="10%" class="user-avater">
-          <a routerLink="/profile/info"><img [src]='sanitizer.bypassSecurityTrustUrl(currentUser.profilePhotoUrl)' class="avater"></a>
+          <a routerLink="/profile/info"><img [src]='sanitizer.bypassSecurityTrustUrl(currentUser.profilePhotoUrl)'
+              class="avater"></a>
         </div>
         <div fxFlex="80">
           <div class="user-info">
@@ -75,14 +77,20 @@
     </div>
 
     <div class="user-comments">
-      <h4 class="user-name">Jhon Doe</h4>
-      <p class="user-comment">Well! Thats prity good...</p>
-      <div class="user-comment-data">
-        <a class="like">Like</a>
-        <a class="reply">Reply</a>
-        <p class="comment-date">Nov 17, 2017, 10:36</p>
+
+        <div class="main-comment" *ngFor="let comment of commentItem">
+          <h4 class="user-name">{{comment.commentUserName}}</h4>
+          <p class="user-comment">{{comment.commentText}}</p>
+          <div class="user-comment-data">
+            <a class="like">Like</a>
+            <a class="reply">Reply</a>
+            <p class="comment-date">{{comment.commentDate.toDate() | date: 'mediumDate'}}</p>
+          </div>
+          <button mat-button class="delete-comment" (click)="deleteComment(comment.commentId)">
+            <mat-icon class="mat-18">close</mat-icon>
+          </button>
+        </div>
       </div>
-    </div>
 
     <div class="portfolio-item-likes">
       <div class="item-like-count">{{portfolioItem.portfolioItemFavs}} Likes</div>
@@ -90,17 +98,22 @@
     </div>
 
     <div class="user-comment-input">
-      <mat-form-field class="item-comment-box">
-        <textarea matInput placeholder="Add a comment"></textarea>
-      </mat-form-field>
+        <form [formGroup]="commentForm">
+            <mat-form-field class="item-comment-box">
+              <textarea matInput placeholder="Add a comment" formControlName="commentText"></textarea>
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addComment()">
+                <mat-icon>send</mat-icon>
+              </button>
+            </mat-form-field>
+          </form>
 
       <button mat-button class="btn-edit-content" [matMenuTriggerFor]="more">
         <mat-icon aria-label="Example icon-button with a heart icon">more_vert</mat-icon>
       </button>
 
       <mat-menu #more="matMenu">
-          <button mat-menu-item [routerLink]="['/profile/portfolio/update/video']" [queryParams]="{userId: userId,id: portfolioItem.portfolioId}" >
-            <mat-icon>edit</mat-icon>Edit
+        <button mat-menu-item [routerLink]="['/profile/portfolio/update/video']" [queryParams]="{userId: userId,id: portfolioItem.portfolioId}">
+          <mat-icon>edit</mat-icon>Edit
         </button>
         <button mat-menu-item (click)="deletePortfolioItem()">
           <mat-icon>delete</mat-icon>Delete

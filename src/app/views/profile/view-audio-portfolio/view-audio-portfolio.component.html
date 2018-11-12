@@ -1,28 +1,25 @@
-<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="view-video-portfolio-wrapper">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="view-video-portfolio-wrapper">
 
+  <button mat-button class="btn-goback" (click)="goBack()">
+    <mat-icon class="mat-18">close</mat-icon>
+  </button>
 
   <div fxFlex="70" class="video-container">
 
     <div class="video-top">
-      <!-- <button mat-icon-button class="btn-goback" (click)="goBack()">
-          <mat-icon>keyboard_arrow_left</mat-icon>
-        </button> -->
-      <a href="" *ngIf="portfolioItem" >
+      <a href="" *ngIf="portfolioItem">
         <h4 class="video-title">{{portfolioItem.portfolioItemTitle}}</h4>
       </a>
-
-
     </div>
-
 
     <vg-player>
 
-        <div class="audio-thumb">
-            <div class="audio-artwork">
-                <img [src]='sanitizer.bypassSecurityTrustUrl(portfolioThumbImageUrl)'>
-            </div>
+      <div class="audio-thumb">
+        <div class="audio-artwork">
+          <img [src]='sanitizer.bypassSecurityTrustUrl(portfolioThumbImageUrl)'>
+        </div>
 
-          </div>
+      </div>
       <vg-overlay-play>
 
       </vg-overlay-play>
@@ -93,15 +90,14 @@
   </div>
 
   <div fxFlex="30" class="view-container-right" *ngIf="portfolioItem && currentUser">
-    <button mat-button class="btn-goback" (click)="goBack()">
-      <mat-icon class="mat-18">close</mat-icon>
-    </button>
+
 
     <div class="right-sidebar-top">
 
       <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" class="main-user-info">
-        <div fxFlex="10%" class="user-avater" *ngIf="portfolioUser" >
-          <a routerLink="/profile/info"><img [src]='sanitizer.bypassSecurityTrustUrl(portfolioUser.profilePhotoUrl)' class="avater"></a>
+        <div fxFlex="10%" class="user-avater" *ngIf="portfolioUser">
+          <a routerLink="/profile/info"><img [src]='sanitizer.bypassSecurityTrustUrl(portfolioUser.profilePhotoUrl)'
+              class="avater"></a>
         </div>
         <div fxFlex="80">
           <div class="user-info">
@@ -119,12 +115,18 @@
     </div>
 
     <div class="user-comments">
-      <h4 class="user-name">Jhon Doe</h4>
-      <p class="user-comment">Well! Thats prity good...</p>
-      <div class="user-comment-data">
-        <a class="like">Like</a>
-        <a class="reply">Reply</a>
-        <p class="comment-date">Nov 17, 2017, 10:36</p>
+
+      <div class="main-comment" *ngFor="let comment of commentItem">
+        <h4 class="user-name">{{comment.commentUserName}}</h4>
+        <p class="user-comment">{{comment.commentText}}</p>
+        <div class="user-comment-data">
+          <a class="like">Like</a>
+          <a class="reply">Reply</a>
+          <p class="comment-date">{{comment.commentDate.toDate() | date: 'mediumDate'}}</p>
+        </div>
+        <button mat-button class="delete-comment" (click)="deleteComment(comment.commentId)">
+          <mat-icon class="mat-18">close</mat-icon>
+        </button>
       </div>
     </div>
 
@@ -134,10 +136,14 @@
     </div>
 
     <div class="user-comment-input">
-      <mat-form-field class="item-comment-box">
-        <textarea matInput placeholder="Add a comment"></textarea>
-      </mat-form-field>
-
+      <form [formGroup]="commentForm">
+        <mat-form-field class="item-comment-box">
+          <textarea matInput placeholder="Add a comment" formControlName="commentText"></textarea>
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addComment()">
+            <mat-icon>send</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
       <div *ngIf="currentUser && portfolioUser">
         <div *ngIf="currentUser.uid === portfolioUser.uid">
           <button mat-button class="btn-edit-content" [matMenuTriggerFor]="more">

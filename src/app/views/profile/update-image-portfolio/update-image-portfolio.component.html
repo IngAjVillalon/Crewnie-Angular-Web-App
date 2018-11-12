@@ -4,15 +4,41 @@
 
     <div fxFlex="100" class="item-container">
 
-      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="container">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="container">
 
-        <div fxFlex="25" class="add-item-wrapper">
+        <div fxFlex="75" fxHide.sm="true" fxHide.md="true" fxHide.lg="true" fxHide.xl="true" class="item-preview-wrapper">
+
+          <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px" class="item-preview-container">
+
+
+
+            <div fxFlex="100" class="item-preview">
+              <img id="portfolioFileImage" src=''>
+              <div class="item-preview-overlay" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/assets%2Fprofile-photo-upload.png?alt=media&token=37de1e7c-ec51-4041-b5b0-e5506902eea6')">
+                <h4 class="upload-msg-text">Click To Upload Image</h4>
+                <input class="file-input" type="file" (change)="selectFileToUpload($event)" accept=".png,.jpg">
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div fxFlex="25" fxFlex.xs="100" class="add-item-wrapper">
 
           <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="0px">
 
 
             <div fxFlex="90" class="item">
               <h4 class="title">Add Picture</h4>
+            </div>
+
+            <div fxFlex="90" class="item">
+              <div class="upload-btn-wrapper">
+                <button class="btn">Select Image File</button>
+                <input type="file" (change)="selectFileToUpload($event)" accept="image/*" name="myfile" id="localFilePath" />
+              </div>
             </div>
 
             <div fxFlex="90" class="item">
@@ -79,14 +105,14 @@
 
         </div>
 
-        <div fxFlex="75" class="item-preview-wrapper">
+        <div fxFlex="75" fxHide.xs="true" class="item-preview-wrapper">
 
           <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px" class="item-preview-container">
 
 
 
             <div fxFlex="100" class="item-preview">
-              <img id="portfolioFileImage" src=''>
+              <img id="portfolioFileImage2" src=''>
               <div class="item-preview-overlay" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/assets%2Fprofile-photo-upload.png?alt=media&token=37de1e7c-ec51-4041-b5b0-e5506902eea6')">
                 <h4 class="upload-msg-text">Click To Upload Image</h4>
                 <input class="file-input" type="file" (change)="selectFileToUpload($event)" accept=".png,.jpg">

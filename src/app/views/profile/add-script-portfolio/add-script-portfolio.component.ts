@@ -85,6 +85,20 @@ export class AddScriptPortfolioComponent implements OnInit {
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
 
       this.portfolioThumbImageUrl = 'https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image';
+
+      // setTimeout(()=>{
+      //   var elmnt = document.getElementById('portfolioScript');
+      //   var elmnt2 = document.getElementById('portfolioScript2');
+      //   if(elmnt) {
+      //     elmnt.setAttribute('data', fileURL);
+
+      //   }
+      //   if(elmnt2) {
+      //     document.getElementById('myAudio2').innerHTML='<source src="'+fileURL+'" type="audio/mp3">';
+
+      //   }
+
+      // }, 1000)
   }
 
   ngOnInit() {
@@ -202,8 +216,9 @@ export class AddScriptPortfolioComponent implements OnInit {
 
     const data = {
       portfolioId:  id,
+      portfolioUserId: this.userID,
       portfolioType: 'script',
-      portfolioImage: this.portfolioThumbImageUrl,
+      portfolioThumb: this.portfolioThumbImageUrl,
       portfolioFile: this.portfolioScriptUrl,
       portfolioItemTitle: this.portfolioForm.controls.portfolioTitle.value,
       portfolioItemDescription: this.portfolioForm.controls.portfolioDescription.value,
@@ -213,7 +228,7 @@ export class AddScriptPortfolioComponent implements OnInit {
       portfolioItemQuality: this.portfolioForm.controls.portfolioQuality.value,
       portfolioItemViews: 0,
       portfolioItemComments: 0,
-      portfolioItemFavs: 0
+      portfolioItemFavs: 0,
 
     };
 
@@ -262,8 +277,22 @@ export class AddScriptPortfolioComponent implements OnInit {
     var type = this.scriptFile.type
     var videoNode = document.querySelector('pdf');
     var fileURL = URL.createObjectURL(this.scriptFile)
-    var elmnt = document.getElementById('portfolioScript');
-    elmnt.setAttribute('data', fileURL);
+    // var elmnt = document.getElementById('portfolioScript');
+    // elmnt.setAttribute('data', fileURL);
+
+    setTimeout(()=>{
+        var element = document.getElementById('mobilePdfPreview');
+        var elementFileName = document.getElementById('script-filename');
+        var elmnt2 = document.getElementById('portfolioScript2');
+        if(element) {
+          element.setAttribute('href', this.scriptFile.name);
+          element.innerHTML = this.scriptFile.name;
+          // elementFileName.innerHTML = this.scriptFile.name;
+        }
+        if(elmnt2) {
+          elmnt2.setAttribute('data', fileURL);
+        }
+      }, 1000)
   }
 
   uploadScriptFile() {
@@ -274,7 +303,7 @@ export class AddScriptPortfolioComponent implements OnInit {
     this.percentage = this.task.percentageChanges();
     this.snapshot   = this.task.snapshotChanges()
 
-    this.task.then(() => {
+    this.task.then(()  => {
       const ref = this.storage.ref(path);
       const downloadURL = ref.getDownloadURL().subscribe(url => {
         const Url = url;

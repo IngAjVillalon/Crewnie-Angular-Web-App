@@ -1,11 +1,13 @@
 <div class="view-image-portfolio-wrapper">
 
+    <button mat-button class="btn-goback" (click)="goBack()">
+        <mat-icon class="mat-18">close</mat-icon>
+      </button>
+
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="0px" *ngIf="portfolioItem" class="main-wrapper">
 
 
-  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="0px" *ngIf="portfolioItem">
-
-
-    <div fxFlex="50" class="view-container-left"  >
+    <div fxFlex="50" fxFlex.xs="100" fxHide.xs="true" class="view-container-left"  >
 
       <div class="script-item-wrapper">
         <div class="script-title"><h4>{{portfolioItem.portfolioItemTitle}}</h4></div>
@@ -48,10 +50,52 @@
 
     </div>
 
-    <div fxFlex="30" class="view-container-right" *ngIf="currentUser" >
-      <button mat-button class="btn-goback" (click)="goBack()">
-        <mat-icon class="mat-18">close</mat-icon>
-      </button>
+    <div fxFlex="50" fxFlex.xs="100" fxHide.xs="false" fxHide.sm="true" fxHide.md="true" fxHide.lg="true"  class="view-container-left"  >
+
+      <div class="script-item-wrapper">
+        <div class="script-title"><h4>{{portfolioItem.portfolioItemTitle}}</h4></div>
+        <div class="script-info">
+            <div class="script-author">
+                <h5 class="author-text">Author</h5>
+                <h5 class="author-name">Author Name</h5>
+              </div>
+              <div class="script-class">
+                <h5 class="class-text">Class</h5>
+                <h5 class="class-name">Action/SiFi</h5>
+              </div>
+        </div>
+
+        <div class="script" *ngIf="portfolioItem">
+            <a id="mobileScriptView" href="" target="_blank"></a>
+        </div>
+
+      </div>
+
+      <div class="item-overlay top">
+
+        <div fxFlex="100" fxLayout class="social-buttons" fxLayoutAlign="center center">
+          <div fxFlex></div>
+          <button mat-button class="btn-share">
+            <mat-icon aria-label="Example icon-button with a heart icon">favorite_border</mat-icon>
+          </button>
+
+
+          <button mat-button class="btn-share">
+            <mat-icon aria-label="Example icon-button with a heart icon">share</mat-icon>
+          </button>
+
+          <button mat-button class="btn-share">
+            <mat-icon aria-label="Example icon-button with a heart icon">fullscreen</mat-icon>
+          </button>
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <div fxFlex="30" fxFlex.xs="100" class="view-container-right" *ngIf="currentUser" >
+
 
       <div class="right-sidebar-top">
 
@@ -75,13 +119,18 @@
       </div>
 
       <div class="user-comments">
-        <h4 class="user-name">Jhon Doe</h4>
-        <p class="user-comment">Well! Thats prity good...</p>
-        <div class="user-comment-data">
-          <a class="like">Like</a>
-          <a class="reply">Reply</a>
-          <p class="comment-date">Nov 17, 2017, 10:36</p>
-        </div>
+          <div class="main-comment" *ngFor="let comment of commentItem">
+              <h4 class="user-name">{{comment.commentUserName}}</h4>
+              <p class="user-comment">{{comment.commentText}}</p>
+              <div class="user-comment-data">
+                <a class="like">Like</a>
+                <a class="reply">Reply</a>
+                <p class="comment-date">{{comment.commentDate.toDate() | date: 'mediumDate'}}</p>
+              </div>
+              <button mat-button class="delete-comment" (click)="deleteComment(comment.commentId)">
+                <mat-icon class="mat-18">close</mat-icon>
+              </button>
+            </div>
       </div>
 
       <div class="portfolio-item-likes">
@@ -90,9 +139,14 @@
       </div>
 
       <div class="user-comment-input">
-        <mat-form-field class="item-comment-box">
-          <textarea matInput placeholder="Add a comment"></textarea>
-        </mat-form-field>
+          <form [formGroup]="commentForm">
+              <mat-form-field class="item-comment-box">
+                <textarea matInput placeholder="Add a comment" formControlName="commentText"></textarea>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addComment()">
+                  <mat-icon>send</mat-icon>
+                </button>
+              </mat-form-field>
+            </form>
 
         <button mat-button class="btn-edit-content" [matMenuTriggerFor]="more">
           <mat-icon aria-label="Example icon-button with a heart icon">more_vert</mat-icon>

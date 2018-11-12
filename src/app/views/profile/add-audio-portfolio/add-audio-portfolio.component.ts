@@ -182,8 +182,20 @@ export class AddAudioPortfolioComponent implements OnInit {
     var videoNode = document.querySelector('audio')
     var canPlay = videoNode.canPlayType(type)
     var fileURL = URL.createObjectURL(this.videoFile)
-    document.getElementById('myAudio').innerHTML='<source src="'+fileURL+'" type="audio/mp3">';
-    videoNode.load();
+
+    setTimeout(()=>{
+      var elmnt = document.getElementById('myAudio');
+      var elmnt2 = document.getElementById('myAudio2');
+      if(elmnt) {
+        document.getElementById('myAudio').innerHTML='<source src="'+fileURL+'" type="audio/mp3">';
+        videoNode.load();
+      }
+      if(elmnt2) {
+        document.getElementById('myAudio2').innerHTML='<source src="'+fileURL+'" type="audio/mp3">';
+        videoNode.load();
+      }
+
+    }, 1000)
   }
 
   uploadVideoFile() {

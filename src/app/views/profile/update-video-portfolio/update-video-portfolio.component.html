@@ -3,9 +3,23 @@
 
     <div fxFlex="100" class="item-container">
 
-      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="container">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="container">
 
-        <div fxFlex="25" class="add-item-wrapper">
+        <div fxFlex="75" class="item-preview-wrapper">
+
+          <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px" class="item-preview-container">
+
+            <div fxFlex="100" class="item-preview">
+              <video #videoPreview id="currentVideoPreview" controls autoplay>
+                Your browser does not support HTML5 video.
+              </video>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div fxFlex="25" fxFlex.xs="100" class="add-item-wrapper">
 
           <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="0px">
 
@@ -81,28 +95,28 @@
             </div>
 
             <div fxFlex="90" class="item">
-                <mat-label class="item-title">Add Thumbnail</mat-label>
-                <div class="item-thumb-wrapper">
-                  <img [src]='sanitizer.bypassSecurityTrustUrl(portfolioThumbImageUrl)' id="videoThumb">
-                  <div class="item-preview-overlay" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/assets%2Fprofile-photo-upload.png?alt=media&token=37de1e7c-ec51-4041-b5b0-e5506902eea6')">
-                    <h4 class="upload-msg-text">Click To Add Thumbnail Image</h4>
-                    <input class="file-input" type="file" (change)="selectThumbImage($event)" accept=".png,.jpg">
-                  </div>
+              <mat-label class="item-title">Add Thumbnail</mat-label>
+              <div class="item-thumb-wrapper">
+                <img [src]='sanitizer.bypassSecurityTrustUrl(portfolioThumbImageUrl)' id="videoThumb">
+                <div class="item-preview-overlay" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/assets%2Fprofile-photo-upload.png?alt=media&token=37de1e7c-ec51-4041-b5b0-e5506902eea6')">
+                  <h4 class="upload-msg-text">Click To Add Thumbnail Image</h4>
+                  <input class="file-input" type="file" (change)="selectThumbImage($event)" accept=".png,.jpg">
                 </div>
               </div>
+            </div>
 
 
           </div>
 
         </div>
 
-        <div fxFlex="75" class="item-preview-wrapper">
+        <div fxFlex="75" fxHide.xs="true" class="item-preview-wrapper">
 
           <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px" class="item-preview-container">
 
             <div fxFlex="100" class="item-preview">
               <!-- <object id="portfolioScript" type="application/pdf" data="https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/assets%2Fscript-place-holder.pdf?alt=media&token=9a6db991-1e56-43e7-8499-94e40d48d888"></object> -->
-              <video #videoPreview id="currentVideoPreview" controls autoplay >
+              <video #videoPreview id="currentVideoPreview2" controls autoplay>
                 <!-- <source src='' type="video/mp4"> -->
                 <!-- <source src="http://static.videogular.com/assets/videos/videogular.ogg" type="video/ogg"> -->
                 <!-- <source src="http://static.videogular.com/assets/videos/videogular.webm" type="video/webm"> -->
@@ -119,15 +133,15 @@
 
     <div fxFlex="100" fxLayout="row" class="save-item-wrapper">
       <div fxFlex></div>
-      <button mat-flat-button color="primary" class="btn-save" (click)="uploadAndSavePortfolio()"  [disabled]="IsUploading">SAVE</button>
+      <button mat-flat-button color="primary" class="btn-save" (click)="uploadAndSavePortfolio()" [disabled]="IsUploading">SAVE</button>
     </div>
     <button mat-button class="btn-close" routerLink="/profile/portfolio">
       <mat-icon>close</mat-icon>
     </button>
 
-    <div class="uploading-overlay" *ngIf="IsUploading" >
-      <div  *ngIf="percentage | async as pct">
-          <mat-progress-bar mode="determinate" [value]="pct"></mat-progress-bar>
+    <div class="uploading-overlay" *ngIf="IsUploading">
+      <div *ngIf="percentage | async as pct">
+        <mat-progress-bar mode="determinate" [value]="pct"></mat-progress-bar>
       </div>
 
       <mat-spinner class="spinner" strokeWidth=5 diameter=50></mat-spinner>

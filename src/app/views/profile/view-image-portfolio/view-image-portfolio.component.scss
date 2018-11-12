@@ -421,7 +421,12 @@
     max-width: 100% !important;
     min-width: 100%;
     height: auto !important;
-    margin-bottom: 280px !important;
+    margin-bottom: 120px !important;
+  }
+
+  .portfolio-item-likes,
+  .user-comment-input {
+    position: fixed !important;
   }
 
 }

@@ -134,7 +134,7 @@
   min-height: 40px !important;
 
   mat-icon {
-    color: #fff;
+    color: #fc4000;
   }
 }
 
@@ -265,4 +265,81 @@ progress::-webkit-progress-value {
   width: 100%;
   position: relative;
   border: 1px solid rgba(252, 64, 0, 0.30);
+  margin-top: 10px;
+}
+
+#mobilePdfPreview {
+  pointer-events: none;
+  height: 40px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 400;
+  color: #fc4000;
+  place-content: center;
+  place-items: center;
+  display: flex;
+  margin-top: 30px;
+  padding: 10px 10px;
+  background-color: rgba(252, 64, 0, 0.05);
+  border: 1px solid rgba(252, 64, 0, 0.05);
+  word-break: break-all;
+}
+
+@media screen and (max-width: 599px) {
+  .item-preview-wrapper {
+    width: 100% !important;
+    max-height: 100vw !important;
+  }
+
+  .item-container {
+    overflow: auto !important;
+  }
+
+  .item-container .container {
+    overflow: scroll !important;
+  }
+
+  .item-preview-container {
+    margin-top: 40px !important;
+    width: 100% !important;
+    max-height: 60px !important;
+  }
+
+  #mobilePdfPreview {
+    pointer-events: all;
+    height: 40px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 400;
+    color: #fc4000;
+    place-content: center;
+    place-items: center;
+    display: flex;
+    margin-top: 30px;
+    padding: 10px 10px;
+    background-color: rgba(252, 64, 0, 0.05);
+    border: 1px solid rgba(252, 64, 0, 0.05);
+    word-break: break-all;
+  }
+
+  #script-filename {
+    color: #fc4000;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    word-break: break-all;
+  }
+
+  .item-preview {
+    padding: 0 !important;
+  }
+  .add-item-wrapper {
+    height: auto !important;
+  }
+
+  .add-item-wrapper > div {
+    margin-bottom: 50px !important;
+  }
 }

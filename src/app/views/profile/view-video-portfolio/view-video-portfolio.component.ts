@@ -1,31 +1,13 @@
 import { AuthService } from './../../../core/services/auth.service';
-import { ActiveUser } from './../../../core/models/models';
+import { ActiveUser, portfolioItem, commentItem } from "src/app/core/models/models";
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import {Location} from '@angular/common';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { DomSanitizer } from '@angular/platform-browser';
-
-export interface portfolioItem {
-  portfolioId?: string;
-  portfolioType?: string;
-  portfolioItemTitle?: string;
-  portfolioImage?: string;
-  portfolioFile: string;
-  portfolioVideo?: string;
-  portfolioItemDate?: string;
-  portfolioItemLocation?: string;
-  portfolioItemDescription?: string;
-  portfolioItemQuality?: boolean;
-  portfolioItemCategories?: Array<string>;
-  portfolioItemViews?: number;
-  portfolioItemComments?: number;
-  portfolioItemFavs?: number;
-
-}
-
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-view-video-portfolio',
@@ -44,6 +26,13 @@ export class ViewVideoPortfolioComponent implements OnInit {
   portfolioId;
   portfolioItem$: AngularFirestoreDocument<portfolioItem>;
   portfolioItem: portfolioItem;
+
+  commentItem$: AngularFirestoreCollection<commentItem>;
+  commentItem: commentItem[];
+
+  public commentForm= new FormGroup({
+    commentText: new FormControl("")
+  });
 
   constructor(
     private _location: Location,
@@ -71,13 +60,24 @@ export class ViewVideoPortfolioComponent implements OnInit {
     this.portfolioItem$.valueChanges().subscribe(portfolio => {
       this.portfolioItem = portfolio;
       console.log(this.portfolioItem);
-      console.log(this.portfolioItem.portfolioVideo);
+      // console.log(this.portfolioItem.portfolioVideo);
 
       setTimeout(()=>{
         document.getElementById('currentVideoPreview').innerHTML='<source src="'+this.portfolioItem.portfolioFile+'" type="video/mp4">';
       }, 1000)
 
     });
+
+    this.commentItem$ = this.db
+      .collection("users")
+      .doc(this.userId)
+      .collection("portfolio")
+      .doc(this.portfolioId).collection('comments', ref => ref.orderBy('commentDate'));
+    this.commentItem$.valueChanges().subscribe(comment => {
+      this.commentItem = comment;
+      console.log(this.commentItem);
+    });
+
     }
 
   ngOnInit() {
@@ -101,4 +101,34 @@ export class ViewVideoPortfolioComponent implements OnInit {
         this.goBack()
       );
   }
+
+  public addComment() {
+
+    const id = this.db.createId();
+    const userRef: AngularFirestoreDocument<any> = this.db.doc('users/'+this.currentUser.uid+'/portfolio/'+this.portfolioId+'/comments/'+id);
+    const comment = {
+      commentId: id,
+      commentDate: new Date(),
+      commentText: this.commentForm.controls.commentText.value,
+      commentUserId: this.currentUser.uid,
+      commentUserName: this.currentUser.displayName,
+      commentLike: 0
+    };
+
+
+    userRef.set(comment, { merge: true }).then(() => {
+      console.log('comment added');
+      this.commentForm.get('commentText').setValue('');
+    })
+    .catch(_error => {
+      console.log('Portfolio Not Saved');
+    });
+  }
+
+  public deleteComment(commentId: string) {
+    console.log(commentId, this.portfolioItem.portfolioUserId);
+    const userRef: AngularFirestoreDocument<any> = this.db.doc('users/'+this.portfolioItem.portfolioUserId+'/portfolio/'+this.portfolioItem.portfolioId+'/comments/'+commentId);
+    userRef.delete();
+  }
+
 }

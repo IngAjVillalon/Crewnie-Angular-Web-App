@@ -3,7 +3,13 @@
 
       <div fxFlex="100" class="item-container">
 
-        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="container">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="container">
+
+          <div fxFlex="75" fxFlex.xs="100" fxHide.xl="true" fxHide.lg="true" fxHide.md="true" class="item-preview-wrapper">
+              <div class="script" *ngIf="portfolioItem">
+                  <a id="mobileScriptView" href="" target="_blank"></a>
+              </div>
+          </div>
 
           <div fxFlex="25" class="add-item-wrapper">
 
@@ -81,7 +87,7 @@
               </div>
 
               <div fxFlex="90" class="item">
-                  <mat-label class="item-title">Add Thumbnail</mat-label>
+                  <mat-label class="title">Add Thumbnail</mat-label>
                   <div class="item-thumb-wrapper">
                     <img [src]='sanitizer.bypassSecurityTrustUrl(portfolioThumbImageUrl)' id="videoThumb">
                     <div class="item-preview-overlay" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/crewnie-test.appspot.com/o/assets%2Fprofile-photo-upload.png?alt=media&token=37de1e7c-ec51-4041-b5b0-e5506902eea6')">
@@ -96,7 +102,7 @@
 
           </div>
 
-          <div fxFlex="75" class="item-preview-wrapper">
+          <div fxFlex="75" fxHide.xs="true" class="item-preview-wrapper">
 
             <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px" class="item-preview-container">
 
