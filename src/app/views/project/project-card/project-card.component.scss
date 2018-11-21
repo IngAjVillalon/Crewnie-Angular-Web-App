@@ -1,0 +1,86 @@
+.card {
+    width: 100%;
+    height: 100%;
+}
+.card--project {
+    position: relative;
+    max-height: 345px;
+    min-width: 350px;
+    min-height: 345px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+
+    -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.70);
+    -moz-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.70);
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.70);
+}
+
+.card__image {
+    max-width: 100%;
+    max-height: 230px;
+    min-width: 100%;
+    min-height: 230px;
+    width: 100%;
+    height: 230px;
+}
+
+.card__image img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+
+.card__title {
+    width: calc(100% - 80px);
+    padding: 0px 20px;
+    margin: 0;
+    margin-top: 10px;
+    cursor: pointer;
+
+    color: #ff5722;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1;
+    display: inline-block;
+
+    &:hover {
+        color: rgb(255, 61, 0);
+    }
+}
+
+.card__author {
+    width: auto;
+    padding: 0px 20px;
+    margin: 0;
+
+    color: #878787;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.card__edited {
+    width: auto;
+    padding: 0px 20px;
+    margin: 0;
+    margin-top: 20px;
+
+    color: #878787;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.card__more__btn {
+    position: absolute;
+    right: 10px;
+    top: 240px;
+    padding: 0;
+    width: 40px;
+    max-width: 40px !important;
+    min-width: 40px !important;
+
+    mat-icon {
+        color: #818181;
+    }
+}

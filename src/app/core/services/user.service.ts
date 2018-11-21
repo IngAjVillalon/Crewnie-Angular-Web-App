@@ -18,7 +18,7 @@ import { promise } from "protractor";
   providedIn: "root"
 })
 export class UserService {
-  userID: String;
+  userID: string;
   user$: any;
 
   currentUser$: AngularFirestoreDocument<ActiveUser>;
@@ -33,20 +33,18 @@ export class UserService {
     private authService: AuthService
   ) {
     this.user$ = this.afAuth.authState.subscribe(user => {
-      // if(user) {
-      //   this.user = user;
-      //   console.log(user.uid);
-      //   console.log("got User");
-      //   return this.afs.doc<ActiveUser>('users/${user.uid}').valueChanges();
-      // }
+      if(user) {
+        this.user = user;
+        this.userID = user.uid;
+      }
     });
   }
 
-  public getUserProfile(userId: string) {
-    this.currentUser$ = this.db.doc<ActiveUser>("users/" + userId);
-    this.currentUser$.valueChanges().subscribe(user => {
-      this.currentUser = user;
-      return  this.currentUser;
-    });
+  public getUserId() {
+    return localStorage.getItem('userId');;
+  }
+
+  public setUserId(userId: string) {
+    localStorage.setItem('userId', userId);
   }
 }

@@ -14,7 +14,8 @@
     </div>
 
 
-    <div class="topbar-right" fxFlex="33.33" fxFlex.xs="100" fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutAlign.xs="center center">
+    <div class="topbar-right" fxFlex="33.33" fxFlex.xs="100" fxLayout="row wrap" fxLayoutAlign="end center"
+      fxLayoutAlign.xs="center center">
       <button mat-icon-button fxFlex="5" class="topbar-right-button">
         <mat-icon>notifications_none</mat-icon>
       </button>
@@ -31,30 +32,25 @@
 
   </div>
 
-
-
   <!-- header bottom -->
   <div class="header-bottom" fxLayout="row wrap">
-      <button mat-icon-button
-      fxHide.gt-md="true"
-      style="color: #ffffff"
-      matSidenavToggler="profile-left-sidenav">
-        <mat-icon>menu</mat-icon>
+    <button mat-icon-button fxHide.gt-md="true" style="color: #ffffff" matSidenavToggler="profile-left-sidenav">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div class="header-bottom-left" fxLayout="row wrap" fxLayoutAlign="start center">
+
+      <button mat-button fxFlex="10" class="header-bottom-left-button" [routerLink]="['/profile']" routerLinkActive="active">
+        Profile
+      </button>
+      <button mat-button fxFlex="10" class="header-bottom-left-button" routerLink="/projects" routerLinkActive="active">
+        Projects
+      </button>
+      <button mat-button fxFlex="10" class="header-bottom-left-button" routerLink="/profile/jobs" routerLinkActive="active">
+        Jobs
       </button>
 
-      <div class="header-bottom-left" fxLayout="row wrap" fxLayoutAlign="start center">
-
-          <button mat-button fxFlex="10" class="header-bottom-left-button" [routerLink]="['/profile']" routerLinkActive="active">
-            Profile
-          </button>
-          <button mat-button fxFlex="10" class="header-bottom-left-button" routerLink="/project" routerLinkActive="active">
-            Projects
-          </button>
-          <button mat-button fxFlex="10" class="header-bottom-left-button" routerLink="/profile/jobs" routerLinkActive="active">
-            Jobs
-          </button>
-
-        </div>
+    </div>
 
   </div>
 
@@ -86,8 +82,8 @@
 
         <div class="side-navigation">
           <mat-nav-list class="side-navigation-nav-list">
-              <a mat-list-item [routerLink]="['/profile/info']" routerLinkActive="active">Profile </a>
-              <a mat-list-item [routerLink]="['/profile/portfolio']" routerLinkActive="active">Portfolio </a>
+            <a mat-list-item [routerLink]="['/profile/info']" routerLinkActive="active">Profile </a>
+            <a mat-list-item [routerLink]="['/profile/portfolio']" routerLinkActive="active">Portfolio </a>
           </mat-nav-list>
         </div>
 

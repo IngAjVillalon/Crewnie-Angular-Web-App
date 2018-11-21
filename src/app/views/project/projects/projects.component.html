@@ -1,3 +1,51 @@
-<p>
-  projects works!
-</p>
+<div class="main-wrapper">
+
+  <button mat-fab class="create__project__btn" (click)="addNewProject()">
+    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+  </button>
+
+  <div fxLayout="row wrap" class="topbar topbar--black">
+
+    <div fxFlex="20" class="topbar__logo">
+      <img src="assets/images/crewnie-logo.png" alt="">
+    </div>
+
+    <div fxFlex="20" class="topbar__title">
+      <h4>Crewnie Project Manager</h4>
+    </div>
+
+    <div fxFlex></div>
+
+    <div fxFlex="20" class="topbar__close">
+      <button mat-button class="topbar__close__btn">
+        <mat-icon class="mat-18">close</mat-icon>
+      </button>
+    </div>
+
+
+  </div>
+
+  <div class="projects projects--empty" *ngIf="!projects">
+    <h2 class="empty__message">Oops... No Projects Yet</h2>
+    <h2 class="empty__direction">To create a project click here</h2>
+  </div>
+
+  <div class="projects projects--full" *ngIf="projects">
+
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="0px" class="projects__wrapper">
+      <div fxFlex="33.33" class="item" *ngFor="let project of projects" @fadeIn>
+        <project-card [project]='project'></project-card>
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+</div>

@@ -111,7 +111,7 @@ export class ViewImagePortfolioComponent implements OnInit {
       commentDate: new Date(),
       commentText: this.commentForm.controls.commentText.value,
       commentUserId: this.currentUser.uid,
-      commentUserName: this.currentUser.displayName,
+      commentUserName: this.currentUser.nickName,
       commentLike: 0
     };
 

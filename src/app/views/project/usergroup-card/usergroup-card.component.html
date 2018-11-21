@@ -1,0 +1,127 @@
+<div class="card--workgroup">
+
+  <button mat-button class="workgroup__action__btn" [matMenuTriggerFor]="action">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #action="matMenu">
+    <button mat-menu-item>Edit Project</button>
+    <button mat-menu-item>Delete Project</button>
+  </mat-menu>
+
+  <mat-form-field class="workgroup__title">
+    <input matInput placeholder="Workgroup">
+  </mat-form-field>
+
+  <div class="workgroup__user">
+    <div fxLayout="row" [class.team__leader]="!isAdminSelected" [class.user]="isAdminSelected">
+      <div fxFlex="20" class="user__avater" *ngIf="isAdminSelected">
+        <a href="">
+          <img class="avater__img" [src]="teamLeader.user.profilePhotoUrl" alt="">
+        </a>
+      </div>
+      <div fxFlex="80" class="user__info" *ngIf="isAdminSelected">
+
+        <a [routerLink]="[ '/profile' ]" class="user__name admin">{{teamLeader.user.firstName}} <span>(Team Leader)</span></a>
+
+        <mat-form-field class="user__role admin" *ngIf="teamLeader">
+          <mat-select [(ngModel)]="teamLeader.userRole" value="admin">
+            <mat-option value="admin">Administrator</mat-option>
+            <mat-option value="role-1">Role 1</mat-option>
+            <mat-option value="role-2">Role 2</mat-option>
+            <mat-option value="role-3">Role 3</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <form class="select__teamLead__form" [formGroup]="addTeamLeadForm">
+        <mat-form-field class="select__teamLead__input" *ngIf="!isAdminSelected">
+          <input type="text" placeholder="Select a team leader" matInput formControlName="addTeaamLead" [matAutocomplete]="teamLead">
+
+          <mat-autocomplete #teamLead="matAutocomplete" (optionSelected)="selectTeamLead($event.option.value)">
+            <mat-option *ngFor="let teamLead of crewnieUsers" [value]="teamLead.uid">
+              <div fxLayout="row" class="team__leader">
+                <div fxFlex="20" class="user__avater">
+                  <img class="avater__img" [src]="teamLead.profilePhotoUrl" alt="">
+                </div>
+                <div fxFlex="80" class="user__info">
+                  <h3 class="user__name">{{teamLead.firstName}}</h3>
+                </div>
+              </div>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+      <button mat-button class="select__team__lead__btn" (click)="selectTeamLeader('userId22')">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="workgroup__user" *ngFor="let user of userGroup.groupUsers">
+    <div fxLayout="row" class="user">
+      <div fxFlex="20" class="user__avater">
+        <a href="">
+          <img class="avater__img" [src]="user.user.profilePhotoUrl" alt="">
+        </a>
+      </div>
+      <div fxFlex="80" class="user__info">
+        <a [routerLink]="[ '/profile' ]" class="user__name">{{user.user.firstName}}</a>
+        <mat-form-field class="user__role admin" *ngIf="teamLeader">
+          <mat-select [(ngModel)]="user.userRole" value="admin">
+            <mat-option selected value="admin">Administrator</mat-option>
+            <mat-option value="role-1">Role 1</mat-option>
+            <mat-option value="role-2">Role 2</mat-option>
+            <mat-option value="role-3">Role 3</mat-option>
+            <mat-option value="actor">Actor</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <button mat-button class="user__cancel__btn" (click)="cancelTeamMember(user.user.uid)">
+        <mat-icon class="mat-18">close</mat-icon>
+      </button>
+
+    </div>
+
+
+  </div>
+
+  <div class="workgroup__user" *ngIf="addNewMember">
+    <div fxLayout="row" class="user">
+      <form class="select__member__form" [formGroup]="addMemberForm">
+
+        <mat-form-field class="select__member__input">
+
+          <input matInput type="text" placeholder="Select a team leader from the list" [matAutocomplete]="member" formControlName="addMember" >
+          <button mat-button matSuffix mat-icon-button>
+              <mat-icon>close</mat-icon>
+            </button>
+          <mat-autocomplete #member="matAutocomplete" (optionSelected)="selectTeamMember($event.option.value)">
+            <mat-option *ngFor="let crewnie of crewnieUsersFiltered" [value]="crewnie.uid">
+              <div fxLayout="row" class="team__leader">
+                <div fxFlex="20" class="user__avater">
+                  <img class="avater__img" [src]="crewnie.profilePhotoUrl" alt="">
+                </div>
+                <div fxFlex="80" class="user__info">
+                  <h3 class="user__name">{{crewnie.firstName}}</h3>
+                </div>
+              </div>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+
+    </div>
+
+
+  </div>
+
+
+
+
+  <div class="workgroup__add__memebr">
+    <button mat-button class="add__member__btn" (click)="addUser()">ADD TEAM MEMBER</button>
+  </div>
+</div>

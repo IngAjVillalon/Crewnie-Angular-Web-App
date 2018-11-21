@@ -21,7 +21,9 @@ import {
   MatFormFieldModule,
   MatProgressSpinnerModule,
   MatProgressBarModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTabsModule,
+  MatExpansionModule
 } from '@angular/material';
 
 const matModules = [
@@ -46,7 +48,9 @@ const matModules = [
   MatInputModule,
   MatProgressSpinnerModule,
   MatProgressBarModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTabsModule,
+  MatExpansionModule
 ];
 
 @NgModule({

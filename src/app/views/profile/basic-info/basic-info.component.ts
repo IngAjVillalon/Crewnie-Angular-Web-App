@@ -25,6 +25,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { User } from "firebase";
 import { FormGroup, FormControl } from "@angular/forms";
 import { finalize } from "rxjs/operators";
+import { UserService } from "src/app/core/services/user.service";
 
 interface currentUser {
   uid?: string;
@@ -118,14 +119,13 @@ export class BasicInfoComponent implements OnInit {
     private db: AngularFirestore,
     private storage: AngularFireStorage,
     private router: Router,
-    private route: ActivatedRoute,
-    private authService: AuthService,
-    private afStorage: AngularFireStorage
+    private userService: UserService
   ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
         console.log(user.uid);
+        this.userService.setUserId(user.uid);
         console.log("got User");
         this.userID = user.uid;
         console.log(this.user.uid);

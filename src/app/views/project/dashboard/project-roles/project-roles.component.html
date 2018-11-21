@@ -1,0 +1,806 @@
+<div class="main-wrapper">
+
+  <button mat-button class="fab-btn">
+    <span class="icon-crewnie-icon-custing svg-icon"></span>
+  </button>
+
+  <div fxLayout="row wrap" class="topbar topbar--black">
+
+    <div fxFlex="20" class="topbar__thumb">
+      <img src="assets/images/crewnie-logo.png" alt="">
+    </div>
+
+    <div fxFlex="20" class="topbar__title">
+      <h4>Star War - The Last Jedi</h4>
+      <button mat-button class="topbar__title__btn">
+        <mat-icon class="mat-18">arrow_drop_down</mat-icon>
+      </button>
+    </div>
+
+    <div fxFlex></div>
+
+
+    <div fxFlex="20" class="topbar__close">
+      <button mat-button class="topbar__close__btn" (click)="closeProjectDashboard()">
+        <span class="icon-crewnie-icon-close svg-icon"></span>
+      </button>
+    </div>
+
+
+  </div>
+
+  <div fxLayout="column" class="sidebar sidebar--white">
+
+    <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard']">
+        <span class="icon-crewnie-icon-home svg-icon"></span>
+      </button>
+    </div>
+
+    <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn " [routerLink]="['/projects/dashboard/application']">
+        <span class="icon-crewnie-icon-stuff svg-icon"></span>
+      </button>
+    </div>
+
+    <!-- <div fxFlex="100" class="sidebar__item">
+          <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard/roles']">
+            <span class="icon-crewnie-icon-equipments svg-icon"></span>
+          </button>
+        </div> -->
+
+    <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn active" [routerLink]="['/projects/dashboard/roles']">
+        <span class="icon-crewnie-icon-custing svg-icon"></span>
+      </button>
+    </div>
+    <div fxFlex></div>
+
+    <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard/roles']">
+        <span class="icon-crewnie-icon-settings svg-icon"></span>
+      </button>
+    </div>
+
+  </div>
+
+
+
+  <div class="main-content content">
+
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="center start" class="content content__application">
+
+      <div fxFlex="25" class="application__left">
+
+        <h3 class="title">Roles</h3>
+
+        <div class="position__filter">
+          <mat-form-field class="filter__by__position">
+            <mat-icon matSuffix>search</mat-icon>
+            <input type="text" matInput placeholder="Search role">
+
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="applicant__wrapper">
+
+          <div fxFlex="100" class="applicant">
+            <div class="avatar">
+              <div class="status casting"></div>
+            </div>
+
+            <div class="applicant__info">
+              <h3 class="applicant__name">Harry Potter</h3>
+              <h3 class="applicant__status">Status: <span class="casting">Casting...</span></h3>
+            </div>
+
+            <button mat-button class="info__btn">
+              <span class="icon-crewnie-icon-info svg-icon"></span>
+            </button>
+
+            <button mat-button class="close__btn">
+              <span class="icon-crewnie-icon-close svg-icon"></span>
+            </button>
+
+          </div>
+
+          <div fxFlex="100" class="applicant">
+            <div class="avatar">
+              <div class="status searching"></div>
+            </div>
+
+            <div class="applicant__info">
+              <h3 class="applicant__name">Emma Watson</h3>
+              <h3 class="applicant__status">Status: <span class="searching">Searching...</span></h3>
+            </div>
+
+            <button mat-button class="info__btn">
+              <span class="icon-crewnie-icon-info svg-icon"></span>
+            </button>
+
+            <button mat-button class="close__btn">
+              <span class="icon-crewnie-icon-close svg-icon"></span>
+            </button>
+
+          </div>
+
+          <div fxFlex="100" class="applicant">
+            <div class="avatar">
+              <div class="status casted"></div>
+            </div>
+
+            <div class="applicant__info">
+              <h3 class="applicant__name">Emma Watson</h3>
+              <h3 class="applicant__status">Status: <span class="casted">Casted</span></h3>
+            </div>
+
+            <button mat-button class="info__btn">
+              <span class="icon-crewnie-icon-info svg-icon"></span>
+            </button>
+
+            <button mat-button class="close__btn">
+              <span class="icon-crewnie-icon-close svg-icon"></span>
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="add__role">
+          <button mat-button class="add__role_btn">ADD ROLE</button>
+        </div>
+
+
+      </div>
+
+      <div fxFlex="75" class="application__right">
+
+        <div class="topnav">
+          <div fxFlex="100" fxLayout="row" fxLayoutAlign="center start" class="content content--topnav">
+
+            <div fxFlex="20" class="production--stage">
+              <button mat-button class="stage__btn active">Matches(125)</button>
+            </div>
+            <div fxFlex="20" class="production--stage">
+              <button mat-button class="stage__btn">Request(54)</button>
+            </div>
+            <div fxFlex="20" class="production--stage">
+              <button mat-button class="stage__btn">Sent(23)</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="application__filters">
+
+          <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
+
+            <div fxFlex="20" class="filter__selection">
+
+              <mat-form-field class="filter__by__position">
+                <mat-select placeholder="Position">
+                  <mat-option value="">Director</mat-option>
+                  <mat-option value="">Actor</mat-option>
+                  <mat-option value="">Producer</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+
+            <div fxFlex="20" class="filter__selection">
+
+              <mat-form-field class="filter__by__position">
+                <mat-select class="select" placeholder="Ability">
+                  <mat-option value="">Director</mat-option>
+                  <mat-option value="">Actor</mat-option>
+                  <mat-option value="">Producer</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+
+            <div fxFlex="20" class="filter__selection">
+
+              <mat-form-field class="filter__by__position">
+                <input type="text" matInput placeholder="Location" class="location">
+                <mat-icon matSuffix>location_on</mat-icon>
+              </mat-form-field>
+
+            </div>
+
+            <div fxFlex></div>
+
+            <div fxFlex="20" class="filter__buttons">
+              <button mat-button class="filter__btn">
+                <mat-icon aria-label="Example icon-button with a heart icon">swap_vert</mat-icon>
+              </button>
+            </div>
+            <div fxFlex="20" class="filter__buttons">
+              <button mat-button class="filter__btn active">
+                <mat-icon aria-label="Example icon-button with a heart icon">apps</mat-icon>
+              </button>
+            </div>
+            <div fxFlex="20" class="filter__buttons">
+              <button mat-button class="filter__btn" (click)="openRightCastingPanel()">
+                <mat-icon aria-label="Example icon-button with a heart icon">format_list_bulleted</mat-icon>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <mat-tab-group mat-align-tabs="center" dynamicHeight>
+          <mat-tab label="MATCHES(152)">
+
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="application__profiles">
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/1.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/2.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+
+                    <div class="profile__decisions">
+                      <button mat-button class="decission__maybe">Maybe</button>
+                      <button mat-button>Yes</button>
+                      <button mat-button>Transfer</button>
+                      <button mat-button>No</button>
+                    </div>
+
+                  </div>
+
+
+
+                  <div class="profile__invite">
+                    <p>invited</p>
+                  </div>
+                </div>
+              </div>
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/3.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/4.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+
+                    <div class="profile__decisions">
+                      <button mat-button>Maybe</button>
+                      <button mat-button class="decission__yes">Yes</button>
+                      <button mat-button>Transfer</button>
+                      <button mat-button>No</button>
+                    </div>
+
+                  </div>
+
+
+
+                  <!-- <div class="profile__invite">
+                      <p>invited</p>
+                    </div> -->
+                </div>
+              </div>
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/5.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/6.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+
+                    <div class="profile__decisions">
+                      <button mat-button>Maybe</button>
+                      <button mat-button>Yes</button>
+                      <button mat-button>Transfer</button>
+                      <button mat-button class="decission__no">No</button>
+                    </div>
+
+                  </div>
+
+
+
+                  <!-- <div class="profile__invite">
+                        <p>invited</p>
+                      </div> -->
+                </div>
+              </div>
+
+            </div>
+
+          </mat-tab>
+
+          <mat-tab label="REQUEST(20)">
+
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="application__profiles">
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/1.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/2.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+                  </div>
+
+                  <div class="profile__invite">
+                    <p>invited</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </mat-tab>
+
+          <mat-tab label="SENT(26)">
+
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="application__profiles">
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/1.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/2.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+                  </div>
+
+                  <div class="profile__invite">
+                    <p>invited</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </mat-tab>
+
+          <mat-tab label="LIKED(85)">
+
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="application__profiles">
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/1.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/2.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+                  </div>
+
+                  <div class="profile__invite">
+                    <p>invited</p>
+                  </div>
+                </div>
+              </div>
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/3.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/4.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+                  </div>
+
+                  <!-- <div class="profile__invite">
+                      <p>invited</p>
+                    </div> -->
+                </div>
+              </div>
+
+            </div>
+
+          </mat-tab>
+
+        </mat-tab-group>
+
+        <div class="right_navigation" *ngIf="castingRightOpen">
+
+          <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="0px" class="right__casting">
+
+              <button mat-button class="close__btn" (click)="closeRightCastingPanel()">
+                  <span class="icon-crewnie-icon-close svg-icon"></span>
+                </button>
+
+
+            <div fxFlex="100" class="title">
+              <h3>Casting</h3>
+            </div>
+            <div fxFlex="100" class="casting__maybe">
+
+              <div class="maybe__top">
+
+                <mat-accordion>
+                  <mat-expansion-panel opened="true">
+
+                    <mat-expansion-panel-header>
+                      <mat-panel-title class="casting__maybe__title">
+                        Maybe<span>3</span>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="applicant__wrapper">
+
+                      <div fxFlex="100" class="applicant">
+                        <div class="avatar">
+                          <img src="assets/images/1.jpg" alt="">
+                        </div>
+
+                        <div class="applicant__info">
+                          <h3 class="applicant__name">Harry Potter</h3>
+                          <h3 class="applicant__status">New Maxico</h3>
+                        </div>
+
+                        <button mat-button class="info__btn">
+                          <span class="icon-crewnie-icon-info svg-icon"></span>
+                        </button>
+
+                        <button mat-button class="close__btn">
+                          <span class="icon-crewnie-icon-close svg-icon"></span>
+                        </button>
+
+                      </div>
+
+                      <div fxFlex="100" class="applicant">
+                        <div class="avatar">
+                          <img src="assets/images/2.jpg" alt="">
+                        </div>
+
+                        <div class="applicant__info">
+                          <h3 class="applicant__name">Emma Watson</h3>
+                          <h3 class="applicant__status">California</h3>
+                        </div>
+
+                        <button mat-button class="info__btn">
+                          <span class="icon-crewnie-icon-info svg-icon"></span>
+                        </button>
+
+                        <button mat-button class="close__btn">
+                          <span class="icon-crewnie-icon-close svg-icon"></span>
+                        </button>
+
+                      </div>
+
+                      <div fxFlex="100" class="applicant">
+                        <div class="avatar">
+                          <img src="assets/images/3.jpg" alt="">
+                        </div>
+
+                        <div class="applicant__info">
+                          <h3 class="applicant__name">Emma Watson</h3>
+                          <h3 class="applicant__status">Los Angeles</h3>
+                        </div>
+
+                        <button mat-button class="info__btn">
+                          <span class="icon-crewnie-icon-info svg-icon"></span>
+                        </button>
+
+                        <button mat-button class="close__btn">
+                          <span class="icon-crewnie-icon-close svg-icon"></span>
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title class="casting__yes__title">
+                        Yes<span>3</span>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="applicant__wrapper">
+
+                        <div fxFlex="100" class="applicant">
+                          <div class="avatar">
+                            <img src="assets/images/1.jpg" alt="">
+                          </div>
+
+                          <div class="applicant__info">
+                            <h3 class="applicant__name">Harry Potter</h3>
+                            <h3 class="applicant__status">New Maxico</h3>
+                          </div>
+
+                          <button mat-button class="info__btn">
+                            <span class="icon-crewnie-icon-info svg-icon"></span>
+                          </button>
+
+                          <button mat-button class="close__btn">
+                            <span class="icon-crewnie-icon-close svg-icon"></span>
+                          </button>
+
+                        </div>
+
+                        <div fxFlex="100" class="applicant">
+                          <div class="avatar">
+                            <img src="assets/images/2.jpg" alt="">
+                          </div>
+
+                          <div class="applicant__info">
+                            <h3 class="applicant__name">Emma Watson</h3>
+                            <h3 class="applicant__status">California</h3>
+                          </div>
+
+                          <button mat-button class="info__btn">
+                            <span class="icon-crewnie-icon-info svg-icon"></span>
+                          </button>
+
+                          <button mat-button class="close__btn">
+                            <span class="icon-crewnie-icon-close svg-icon"></span>
+                          </button>
+
+                        </div>
+
+                        <div fxFlex="100" class="applicant">
+                          <div class="avatar">
+                            <img src="assets/images/3.jpg" alt="">
+                          </div>
+
+                          <div class="applicant__info">
+                            <h3 class="applicant__name">Emma Watson</h3>
+                            <h3 class="applicant__status">Los Angeles</h3>
+                          </div>
+
+                          <button mat-button class="info__btn">
+                            <span class="icon-crewnie-icon-info svg-icon"></span>
+                          </button>
+
+                          <button mat-button class="close__btn">
+                            <span class="icon-crewnie-icon-close svg-icon"></span>
+                          </button>
+
+                        </div>
+
+                      </div>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title class="casting__transfer__title">
+                          Transfer<span>5</span>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+
+                      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="applicant__wrapper">
+
+                          <div fxFlex="100" class="applicant">
+                            <div class="avatar">
+                              <img src="assets/images/1.jpg" alt="">
+                            </div>
+
+                            <div class="applicant__info">
+                              <h3 class="applicant__name">Harry Potter</h3>
+                              <h3 class="applicant__status">New Maxico</h3>
+                            </div>
+
+                            <button mat-button class="info__btn">
+                              <span class="icon-crewnie-icon-info svg-icon"></span>
+                            </button>
+
+                            <button mat-button class="close__btn">
+                              <span class="icon-crewnie-icon-close svg-icon"></span>
+                            </button>
+
+                          </div>
+
+                          <div fxFlex="100" class="applicant">
+                            <div class="avatar">
+                              <img src="assets/images/2.jpg" alt="">
+                            </div>
+
+                            <div class="applicant__info">
+                              <h3 class="applicant__name">Emma Watson</h3>
+                              <h3 class="applicant__status">California</h3>
+                            </div>
+
+                            <button mat-button class="info__btn">
+                              <span class="icon-crewnie-icon-info svg-icon"></span>
+                            </button>
+
+                            <button mat-button class="close__btn">
+                              <span class="icon-crewnie-icon-close svg-icon"></span>
+                            </button>
+
+                          </div>
+
+                          <div fxFlex="100" class="applicant">
+                            <div class="avatar">
+                              <img src="assets/images/3.jpg" alt="">
+                            </div>
+
+                            <div class="applicant__info">
+                              <h3 class="applicant__name">Emma Watson</h3>
+                              <h3 class="applicant__status">Los Angeles</h3>
+                            </div>
+
+                            <button mat-button class="info__btn">
+                              <span class="icon-crewnie-icon-info svg-icon"></span>
+                            </button>
+
+                            <button mat-button class="close__btn">
+                              <span class="icon-crewnie-icon-close svg-icon"></span>
+                            </button>
+
+                          </div>
+
+                        </div>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title class="casting__no__title">
+                          No<span>5</span>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+
+                      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px" class="applicant__wrapper">
+
+                          <div fxFlex="100" class="applicant">
+                            <div class="avatar">
+                              <img src="assets/images/1.jpg" alt="">
+                            </div>
+
+                            <div class="applicant__info">
+                              <h3 class="applicant__name">Harry Potter</h3>
+                              <h3 class="applicant__status">New Maxico</h3>
+                            </div>
+
+                            <button mat-button class="info__btn">
+                              <span class="icon-crewnie-icon-info svg-icon"></span>
+                            </button>
+
+                            <button mat-button class="close__btn">
+                              <span class="icon-crewnie-icon-close svg-icon"></span>
+                            </button>
+
+                          </div>
+
+                          <div fxFlex="100" class="applicant">
+                            <div class="avatar">
+                              <img src="assets/images/2.jpg" alt="">
+                            </div>
+
+                            <div class="applicant__info">
+                              <h3 class="applicant__name">Emma Watson</h3>
+                              <h3 class="applicant__status">California</h3>
+                            </div>
+
+                            <button mat-button class="info__btn">
+                              <span class="icon-crewnie-icon-info svg-icon"></span>
+                            </button>
+
+                            <button mat-button class="close__btn">
+                              <span class="icon-crewnie-icon-close svg-icon"></span>
+                            </button>
+
+                          </div>
+
+                          <div fxFlex="100" class="applicant">
+                            <div class="avatar">
+                              <img src="assets/images/3.jpg" alt="">
+                            </div>
+
+                            <div class="applicant__info">
+                              <h3 class="applicant__name">Emma Watson</h3>
+                              <h3 class="applicant__status">Los Angeles</h3>
+                            </div>
+
+                            <button mat-button class="info__btn">
+                              <span class="icon-crewnie-icon-info svg-icon"></span>
+                            </button>
+
+                            <button mat-button class="close__btn">
+                              <span class="icon-crewnie-icon-close svg-icon"></span>
+                            </button>
+
+                          </div>
+
+                        </div>
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+
+
+
+
+</div>

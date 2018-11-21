@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 
 import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { MatInputModule } from "@angular/material";
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -28,6 +29,7 @@ import { MatInputModule } from "@angular/material";
     MatInputModule,
     AppRoutingModule,
     PasswordStrengthBarModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
 
   ],

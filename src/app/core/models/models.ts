@@ -170,3 +170,27 @@ export interface commentItem {
   commentUserName?: string;
   commentLike?: number;
 }
+
+export interface projectItem {
+  projectId?: string;
+  createdAt?: firebase.firestore.Timestamp;
+  modifiedAt?: firebase.firestore.Timestamp;
+  projectText?: string;
+  projectUserId?: string;
+  projectUserName?: string;
+  projectLike?: number;
+}
+
+export interface userGroupUser {
+  user: ActiveUser;
+  userPosition?: string;
+  userRole?: string;
+}
+
+export interface userGroup {
+  createdAt?: firebase.firestore.Timestamp;
+  modifiedAt?: firebase.firestore.Timestamp;
+  groupId?: string;
+  groupTitle?: string;
+  groupUsers?: Array<userGroupUser>;
+}

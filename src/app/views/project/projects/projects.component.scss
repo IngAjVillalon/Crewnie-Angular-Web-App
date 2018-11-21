@@ -1,0 +1,164 @@
+.main-wrapper {
+    background-image: url("../../../../assets/images/session-bg.png");
+    background-color: #000000;
+    position: relative;
+    height: 100vh;
+    z-index: 1;
+    background-size: cover;
+}
+
+.main-wrapper::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    content: "";
+    z-index: -1;
+    background: #030000;
+    background: linear-gradient(
+        0deg,
+        #030000 18%,
+        rgba(3, 0, 0, 0.473827) 100%,
+        rgba(3, 0, 0, 0.0256478) 100%
+    );
+}
+
+// Top Bar
+
+.topbar {
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    padding: 10px 20px;
+
+    -webkit-box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+}
+
+.topbar--black {
+    background-color: #030000;
+}
+
+.topbar > div {
+    max-height: inherit;
+}
+
+.topbar__logo {
+    position: relative;
+    max-height: 100%;
+    max-width: 50px !important;
+}
+
+.topbar__logo img {
+    max-height: 100%;
+}
+
+.topbar__title {
+    margin-left: 10px;
+    max-width: max-content !important;
+}
+
+.topbar__title h4 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.9;
+    margin: 0;
+}
+
+.topbar__close {
+    position: relative;
+    max-width: max-content !important;
+}
+
+.topbar__close__btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    padding: 0px;
+    min-width: 50px !important;
+    min-height: 50px !important;
+
+    mat-icon {
+        color: #ffffff;
+    }
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+    }
+}
+
+// Add New Project Button
+.create__project__btn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background-color: #ff5722 !important;
+
+    mat-icon {
+        color: #ffffff;
+    }
+}
+
+// Projects
+
+.projects {
+    width: 100%;
+    height: 100%;
+    padding-top: 70px;
+}
+
+.projects--empty {
+    .empty__message {
+        position: absolute;
+        top: 40%;
+        width: 100%;
+        color: #aeaeae;
+        font-size: 70px;
+        font-weight: 400;
+        text-align: center;
+        margin: 0;
+    }
+
+    .empty__direction {
+        position: absolute;
+        bottom: 160px;
+        width: auto;
+        color: #ffffff;
+        font-size: 35px;
+        font-weight: 400;
+        text-align: center;
+        margin: 0;
+        right: 300px;
+    }
+
+    .empty__direction::after {
+        content: "";
+        width: 42px;
+        height: 42px;
+        top: 45px;
+        right: -250px;
+        position: absolute;
+        display: inline-block;
+        background-image: url(../../../../assets/images/add-project-arrow.png);
+        background-repeat: no-repeat;
+    }
+}
+
+.projects--full {
+    background-color: #46494e;
+}
+
+.projects__wrapper {
+    max-width: 1279px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.item {
+    padding: 0 10px;
+}

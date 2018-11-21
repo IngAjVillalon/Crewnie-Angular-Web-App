@@ -1,0 +1,364 @@
+<div class="main-wrapper">
+
+
+  <div fxLayout="row wrap" class="topbar topbar--black">
+
+    <div fxFlex="20" class="topbar__thumb">
+      <img src="assets/images/crewnie-logo.png" alt="">
+    </div>
+
+    <div fxFlex="20" class="topbar__title">
+      <h4>Star War - The Last Jedi</h4>
+      <button mat-button class="topbar__title__btn">
+        <mat-icon class="mat-18">arrow_drop_down</mat-icon>
+      </button>
+    </div>
+
+    <div fxFlex></div>
+
+
+    <div fxFlex="20" class="topbar__close">
+      <button mat-button class="topbar__close__btn" (click)="closeProjectDashboard()">
+        <span class="icon-crewnie-icon-close svg-icon"></span>
+      </button>
+    </div>
+
+
+  </div>
+
+  <div fxLayout="column" class="sidebar sidebar--white">
+    <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn active" [routerLink]="['/projects/dashboard']">
+        <span class="icon-crewnie-icon-home svg-icon"></span>
+      </button>
+    </div>
+
+    <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard/application']">
+        <span class="icon-crewnie-icon-stuff svg-icon"></span>
+      </button>
+    </div>
+
+    <!-- <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard/roles']">
+        <span class="icon-crewnie-icon-equipments svg-icon"></span>
+      </button>
+    </div> -->
+
+    <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard/roles']">
+        <span class="icon-crewnie-icon-custing svg-icon"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <div fxLayout="column" fxLayout.gt-md="row" fxLayoutGap="20px" class="main-content">
+
+    <div fxFlex="65" class="content content--timeline">
+      <div class="card card--timeline">
+        Developing...
+      </div>
+
+    </div>
+
+    <div fxFlex="35" class="content content--stuff">
+
+      <div class="card card--responsible">
+
+        <div class="applicant__wrapper">
+
+          <div class="applicant">
+            <div class="avatar">
+              <img src="assets/images/1.jpg" alt="">
+            </div>
+
+            <div class="applicant__info">
+              <h3 class="applicant__name">Harry Potter</h3>
+              <h3 class="applicant__position">Director</h3>
+            </div>
+
+            <button mat-button class="close__btn" (click)="closeProjectDashboard()">
+              <span class="icon-crewnie-icon-close svg-icon"></span>
+            </button>
+
+          </div>
+
+          <div class="applicant">
+            <div class="avatar">
+              <img src="assets/images/2.jpg" alt="">
+            </div>
+
+            <div class="applicant__info">
+              <h3 class="applicant__name">Emma Watson</h3>
+              <h3 class="applicant__position">Producer</h3>
+            </div>
+
+            <button mat-button class="close__btn" (click)="closeProjectDashboard()">
+              <span class="icon-crewnie-icon-close svg-icon"></span>
+            </button>
+
+          </div>
+
+          <div class="applicant">
+            <div class="avatar">
+              <img src="assets/images/3.jpg" alt="">
+            </div>
+
+            <div class="applicant__info">
+              <h3 class="applicant__name">James Potter</h3>
+              <h3 class="applicant__position">Actor</h3>
+            </div>
+
+            <button mat-button class="close__btn" (click)="closeProjectDashboard()">
+              <span class="icon-crewnie-icon-close svg-icon"></span>
+            </button>
+
+          </div>
+
+          <div class="applicant">
+            <div class="avatar">
+              <img src="assets/images/4.jpg" alt="">
+            </div>
+
+            <div class="applicant__info">
+              <h3 class="applicant__name">Jenni Wizlly</h3>
+              <h3 class="applicant__position">Actor</h3>
+            </div>
+
+            <button mat-button class="close__btn" (click)="closeProjectDashboard()">
+              <span class="icon-crewnie-icon-close svg-icon"></span>
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="add__applicant">
+          <button mat-button class="add__applicant__btn">EDIT RESPONSIBLE</button>
+        </div>
+
+      </div>
+
+      <div class="card card--applicants">
+
+        <div fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutGap="0px" class="wrapper">
+
+          <div fxFlex="20" class="item">
+            <div class="icon">
+                <span class="icon-crewnie-icon-stuff svg-icon"></span>
+            </div>
+
+          </div>
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">120</h3>
+              <h3 class="subtitle">Matches</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">5</h3>
+              <h3 class="subtitle">Requests</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">152</h3>
+              <h3 class="subtitle">Sent</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">25</h3>
+              <h3 class="subtitle">Added</h3>
+            </div>
+          </div>
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">183</h3>
+              <h3 class="subtitle">Pending</h3>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div class="card card--applicants">
+
+        <div fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutGap="0px" class="wrapper">
+
+          <div fxFlex="20" class="item">
+            <div class="icon">
+                <span class="icon-crewnie-icon-equipments svg-icon"></span>
+            </div>
+
+          </div>
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">120</h3>
+              <h3 class="subtitle">Matches</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">5</h3>
+              <h3 class="subtitle">Requests</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">152</h3>
+              <h3 class="subtitle">Sent</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">25</h3>
+              <h3 class="subtitle">Added</h3>
+            </div>
+          </div>
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">183</h3>
+              <h3 class="subtitle">Pending</h3>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div class="card card--applicants">
+
+        <div fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutGap="0px" class="wrapper">
+
+          <div fxFlex="20" class="item">
+            <div class="icon">
+                <span class="icon-crewnie-icon-equipments svg-icon"></span>
+            </div>
+
+          </div>
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">120</h3>
+              <h3 class="subtitle">Matches</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">5</h3>
+              <h3 class="subtitle">Requests</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">152</h3>
+              <h3 class="subtitle">Sent</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">25</h3>
+              <h3 class="subtitle">Added</h3>
+            </div>
+          </div>
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">183</h3>
+              <h3 class="subtitle">Pending</h3>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="card card--applicants">
+
+        <div fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutGap="0px" class="wrapper">
+
+          <div fxFlex="20" class="item">
+            <div class="icon">
+                <span class="icon-crewnie-icon-equipments svg-icon"></span>
+            </div>
+
+          </div>
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">120</h3>
+              <h3 class="subtitle">Matches</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">5</h3>
+              <h3 class="subtitle">Requests</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">152</h3>
+              <h3 class="subtitle">Sent</h3>
+            </div>
+          </div>
+
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">25</h3>
+              <h3 class="subtitle">Added</h3>
+            </div>
+          </div>
+
+          <div fxFlex="20" class="item">
+            <div class="counting">
+              <h3 class="number">183</h3>
+              <h3 class="subtitle">Pending</h3>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+</div>

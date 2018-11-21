@@ -1,0 +1,12 @@
+<div class="card card--project">
+  <img src="https://starwarsblog.starwars.com/wp-content/uploads/2017/01/sw-the-last-jedi-tall-1200x630.jpg" alt="" class="card__image">
+  <h3 class="card__title" (click)="viewProjectDashboard('project.projectId')">Star War - The Last Jedi</h3>
+
+  <p class="card__author">Lucas Films</p>
+  <p class="card__edited">Last modified: Dec/10/2017 8:15 AM</p>
+  <button mat-button class="card__more__btn" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Edit Project</button>
+    <button mat-menu-item>Delete Project</button>
+  </mat-menu>
+</div>

@@ -1,0 +1,226 @@
+.page-wrapper {
+    background-color: #46494e;
+    position: relative;
+    height: 100vh;
+    z-index: 1;
+    background-size: cover;
+}
+
+.content {
+    position: relative;
+    width: 1920px;
+    height: calc(100vh - 120px);
+    margin: 0 auto;
+    background-color: transparent;
+    overflow: scroll;
+    padding-bottom: 20px;
+}
+
+//============= Top Bar ===========================
+
+.topbar {
+    top: 0;
+    width: 100%;
+    height: 70px;
+    padding: 10px 20px;
+
+    -webkit-box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+}
+
+.topbar--black {
+    background-color: #030000;
+}
+
+.topbar > div {
+    max-height: inherit;
+}
+
+.topbar__logo {
+    position: absolute;
+    max-height: 100%;
+    max-width: 50px !important;
+}
+
+.topbar__logo img {
+    max-height: 100%;
+}
+
+.topbar__title {
+    position: relative;
+    margin-left: 60px;
+    max-width: max-content !important;
+}
+
+.topbar__title h4 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.9;
+    margin: 0;
+}
+
+
+.topbar__stepper {
+    width: max-content !important;
+    max-width: max-content !important;
+    img {
+        margin: 0 auto;
+        max-height: 120%;
+        display: inline-block;
+    }
+}
+
+
+.topbar__close {
+    position: relative;
+    max-width: max-content !important;
+}
+
+.topbar__back__btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    padding: 0px;
+    min-width: 50px !important;
+    min-height: 50px !important;
+
+    mat-icon {
+        color: #ffffff;
+    }
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+    }
+}
+
+.topbar__close__btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    padding: 0px;
+    min-width: 50px !important;
+    min-height: 50px !important;
+
+    mat-icon {
+        color: #ffffff;
+    }
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+    }
+}
+
+//============= Bottom Bar ===========================
+
+.bottombar {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    height: 50px;
+
+    -webkit-box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+}
+
+.bottombar--black {
+    background-color: #030000;
+}
+
+.bottombar__next {
+    max-width: max-content !important;
+}
+
+.bottombar__next .bottombar__next__btn {
+    width: 120px;
+    padding: 0px;
+    min-height: 50px !important;
+    background-color: #fc4000;
+    color: #ffffff;
+
+    &:hover {
+        background-color: rgba(252, 64, 0, 0.7) !important;
+    }
+}
+
+// ================== Cards ================
+
+.card__item {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    padding: 30px;
+
+    background-color: #ffffff;
+    -webkit-box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 19px -5px rgba(0, 0, 0, 0.5);
+}
+
+.application__right {
+    // .mat-orange-light {
+
+        .mat-select-value {
+            color: #ffffff !important;
+        }
+
+        .mat-select-arrow {
+            color: rgb(255, 255, 255) !important;
+        }
+
+        .mat-select-placeholder {
+            color: rgba(238, 238, 238, 0.42) !important;
+        }
+
+        .mat-form-field-appearance-legacy .mat-form-field-label {
+          color: rgba(255, 255, 255, 0.54) !important;
+        }
+
+        .mat-form-field-appearance-legacy .mat-form-field-underline {
+            background-color: rgba(255, 255, 255, 0.42) !important;
+        }
+    // }
+
+    .mat-tab-label .mat-tab-label-content {
+        color: #ffffff !important;
+    }
+}
+
+
+.sidebar {
+    .sidebar__item {
+        width: 100% !important;
+        height: max-content !important;
+        max-height: max-content !important;
+
+        .sidebar__btn {
+            width: 70px;
+            height: 70px;
+            padding: 0px;
+            margin: 0px;
+            min-width: 70px !important;
+            min-height: 70px !important;
+
+            .svg-icon {
+                color: #6f6f6f;
+                font-size: 50px;
+            }
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.2) !important;
+            }
+        }
+
+        .sidebar__btn.active {
+            background-color: #fc4000 !important;
+
+            .svg-icon {
+                color: #ffffff;
+                font-size: 50px;
+            }
+        }
+    }
+}

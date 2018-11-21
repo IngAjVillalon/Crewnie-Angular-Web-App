@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { startWith, map } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent, MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { UserService } from 'src/app/core/services/user.service';
+import { ProjectService } from 'src/app/core/services/project.service';
 
 export interface Tags {
   name: string;
@@ -94,7 +95,8 @@ export class UpdateAudioPortfolioComponent implements OnInit {
     private db: AngularFirestore,
     private router: Router,
     private route: ActivatedRoute,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public projectService: ProjectService
   ) {
 
     // Catch Url Parameter

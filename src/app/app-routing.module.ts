@@ -25,6 +25,10 @@ const routes: Routes = [
         path: 'profile-setup',
         loadChildren: './views/profile-setup/profile-setup.module#ProfileSetupModule'
       },
+      {
+        path: 'projects',
+        loadChildren: './views/project/project.module#ProjectModule'
+      }
     ]
   },
   {
@@ -34,10 +38,6 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: './views/profile/profile.module#ProfileModule'
-      },
-      {
-        path: 'project',
-        loadChildren: './views/project/project.module#ProjectModule'
       }
 
     ]

@@ -1,0 +1,418 @@
+<div class="main-wrapper">
+
+
+  <div fxLayout="row wrap" class="topbar topbar--black">
+
+    <div fxFlex="20" class="topbar__thumb">
+      <img src="assets/images/crewnie-logo.png" alt="">
+    </div>
+
+    <div fxFlex="20" class="topbar__title">
+      <h4>Star War - The Last Jedi</h4>
+      <button mat-button class="topbar__title__btn">
+        <mat-icon class="mat-18">arrow_drop_down</mat-icon>
+      </button>
+    </div>
+
+    <div fxFlex></div>
+
+
+    <div fxFlex="20" class="topbar__close">
+      <button mat-button class="topbar__close__btn" (click)="closeProjectDashboard()">
+        <span class="icon-crewnie-icon-close svg-icon"></span>
+      </button>
+    </div>
+
+
+  </div>
+
+  <div fxLayout="column" class="sidebar sidebar--white">
+
+    <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard']">
+        <span class="icon-crewnie-icon-home svg-icon"></span>
+      </button>
+    </div>
+
+    <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn active" [routerLink]="['/projects/dashboard/application']">
+        <span class="icon-crewnie-icon-stuff svg-icon"></span>
+      </button>
+    </div>
+
+    <!-- <div fxFlex="100" class="sidebar__item">
+          <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard/roles']">
+            <span class="icon-crewnie-icon-equipments svg-icon"></span>
+          </button>
+        </div> -->
+
+    <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard/roles']">
+        <span class="icon-crewnie-icon-custing svg-icon"></span>
+      </button>
+    </div>
+    <div fxFlex></div>
+
+    <div fxFlex="100" class="sidebar__item">
+      <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard/roles']">
+        <span class="icon-crewnie-icon-custing svg-icon"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="main-content topnav">
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="center start" class="content content--topnav">
+
+      <div fxFlex="20" class="production--stage">
+        <button mat-button class="stage__btn active">Pre-Production</button>
+      </div>
+      <div fxFlex="20" class="production--stage">
+        <button mat-button class="stage__btn">Production</button>
+      </div>
+      <div fxFlex="20" class="production--stage">
+        <button mat-button class="stage__btn">Post-Production</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="main-content content">
+
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="center start" class="content content__application">
+
+      <div fxFlex="25" class="application__left">
+
+        <h3 class="title">Talent Selection</h3>
+
+        <mat-tab-group mat-stretch-tabs>
+
+          <mat-tab label="Pending(5)">
+
+            <div class="position__filter">
+              <mat-form-field class="filter__by__position">
+                <mat-select placeholder="Filter by position">
+                  <mat-option value=""></mat-option>
+                  <mat-option value="">Director</mat-option>
+                  <mat-option value="">Actor</mat-option>
+                  <mat-option value="">Producer</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="applicant">
+              <div class="avatar">
+                <img src="assets/images/1.jpg" alt="">
+              </div>
+
+              <div class="applicant__info">
+                <h3 class="applicant__name">Harry Potter</h3>
+                <h3 class="applicant__position">Actor</h3>
+              </div>
+
+              <button mat-button class="close__btn" (click)="closeProjectDashboard()">
+                <span class="icon-crewnie-icon-close svg-icon"></span>
+              </button>
+
+            </div>
+
+            <div class="applicant">
+              <div class="avatar">
+                <img src="assets/images/2.jpg" alt="">
+              </div>
+
+              <div class="applicant__info">
+                <h3 class="applicant__name">Emma Watson</h3>
+                <h3 class="applicant__position">Actor</h3>
+              </div>
+
+              <button mat-button class="close__btn" (click)="closeProjectDashboard()">
+                <span class="icon-crewnie-icon-close svg-icon"></span>
+              </button>
+
+            </div>
+
+          </mat-tab>
+          <mat-tab label="Added(10)">
+
+            <div class="position__filter">
+              <mat-form-field class="filter__by__position">
+                <mat-select placeholder="Filter by position">
+                  <mat-option value=""></mat-option>
+                  <mat-option value="">Director</mat-option>
+                  <mat-option value="">Actor</mat-option>
+                  <mat-option value="">Producer</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="applicant">
+              <div class="avatar">
+                <img src="assets/images/1.jpg" alt="">
+              </div>
+
+              <div class="applicant__info">
+                <h3 class="applicant__name">Harry Potter</h3>
+                <h3 class="applicant__position">Actor</h3>
+              </div>
+
+              <button mat-button class="close__btn" (click)="closeProjectDashboard()">
+                <span class="icon-crewnie-icon-close svg-icon"></span>
+              </button>
+
+            </div>
+
+            <div class="applicant">
+              <div class="avatar">
+                <img src="assets/images/2.jpg" alt="">
+              </div>
+
+              <div class="applicant__info">
+                <h3 class="applicant__name">Emma Watson</h3>
+                <h3 class="applicant__position">Actor</h3>
+              </div>
+
+              <button mat-button class="close__btn" (click)="closeProjectDashboard()">
+                <span class="icon-crewnie-icon-close svg-icon"></span>
+              </button>
+
+            </div>
+
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+      <div fxFlex="75" class="application__right">
+
+        <div class="application__filters">
+
+          <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
+
+            <div fxFlex="20" class="filter__selection">
+
+              <mat-form-field class="filter__by__position">
+                <mat-select placeholder="Position">
+                  <mat-option value="">Director</mat-option>
+                  <mat-option value="">Actor</mat-option>
+                  <mat-option value="">Producer</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+
+            <div fxFlex="20" class="filter__selection">
+
+              <mat-form-field class="filter__by__position">
+                <mat-select class="select" placeholder="Ability">
+                  <mat-option value="">Director</mat-option>
+                  <mat-option value="">Actor</mat-option>
+                  <mat-option value="">Producer</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+
+            <div fxFlex="20" class="filter__selection">
+
+              <mat-form-field class="filter__by__position">
+                <input type="text" matInput placeholder="Location" class="location">
+                <mat-icon matSuffix>location_on</mat-icon>
+              </mat-form-field>
+
+            </div>
+
+            <div fxFlex></div>
+
+            <div fxFlex="20" class="filter__buttons">
+              <button mat-button class="filter__btn">
+                <mat-icon aria-label="Example icon-button with a heart icon">swap_vert</mat-icon>
+              </button>
+            </div>
+            <div fxFlex="20" class="filter__buttons">
+              <button mat-button class="filter__btn active">
+                <mat-icon aria-label="Example icon-button with a heart icon">apps</mat-icon>
+              </button>
+            </div>
+            <div fxFlex="20" class="filter__buttons">
+              <button mat-button class="filter__btn">
+                <mat-icon aria-label="Example icon-button with a heart icon">format_list_bulleted</mat-icon>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <mat-tab-group mat-align-tabs="center" dynamicHeight>
+          <mat-tab label="MATCHES(152)">
+
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="application__profiles">
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/1.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/2.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+                  </div>
+
+                  <div class="profile__invite">
+                    <p>invited</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </mat-tab>
+
+          <mat-tab label="REQUEST(20)">
+
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="application__profiles">
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/1.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/2.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+                  </div>
+
+                  <div class="profile__invite">
+                    <p>invited</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </mat-tab>
+
+          <mat-tab label="SENT(26)">
+
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="application__profiles">
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/1.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/2.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+                  </div>
+
+                  <div class="profile__invite">
+                    <p>invited</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </mat-tab>
+
+          <mat-tab label="LIKED(85)">
+
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="application__profiles">
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/1.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/2.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+                  </div>
+
+                  <div class="profile__invite">
+                    <p>invited</p>
+                  </div>
+                </div>
+              </div>
+
+              <div fxFlex="33.33" class="profile__wrapper">
+
+                <div class="profile profile--card">
+
+                  <div class="profile__cover">
+                    <img src="assets/images/3.jpg" alt="">
+                  </div>
+
+                  <div class="profile__photo">
+                    <div class="photo">
+                      <img src="assets/images/4.jpg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="profile__details">
+                    <h3 class="profile__name">Jassica Chobot</h3>
+                    <h3 class="profile__position">Writter</h3>
+                    <h3 class="profile__address">Los Angeles, California</h3>
+                  </div>
+
+                  <!-- <div class="profile__invite">
+                    <p>invited</p>
+                  </div> -->
+                </div>
+              </div>
+
+            </div>
+
+          </mat-tab>
+
+        </mat-tab-group>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
+</div>

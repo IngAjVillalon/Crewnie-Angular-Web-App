@@ -1,0 +1,256 @@
+.card--workgroup {
+    position: relative;
+    width: 100%;
+}
+
+.workgroup__action__btn {
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    padding: 0;
+    width: 40px;
+    max-width: 40px !important;
+    min-width: 40px !important;
+
+    mat-icon {
+        color: #818181;
+    }
+}
+
+.workgroup__title {
+    width: calc(100% - 70px);
+    margin: 0;
+    margin-left: 20px;
+    margin-top: 20px;
+
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1;
+    color: #fc4000;
+}
+
+.workgroup__add_user {
+    width: calc(100% - 40px);
+    margin: 0;
+    margin-left: 20px;
+
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1;
+    color: #000000;
+}
+
+.team--leader {
+}
+
+.workgroup__user {
+    display: block;
+    width: 100%;
+
+    border-bottom: 1px solid rgba(109, 109, 109, 0.3);
+}
+
+.workgroup__add__memebr {
+    display: block;
+    width: 100%;
+
+    .add__member__btn {
+        width: 100%;
+        height: 50px;
+        min-height: 50px;
+        margin: 10px 0 0 0;
+
+        font-size: 20px;
+        font-weight: 400;
+        color: #fc4000;
+
+        &:hover {
+            background-color: rgba(252, 64, 0, 0.02) !important;
+        }
+    }
+}
+
+.user {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 70px;
+    display: block;
+
+    .select__member__form {
+        width: 100%;
+
+        .select__member__input {
+            width: calc(100% - 40px);
+            margin-left: 20px;
+            font-size: 17px;
+        }
+    }
+
+    .select__team__lead__btn {
+        position: absolute;
+        right: 5px;
+        width: 36px;
+        padding: 0px;
+        min-width: 36px !important;
+        min-height: 36px !important;
+        z-index: 3;
+
+        mat-icon {
+            color: #7f7f7f;
+        }
+    }
+}
+
+.team__leader {
+    position: relative;
+    height: 100%;
+    max-height: 70px;
+
+    .select__teamLead__form {
+        width: 100%;
+    }
+
+    .select__teamLead__text {
+        font-size: 18px;
+        font-weight: 400;
+        margin: 0;
+        width: 100%;
+        height: 36px;
+        display: inline-block;
+        line-height: 2.5;
+        margin-bottom: 10px;
+        margin-left: 20px;
+    }
+
+    .select__teamLead__input {
+        font-size: 18px;
+        font-weight: 400;
+        margin: 0;
+        width: calc(100% - 40px);
+        display: inline-block;
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+
+    .select__team__lead__btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        width: 36px;
+        padding: 0px;
+        min-width: 36px !important;
+        min-height: 36px !important;
+        z-index: 3;
+
+        mat-icon {
+            color: #7f7f7f;
+        }
+    }
+
+    .user__avater {
+        max-width: 40px !important;
+        max-height: 40px !important;
+        padding: 0px !important;
+        margin: 5px !important;
+
+        .avater__img {
+            border-radius: 50%;
+            overflow: hidden;
+        }
+    }
+
+    .user__info {
+        position: relative;
+
+        .user__name {
+            display: inline-block;
+            margin: 0;
+            margin-left: 10px;
+
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 2.3;
+            color: #030000 !important;
+            height: max-content;
+        }
+    }
+}
+
+.user .user__avater {
+    max-width: 60px !important;
+    max-height: 60px !important;
+    padding: 5px !important;
+    margin: 5px 10px !important;
+
+    .avater__img {
+        border-radius: 50%;
+        overflow: hidden;
+    }
+}
+
+.user .user__info {
+    position: relative;
+
+    padding: 10px 0 !important;
+}
+
+a {
+    display: block;
+}
+.user__info .user__name {
+    margin: 0;
+    display: block;
+    z-index: 2;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    color: #030000;
+}
+
+.user__name.admin {
+    color: #fc4000 !important;
+
+    span {
+        font-size: 15px;
+        font-weight: 300;
+
+        color: #7f7f7f !important;
+    }
+}
+
+.user__role {
+    margin: 0;
+    margin-top: 8px;
+    z-index: 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: #a2a2a2;
+    line-height: 1;
+}
+
+.user__role.admin {
+    margin: 0;
+    margin-top: -8px;
+    z-index: 0;
+    font-size: 15px;
+    font-weight: 400;
+    color: #a2a2a2;
+    line-height: 1;
+}
+
+.user .user__cancel__btn {
+    position: absolute;
+    top: 17px;
+    right: 6px;
+    width: 36px;
+    padding: 0px;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    z-index: 3;
+
+    mat-icon {
+        color: #a2a2a2;
+    }
+}
