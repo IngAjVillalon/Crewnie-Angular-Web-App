@@ -5,7 +5,7 @@
 
     <div fxFlex="20" class="topbar__logo">
       <button mat-button class="topbar__back__btn" (click)="prevStep()">
-        <mat-icon class="mat-18">arrow_back</mat-icon>
+        <span class="icon-crewnie-icon-arrow-back svg-icon"></span>
       </button>
     </div>
 
@@ -21,7 +21,7 @@
 
     <div fxFlex="20" class="topbar__close">
       <button mat-button class="topbar__close__btn" (click)="cancelProjectCreate()">
-        <mat-icon class="mat-18">close</mat-icon>
+        <span class="icon-crewnie-icon-close svg-icon"></span>
       </button>
     </div>
 
@@ -32,7 +32,7 @@
     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="20px" class="content content--workgroup">
 
       <div fxFlex="32" class="item item--active" *ngFor="let userGroup of userGroups">
-        <usergroup-card [userGroup]='userGroup'></usergroup-card>
+        <usergroup-card [userGroup]="userGroup" (userGroup)="getGroupData($event, userGroup)"></usergroup-card>
       </div>
       <!-- <div fxFlex="23" class="item item--active">
         <usergroup-card [userGroup]='userGroup'></usergroup-card>
@@ -51,7 +51,7 @@
 
     <div fxFlex></div>
     <div fxFlex="20" class="bottombar__next">
-      <button mat-button class="bottombar__next__btn" (click)="nextStep()">FINISH</button>
+      <button mat-button class="bottombar__next__btn" (click)="nextStep()">NEXT</button>
     </div>
 
   </div>

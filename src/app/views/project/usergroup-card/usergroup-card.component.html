@@ -4,14 +4,16 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #action="matMenu">
-    <button mat-menu-item>Edit Project</button>
-    <button mat-menu-item>Delete Project</button>
+    <button mat-menu-item>Edit Project {{userGroup.groupId}}</button>
+    <button mat-menu-item (click)="deleteGroup()">Delete Project</button>
   </mat-menu>
+<form [formGroup]="groupData">
+
 
   <mat-form-field class="workgroup__title">
-    <input matInput placeholder="Workgroup">
+    <input matInput placeholder="Workgroup" formControlName="groupTitle" (change)="groupChangeEvent()">
   </mat-form-field>
-
+</form>
   <div class="workgroup__user">
     <div fxLayout="row" [class.team__leader]="!isAdminSelected" [class.user]="isAdminSelected">
       <div fxFlex="20" class="user__avater" *ngIf="isAdminSelected">
@@ -24,7 +26,7 @@
         <a [routerLink]="[ '/profile' ]" class="user__name admin">{{teamLeader.user.firstName}} <span>(Team Leader)</span></a>
 
         <mat-form-field class="user__role admin" *ngIf="teamLeader">
-          <mat-select [(ngModel)]="teamLeader.userRole" value="admin">
+          <mat-select [(ngModel)]="teamLeader.role" value="admin" (change)="groupChangeEvent()">
             <mat-option value="admin">Administrator</mat-option>
             <mat-option value="role-1">Role 1</mat-option>
             <mat-option value="role-2">Role 2</mat-option>
@@ -39,7 +41,7 @@
           <input type="text" placeholder="Select a team leader" matInput formControlName="addTeaamLead" [matAutocomplete]="teamLead">
 
           <mat-autocomplete #teamLead="matAutocomplete" (optionSelected)="selectTeamLead($event.option.value)">
-            <mat-option *ngFor="let teamLead of crewnieUsers" [value]="teamLead.uid">
+            <mat-option *ngFor="let teamLead of crewnieUsers" [value]="teamLead.uid" (change)="groupChangeEvent()">
               <div fxLayout="row" class="team__leader">
                 <div fxFlex="20" class="user__avater">
                   <img class="avater__img" [src]="teamLead.profilePhotoUrl" alt="">
@@ -60,7 +62,7 @@
 
   </div>
 
-  <div class="workgroup__user" *ngFor="let user of userGroup.groupUsers">
+  <div class="workgroup__user" *ngFor="let user of users">
     <div fxLayout="row" class="user">
       <div fxFlex="20" class="user__avater">
         <a href="">
@@ -70,8 +72,8 @@
       <div fxFlex="80" class="user__info">
         <a [routerLink]="[ '/profile' ]" class="user__name">{{user.user.firstName}}</a>
         <mat-form-field class="user__role admin" *ngIf="teamLeader">
-          <mat-select [(ngModel)]="user.userRole" value="admin">
-            <mat-option selected value="admin">Administrator</mat-option>
+          <mat-select [(ngModel)]="user.position" value="user" (change)="groupChangeEvent()">
+            <mat-option selected value="user">User</mat-option>
             <mat-option value="role-1">Role 1</mat-option>
             <mat-option value="role-2">Role 2</mat-option>
             <mat-option value="role-3">Role 3</mat-option>
@@ -94,7 +96,7 @@
 
         <mat-form-field class="select__member__input">
 
-          <input matInput type="text" placeholder="Select a team leader from the list" [matAutocomplete]="member" formControlName="addMember" >
+          <input matInput type="text" placeholder="Select a team leader from the list" [matAutocomplete]="member" formControlName="addMember" (change)="groueChangEvente()">
           <button mat-button matSuffix mat-icon-button>
               <mat-icon>close</mat-icon>
             </button>

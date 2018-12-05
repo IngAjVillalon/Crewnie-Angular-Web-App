@@ -7,23 +7,216 @@
     background-size: cover;
 }
 
-
-
 // Main Content
 
-.main-content {
+.stuff__main-content {
     position: relative;
-    width: 1140px;
+    width: 100%;
     height: calc(100vh - 120px);
     margin: 0 auto;
+    // padding: 20px;
     background-color: transparent;
     overflow: scroll;
-    padding-bottom: 20px;
 }
 
-.content {
+.stuff__top__bar {
+    position: fixed;
+    width: 100%;
+    height: 50px;
 
+    background-color: #ffffff;
+    text-align: center;
+
+    .bar__button {
+        min-height: 50px;
+        width: 200px;
+        border-bottom: 2px solid transparent;
+
+        font-size: 17px;
+    }
+    .active {
+        border-bottom: 2px solid #fc4000;
+    }
 }
+
+.stuff__content {
+    position: fixed;
+    width: 100%;
+    height: calc(100% - 170px);
+    padding: 20px;
+    padding-bottom: 0;
+    margin-top: 50px;
+}
+
+.stuff__left__col,
+.stuff__right__col {
+    width: 100%;
+    height: 100%;
+}
+
+.stuff__right__col .stuff__card {
+    overflow: scroll !important;
+}
+
+.stuff__card {
+    height: 100%;
+    background-color: #ffffff;
+
+    .card__title {
+        margin: 0;
+        padding: 10px 20px;
+        padding-bottom: 0;
+
+        color: #fc4000;
+        font-size: 30px;
+        font-weight: 300;
+    }
+
+    .card__subtitle {
+        margin: 0;
+        padding: 5px 20px;
+        padding-top: 0;
+
+        color: #46494e;
+        font-size: 15px;
+        font-weight: 300;
+        margin: 0;
+    }
+
+    .card__searchbox {
+        width: 100%;
+        height: 60px;
+
+        text-align: center;
+
+        .searchbox {
+            width: 90%;
+        }
+    }
+
+    .stuff__position {
+        position: relative;
+        width: 100%;
+        height: 40px;
+        padding: 5px 20px;
+
+        border-bottom: 1px solid rgba(102, 102, 102, 0.17);
+
+        .position {
+            margin: 0;
+
+            font-size: 17px;
+            font-weight: 400;
+
+        }
+
+        .add__position {
+            position: absolute;
+                top: 0px;
+                right: 0px;
+                width: 40px;
+                height: 40px;
+                padding: 0px;
+                min-width: 40px !important;
+                min-height: 40px !important;
+                max-width: 40px !important;
+                max-height: 40px !important;
+
+                .svg-icon {
+                    color: #fc4000;
+                    font-size: 30px;
+                }
+
+                mat-icon {
+                    color: #fc4000;
+                    font-weight: 500;
+                }
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.4) !important;
+                }
+        }
+    }
+
+    .position__details {
+        width: auto;
+        height: 70px;
+
+        border-bottom: 1px solid rgba(162, 162, 162, 0.2);
+
+
+
+        .details__item__wrapper {
+            width: 100%;
+            height: 100%;
+
+            .position {
+                width: 270px;
+                min-width: 270px !important;
+                max-width: 270px !important;
+
+                .position__title {
+                    margin: 0;
+                    padding-left: 20px;
+                    font-size: 20px;
+                    font-weight: 400;
+                    color: #46494e;
+
+                    span {
+                        margin: 0;
+                        color: #fc4000;
+                        margin-right: 2px;
+                    }
+                }
+            }
+
+            .selection {
+                width: 200px;
+                min-width: 200px !important;
+                max-width: 200px !important;
+
+                mat-form-field {
+                    width: 90%;
+                    font-size: 17px;
+                    margin-top: 20px;
+                }
+            }
+
+            .selection.salary {
+                max-width: 200px !important;
+                min-width: 200px !important;
+                width: 200px !important;
+            }
+            .selection.preiod {
+                max-width: 130px !important;
+                min-width: 130px !important;
+                width: 130px !important;
+            }
+            .selection.vacants {
+                max-width: 70px !important;
+                min-width: 70px !important;
+                width: 70px !important;
+
+                mat-form-field {
+                    text-align: center !important;
+                    width: 80%;
+                }
+
+            }
+
+            .selection.working__date {
+                max-width: 175px !important;
+                min-width: 175px !important;
+                width: 175px !important;
+
+                mat-form-field {
+                    width: 80%;
+                }
+            }
+        }
+    }
+}
+
+
 
 .info {
     position: relative;

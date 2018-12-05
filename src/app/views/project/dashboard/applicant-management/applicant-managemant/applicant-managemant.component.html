@@ -1,0 +1,209 @@
+<div class="applicant__management">
+
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="0px" class="applicant__mamagement__wrapper">
+
+    <div fxFlex="20" class="applicant__list">
+      <h3 class="list__title">Casting</h3>
+
+      <div class="select__applicant">
+        <mat-form-field>
+          <mat-label>Select applicant</mat-label>
+          <mat-select>
+            <mat-option>None</mat-option>
+            <mat-option value="option1">Robin</mat-option>
+            <mat-option value="option2">Marshal</mat-option>
+            <mat-option value="option3">Lilly</mat-option>
+            <mat-option value="option3">Ted</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="applicants">
+
+        <div class="applicant" (click)="selectApplicant()">
+
+          <div class="avatar">
+            <img src="assets/images/1.jpg" alt="">
+          </div>
+
+          <div class="applicant__info">
+            <h3 class="applicant__name">Cobie Smulders</h3>
+            <h3 class="applicant__location">Los Angeles</h3>
+          </div>
+
+          <h3 class="status maybe">Maybe</h3>
+
+          <button mat-button class="note__btn">
+            <span class="icon-crewnie-icon-takenote svg-icon"></span>
+          </button>
+
+          <button mat-button class="close__btn">
+            <span class="icon-crewnie-icon-close svg-icon"></span>
+          </button>
+
+        </div>
+
+        <div class="applicant" (click)="selectApplicant()">
+
+          <div class="avatar">
+            <img src="assets/images/1.jpg" alt="">
+          </div>
+
+          <div class="applicant__info">
+            <h3 class="applicant__name">Mably Snider</h3>
+            <h3 class="applicant__location">Los Angeles</h3>
+          </div>
+
+          <h3 class="status yes">Yes</h3>
+
+          <button mat-button class="note__btn">
+            <span class="icon-crewnie-icon-takenote svg-icon"></span>
+          </button>
+
+          <button mat-button class="close__btn">
+            <span class="icon-crewnie-icon-close svg-icon"></span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div fxFlex="80" class="applicant__details">
+
+      <div class="details__top" fxLayout="row" fxLayoutAlign="center center">
+
+        <div fxFlex="40" class="top__header">
+
+          <div class="applicant" (click)="selectApplicant()">
+
+            <div class="avatar">
+              <img src="assets/images/1.jpg" alt="">
+            </div>
+
+            <div class="applicant__info">
+              <h3 class="applicant__name">Mably Snider</h3>
+              <h3 class="applicant__location">Los Angeles</h3>
+            </div>
+
+
+
+            <button mat-button class="prev__btn">
+              <span class="icon-crewnie-icon-arrow-back svg-icon"></span>
+            </button>
+
+            <button mat-button class="next__btn">
+              <span class="icon-crewnie-icon-arrow-forward svg-icon"></span>
+            </button>
+
+          </div>
+
+        </div>
+
+        <button mat-button class="btn__switch__view" (click)="showProfileThumbList()">
+          <span class="icon-crewnie-icon-switch svg-icon"></span>
+        </button>
+
+        <button mat-button class="btn__takenote" (click)="showTopNote('noteId')">
+          <span class="icon-crewnie-icon-takenote svg-icon"></span>
+        </button>
+
+        <button mat-button class="btn__close">
+          <span class="icon-crewnie-icon-close svg-icon"></span>
+        </button>
+
+        <div class="note__wrapper" *ngIf="showNote">
+
+          <div class="note__header">
+            <h3 class="title">Notes</h3>
+            <button mat-button class="btn__close" (click)="closeTopNote()">
+              <span class="icon-crewnie-icon-close svg-icon"></span>
+            </button>
+          </div>
+
+          <div class="note__content">
+
+            <div class="content">
+              <div class="note">
+                <h3 class="note__user">Arther Doyel <span class="position">(Director)</span></h3>
+
+                <p class="note__text">it is a note</p>
+                <p class="note__time">Nov 17, 2018. 10:30PM</p>
+                <button mat-button class="btn__close">
+                  <span class="icon-crewnie-icon-close svg-icon"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="note__input">
+              <mat-form-field class="">
+                <textarea matInput placeholder="Add a note"></textarea>
+              </mat-form-field>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="applicant__preview">
+
+        <div class="applicant__photo">
+          <img src="http://www.betrourich.com/wp-content/uploads/2017/01/Cobie-Smulders-1024x512.png" alt="">
+        </div>
+
+        <div class="applicant__decisions" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+
+          <div fxFlex="20" class="decision">
+            <button mat-button class="btn__select">
+              <span class="icon-crewnie-icon-tick svg-icon"></span>
+            </button>
+          </div>
+
+          <div fxFlex="20" class="decision">
+            <button mat-button class="btn__transfer" (click)="openDialog()">
+              <span class="icon-crewnie-icon-transfer svg-icon"></span>
+            </button>
+          </div>
+
+          <div fxFlex="20" class="decision">
+            <button mat-button class="btn__cancel">
+              <span class="icon-crewnie-icon-cross svg-icon"></span>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="applicant__thumbs" *ngIf="showThumbList">
+          <button mat-button class="btn__view__profile">
+            Visit Profile
+          </button>
+
+          <div class="thumb__list">
+            <div class="thumb">
+              <img src="assets/images/1.jpg" alt="">
+            </div>
+
+            <div class="thumb active">
+              <img src="assets/images/2.jpg" alt="">
+            </div>
+
+            <div class="thumb">
+              <img src="assets/images/3.jpg" alt="">
+            </div>
+
+            <div class="thumb">
+              <img src="assets/images/4.jpg" alt="">
+            </div>
+          </div>
+        </div>
+
+        <button mat-button class="btn__info">
+          <span class="icon-crewnie-icon-info svg-icon"></span>
+        </button>
+
+
+      </div>
+    </div>
+  </div>
+</div>

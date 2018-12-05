@@ -1,237 +1,271 @@
 <div class="main-wrapper">
 
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">{{spinnerMessage}}</p>
+  </ngx-spinner>
+
   <form [formGroup]="projectInfoForm">
 
-  <div fxLayout="row wrap" class="topbar topbar--black">
+    <div fxLayout="row wrap" class="topbar topbar--black">
 
-    <div fxFlex="20" class="topbar__back">
-      <button mat-button class="topbar__back__btn" (click)="prevStep()">
-        <mat-icon class="mat-18">arrow_back</mat-icon>
-      </button>
-    </div>
-
-    <div fxFlex="20" class="topbar__title">
-      <h4>Create new project</h4>
-    </div>
-
-    <div fxFlex></div>
-    <div fxFlex="20" class="topbar__stepper">
-      <img src="assets/images/step-project-info.png" alt="">
-    </div>
-    <div fxFlex></div>
-
-    <div fxFlex="20" class="topbar__close">
-      <button mat-button class="topbar__close__btn" (click)="cancelProjectCreate()">
-        <mat-icon class="mat-18">close</mat-icon>
-      </button>
-    </div>
-
-
-  </div>
-
-  <div class="main-content">
-
-    <div fxLayout="column" class="info">
-
-      <!-- Title Row -->
-      <div fxFlex="100" fxLayout="row">
-
-        <div fxFlex="50" class="info__title">
-          <h3>Project Info</h3>
-        </div>
-
-        <div fxFlex></div>
-
-        <div fxFlex="30" class="info__private">
-          <button mat-icon-button>
-            <mat-icon aria-label="Example icon-button with a heart icon">lock_open</mat-icon>
-          </button>
-          <span><strong>Private:</strong> OFF</span>
-        </div>
-
+      <div fxFlex="20" class="topbar__back">
+        <button type="button" mat-button class="topbar__back__btn" (click)="prevStep()">
+          <span class="icon-crewnie-icon-arrow-back svg-icon"></span>
+        </button>
       </div>
 
-      <!-- Input Row 2 -->
-      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
-
-        <div fxFlex="63">
-          <mat-form-field class="info__input">
-            <mat-label>Project Title</mat-label>
-            <input matInput type="text" placeholder="Write project name" autocomplete="off" formControlName="projectName">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="35">
-          <mat-form-field class="info__input">
-            <mat-label>Location</mat-label>
-            <input matInput type="text" placeholder="Select a location" autocomplete="off" formControlName="projectLocation">
-            <mat-icon matSuffix>location_on</mat-icon>
-          </mat-form-field>
-        </div>
-
+      <div fxFlex="20" class="topbar__title">
+        <h4>Create new project</h4>
       </div>
 
-      <!-- Input Row 2 -->
-      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+      <div fxFlex></div>
+      <div fxFlex="20" class="topbar__stepper">
+        <img src="assets/images/step-project-info.png" alt="">
+      </div>
+      <div fxFlex></div>
 
-        <div fxFlex="30">
-          <mat-form-field class="info__input">
-            <mat-label>Type</mat-label>
-            <mat-select placeholder="Select type" formControlName="projectName">
-              <mat-option disabled selected>Select type</mat-option>
-              <mat-option value="volvo">Movie</mat-option>
-              <mat-option value="saab">Music Video</mat-option>
-              <mat-option value="mercedes">Photo Graphy</mat-option>
-            </mat-select>
-          </mat-form-field>
+      <div fxFlex="20" class="topbar__close">
+        <button type="button" mat-button class="topbar__close__btn" (click)="cancelProjectCreate()">
+          <span class="icon-crewnie-icon-close svg-icon"></span>
+        </button>
+      </div>
+
+
+    </div>
+
+    <div class="main-content">
+
+      <div fxLayout="column" class="info">
+
+        <!-- Title Row -->
+        <div fxFlex="100" fxLayout="row">
+
+          <div fxFlex="50" class="info__title">
+            <h3>Project Info</h3>
+          </div>
+
+          <div fxFlex></div>
+
+          <div fxFlex="30" class="info__private">
+            <button mat-icon-button (click)="changePrivacy()" class="private__btn" [class.active]="privacy">
+              <mat-icon *ngIf="!privacy">lock_open</mat-icon>
+              <mat-icon *ngIf="privacy" style="color:#fff;">lock</mat-icon>
+            </button>
+            <span *ngIf="!privacy"><strong>Private:</strong> OFF</span>
+            <span *ngIf="privacy"><strong>Private:</strong> ON</span>
+          </div>
+
         </div>
 
-        <div fxFlex="28">
-          <mat-form-field class="info__input">
-            <mat-label>Genra</mat-label>
-            <mat-select placeholder="Select type" multiple formControlName="projectName">
-              <mat-option disabled selected>Select one or more</mat-option>
-              <mat-option value="volvo">Movie</mat-option>
-              <mat-option value="saab">Music Video</mat-option>
-              <mat-option value="mercedes">Photo Graphy</mat-option>
-            </mat-select>
-          </mat-form-field>
+        <!-- Input Row 2 -->
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+
+          <div fxFlex="63">
+            <mat-form-field class="info__input">
+              <mat-label>Project Title</mat-label>
+              <input matInput type="text" placeholder="Write project name" autocomplete="off" formControlName="projectName">
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="35">
+            <mat-form-field class="info__input">
+              <mat-label>Location</mat-label>
+              <input matInput type="text" placeholder="Select a location" autocomplete="off" formControlName="projectLocation">
+              <mat-icon matSuffix>location_on</mat-icon>
+            </mat-form-field>
+          </div>
+
         </div>
 
-        <div fxFlex="17">
+        <!-- Input Row 2 -->
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
 
-          <mat-form-field class="info__input">
-            <mat-label>Production Date</mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="Kick off" autocomplete="off">
-            <mat-datepicker-toggle matSuffix [for]="picker" class="icon__red"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
+          <div fxFlex="30">
+            <mat-form-field class="info__input">
+              <mat-label>Type</mat-label>
+              <mat-select placeholder="Select type" formControlName="projectType">
+                <mat-option disabled selected>Select type</mat-option>
+                <mat-option value="volvo">Movie</mat-option>
+                <mat-option value="saab">Music Video</mat-option>
+                <mat-option value="mercedes">Photo Graphy</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
-        <div fxFlex="3">
-          <mat-divider style="
+          <div fxFlex="28">
+            <mat-form-field class="info__input">
+              <mat-label>Genra</mat-label>
+              <mat-select placeholder="Select type" multiple formControlName="projectGenra">
+                <mat-option disabled selected>Select one or more</mat-option>
+                <mat-option value="movie">Movie</mat-option>
+                <mat-option value="music">Music Video</mat-option>
+                <mat-option value="photography">Photo Graphy</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="17">
+
+            <mat-form-field class="info__input">
+              <mat-label>Production Date</mat-label>
+              <input matInput [matDatepicker]="picker" placeholder="Kick off" autocomplete="off" formControlName="projectStart">
+              <mat-datepicker-toggle matSuffix [for]="picker" class="icon__red"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="3">
+            <mat-divider style="
             margin-top: 120%;
             border-top: 1px solid rgba(0, 0, 0, 0.31);
         "></mat-divider>
-        </div>
-
-        <div fxFlex="15">
-          <mat-form-field class="info__input">
-            <mat-label>End Date</mat-label>
-            <input matInput [matDatepicker]="picker2" placeholder="End date" autocomplete="off">
-            <mat-datepicker-toggle matSuffix [for]="picker2" class="icon__red"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-        </div>
-
-
-      </div>
-
-      <!-- Input Row 3 -->
-      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
-
-        <div fxFlex="100">
-          <mat-form-field class="info__input">
-            <mat-label>Category</mat-label>
-            <input matInput type="text" placeholder="Write one or more category" autocomplete="off" formControlName="projectLocation">
-          </mat-form-field>
-        </div>
-
-      </div>
-
-
-    </div>
-
-
-    <div fxLayout="column" class="info">
-
-      <!-- Title Row -->
-      <div fxFlex="100" fxLayout="row">
-
-        <div fxFlex="50" class="info__title">
-          <h3>Union</h3>
-        </div>
-
-        <div fxFlex></div>
-
-        <div fxFlex="30" class="info__private">
-          <mat-checkbox matInput color="primary"></mat-checkbox>
-        </div>
-
-      </div>
-
-      <!-- Input Row 2 -->
-      <div fxFlex="100" fxLayout="row" fxLayoutAlign="start start">
-
-        <div fxFlex="25" class="info_union" *ngFor="let union of projectUnions">
-          <mat-form-field class="info__input">
-            <mat-label>Union</mat-label>
-            <mat-select placeholder="Select" formControlName="projectName">
-              <mat-option disabled selected>Select type</mat-option>
-              <mat-option value="volvo">Movie</mat-option>
-              <mat-option value="saab">Music Video</mat-option>
-              <mat-option value="mercedes">Photo Graphy</mat-option>
-            </mat-select>
-            <mat-hint class="union__hint">Union</mat-hint>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="10" class="info_union" >
-          <button mat-button class="union__add" (click)="addNewUnion()" *ngIf="projectUnions.length <= 4">
-            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-          </button>
-
-          <button mat-button class="union__add" (click)="removeNewUnion()" *ngIf="projectUnions.length > 1">
-            <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
-          </button>
-        </div>
-
-
-      </div>
-
-    </div>
-
-    <div fxLayout="column" class="info">
-
-      <!-- Title Row -->
-      <div fxFlex="100" fxLayout="row">
-
-        <div fxFlex="50" class="info__title">
-          <h3>Project Cover</h3>
-        </div>
-
-        <div fxFlex></div>
-
-      </div>
-
-      <!-- Input Row 2 -->
-      <div fxFlex="100" fxLayout="row" fxLayoutAlign="start start">
-
-        <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center" class="info_cover">
-          <div fxFlex="20" class="cover__placeholder">
-            <img src="assets/images/cloud-upload.png" alt="">
           </div>
 
-          <div fxFlex="70" class="cover__instructions">
-            <h4 class="instruction__click__msg">Click to select your image file</h4>
-            <h4 class="instruction__import__msg">Import your cover image from your computer <span>(Accepts .jpeg, .jpe, .png)</span></h4>
+          <div fxFlex="15">
+            <mat-form-field class="info__input">
+              <mat-label>End Date</mat-label>
+              <input matInput [matDatepicker]="picker2" placeholder="End date" autocomplete="off" formControlName="projectEnd">
+              <mat-datepicker-toggle matSuffix [for]="picker2" class="icon__red"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
           </div>
+
+
+        </div>
+
+        <!-- Input Row 3 -->
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+
+          <div fxFlex="100">
+            <mat-form-field class="category__input">
+              <mat-chip-list #chipList>
+                <mat-chip class="tag" *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable"
+                  (removed)="remove(tag)">
+                  {{tag.name}}
+                  <mat-icon matChipRemove *ngIf="removable">clear</mat-icon>
+                </mat-chip>
+
+                <input placeholder="Write one or more category..." autocomplete="off" [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="add($event)">
+
+              </mat-chip-list>
+
+            </mat-form-field>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div fxLayout="column" class="info">
+
+        <!-- Title Row -->
+        <div fxFlex="100" fxLayout="row">
+
+          <div fxFlex="50" class="info__title">
+            <h3>Union</h3>
+          </div>
+
+          <div fxFlex></div>
+
+          <div fxFlex="30" class="info__private">
+            <mat-checkbox matInput color="primary" formControlName="projectHasUnion"></mat-checkbox>
+          </div>
+
+        </div>
+
+        <!-- Input Row 2 -->
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="start start">
+
+          <div fxFlex="25" class="info_union" *ngFor="let union of unions">
+            <mat-form-field class="info__input">
+              <mat-label>Union</mat-label>
+              <mat-select placeholder="Select" formControlName="{{union.controlName}}">
+                <mat-option disabled selected>Select type</mat-option>
+                <mat-option value="movie">Movie</mat-option>
+                <mat-option value="music">Music Video</mat-option>
+                <mat-option value="photography">Photography</mat-option>
+              </mat-select>
+              <mat-hint class="union__hint">Union</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="10" class="info_union">
+            <button mat-button class="union__add" (click)="addNewUnion()" *ngIf="projectUnions.length <= 4">
+              <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+            </button>
+
+            <button mat-button class="union__add" (click)="removeNewUnion()" *ngIf="projectUnions.length > 1">
+              <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
+            </button>
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div fxLayout="column" class="info">
+
+        <!-- Title Row -->
+        <div fxFlex="100" fxLayout="row">
+
+          <div fxFlex="50" class="info__title">
+            <h3>Project Cover</h3>
+          </div>
+
+          <div fxFlex></div>
+
+        </div>
+
+        <!-- Input Row 2 -->
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="start start" *ngIf="!coverPhotoSelected">
+
+          <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center" class="info_cover">
+
+            <div fxFlex="20" class="cover__placeholder">
+              <img src="assets/images/cloud-upload.png" alt="">
+            </div>
+
+            <div fxFlex="70" class="cover__instructions">
+              <h4 class="instruction__click__msg">Click to select your image file</h4>
+              <h4 class="instruction__import__msg">Import your cover image from your computer <span>(Accepts .jpeg,
+                  .jpe, .png)</span></h4>
+            </div>
+
+            <input class="file-input" type="file" (change)="selectFileToUpload($event)" accept=".png,.jpg">
+
+          </div>
+
+        </div>
+
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="start start" *ngIf="coverPhotoSelected">
+
+          <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center" class="info_cover__preview">
+            <img id="coverImage" src="" alt="">
+            <button mat-button class="btn_select__photo">CHANGE COVER PHOTO</button>
+            <input class="file-input" type="file" (change)="selectFileToUpload($event)" accept=".png,.jpg">
+            <button mat-button class="btn_cancel__cover__photo" (click)="cancelCoverPhotoSelection()">
+              <span class="icon-crewnie-icon-close svg-icon"></span>
+            </button>
+          </div>
+
         </div>
 
       </div>
 
     </div>
 
-  </div>
+    <div fxLayout="row wrap" class="bottombar bottombar--black">
 
-  <div fxLayout="row wrap" class="bottombar bottombar--black">
+      <div fxFlex></div>
+      <div fxFlex="20" class="bottombar__next">
+        <button mat-button type="button" class="bottombar__next__btn" (click)="startImageUpload()">NEXT</button>
+      </div>
 
-    <div fxFlex></div>
-    <div fxFlex="20" class="bottombar__next">
-      <button mat-button type="button" class="bottombar__next__btn" (click)="nextStep()">NEXT</button>
     </div>
-
-  </div>
-
-</form>
+  </form>
 </div>

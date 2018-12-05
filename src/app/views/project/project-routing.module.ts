@@ -8,6 +8,11 @@ import { AddProjectRentalsComponent } from './add-project-rentals/add-project-re
 import { ProjectDashboardComponent } from './dashboard/project-dashboard/project-dashboard.component';
 import { ProjectRolesComponent } from './dashboard/project-roles/project-roles.component';
 import { ProjectApplicationComponent } from './dashboard/project-application/project-application.component';
+import { ApplicantManagemantComponent } from './dashboard/applicant-management/applicant-managemant/applicant-managemant.component';
+import { ApplicantTransferComponent } from './dashboard/applicant-management/applicant-transfer/applicant-transfer.component';
+import { CastingCallComponent } from './dashboard/applicant-management/casting-call/casting-call/casting-call.component';
+import { CastingCalendarComponent } from './dashboard/applicant-management/casting-call/casting-calendar/casting-calendar.component';
+import { CastingInfoComponent } from './dashboard/applicant-management/casting-call/casting-info/casting-info.component';
 
 const routes: Routes = [
 
@@ -50,7 +55,33 @@ const routes: Routes = [
     path: 'dashboard/roles',
     component: ProjectRolesComponent,
     data: {depth: 8}
+  },
+  {
+    path: 'dashboard/applicant/management',
+    component: ApplicantManagemantComponent,
+    data: {depth: 9}
+  },
+  {
+    path: 'dashboard/applicant/management/transfer',
+    component: ApplicantTransferComponent,
+    data: {depth: 10}
+  },
+  {
+    path: 'dashboard/applicant/casting/call',
+    component: CastingCallComponent,
+    data: {depth: 11}
+  },
+  {
+    path: 'dashboard/applicant/casting/calendar',
+    component: CastingCalendarComponent,
+    data: {depth: 12}
+  },
+  {
+    path: 'dashboard/applicant/casting/info',
+    component: CastingInfoComponent,
+    data: {depth: 13}
   }
+
 ];
 
 @NgModule({

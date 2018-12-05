@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: '#{$icomoon-font-family}';
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?4idlvi');
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?4idlvi#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?4idlvi') format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?4idlvi') format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?4idlvi##{$icomoon-font-family}') format('svg');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?o0ot36');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?o0ot36#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?o0ot36') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?o0ot36') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?o0ot36##{$icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -26,19 +26,29 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-crewnie-icon-close {
-  &:before {
-    content: $icon-crewnie-icon-close; 
-  }
-}
 .icon-crewnie-icon-add {
   &:before {
     content: $icon-crewnie-icon-add; 
   }
 }
-.icon-crewnie-icon-home {
+.icon-crewnie-icon-arrow-back {
   &:before {
-    content: $icon-crewnie-icon-home; 
+    content: $icon-crewnie-icon-arrow-back; 
+  }
+}
+.icon-crewnie-icon-arrow-forward {
+  &:before {
+    content: $icon-crewnie-icon-arrow-forward; 
+  }
+}
+.icon-crewnie-icon-close {
+  &:before {
+    content: $icon-crewnie-icon-close; 
+  }
+}
+.icon-crewnie-icon-cross {
+  &:before {
+    content: $icon-crewnie-icon-cross; 
   }
 }
 .icon-crewnie-icon-custing {
@@ -51,6 +61,16 @@
     content: $icon-crewnie-icon-equipments; 
   }
 }
+.icon-crewnie-icon-home {
+  &:before {
+    content: $icon-crewnie-icon-home; 
+  }
+}
+.icon-crewnie-icon-info {
+  &:before {
+    content: $icon-crewnie-icon-info; 
+  }
+}
 .icon-crewnie-icon-settings {
   &:before {
     content: $icon-crewnie-icon-settings; 
@@ -61,9 +81,24 @@
     content: $icon-crewnie-icon-stuff; 
   }
 }
-.icon-crewnie-icon-info {
+.icon-crewnie-icon-switch {
   &:before {
-    content: $icon-crewnie-icon-info; 
+    content: $icon-crewnie-icon-switch; 
+  }
+}
+.icon-crewnie-icon-takenote {
+  &:before {
+    content: $icon-crewnie-icon-takenote; 
+  }
+}
+.icon-crewnie-icon-tick {
+  &:before {
+    content: $icon-crewnie-icon-tick; 
+  }
+}
+.icon-crewnie-icon-transfer {
+  &:before {
+    content: $icon-crewnie-icon-transfer; 
   }
 }
 

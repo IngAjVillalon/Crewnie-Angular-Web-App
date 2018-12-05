@@ -1,0 +1,202 @@
+.casting__call_wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.top__items {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #ffffff;
+
+    .item {
+        width: max-content !important;
+        max-width: max-content !important;
+
+        .page__title {
+            margin: 0;
+            margin-top: 15px;
+            margin-left: 25px;
+
+            color: #fc4000;
+            font-size: 30px;
+            font-weight: 300;
+        }
+
+        .btn__close {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            padding: 0px;
+            min-width: 50px !important;
+            min-height: 50px !important;
+            max-width: 50px !important;
+            max-height: 50px !important;
+
+            .svg-icon {
+                color: #fc4000;
+                font-size: 35px;
+            }
+
+            mat-icon {
+                color: rgba(0, 0, 0, 0.3);
+            }
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.2) !important;
+            }
+        }
+    }
+}
+
+.page__content {
+    width: 100%;
+    height: 100%;
+
+    .content {
+        width: 100%;
+        max-width: 940px !important;
+        height: calc(100% - 110px);
+        margin: 0 auto;
+        margin-top: 60px;
+        margin-bottom: 60px;
+
+        .add__roles {
+            width: 100%;
+            height: max-content !important;
+            max-height: max-content !important;
+
+            text-align: center;
+
+            .roles__text {
+                display: inline-block;
+                margin: 0;
+                margin-right: 20px;
+
+                color: #fc4000;
+                font-size: 35px;
+                font-weight: 300;
+                line-height: 1;
+            }
+
+            .roles__input {
+                display: inline-block;
+                width: 500px;
+                margin: 0;
+                font-size: 20px;
+            }
+        }
+
+        .casting__info {
+            width: 100%;
+            height: max-content !important;
+            max-height: max-content !important;
+
+            margin: 15px 0px;
+
+            .info__location {
+                .slider__text {
+                    width: 100%;
+                    margin: 0;
+                    margin-top: 25px;
+                    margin-bottom: -12px;
+                    text-align: left;
+                    color: #fc4000;
+                }
+                .interview__time {
+                    width: 100%;
+                    margin: 0;
+                    margin-top: 5px;
+                    text-align: center;
+                    color: #fc4000;
+                }
+
+                mat-label {
+                    font-size: 15px;
+                    color: #fc4000;
+                }
+                mat-form-field,
+                mat-slider {
+                    width: 100%;
+                    font-size: 20px;
+                }
+
+                mat-slider {
+                    margin-bottom: -20px;
+                    color: #fc4000;
+                }
+            }
+        }
+
+        .casting__estimate {
+            width: 100%;
+            height: max-content !important;
+            max-height: max-content !important;
+
+            margin: 15px 0px;
+
+            .candidate__count {
+                width: 90%;
+                height: 40px;
+                margin: 0 auto;
+                margin-top: 5px;
+                margin-bottom: 10px;
+
+                border: 1px solid #fc4000;
+
+                color: #626262;
+                text-align: center;
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 2.1;
+
+                span {
+                    color: #fc4000;
+                }
+            }
+
+            .assign__time {
+                width: 90%;
+                height: 40px;
+                margin: 0 auto;
+                margin-top: 5px;
+                margin-bottom: 10px;
+
+                background-color: rgba(252, 64, 0, 0.45);
+
+                color: #ffffff;
+                text-align: center;
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 2.1;
+            }
+        }
+    }
+}
+
+.bottom__navigetion {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #000;
+
+    .item {
+        width: max-content !important;
+        max-width: max-content !important;
+
+        .btn__next {
+            width: 150px;
+            height: 50px;
+            background-color: #fc4000;
+
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 300;
+        }
+    }
+}

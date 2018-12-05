@@ -17,6 +17,13 @@ import { ProjectDashboardComponent } from './dashboard/project-dashboard/project
 import { ProjectApplicationComponent } from './dashboard/project-application/project-application.component';
 import { ProjectStuffComponent } from './dashboard/project-stuff/project-stuff.component';
 import { ProjectRolesComponent } from './dashboard/project-roles/project-roles.component';
+import { PositionCardComponent } from './add-project-stuff/position-card/position-card.component';
+import { ApplicantManagemantComponent } from './dashboard/applicant-management/applicant-managemant/applicant-managemant.component';
+import { ApplicantTransferComponent } from './dashboard/applicant-management/applicant-transfer/applicant-transfer.component';
+import { CastingCallComponent } from './dashboard/applicant-management/casting-call/casting-call/casting-call.component';
+import { CastingCalendarComponent } from './dashboard/applicant-management/casting-call/casting-calendar/casting-calendar.component';
+import { CastingInfoComponent } from './dashboard/applicant-management/casting-call/casting-info/casting-info.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -26,8 +33,9 @@ import { ProjectRolesComponent } from './dashboard/project-roles/project-roles.c
     FlexLayoutModule,
     ProjectRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ],
-  declarations: [ProjectsComponent, AddProjectComponent, ProjectCardComponent, AddProjectUsergroupComponent, AddProjectStuffComponent, AddProjectRentalsComponent, UsergroupCardComponent, ProjectDashboardComponent, ProjectApplicationComponent, ProjectStuffComponent, ProjectRolesComponent]
+  declarations: [ProjectsComponent, AddProjectComponent, ProjectCardComponent, AddProjectUsergroupComponent, AddProjectStuffComponent, AddProjectRentalsComponent, UsergroupCardComponent, ProjectDashboardComponent, ProjectApplicationComponent, ProjectStuffComponent, ProjectRolesComponent, PositionCardComponent, ApplicantManagemantComponent, ApplicantTransferComponent, CastingCallComponent, CastingCalendarComponent, CastingInfoComponent]
 })
 export class ProjectModule { }

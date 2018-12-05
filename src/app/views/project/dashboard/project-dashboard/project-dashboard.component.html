@@ -68,62 +68,14 @@
 
         <div class="applicant__wrapper">
 
-          <div class="applicant">
+          <div class="applicant" *ngFor="let responsible of responsibles">
             <div class="avatar">
-              <img src="assets/images/1.jpg" alt="">
+              <img [src]="responsible.profilePhoto" alt="">
             </div>
 
             <div class="applicant__info">
-              <h3 class="applicant__name">Harry Potter</h3>
-              <h3 class="applicant__position">Director</h3>
-            </div>
-
-            <button mat-button class="close__btn" (click)="closeProjectDashboard()">
-              <span class="icon-crewnie-icon-close svg-icon"></span>
-            </button>
-
-          </div>
-
-          <div class="applicant">
-            <div class="avatar">
-              <img src="assets/images/2.jpg" alt="">
-            </div>
-
-            <div class="applicant__info">
-              <h3 class="applicant__name">Emma Watson</h3>
-              <h3 class="applicant__position">Producer</h3>
-            </div>
-
-            <button mat-button class="close__btn" (click)="closeProjectDashboard()">
-              <span class="icon-crewnie-icon-close svg-icon"></span>
-            </button>
-
-          </div>
-
-          <div class="applicant">
-            <div class="avatar">
-              <img src="assets/images/3.jpg" alt="">
-            </div>
-
-            <div class="applicant__info">
-              <h3 class="applicant__name">James Potter</h3>
-              <h3 class="applicant__position">Actor</h3>
-            </div>
-
-            <button mat-button class="close__btn" (click)="closeProjectDashboard()">
-              <span class="icon-crewnie-icon-close svg-icon"></span>
-            </button>
-
-          </div>
-
-          <div class="applicant">
-            <div class="avatar">
-              <img src="assets/images/4.jpg" alt="">
-            </div>
-
-            <div class="applicant__info">
-              <h3 class="applicant__name">Jenni Wizlly</h3>
-              <h3 class="applicant__position">Actor</h3>
+              <h3 class="applicant__name">{{responsible.name}}</h3>
+              <h3 class="applicant__position">{{responsible.position}}</h3>
             </div>
 
             <button mat-button class="close__btn" (click)="closeProjectDashboard()">

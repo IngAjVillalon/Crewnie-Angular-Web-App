@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActiveUser, userGroup, userGroupUser } from 'src/app/core/models/models';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ActiveUser, userGroup, userGroupUser, teamMember, groupData, depertment, member, depertmentObject } from 'src/app/core/models/models';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Member, ProjectService } from 'src/app/core/services/project.service';
 
 
 @Component({
@@ -13,9 +14,12 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
   styleUrls: ['./usergroup-card.component.scss']
 })
 export class UsergroupCardComponent implements OnInit {
-  users: Array<userGroupUser> = [];
-  user: userGroupUser;
-  teamLeader: userGroupUser = <userGroupUser>{};
+
+  depertmentObject: depertmentObject = {};
+  users: Array<member> = [];
+  user: member;
+
+  teamLeader: member = <member>{};
   isAdminSelected: boolean = false;
 
   crewnieUsers$: AngularFirestoreCollection<ActiveUser>;
@@ -33,6 +37,13 @@ export class UsergroupCardComponent implements OnInit {
     addTeaamLead: new FormControl("")
   });
 
+  public groupData = new FormGroup({
+    groupTitle: new FormControl('')
+  })
+
+
+
+  members: Array<member> = [];
 
 
   myControl = new FormControl();
@@ -40,17 +51,21 @@ export class UsergroupCardComponent implements OnInit {
   options: ActiveUser[] = [];
   filteredOptions: ActiveUser[];
 
-  @Input('userGroup') userGroup: userGroup;
+  @Input('userGroup') userGroup: groupData;
+  @Output('userGroup') userGroupReturn: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private storage: AngularFireStorage,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    public projectService: ProjectService
   ) {
 
     this.crewnieUsers$ = this.db.collection('users');
     this.crewnieUsers$.valueChanges().subscribe(users => {
       this.crewnieUsers = users;
     });
+
+    console.log(this.userGroup);
 
   }
 
@@ -77,6 +92,7 @@ export class UsergroupCardComponent implements OnInit {
 
   public addUser() {
     this.addNewMember = true;
+    this.groupChangeEvent();
   }
 
   public selectTeamLeader(userId: string) {
@@ -85,50 +101,155 @@ export class UsergroupCardComponent implements OnInit {
 
   public selectTeamLead(value: any) {
     this.isAdminSelected = true;
-    this.teamLeader.userRole = 'admin'
-    this.teamLeader.userPosition = 'Team Lead';
-    this.teamLeader.user = this.getMemberById(value);
-    console.log(this.teamLeader);
-    console.log(value);
+    const user: ActiveUser = this.getMemberById(value);
+    this.teamLeader.position = 'Team Lead';
+    this.teamLeader.role = 'admin';
+    this.teamLeader.user = user;
+    this.teamLeader.name = user.displayName;
+    this.teamLeader.userId = user.uid;
+
+    this.userGroup.teamLeader = this.teamLeader;
+
     this.addTeamLeadForm.setValue({ 'addTeaamLead': '' });
+    this.groupChangeEvent();
   }
 
   public selectTeamMember(value: any) {
-    // this.crewnieUser =
     this.addNewMember = false;
     this.addMemberForm.setValue({ 'addMember': '' });
-    const user: userGroupUser = {
-      user: this.getMemberById(value),
-      userPosition: 'Admin',
-      userRole: 'actor'
+    const user: ActiveUser = this.getMemberById(value);
+    const currentUser: member = {
+      user: user,
+      position: 'actor',
+      role: 'user',
+      name: user.displayName
     }
-    this.users.push(user);
-    this.userGroup.groupUsers = this.users;
-    console.log(this.userGroup.groupUsers);
+    this.users.push(currentUser);
+
+    this.userGroup.members = this.users;
+    this.groupChangeEvent();
   }
 
   public cancelTeamMember(userId: string) {
-    // const memberIndex = this.users.findIndex(this.getMemberById(userId));
-    this.users = this.userGroup.groupUsers;
-    // this.users = this.users.filter(function (obj) {
-    //   return obj.user.uid == userId;
-    // });
-    for(var i=0 ; i<this.users.length; i++)
-    {
-        if(this.users[i].user.uid==userId)
+    this.users = this.userGroup.members;
+    for (var i = 0; i < this.users.length; i++) {
+      if (this.users[i].user.uid == userId)
         this.users.splice(i);
     }
-
-    this.userGroup.groupUsers = this.users;
-
-    console.log(this.users);
-    console.log(userId);
+    this.userGroup.members = this.users;
+    this.groupChangeEvent();
   }
 
-  // Get Selected User
 
+  // Get Selected User
   getMemberById(userId: string) {
     return this.crewnieUsers.find(i => i.uid === userId);
+  }
+
+  public groupChangeEvent() {
+
+
+    // List depertment members
+    let depertmentMembers: Array<string> = [];
+    this.userGroup.members.forEach(element => {
+      depertmentMembers.push(element.user.uid);
+    });
+
+    // Create Depertment
+    let depertment: depertment = {};
+    depertment.title = this.userGroup.groupTitle;
+    depertment.teamLeader = this.userGroup.teamLeader.user.uid;
+    depertment.members = depertmentMembers;
+
+    // Create Team Leader
+    var teamLeaderId = this.userGroup.teamLeader.user.uid;
+    var teamLeader: member = {};
+    teamLeader.memberId = teamLeaderId;
+    teamLeader.name = (this.userGroup.teamLeader.user.firstName + " " + this.userGroup.teamLeader.user.lastName);
+    teamLeader.position = this.userGroup.teamLeader.position;
+    teamLeader.role = this.userGroup.teamLeader.role;
+    teamLeader.profilePhoto = this.userGroup.teamLeader.user.profilePhotoUrl;
+    teamLeader.user = this.userGroup.teamLeader.user;
+
+
+    // Create Members
+    var memberCollection: Array<member> = [];
+
+    this.userGroup.members.forEach(element => {
+      var member: member = {};
+      var memberId = element.user.uid;
+
+      member.memberId = memberId;
+      member.name = (element.user.firstName + " " + element.user.lastName);
+      member.position = element.position;
+      member.role = element.role;
+      member.profilePhoto = element.user.profilePhotoUrl;
+      member.userId = element.user.uid;
+      member.user = element.user;
+
+      memberCollection.push(member);
+    });
+
+    this.depertmentObject.depertment = depertment;
+    this.depertmentObject.teamLeader = teamLeader;
+    this.depertmentObject.members = memberCollection;
+
+    this.userGroupReturn.emit(this.depertmentObject);
+  }
+
+
+
+  public deleteGroup() {
+
+    // List depertment members
+    let depertmentMembers: Array<string> = [];
+    this.userGroup.members.forEach(element => {
+      depertmentMembers.push(element.user.uid);
+    });
+
+    // Create Depertment
+    let depertment: depertment = {};
+    depertment.title = this.userGroup.groupTitle;
+    depertment.teamLeader = this.userGroup.teamLeader.user.uid;
+    depertment.members = depertmentMembers;
+
+    // Create Team Leader
+    var teamLeaderId = this.userGroup.teamLeader.user.uid;
+    var teamLeader: member = {};
+    teamLeader.memberId = teamLeaderId;
+    teamLeader.name = (this.userGroup.teamLeader.user.firstName + " " + this.userGroup.teamLeader.user.lastName);
+    teamLeader.position = this.userGroup.teamLeader.position;
+    teamLeader.role = this.userGroup.teamLeader.role;
+    teamLeader.profilePhoto = this.userGroup.teamLeader.user.profilePhotoUrl;
+    teamLeader.user = this.userGroup.teamLeader.user;
+
+
+    // Create Members
+    var memberCollection: Array<member> = [];
+
+    this.userGroup.members.forEach(element => {
+      var member: member = {};
+      var memberId = element.user.uid;
+
+      member.memberId = memberId;
+      member.name = (element.user.firstName + " " + element.user.lastName);
+      member.position = element.position;
+      member.role = element.role;
+      member.profilePhoto = element.user.profilePhotoUrl;
+      member.userId = element.user.uid;
+      member.user = element.user;
+
+      memberCollection.push(member);
+    });
+
+    this.depertmentObject.depertment = depertment;
+    this.depertmentObject.teamLeader = teamLeader;
+    this.depertmentObject.members = memberCollection;
+
+    this.userGroupReturn.emit(this.depertmentObject);
+
+    // this.projectService.createDepertment(depertment, teamLeader, memberCollection);
+
   }
 
 }

@@ -1,0 +1,102 @@
+.card {
+    width: 100%;
+    height: 100%;
+}
+.card--position {
+    position: relative;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+
+.details__item__wrapper {
+    width: 100%;
+    height: 100%;
+
+    .position {
+        width: 270px;
+        min-width: 270px !important;
+        max-width: 270px !important;
+
+        .position__title {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 20px;
+            font-weight: 400;
+            color: #46494e;
+
+            span {
+                margin: 0;
+                color: #fc4000;
+                margin-right: 2px;
+            }
+        }
+    }
+
+    .selection {
+        width: 200px;
+        min-width: 200px !important;
+        max-width: 200px !important;
+
+        mat-form-field {
+            width: 90%;
+            font-size: 17px;
+            margin-top: 20px;
+        }
+    }
+
+    .selection.salary {
+        max-width: 200px !important;
+        min-width: 200px !important;
+        width: 200px !important;
+    }
+    .selection.preiod {
+        max-width: 130px !important;
+        min-width: 130px !important;
+        width: 130px !important;
+    }
+    .selection.vacants {
+        max-width: 70px !important;
+        min-width: 70px !important;
+        width: 70px !important;
+
+        mat-form-field {
+            text-align: center !important;
+            width: 80%;
+        }
+
+    }
+
+    .selection.working__date {
+        max-width: 175px !important;
+        min-width: 175px !important;
+        width: 175px !important;
+
+        mat-form-field {
+            width: 80%;
+        }
+    }
+
+    .selection.delete__position {
+        max-width: 50px !important;
+        min-width: 50px !important;
+        width: 50px !important;
+
+        .close__btn {
+            width: 70px;
+            height: 70px;
+            padding: 0px;
+            margin: 0px;
+            min-width: 70px !important;
+            min-height: 70px !important;
+
+            .svg-icon {
+                color: #6f6f6f;
+                font-size: 30px;
+            }
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.2) !important;
+            }
+        }
+    }
+}

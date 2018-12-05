@@ -1,17 +1,17 @@
 @font-face {
-  font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?4idlvi');
-  src:  url('fonts/icomoon.eot?4idlvi#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?4idlvi') format('truetype'),
-    url('fonts/icomoon.woff?4idlvi') format('woff'),
-    url('fonts/icomoon.svg?4idlvi#icomoon') format('svg');
+  font-family: 'crewnie';
+  src:  url('fonts/crewnie.eot?o0ot36');
+  src:  url('fonts/crewnie.eot?o0ot36#iefix') format('embedded-opentype'),
+    url('fonts/crewnie.ttf?o0ot36') format('truetype'),
+    url('fonts/crewnie.woff?o0ot36') format('woff'),
+    url('fonts/crewnie.svg?o0ot36#crewnie') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: 'crewnie' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -24,27 +24,48 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-crewnie-icon-close:before {
-  content: "\e906";
-}
 .icon-crewnie-icon-add:before {
   content: "\e900";
 }
-.icon-crewnie-icon-home:before {
+.icon-crewnie-icon-arrow-back:before {
   content: "\e901";
 }
-.icon-crewnie-icon-custing:before {
+.icon-crewnie-icon-arrow-forward:before {
   content: "\e902";
 }
-.icon-crewnie-icon-equipments:before {
+.icon-crewnie-icon-close:before {
   content: "\e903";
 }
-.icon-crewnie-icon-settings:before {
+.icon-crewnie-icon-cross:before {
   content: "\e904";
 }
-.icon-crewnie-icon-stuff:before {
+.icon-crewnie-icon-custing:before {
   content: "\e905";
 }
-.icon-crewnie-icon-info:before {
+.icon-crewnie-icon-equipments:before {
+  content: "\e906";
+}
+.icon-crewnie-icon-home:before {
   content: "\e907";
+}
+.icon-crewnie-icon-info:before {
+  content: "\e908";
+}
+.icon-crewnie-icon-settings:before {
+  content: "\e909";
+}
+.icon-crewnie-icon-stuff:before {
+  content: "\e90a";
+}
+.icon-crewnie-icon-switch:before {
+  content: "\e90b";
+}
+.icon-crewnie-icon-takenote:before {
+  content: "\e90c";
+}
+.icon-crewnie-icon-tick:before {
+  content: "\e90d";
+}
+.icon-crewnie-icon-transfer:before {
+  content: "\e90e";
 }

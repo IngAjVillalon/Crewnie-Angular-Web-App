@@ -180,10 +180,14 @@
     width: max-content;
     max-width: max-content !important;
 
-    button {
+    .private__btn {
         display: inherit;
         margin: 0 auto;
         background-color: #dadada;
+    }
+
+    .active {
+        background-color: #fc4000;
     }
 
     span {
@@ -223,6 +227,29 @@
     }
 }
 
+.category__input {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+
+    .tag {
+        background-color: #ffffff;
+        color: #fc4000;
+        border: 1px solid #fc4000;
+        border-radius: 0 !important;
+
+        .mat-icon {
+            opacity: 1;
+            color: #fc4000;
+            font-weight: 600;
+        }
+
+        &:hover {
+            background-color: #ffffff !important;
+        }
+    }
+}
+
 .info_union {
     width: max-content;
     max-width: max-content !important;
@@ -250,11 +277,22 @@
 }
 
 .info_cover {
+    position: relative;
     min-height: 150px;
     margin-top: 20px;
     background-color: #0000001a;
     border: 1px solid #fc4000;
     cursor: pointer;
+
+    input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
 
     .cover__placeholder {
         display: flex;
@@ -287,6 +325,72 @@
             span {
                 color: #6d6d6d;
             }
+        }
+    }
+}
+
+.info_cover__preview {
+    position: relative;
+    min-height: 150px;
+    margin-top: 20px;
+    background-color: #0000001a;
+    border: 1px solid #fc4000;
+
+    img {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .btn_select__photo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 190px;
+        height: 50px;
+        border: 1px solid #ffffff;
+        transform: translateX(-50%) translateY(-50%);
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+    }
+    input {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 190px;
+        height: 50px;
+        transform: translateX(-50%) translateY(-50%);
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    &:hover .btn_select__photo {
+        opacity: 1;
+    }
+
+    .btn_cancel__cover__photo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 40px;
+        padding: 0px;
+        min-width: 40px !important;
+        min-height: 40px !important;
+        max-height: 40px !important;
+
+        border: 1px solid #ffffff;
+
+        .svg-icon {
+            color: #ffffff;
+            font-size: 30px;
+        }
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.2) !important;
         }
     }
 }

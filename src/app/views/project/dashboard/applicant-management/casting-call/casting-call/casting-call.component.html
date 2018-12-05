@@ -1,0 +1,75 @@
+<div class="casting__call_wrapper">
+
+  <div class="top__items" fxLayout="row">
+    <div fxFlex="20" class="item">
+      <h3 class="page__title">Casting call</h3>
+    </div>
+
+    <div fxFlex="20" class="item">
+      <button mat-button class="btn__close">
+        <span class="icon-crewnie-icon-close svg-icon"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="page__content" fxLayout="row">
+
+    <div fxFlex="70" class="content" fxLayout="column" fxLayoutAlign="center start">
+
+      <div fxFlex="100" class="add__roles">
+
+        <h3 class="roles__text">Role(s):</h3>
+        <mat-form-field class="roles__input">
+          <input matInput placeholder="Type one or more roles" value="">
+        </mat-form-field>
+
+      </div>
+
+      <div fxFlex="100" class="casting__info" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
+
+        <div fxFlex="30" class="info__location">
+          <mat-form-field>
+            <mat-label>Location</mat-label>
+            <input matInput placeholder="Set an address" value="">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="15" class="info__location">
+          <mat-form-field>
+            <mat-label>Room number</mat-label>
+            <input matInput placeholder="Set" value="">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="30" class="info__location">
+          <p class="slider__text">Interview time</p>
+          <mat-slider color="primary" [(ngModel)]="sliderValue" (input)="interviewTimeChange($event)"></mat-slider>
+          <p class="interview__time">{{sliderValue}} min</p>
+        </div>
+
+      </div>
+
+      <div fxFlex="100" class="casting__estimate">
+        <div class="candidate__count">
+          You need <span>20</span> hours to interview <span>80</span> candidates
+        </div>
+        <div class="assign__time">
+          20 hours left to assign
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="bottom__navigetion" fxLayout="row">
+
+    <div fxFlex></div>
+
+    <div fxFlex="20" class="item">
+      <button mat-button class="btn__next" (click)="nextPage()">NEXT</button>
+    </div>
+  </div>
+
+</div>

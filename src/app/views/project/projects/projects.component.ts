@@ -45,7 +45,6 @@ export class ProjectsComponent implements OnInit {
   addNewProject() {
     console.log('add new project');
     this.projectService.hero = 'project service data';
-    this.projectService.project.prijectTitle = 'New Project Title';
     this.router.navigate(["/projects/new"]);
   }
 

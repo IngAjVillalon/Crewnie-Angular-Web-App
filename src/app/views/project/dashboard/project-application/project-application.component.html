@@ -54,14 +54,14 @@
     <div fxFlex></div>
 
     <div fxFlex="100" class="sidebar__item">
-      <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard/roles']">
-        <span class="icon-crewnie-icon-custing svg-icon"></span>
+      <button mat-button class="sidebar__btn" [routerLink]="['/projects/dashboard/applicant/management']">
+        <span class="icon-crewnie-icon-settings svg-icon"></span>
       </button>
     </div>
 
   </div>
 
-  <div class="main-content topnav">
+  <!-- <div class="main-content topnav">
     <div fxFlex="100" fxLayout="row" fxLayoutAlign="center start" class="content content--topnav">
 
       <div fxFlex="20" class="production--stage">
@@ -75,7 +75,7 @@
       </div>
 
     </div>
-  </div>
+  </div> -->
 
   <div class="main-content content">
 
@@ -83,106 +83,115 @@
 
       <div fxFlex="25" class="application__left">
 
-        <h3 class="title">Talent Selection</h3>
+        <div class="telent__selection">
+          <h3 class="title">Talent Selection</h3>
+          <button mat-button class="settings__btn">
+            <span class="icon-crewnie-icon-settings svg-icon"></span>
+          </button>
+        </div>
 
-        <mat-tab-group mat-stretch-tabs>
+        <div class="depertment__wrapper">
+          <mat-accordion>
 
-          <mat-tab label="Pending(5)">
+            <mat-expansion-panel *ngFor="let depertment of depertments">
 
-            <div class="position__filter">
-              <mat-form-field class="filter__by__position">
-                <mat-select placeholder="Filter by position">
-                  <mat-option value=""></mat-option>
-                  <mat-option value="">Director</mat-option>
-                  <mat-option value="">Actor</mat-option>
-                  <mat-option value="">Producer</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
+              <mat-expansion-panel-header>
+                <mat-panel-title class="depertment__title">
+                  {{depertment.title}}
+                </mat-panel-title>
+                <mat-panel-description class="depertment__edit__position">
+                  <button mat-button class="edit__btn" (click)="editPosition()">Edit positions</button>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
 
-            <div class="applicant">
-              <div class="avatar">
-                <img src="assets/images/1.jpg" alt="">
-              </div>
+              <mat-tab-group mat-stretch-tabs>
 
-              <div class="applicant__info">
-                <h3 class="applicant__name">Harry Potter</h3>
-                <h3 class="applicant__position">Actor</h3>
-              </div>
+                <mat-tab label="Pending({{depertment.pending?.length || 0}})">
 
-              <button mat-button class="close__btn" (click)="closeProjectDashboard()">
-                <span class="icon-crewnie-icon-close svg-icon"></span>
-              </button>
+                  <div class="position__filter">
+                    <mat-form-field class="filter__by__position">
+                      <mat-select placeholder="Filter by position">
+                        <mat-option value=""></mat-option>
+                        <mat-option value="">Director</mat-option>
+                        <mat-option value="">Actor</mat-option>
+                        <mat-option value="">Producer</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
 
-            </div>
+                  <div class="applicant" *ngFor="let position of depertment.pending" >
 
-            <div class="applicant">
-              <div class="avatar">
-                <img src="assets/images/2.jpg" alt="">
-              </div>
+                    <div class="applicant__info" (click)="positionSelected(position.title)">
+                      <h3 class="applicant__position">{{position.title}}</h3>
+                      <div class="applicant__position__left" *ngIf="position.left > 0">
+                        <h3 class="position__left">Position Left<span>{{position.left}}</span></h3>
+                      </div>
+                    </div>
 
-              <div class="applicant__info">
-                <h3 class="applicant__name">Emma Watson</h3>
-                <h3 class="applicant__position">Actor</h3>
-              </div>
+                    <button mat-button class="close__btn">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
 
-              <button mat-button class="close__btn" (click)="closeProjectDashboard()">
-                <span class="icon-crewnie-icon-close svg-icon"></span>
-              </button>
+                  </div>
 
-            </div>
+                </mat-tab>
+                <mat-tab label="Added({{depertment.added?.length || 0}})">
 
-          </mat-tab>
-          <mat-tab label="Added(10)">
+                  <div class="position__filter">
+                    <mat-form-field class="filter__by__position">
+                      <mat-select placeholder="Filter by position">
+                        <mat-option value=""></mat-option>
+                        <mat-option value="">Director</mat-option>
+                        <mat-option value="">Actor</mat-option>
+                        <mat-option value="">Producer</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
 
-            <div class="position__filter">
-              <mat-form-field class="filter__by__position">
-                <mat-select placeholder="Filter by position">
-                  <mat-option value=""></mat-option>
-                  <mat-option value="">Director</mat-option>
-                  <mat-option value="">Actor</mat-option>
-                  <mat-option value="">Producer</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
 
-            <div class="applicant">
-              <div class="avatar">
-                <img src="assets/images/1.jpg" alt="">
-              </div>
+                  <div class="applicant" *ngFor="let position of depertment.added">
 
-              <div class="applicant__info">
-                <h3 class="applicant__name">Harry Potter</h3>
-                <h3 class="applicant__position">Actor</h3>
-              </div>
+                    <div class="applicant__info">
+                      <h3 class="applicant__position">{{position.title}}</h3>
+                      <div class="applicant__position__left" *ngIf="position.left > 0">
+                        <h3 class="position__left">Position Left<span>{{position.left}}</span></h3>
+                      </div>
+                    </div>
 
-              <button mat-button class="close__btn" (click)="closeProjectDashboard()">
-                <span class="icon-crewnie-icon-close svg-icon"></span>
-              </button>
+                    <button mat-button class="close__btn">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
 
-            </div>
+                  </div>
 
-            <div class="applicant">
-              <div class="avatar">
-                <img src="assets/images/2.jpg" alt="">
-              </div>
+                </mat-tab>
+              </mat-tab-group>
 
-              <div class="applicant__info">
-                <h3 class="applicant__name">Emma Watson</h3>
-                <h3 class="applicant__position">Actor</h3>
-              </div>
+            </mat-expansion-panel>
 
-              <button mat-button class="close__btn" (click)="closeProjectDashboard()">
-                <span class="icon-crewnie-icon-close svg-icon"></span>
-              </button>
+          </mat-accordion>
 
-            </div>
+        </div>
 
-          </mat-tab>
-        </mat-tab-group>
       </div>
 
       <div fxFlex="75" class="application__right">
+
+        <div class="topnav">
+          <div fxFlex="100" fxLayout="row" fxLayoutAlign="center start" class="content content--topnav">
+
+            <div fxFlex="20" class="production--stage">
+              <button mat-button class="stage__btn active">Pre-Production</button>
+            </div>
+            <div fxFlex="20" class="production--stage">
+              <button mat-button class="stage__btn">Production</button>
+            </div>
+            <div fxFlex="20" class="production--stage">
+              <button mat-button class="stage__btn">Post-Production</button>
+            </div>
+
+          </div>
+        </div>
 
         <div class="application__filters">
 
@@ -242,12 +251,13 @@
 
         </div>
 
-        <mat-tab-group mat-align-tabs="center" dynamicHeight>
+        <mat-tab-group mat-align-tabs="center" dynamicHeight (selectedTabChange)="tabIndexChanged($event)">
+
           <mat-tab label="MATCHES(152)">
 
-            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px" class="application__profiles">
+            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="0px" class="application__profiles">
 
-              <div fxFlex="33.33" class="profile__wrapper">
+              <div fxFlex="33.33" class="profile__wrapper" *ngFor="let user of crewnieUsersMatched">
 
                 <div class="profile profile--card">
 
@@ -262,9 +272,9 @@
                   </div>
 
                   <div class="profile__details">
-                    <h3 class="profile__name">Jassica Chobot</h3>
-                    <h3 class="profile__position">Writter</h3>
-                    <h3 class="profile__address">Los Angeles, California</h3>
+                    <h3 class="profile__name">{{user.firstName}} {{user.lastName}}</h3>
+                    <h3 class="profile__position">{{user.profileType}}</h3>
+                    <h3 class="profile__address">{{user.address}}</h3>
                   </div>
 
                   <div class="profile__invite">

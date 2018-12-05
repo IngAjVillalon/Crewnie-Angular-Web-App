@@ -1,0 +1,53 @@
+<div class="transfer__wrappe">
+
+  <div class="transfer__header">
+    <h3 class="header__title">Transfer</h3>
+    <button mat-button class="close__btn" (click)="closeTransferDialog()">
+      <span class="icon-crewnie-icon-close svg-icon"></span>
+    </button>
+  </div>
+
+  <div class="transfer__body">
+
+    <div class="user__info">
+      <div class="user__photo">
+        <img src="assets/images/1.jpg" alt="">
+      </div>
+      <h3 class="user__name">Daisy Ridley</h3>
+      <h3 class="user__address">Astoria, NY, United States</h3>
+    </div>
+
+    <div class="transfer__divider"></div>
+
+    <div class="transfer__info">
+
+      <div class="select__project">
+        <mat-form-field class="select">
+          <mat-select placeholder="Select a project">
+            <mat-option>1</mat-option>
+            <mat-option>1</mat-option>
+            <mat-option>1</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="select__role">
+        <mat-form-field class="select">
+          <mat-select placeholder="Select a role">
+            <mat-option value="1">1</mat-option>
+            <mat-option value="1">1</mat-option>
+            <mat-option value="1">1</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="transfer__footer">
+    <button mat-button class="btn__cancel" (click)="closeTransferDialog()">CANCEL</button>
+    <button mat-button class="btn__transfer">TRANSFER</button>
+  </div>
+
+</div>

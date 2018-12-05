@@ -194,3 +194,74 @@ export interface userGroup {
   groupTitle?: string;
   groupUsers?: Array<userGroupUser>;
 }
+
+export interface teamMember {
+  name?: string;
+  position?: string;
+  role?: string;
+  user?: ActiveUser;
+}
+
+export interface groupData {
+  groupId?: string;
+  groupTitle?: string;
+  teamLeader?: teamMember;
+  members?: Array<teamMember>;
+}
+
+// Depertments
+
+export interface depertmentObject {
+  depertment?: depertment;
+  teamLeader?: member;
+  members?: Array<member>;
+}
+
+export interface depertments {
+  groupId?: string;
+  groupTitle?: string;
+  teamLeader?: member;
+  members?: Array<member>;
+}
+
+export interface depertment {
+  depertmentId?: string;
+  title?: string;
+  teamLeader?: string;
+  members?: Array<string>;
+}
+
+export interface member {
+  memberId?: string;
+  name?: string;
+  profilePhoto?: string;
+  position?: string;
+  role?: string;
+  userId?: string;
+  user?: ActiveUser;
+}
+
+export interface responsibles {
+  id?: string;
+  name?: string;
+  profilePhoto?: string;
+  position?: string;
+  role?: string;
+  userId?: string;
+  user?: ActiveUser;
+}
+
+// export interface depertments {
+//   id?: string;
+//   name?: string;
+//   profilePhoto?: string;
+//   position?: string;
+//   role?: string;
+//   userId?: string;
+//   user?: ActiveUser;
+// }
+
+
+
+
+

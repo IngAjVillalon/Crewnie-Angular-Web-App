@@ -5,12 +5,12 @@
 
     <div fxFlex="20" class="topbar__logo">
       <button mat-button class="topbar__back__btn" (click)="prevStep()">
-        <mat-icon class="mat-18">arrow_back</mat-icon>
+        <span class="icon-crewnie-icon-arrow-back svg-icon"></span>
       </button>
     </div>
 
     <div fxFlex="20" class="topbar__title">
-      <h4>Create new project</h4>
+      <h4>Stuff recruitment</h4>
     </div>
 
     <div fxFlex></div>
@@ -20,198 +20,88 @@
     <div fxFlex></div>
 
     <div fxFlex="20" class="topbar__close">
-      <button mat-button class="topbar__close__btn" (click)="prevStep()">
-        <mat-icon class="mat-18">close</mat-icon>
+      <button mat-button class="topbar__close__btn" (click)="cancelAddStuff()">
+        <span class="icon-crewnie-icon-close svg-icon"></span>
       </button>
     </div>
 
 
   </div>
 
-  <div class="main-content">
+  <div class="stuff__main-content">
 
-    <div fxLayout="column" class="info">
-
-      <!-- Title Row -->
-      <div fxFlex="100" fxLayout="row">
-
-        <div fxFlex="50" class="info__title">
-          <h3>Project Info</h3>
-        </div>
-
-        <div fxFlex></div>
-
-        <div fxFlex="30" class="info__private">
-          <button mat-icon-button>
-            <mat-icon aria-label="Example icon-button with a heart icon">lock_open</mat-icon>
-          </button>
-          <span><strong>Private:</strong> OFF</span>
-        </div>
-
-      </div>
-
-      <!-- Input Row 2 -->
-      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
-
-        <div fxFlex="63">
-          <mat-form-field class="info__input">
-            <mat-label>Project Title</mat-label>
-            <input matInput type="text" placeholder="Write project name" autocomplete="off" formControlName="projectName">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="35">
-          <mat-form-field class="info__input">
-            <mat-label>Location</mat-label>
-            <input matInput type="text" placeholder="Select a location" autocomplete="off" formControlName="projectLocation">
-            <mat-icon matSuffix>location_on</mat-icon>
-          </mat-form-field>
-        </div>
-
-      </div>
-
-      <!-- Input Row 2 -->
-      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
-
-        <div fxFlex="30">
-          <mat-form-field class="info__input">
-            <mat-label>Type</mat-label>
-            <mat-select placeholder="Select type" formControlName="projectName">
-              <mat-option disabled selected>Select type</mat-option>
-              <mat-option value="volvo">Movie</mat-option>
-              <mat-option value="saab">Music Video</mat-option>
-              <mat-option value="mercedes">Photo Graphy</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="28">
-          <mat-form-field class="info__input">
-            <mat-label>Genra</mat-label>
-            <mat-select placeholder="Select type" multiple formControlName="projectName">
-              <mat-option disabled selected>Select one or more</mat-option>
-              <mat-option value="volvo">Movie</mat-option>
-              <mat-option value="saab">Music Video</mat-option>
-              <mat-option value="mercedes">Photo Graphy</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="17">
-
-          <mat-form-field class="info__input">
-            <mat-label>Production Date</mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="Kick off" autocomplete="off">
-            <mat-datepicker-toggle matSuffix [for]="picker" class="icon__red"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="3">
-          <mat-divider style="
-            margin-top: 120%;
-            border-top: 1px solid rgba(0, 0, 0, 0.31);
-        "></mat-divider>
-        </div>
-
-        <div fxFlex="15">
-          <mat-form-field class="info__input">
-            <mat-label>End Date</mat-label>
-            <input matInput [matDatepicker]="picker2" placeholder="End date" autocomplete="off">
-            <mat-datepicker-toggle matSuffix [for]="picker2" class="icon__red"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-        </div>
-
-
-      </div>
-
-      <!-- Input Row 3 -->
-      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
-
-        <div fxFlex="100">
-          <mat-form-field class="info__input">
-            <mat-label>Category</mat-label>
-            <input matInput type="text" placeholder="Write one or more category" autocomplete="off" formControlName="projectLocation">
-          </mat-form-field>
-        </div>
-
-      </div>
-
-
+    <div class="stuff__top__bar">
+      <button mat-button class="bar__button" [class.active]="preProduction" (click)="chengeProductionStage(0)">Pre-production</button>
+      <button mat-button class="bar__button" [class.active]="production" (click)="chengeProductionStage(1)">Production</button>
+      <button mat-button class="bar__button" [class.active]="postProduction" (click)="chengeProductionStage(2)">Post-production</button>
     </div>
 
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="stuff__content">
 
-    <div fxLayout="column" class="info">
 
-      <!-- Title Row -->
-      <div fxFlex="100" fxLayout="row">
+      <div fxFlex="25" class="stuff__left__col">
 
-        <div fxFlex="50" class="info__title">
-          <h3>Union</h3>
-        </div>
-
-        <div fxFlex></div>
-
-        <div fxFlex="30" class="info__private">
-          <mat-checkbox matInput color="primary"></mat-checkbox>
-        </div>
-
-      </div>
-
-      <!-- Input Row 2 -->
-      <div fxFlex="100" fxLayout="row" fxLayoutAlign="start start">
-
-        <div fxFlex="25" class="info_union">
-          <mat-form-field class="info__input">
-            <mat-label>Union</mat-label>
-            <mat-select placeholder="Select" formControlName="projectName">
-              <mat-option disabled selected>Select type</mat-option>
-              <mat-option value="volvo">Movie</mat-option>
-              <mat-option value="saab">Music Video</mat-option>
-              <mat-option value="mercedes">Photo Graphy</mat-option>
-            </mat-select>
-            <mat-hint class="union__hint">Union</mat-hint>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="10" class="info_union">
-          <button mat-button class="union__add">
-            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-          </button>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div fxLayout="column" class="info">
-
-      <!-- Title Row -->
-      <div fxFlex="100" fxLayout="row">
-
-        <div fxFlex="50" class="info__title">
-          <h3>Project Cover</h3>
-        </div>
-
-        <div fxFlex></div>
-
-      </div>
-
-      <!-- Input Row 2 -->
-      <div fxFlex="100" fxLayout="row" fxLayoutAlign="start start">
-
-        <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center" class="info_cover">
-          <div fxFlex="20" class="cover__placeholder">
-            <img src="assets/images/cloud-upload.png" alt="">
+        <div class="stuff__card">
+          <h3 class="card__title">Positions</h3>
+          <p class="card__subtitle">Select the position needed for your project</p>
+          <div class="card__searchbox">
+            <mat-form-field class="searchbox">
+              <input type="text" matInput placeholder="Search position">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>search</mat-icon>
+              </button>
+            </mat-form-field>
           </div>
 
-          <div fxFlex="70" class="cover__instructions">
-            <h4 class="instruction__click__msg">Click to select your image file</h4>
-            <h4 class="instruction__import__msg">Import your cover image from your computer <span>(Accepts .jpeg, .jpe, .png)</span></h4>
+          <div class="stuff__position">
+            <h3 class="position">Actor</h3>
+            <button mat-button class="add__position" (click)="addPostion('Actor')">
+              <!-- <span class="icon-crewnie-icon-add svg-icon"></span> -->
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="stuff__position">
+            <h3 class="position">Director</h3>
+            <button mat-button class="add__position" (click)="addPostion('Director')">
+              <!-- <span class="icon-crewnie-icon-add svg-icon"></span> -->
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="stuff__position">
+            <h3 class="position">2nd Unit Director</h3>
+            <button mat-button class="add__position">
+              <!-- <span class="icon-crewnie-icon-add svg-icon"></span> -->
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="stuff__position">
+            <h3 class="position">Actor</h3>
+            <button mat-button class="add__position">
+              <!-- <span class="icon-crewnie-icon-add svg-icon"></span> -->
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="stuff__position">
+            <h3 class="position">Actor</h3>
+            <button mat-button class="add__position">
+              <!-- <span class="icon-crewnie-icon-add svg-icon"></span> -->
+              <mat-icon>add</mat-icon>
+            </button>
           </div>
         </div>
+      </div>
 
+      <div fxFlex="75" class="stuff__right__col">
+
+        <div class="stuff__card">
+
+          <div class="position__details" *ngFor="let position of positions" >
+
+            <position-card [position]="position" (childEvent)="test($event)" [@fadeIn]="fadeIn"></position-card>
+
+          </div>
+
+        </div>
       </div>
 
     </div>
