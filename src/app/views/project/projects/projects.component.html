@@ -33,7 +33,7 @@
   <div class="projects projects--full" *ngIf="projects">
 
     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="0px" class="projects__wrapper">
-      <div fxFlex="33.33" class="item" *ngFor="let project of projects" @fadeIn>
+      <div fxFlex="33.33" class="item" *ngFor="let project of projects2" @fadeIn>
         <project-card [project]='project'></project-card>
       </div>
 

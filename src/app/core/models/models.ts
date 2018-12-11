@@ -262,6 +262,73 @@ export interface responsibles {
 // }
 
 
+// MongoDB Data Models
+
+export interface Project {
+  _id?: string;
+  creatorId?: string;
+
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+
+  private?: boolean;
+  title?: string;
+  location?: string;
+  type?: string;
+  agency?: string;
+  coverPhoto?: string;
+
+  categories?: Array<string>;
+  genras?: Array<string>;
+
+  hasUnion?: boolean;
+  unions?: Array<string>;
+
+  startDate?: Date | string;
+  endDate?: Date | string;
+
+  departments?: Array<Department>;
+}
+
+
+export interface DepartmentUser {
+  name?: string;
+  profilePhoto?: string;
+  role?: string;
+  position?: string;
+  userId?: string;
+  // user?: ActiveUser;
+}
+
+export interface Department {
+
+  title?: string;
+  projectId?: string;
+
+  teamLeader?: DepartmentUser;
+  members?: DepartmentUser[];
+
+}
+
+export interface Position {
+
+  projectId?: string;
+  departmentId?: string;
+  departmentState?: string;
+  index?: number;
+  title?: string;
+  location?: string;
+  salary?: string;
+  salaryMin?: number;
+  salaryMax?: number;
+  duration?: string;
+  vacancy?: number;
+  selected?: number;
+  selectedMembers?: Array<Object>;
+  startDate?: Date | string;
+  endDate?: Date | string;
+
+}
 
 
 

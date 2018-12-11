@@ -1,3 +1,322 @@
-<p>
-  project-stuff works!
-</p>
+<div class="main-wrapper">
+
+
+  <div fxLayout="row wrap" class="topbar topbar--black">
+
+    <div fxFlex="20" class="topbar__logo">
+      <button mat-button class="topbar__back__btn" (click)="prevStep()">
+        <span class="icon-crewnie-icon-arrow-back svg-icon"></span>
+      </button>
+    </div>
+
+    <div fxFlex="20" class="topbar__title">
+      <h4>Stuff recruitment</h4>
+    </div>
+
+    <div fxFlex></div>
+    <div fxFlex="20" class="topbar__stepper">
+      <!-- <img src="assets/images/step-stuff.png" alt=""> -->
+    </div>
+    <div fxFlex></div>
+
+    <div fxFlex="20" class="topbar__close">
+      <button mat-button class="topbar__close__btn" (click)="cancelAddStuff()">
+        <span class="icon-crewnie-icon-close svg-icon"></span>
+      </button>
+    </div>
+
+
+  </div>
+
+  <div class="stuff__main-content">
+
+    <!-- <div class="stuff__top__bar">
+      <button mat-button class="bar__button" [class.active]="preProduction" (click)="chengeProductionStage(0)">Pre-production</button>
+      <button mat-button class="bar__button" [class.active]="production" (click)="chengeProductionStage(1)">Production</button>
+      <button mat-button class="bar__button" [class.active]="postProduction" (click)="chengeProductionStage(2)">Post-production</button>
+    </div> -->
+
+    <mat-tab-group class="stuff__top__bar" mat-align-tabs="center">
+      <mat-tab label="Pre-production">
+
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="stuff__content">
+
+          <div fxFlex="25" class="stuff__left__col">
+
+            <div class="stuff__card">
+              <h3 class="card__title">Positions</h3>
+              <p class="card__subtitle">Select the position needed for your project</p>
+              <div class="card__searchbox">
+                <mat-form-field class="searchbox">
+                  <input type="text" matInput placeholder="Search position">
+                  <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                    <mat-icon>search</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+
+              <div class="stuff__position">
+                <h3 class="position">Actor</h3>
+                <button mat-button class="add__position" (click)="addPreProductionPosition('Actor')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">Director</h3>
+                <button mat-button class="add__position" (click)="addPreProductionPosition('Director')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">2nd Unit Director</h3>
+                <button mat-button class="add__position" (click)="addPreProductionPosition('2nd Unit Director')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">Camera Man</h3>
+                <button mat-button class="add__position" (click)="addPreProductionPosition('Camera Man')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">Co-Producer</h3>
+                <button mat-button class="add__position" (click)="addPreProductionPosition('Co-Producer')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="75" class="stuff__right__col">
+
+            <div class="stuff__card">
+
+              <div class="position__details" *ngFor="let position of preProductionPositions">
+
+                <position-card [position]="position" (position)="removePositionFromPreProduction($event, position)" [@fadeIn]="fadeIn"></position-card>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </mat-tab>
+
+      <mat-tab label="Production">
+
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="stuff__content">
+
+          <div fxFlex="25" class="stuff__left__col">
+
+            <div class="stuff__card">
+              <h3 class="card__title">Positions</h3>
+              <p class="card__subtitle">Select the position needed for your project</p>
+              <div class="card__searchbox">
+                <mat-form-field class="searchbox">
+                  <input type="text" matInput placeholder="Search position">
+                  <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                    <mat-icon>search</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+
+              <div class="stuff__position">
+                <h3 class="position">Actor</h3>
+                <button mat-button class="add__position" (click)="addProductionPosition('Actor')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">Director</h3>
+                <button mat-button class="add__position" (click)="addProductionPosition('Director')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">2nd Unit Director</h3>
+                <button mat-button class="add__position" (click)="addProductionPosition('2nd Unit Director')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">Camera Man</h3>
+                <button mat-button class="add__position" (click)="addProductionPosition('Camera Man')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">Co-Producer</h3>
+                <button mat-button class="add__position" (click)="addProductionPosition('Co-Producer')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="75" class="stuff__right__col">
+
+            <div class="stuff__card">
+
+              <div class="position__details" *ngFor="let position of productionPositions">
+
+                <position-card [position]="position" (position)="removePositionFromProduction($event, position)" [@fadeIn]="fadeIn"></position-card>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </mat-tab>
+
+      <mat-tab label="Post-production">
+
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="stuff__content">
+
+          <div fxFlex="25" class="stuff__left__col">
+
+            <div class="stuff__card">
+              <h3 class="card__title">Positions</h3>
+              <p class="card__subtitle">Select the position needed for your project</p>
+              <div class="card__searchbox">
+                <mat-form-field class="searchbox">
+                  <input type="text" matInput placeholder="Search position">
+                  <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                    <mat-icon>search</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+
+              <div class="stuff__position">
+                <h3 class="position">Actor</h3>
+                <button mat-button class="add__position" (click)="addPostductionPosition('Actor')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">Director</h3>
+                <button mat-button class="add__position" (click)="addPostductionPosition('Director')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">2nd Unit Director</h3>
+                <button mat-button class="add__position" (click)="addPostductionPosition('2nd Unit Director')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">Camera Man</h3>
+                <button mat-button class="add__position" (click)="addPostductionPosition('Camera Man')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="stuff__position">
+                <h3 class="position">Co-Producer</h3>
+                <button mat-button class="add__position" (click)="addPostductionPosition('Co-Producer')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="75" class="stuff__right__col">
+
+            <div class="stuff__card">
+
+              <div class="position__details" *ngFor="let position of postProductionPositions">
+
+                <position-card [position]="position" (position)="removePositionFromPostProduction($event, position)" [@fadeIn]="fadeIn"></position-card>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </mat-tab>
+    </mat-tab-group>
+
+    <!-- <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="stuff__content">
+
+
+      <div fxFlex="25" class="stuff__left__col">
+
+        <div class="stuff__card">
+          <h3 class="card__title">Positions</h3>
+          <p class="card__subtitle">Select the position needed for your project</p>
+          <div class="card__searchbox">
+            <mat-form-field class="searchbox">
+              <input type="text" matInput placeholder="Search position">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>search</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+          <div class="stuff__position">
+            <h3 class="position">Actor</h3>
+            <button mat-button class="add__position" (click)="addPostion('Actor')">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="stuff__position">
+            <h3 class="position">Director</h3>
+            <button mat-button class="add__position" (click)="addPostion('Director')">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="stuff__position">
+            <h3 class="position">2nd Unit Director</h3>
+            <button mat-button class="add__position" (click)="addPostion('2nd Unit Director')">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="stuff__position">
+            <h3 class="position">Camera Man</h3>
+            <button mat-button class="add__position" (click)="addPostion('Camera Man')">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="stuff__position">
+            <h3 class="position">Co-Producer</h3>
+            <button mat-button class="add__position" (click)="addPostion('Co-Producer')">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div fxFlex="75" class="stuff__right__col">
+
+        <div class="stuff__card">
+
+          <div class="position__details" *ngFor="let position of positions">
+
+            <position-card [position]="position" (childEvent)="test($event)" [@fadeIn]="fadeIn"></position-card>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div> -->
+
+  </div>
+
+  <div fxLayout="row wrap" class="bottombar bottombar--black">
+
+    <div fxFlex></div>
+    <div fxFlex="20" class="bottombar__next">
+      <button mat-button class="bottombar__next__btn" (click)="savePositions()">SAVE</button>
+    </div>
+
+  </div>
+
+
+</div>

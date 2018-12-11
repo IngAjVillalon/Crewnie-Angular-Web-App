@@ -19,6 +19,9 @@ import { promise } from "protractor";
 })
 export class UserService {
   userID: string;
+  userName: string;
+
+  token$: any;
   user$: any;
 
   currentUser$: AngularFirestoreDocument<ActiveUser>;
@@ -36,8 +39,16 @@ export class UserService {
       if(user) {
         this.user = user;
         this.userID = user.uid;
+        this.userName = user.displayName;
       }
     });
+
+    // this.token$ = this.afAuth.auth.currentUser.getIdToken();
+
+    // var token = await this.afAuth.auth.currentUser.getIdToken();
+    // var response = await httpClient.get(url,headers: {'Authorization':"Bearer $token"});
+
+
   }
 
   public getUserId() {
@@ -46,5 +57,13 @@ export class UserService {
 
   public setUserId(userId: string) {
     localStorage.setItem('userId', userId);
+  }
+
+  public getUserName() {
+    return localStorage.getItem('userName');;
+  }
+
+  public setUserName(userId: string) {
+    localStorage.setItem('userName', this.userName);
   }
 }

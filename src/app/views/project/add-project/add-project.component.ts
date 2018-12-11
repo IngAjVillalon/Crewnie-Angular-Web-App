@@ -7,6 +7,8 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Project } from 'src/app/core/models/models';
+import { UserService } from 'src/app/core/services/user.service';
 
 export interface Tag {
   name: string;
@@ -60,13 +62,16 @@ export class AddProjectComponent implements OnInit {
   task: AngularFireUploadTask;
   coverPhotoUrl;
 
+  project: Project = {};
+
   constructor(
     public projectService: ProjectService,
     private router: Router,
     private storage: AngularFireStorage,
     public snackBar: MatSnackBar,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private userService: UserService
   ) {
     this.projectUnions.push('adsa');
     this.unions.push({ controlName: 'union1' });
@@ -75,56 +80,56 @@ export class AddProjectComponent implements OnInit {
   ngOnInit() {
     console.log(this.projectService.project);
 
-    if (this.projectService.project.projectPrivate) {
-      this.privacy = this.projectService.project.projectPrivate;
+    if (this.projectService.project.private) {
+      this.privacy = this.projectService.project.private;
     }
 
-    if (this.projectService.project.projectTitle) {
-      this.projectInfoForm.controls.projectName.setValue(this.projectService.project.projectTitle);
+    if (this.projectService.project.title) {
+      this.projectInfoForm.controls.projectName.setValue(this.projectService.project.title);
     }
 
-    if (this.projectService.project.projectLocation) {
-      this.projectInfoForm.controls.projectLocation.setValue(this.projectService.project.projectLocation);
+    if (this.projectService.project.location) {
+      this.projectInfoForm.controls.projectLocation.setValue(this.projectService.project.location);
     }
 
-    if (this.projectService.project.projectType) {
-      this.projectInfoForm.controls.projectType.setValue(this.projectService.project.projectType);
+    if (this.projectService.project.type) {
+      this.projectInfoForm.controls.projectType.setValue(this.projectService.project.type);
     }
 
-    if (this.projectService.project.projectGenres) {
-      this.projectInfoForm.controls.projectGenra.setValue(this.projectService.project.projectGenres);
+    if (this.projectService.project.genras) {
+      this.projectInfoForm.controls.projectGenra.setValue(this.projectService.project.genras);
     }
 
-    if (this.projectService.project.projectStart) {
-      this.projectInfoForm.controls.projectStart.setValue(this.projectService.project.projectStart);
+    if (this.projectService.project.startDate) {
+      this.projectInfoForm.controls.projectStart.setValue(this.projectService.project.startDate);
     }
 
-    if (this.projectService.project.projectEnd) {
-      this.projectInfoForm.controls.projectEnd.setValue(this.projectService.project.projectEnd);
+    if (this.projectService.project.endDate) {
+      this.projectInfoForm.controls.projectEnd.setValue(this.projectService.project.endDate);
     }
 
-    if (this.projectService.project.projectCategories) {
-      const categories = this.projectService.project.projectCategories;
+    if (this.projectService.project.categories) {
+      const categories = this.projectService.project.categories;
       categories.forEach(element => {
         this.tags.push({ name: element });
       });
     }
 
-    if (this.projectService.project.projectUnions) {
-      const unions = this.projectService.project.projectUnions;
+    if (this.projectService.project.unions) {
+      const unions = this.projectService.project.unions;
       unions.forEach(element => {
         this.setUnionValue(element, unions.indexOf(element));
       });
     }
 
-    if (this.projectService.project.projectCover) {
+    if (this.projectService.project.coverPhoto) {
       this.spinnerMessage = 'Loading Saved Data...';
       this.spinner.show();
       this.coverPhotoSelected = true;
       this.coverPhotoUploaded = true;
-      console.log(this.projectService.project.projectCover);
-      const fileUrl = this.projectService.project.projectCover;
-      this.coverPhotoUrl = this.projectService.project.projectCover;
+      console.log(this.projectService.project.coverPhoto);
+      const fileUrl = this.projectService.project.coverPhoto;
+      this.coverPhotoUrl = this.projectService.project.coverPhoto;
       setTimeout(() => {
         var domElement = document.getElementById('coverImage');
         if (domElement) {
@@ -233,9 +238,9 @@ export class AddProjectComponent implements OnInit {
       this.toastr.error('Please select a cover photo first.', 'Missing Cover!');
     }
 
-    if(this.coverPhotoUploaded && this.coverPhotoSelected) {
+    if (this.coverPhotoUploaded && this.coverPhotoSelected) {
       this.nextStep();
-    }else if ( !this.coverPhotoUploaded && this.coverPhotoSelected) {
+    } else if (!this.coverPhotoUploaded && this.coverPhotoSelected) {
       this.spinner.show();
       const path = `projects/${new Date().getTime()}_${this.imageFile.name}`;
       const customMetadata = { app: 'My AngularFire-powered PWA!' };
@@ -269,35 +274,59 @@ export class AddProjectComponent implements OnInit {
   public nextStep() {
 
     if (this.coverPhotoUrl) {
-      this.projectService.project.projectCover = this.coverPhotoUrl;
+      this.projectService.project.coverPhoto = this.coverPhotoUrl;
     }
 
-    this.projectService.project.projectPrivate = this.privacy;
-    this.projectService.project.projectTitle = this.projectInfoForm.controls.projectName.value;
-    this.projectService.project.projectLocation = this.projectInfoForm.controls.projectLocation.value;
-    this.projectService.project.projectType = this.projectInfoForm.controls.projectType.value;
-    this.projectService.project.projectGenres = this.projectInfoForm.controls.projectGenra.value;
-    this.projectService.project.projectStart = this.projectInfoForm.controls.projectStart.value;
-    this.projectService.project.projectEnd = this.projectInfoForm.controls.projectEnd.value;
+    this.projectService.project.private = this.privacy;
+    this.projectService.project.title = this.projectInfoForm.controls.projectName.value;
+    this.projectService.project.location = this.projectInfoForm.controls.projectLocation.value;
+    this.projectService.project.type = this.projectInfoForm.controls.projectType.value;
+    this.projectService.project.genras = this.projectInfoForm.controls.projectGenra.value;
+    this.projectService.project.startDate = this.projectInfoForm.controls.projectStart.value;
+    this.projectService.project.endDate = this.projectInfoForm.controls.projectEnd.value;
 
     const categories: Array<string> = [];
     this.tags.forEach(element => {
       categories.push(element.name);
     });
-    this.projectService.project.projectCategories = categories;
+    this.projectService.project.categories = categories;
 
     const unions: Array<string> = [];
     this.unions.forEach(element => {
       unions.push(this.projectInfoForm.get(element.controlName).value);
     });
-    this.projectService.project.projectUnions = unions;
+    this.projectService.project.unions = unions;
 
-    this.projectService.project.projectCover = this.coverPhotoUrl;
+    this.projectService.project.coverPhoto = this.coverPhotoUrl;
 
-    this.projectService.createNewProject();
+    // this.projectService.createNewProject();
 
-    this.router.navigate(["/projects/new/users"]);
-    this.spinner.hide();
+    this.project.creatorId = this.userService.getUserId();
+    this.project.title = this.projectInfoForm.controls.projectName.value;
+    this.project.location = this.projectInfoForm.controls.projectLocation.value;
+    this.project.type = this.projectInfoForm.controls.projectType.value;
+    this.project.agency = this.projectInfoForm.controls.projectType.value;
+    this.project.genras = this.projectInfoForm.controls.projectGenra.value;
+    this.project.startDate = this.projectInfoForm.controls.projectStart.value;
+    this.project.endDate = this.projectInfoForm.controls.projectEnd.value;
+    this.project.categories = categories;
+
+    this.project.hasUnion = this.projectInfoForm.controls.projectHasUnion.value;
+    this.project.unions = unions;
+    this.project.coverPhoto = this.coverPhotoUrl;
+
+    this.projectService.addProjectInfo(this.project).subscribe((response: Project) => {
+      console.log('response from post data is ', response._id);
+      this.projectService.setCurrentProjectId(response._id);
+      this.spinner.hide();
+      this.router.navigate(["/projects/new/users"]);
+      this.toastr.success('Project Info saved on DB.', 'Project Saved');
+    }, (error) => {
+      console.log('error during post is ', error)
+      this.spinner.hide();
+      this.openErrorMessage('Could not saved project info', 'Try Again');
+    });
+
   }
 
   public openErrorMessage(message: string, action: string) {

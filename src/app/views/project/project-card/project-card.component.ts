@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { projectItem } from 'src/app/core/models/models';
+import { Project } from 'src/app/core/models/models';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'project-card',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ProjectCardComponent implements OnInit {
 
-  @Input('project') project: projectItem;
+  @Input('project') project: Project;
 
   constructor(
     public projectService: ProjectService,
@@ -21,7 +23,12 @@ export class ProjectCardComponent implements OnInit {
   }
 
   public viewProjectDashboard(projectId: string) {
+    this.projectService.setCurrentProjectId(this.project._id);
     this.router.navigate(["/projects/dashboard"]);
+  }
+
+  public editProject() {
+
   }
 
 }

@@ -31,8 +31,8 @@
   <div class="main-content">
     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="20px" class="content content--workgroup">
 
-      <div fxFlex="32" class="item item--active" *ngFor="let userGroup of userGroups">
-        <usergroup-card [userGroup]="userGroup" (userGroup)="getGroupData($event, userGroup)"></usergroup-card>
+      <div fxFlex="32" class="item item--active" *ngFor="let department of departments">
+        <usergroup-card [department]="department" (department)="getGroupData($event, department)"></usergroup-card>
       </div>
       <!-- <div fxFlex="23" class="item item--active">
         <usergroup-card [userGroup]='userGroup'></usergroup-card>

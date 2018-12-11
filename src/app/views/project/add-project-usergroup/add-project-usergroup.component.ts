@@ -1,29 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/core/services/project.service';
-import { userGroup, ActiveUser, groupData, depertment, depertmentObject } from 'src/app/core/models/models';
+import { userGroup, ActiveUser, groupData, depertment, depertmentObject, Department, DepartmentUser, Project } from 'src/app/core/models/models';
+import { ToastrService } from 'ngx-toastr';
 
-export interface Member {
-  createdAt?: firebase.firestore.Timestamp;
-  modifiedAt?: firebase.firestore.Timestamp;
-
-  name?: string;
-  role?: string;
-  position?: string;
-  userId?: string;
-  user?: ActiveUser;
-}
-
-
-export interface Depertment {
-  createdAt?: firebase.firestore.Timestamp;
-  modifiedAt?: firebase.firestore.Timestamp;
-
-  title?: string;
-  teamLeader?: string;
-
-  members?: Array<Member>;
-}
 
 @Component({
   selector: 'app-add-project-usergroup',
@@ -32,11 +12,12 @@ export interface Depertment {
 })
 export class AddProjectUsergroupComponent implements OnInit {
 
-  userGroups: Array<groupData> = [];
+  departments: Array<Department> = [];
 
   constructor(
     public projectService: ProjectService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
   ) {
 
   }
@@ -61,16 +42,19 @@ export class AddProjectUsergroupComponent implements OnInit {
   public addUserGroup() {
 
 
-    var userGroup: groupData = {
-      groupId: this.projectService.makeid()
+    var department: Department = {
+      projectId: this.projectService.getCurrentProjectId(),
+      title: "",
+      teamLeader: {},
+      members: []
     };
-    this.userGroups.push(userGroup);
-    this.projectService.project.projectDepertments = this.userGroups;
+    this.departments.push(department);
+    this.projectService.project.departments = this.departments;
 
-    console.log(this.projectService.project.projectDepertments);
+    console.log(this.projectService.project.departments);
   }
 
-  getGroupData(event: depertmentObject, userGroup: userGroup) {
+  getGroupData(event: any, department: Department) {
     // userGroup = event;
     // console.log('In UserGroup: -------------' + event.groupTitle);
     // this.userGroups.forEach(element => {
@@ -86,34 +70,33 @@ export class AddProjectUsergroupComponent implements OnInit {
       // }
     // });
 
-    var depertmentObject: depertmentObject = event;
+    console.log(event);
+    console.log(this.departments.indexOf(department));
 
-    console.log('---------------------------');
-    console.log(depertmentObject);
+    var index = this.departments.indexOf(department);
+    if(event) {
+      this.departments.splice(index, 1);
+    }
+
 
   }
 
   public previewPageData() {
-    console.log(this.userGroups);
+    console.log(this.departments);
+    this.projectService.addDepartments(this.departments).subscribe((response: Project) => {
+      console.log(response._id);
+      if(response._id) {
 
-    // this.projectService.addUserGroupData(this.userGroups);
-    // this.userGroups.forEach(element => {
-    //   console.log(element.groupTitle);
-    //   let members: Array<string> = [];
-    //   let dept: depertment = {
-    //     title: element.groupTitle,
-    //     teamLeader: element.teamLeader.user.uid,
-    //   };
+        this.projectService.addAllDepartments(this.departments).subscribe(res => {
+          this.router.navigate(["/projects"]);
+          this.toastr.success('Departments saved on DB.', 'Success!');
+        });
 
-    //   element.members.forEach(member => {
-    //     members.push(member.user.uid);
-    //   });
+      }else {
+        this.toastr.error('Couldnt counnect to server...', 'Error!');
+      }
 
-    //   dept.members = members;
-
-    //   this.projectService.createDepertment(dept);
-    // });
-
+    });
 
   }
 

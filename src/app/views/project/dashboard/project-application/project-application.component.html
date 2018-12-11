@@ -93,20 +93,21 @@
         <div class="depertment__wrapper">
           <mat-accordion>
 
-            <mat-expansion-panel *ngFor="let depertment of depertments">
+            <mat-expansion-panel *ngFor="let department of departments">
 
               <mat-expansion-panel-header>
                 <mat-panel-title class="depertment__title">
-                  {{depertment.title}}
+                  {{(department.title.length>20)? (department.title | slice:0:20)+'..':(department.title) }}
                 </mat-panel-title>
                 <mat-panel-description class="depertment__edit__position">
-                  <button mat-button class="edit__btn" (click)="editPosition()">Edit positions</button>
+                  <button mat-button class="edit__btn" (click)="editPosition(department._id)" *ngIf="department.positions">Edit positions</button>
+                  <button mat-button class="add__btn" (click)="addPositions(department._id)" *ngIf="!department.positions">Add positions</button>
                 </mat-panel-description>
               </mat-expansion-panel-header>
 
               <mat-tab-group mat-stretch-tabs>
 
-                <mat-tab label="Pending({{depertment.pending?.length || 0}})">
+                <!-- <mat-tab label="Pending({{depertment.pending?.length || 0}})">
 
                   <div class="position__filter">
                     <mat-form-field class="filter__by__position">
@@ -134,8 +135,8 @@
 
                   </div>
 
-                </mat-tab>
-                <mat-tab label="Added({{depertment.added?.length || 0}})">
+                </mat-tab> -->
+                <!-- <mat-tab label="Added({{depertment.added?.length || 0}})">
 
                   <div class="position__filter">
                     <mat-form-field class="filter__by__position">
@@ -164,7 +165,7 @@
 
                   </div>
 
-                </mat-tab>
+                </mat-tab> -->
               </mat-tab-group>
 
             </mat-expansion-panel>

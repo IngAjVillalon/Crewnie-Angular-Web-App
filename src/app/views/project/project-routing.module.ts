@@ -13,6 +13,7 @@ import { ApplicantTransferComponent } from './dashboard/applicant-management/app
 import { CastingCallComponent } from './dashboard/applicant-management/casting-call/casting-call/casting-call.component';
 import { CastingCalendarComponent } from './dashboard/applicant-management/casting-call/casting-calendar/casting-calendar.component';
 import { CastingInfoComponent } from './dashboard/applicant-management/casting-call/casting-info/casting-info.component';
+import { ProjectStuffComponent } from './dashboard/project-stuff/project-stuff.component';
 
 const routes: Routes = [
 
@@ -50,6 +51,11 @@ const routes: Routes = [
     path: 'dashboard/application',
     component: ProjectApplicationComponent,
     data: {depth: 7}
+  },
+  {
+    path: 'dashboard/application/stuffs',
+    component: ProjectStuffComponent,
+    data: {depth: 3}
   },
   {
     path: 'dashboard/roles',

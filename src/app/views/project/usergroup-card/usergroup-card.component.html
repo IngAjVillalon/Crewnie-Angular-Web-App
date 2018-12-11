@@ -4,7 +4,7 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #action="matMenu">
-    <button mat-menu-item>Edit Project {{userGroup.groupId}}</button>
+    <button mat-menu-item>Edit Project {{department.projectId}}</button>
     <button mat-menu-item (click)="deleteGroup()">Delete Project</button>
   </mat-menu>
 <form [formGroup]="groupData">
@@ -18,12 +18,12 @@
     <div fxLayout="row" [class.team__leader]="!isAdminSelected" [class.user]="isAdminSelected">
       <div fxFlex="20" class="user__avater" *ngIf="isAdminSelected">
         <a href="">
-          <img class="avater__img" [src]="teamLeader.user.profilePhotoUrl" alt="">
+          <img class="avater__img" [src]="teamLeader.profilePhoto" alt="">
         </a>
       </div>
       <div fxFlex="80" class="user__info" *ngIf="isAdminSelected">
 
-        <a [routerLink]="[ '/profile' ]" class="user__name admin">{{teamLeader.user.firstName}} <span>(Team Leader)</span></a>
+        <a [routerLink]="[ '/profile' ]" class="user__name admin">{{(teamLeader.name.length>30)? (teamLeader.name | slice:0:30)+'..':(teamLeader.name) }} <span>(Team Leader)</span></a>
 
         <mat-form-field class="user__role admin" *ngIf="teamLeader">
           <mat-select [(ngModel)]="teamLeader.role" value="admin" (change)="groupChangeEvent()">
@@ -66,11 +66,11 @@
     <div fxLayout="row" class="user">
       <div fxFlex="20" class="user__avater">
         <a href="">
-          <img class="avater__img" [src]="user.user.profilePhotoUrl" alt="">
+          <img class="avater__img" [src]="user.profilePhoto" alt="">
         </a>
       </div>
       <div fxFlex="80" class="user__info">
-        <a [routerLink]="[ '/profile' ]" class="user__name">{{user.user.firstName}}</a>
+        <a [routerLink]="[ '/profile' ]" class="user__name">{{(user.name.length>30)? (user.name | slice:0:30)+'..':(user.name) }}</a>
         <mat-form-field class="user__role admin" *ngIf="teamLeader">
           <mat-select [(ngModel)]="user.position" value="user" (change)="groupChangeEvent()">
             <mat-option selected value="user">User</mat-option>
@@ -96,7 +96,7 @@
 
         <mat-form-field class="select__member__input">
 
-          <input matInput type="text" placeholder="Select a team leader from the list" [matAutocomplete]="member" formControlName="addMember" (change)="groueChangEvente()">
+          <input matInput type="text" placeholder="Select a team leader from the list" [matAutocomplete]="member" formControlName="addMember" (change)="groupChangeEvent()">
           <button mat-button matSuffix mat-icon-button>
               <mat-icon>close</mat-icon>
             </button>

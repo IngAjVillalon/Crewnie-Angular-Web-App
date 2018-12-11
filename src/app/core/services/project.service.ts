@@ -5,59 +5,16 @@ import {
   AngularFirestoreCollection
 } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { projectItem, ActiveUser, groupData, userGroup, depertment, member } from '../models/models';
+import { projectItem, ActiveUser, groupData, userGroup, depertment, member, Department, Project, Position } from '../models/models';
 import { UserService } from './user.service';
 import { firestore } from 'firebase/app';
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import 'rxjs/add/operator/toPromise';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-export interface Member {
-  createdAt?: firebase.firestore.Timestamp;
-  modifiedAt?: firebase.firestore.Timestamp;
+import { JsonPipe } from '@angular/common';
 
-  name?: string;
-  role?: string;
-  position?: string;
-  userId?: string;
-  user?: ActiveUser;
-}
 
-export interface Depertments {
-  createdAt?: firebase.firestore.Timestamp;
-  modifiedAt?: firebase.firestore.Timestamp;
-
-  title?: string;
-  teamLeader?: string;
-
-  members?: Array<Member>;
-}
-
-export interface Project {
-  createdAt?: firebase.firestore.Timestamp;
-  modifiedAt?: firebase.firestore.Timestamp;
-
-  projectId?: string;
-  creatorId?: string;
-
-  projectPrivate?: boolean;
-
-  projectTitle?: string;
-
-  projectLocation?: string;
-
-  projectStart?: firebase.firestore.Timestamp;
-  projectEnd?: firebase.firestore.Timestamp;
-
-  projectType?: string;
-  projectGenres?: Array<string>;
-  projectCategories?: Array<string>;
-  projectUnions?: Array<string>;
-
-  projectCover?: string;
-
-  projectDepertments?: Array<groupData>
-
-}
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +32,8 @@ export class ProjectService {
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore,
-    private userService: UserService
+    private userService: UserService,
+    private http: HttpClient
   ) {
 
   }
@@ -89,7 +47,7 @@ export class ProjectService {
     const creatorId = this.userService.getUserId();
     const createdAt = new Date(Date.now() * 24 * 60 * 60 * 1000);
 
-    this.project.projectId = projectId;
+    this.project._id = projectId;
     this.project.creatorId = creatorId;
 
 
@@ -97,7 +55,7 @@ export class ProjectService {
   }
 
   public cancelProjectCreation() {
-    this.db.collection("projects").doc(this.project.projectId).delete();
+    this.db.collection("projects").doc(this.project._id).delete();
   }
 
   public addUserGroupData(userGroups: Array<groupData>) {
@@ -122,7 +80,7 @@ export class ProjectService {
   }
 
   public createDepertment(depertment: depertment, teamLeader: member, members: Array<member>) {
-    const projectId = this.project.projectId;
+    const projectId = this.project._id;
     const depertmentId = this.db.createId();
     depertment.depertmentId = depertmentId;
     this.db.collection('projects').doc('F5nYbyrl6QPZgNAChGsR').collection('departments').doc(depertmentId).set(depertment);
@@ -183,5 +141,131 @@ export class ProjectService {
     var positions = this.db.collection('projects').doc("F5nYbyrl6QPZgNAChGsR").collection("departments").doc(depertmentId).collection("positions");
     console.log('After');
     return positions;
+  }
+
+  public addProjectInfo(project: any) {
+    console.log('Add Project Info To MongoDB');
+    console.log(project);
+
+
+    var projectData = {
+      "creatorId": project.creatorId,
+      "private": project.private,
+      "title": project.title,
+      "coverPhotoUrl": project.coverPhoto,
+      "type": project.type,
+      "agency": project.agency,
+      "genras": project.genras,
+      "startDate": project.startDate,
+      "endDate": project.endDate,
+      "categories": project.categories,
+      "hasUnion": project.hasUnion,
+      "unions": project.unions,
+      "departments": [],
+      "positions": []
+    }
+    return this.http.post('https://crewnie.herokuapp.com/api/projects', projectData);
+  }
+
+  public getProjectById(projectId: string) {
+    let currentProject: Project = {};
+    let reqUrl = 'https://crewnie.herokuapp.com/api/projects/id/' + projectId;
+    return this.http.get(reqUrl);
+    // this.http.get(reqUrl).subscribe(response => {
+    //   currentProject = response;
+    //   currentProject.departments = departments;
+
+    //   console.log(currentProject);
+    // })
+  }
+
+  public addDepartments(departments: Department[]) {
+    this.project.departments = departments;
+    var options = { headers: new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin', 'http://localhost:4200') };
+
+    let reqUrl = 'https://crewnie.herokuapp.com/api/projects/' + this.getCurrentProjectId();
+    return this.http.put(reqUrl, { "departments": departments }, options);
+
+    // let currentProject: Project = {};
+    // let reqUrl = 'https://crewnie.herokuapp.com/api/projects/id/'+this.getCurrentProjectId();
+    // this.http.get(reqUrl).subscribe(response => {
+    //   currentProject = response;
+    //   currentProject.departments = departments;
+
+    //   console.log(currentProject);
+    // })
+
+    // this.saveProjectLocal(this.project);
+  }
+
+  public addAllDepartments(departments: Department[]) {
+    this.project.departments = departments;
+    var options = { headers: new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin', 'http://localhost:4200') };
+    let reqUrl = 'https://crewnie.herokuapp.com/api/depertments/all';
+    return this.http.post(reqUrl, departments);
+
+  }
+
+  public getDepartmentsByProjectId(projectId: string) {
+    let reqUrl = 'https://crewnie.herokuapp.com/api/depertments/project/' + this.getCurrentProjectId();
+    return this.http.get(reqUrl);
+  }
+
+  public setProjectId(projectId: string) {
+    this.project._id = projectId;
+  }
+
+  public getProjectId() {
+    return this.project._id;
+  }
+
+
+
+  // Save project info to local storage
+  public setCurrentProjectId(projectId: string) {
+    localStorage.setItem('currentProjectId', projectId);
+  }
+
+  public getCurrentProjectId() {
+    return localStorage.getItem('currentProjectId');
+  }
+
+  public setCurrentDepartmentId(departmentId: string) {
+    localStorage.setItem('currentDepartmentId', departmentId);
+  }
+
+  public getCurrentDepartmentId() {
+    return localStorage.getItem('currentDepartmentId');
+  }
+
+  public saveProjectLocal(project: Project) {
+    localStorage.setItem('currentProject', JSON.stringify(project));
+  }
+
+  public getProjectLocal() {
+    return JSON.parse(localStorage.getItem('currentProject'));
+  }
+
+  // Position Operations
+
+  public addAllPositions(positions: Position[]) {
+
+  }
+
+  public UpdateAllPositions(positions: Position[]) {
+
+  }
+
+  public AddPreProductionPositionsToDepartments(positions: Position[]) {
+    let reqUrl = 'https://crewnie.herokuapp.com/api/position/all';
+    return this.http.post(reqUrl, positions);
+  }
+
+  public AddProductionPositionsToDepartments(positions: Position[], departmentId: string) {
+
+  }
+
+  public AddPostProductionPositionsToDepartments(positions: Position[], departmentId: string) {
+
   }
 }

@@ -3,7 +3,7 @@ import { ProjectService } from 'src/app/core/services/project.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
-import { depertment, ActiveUser } from 'src/app/core/models/models';
+import { depertment, ActiveUser, Department, DepartmentUser, Project } from 'src/app/core/models/models';
 import 'rxjs/add/operator/toPromise';
 import { FormControl } from '@angular/forms';
 import { MatTabChangeEvent } from '@angular/material';
@@ -32,10 +32,11 @@ export interface Position {
 })
 export class ProjectApplicationComponent implements OnInit {
 
+  project: Project = {};
   panelOpenState = false;
 
   depertments$: AngularFirestoreCollection<Depertment>;
-  depertments: Depertment[];
+  departments: Array<Department> = [];
 
   positions$: AngularFirestoreCollection<Position>;
   positions: Position[];
@@ -52,30 +53,31 @@ export class ProjectApplicationComponent implements OnInit {
     private db: AngularFirestore
   ) {
     console.log("Start");
-    this.depertments$ = this.projectService.getProjectDepertments('F5nYbyrl6QPZgNAChGsR');
-    this.depertments$.valueChanges().subscribe(depertments => {
-      this.depertments = depertments;
+    // this.depertments$ = this.projectService.getProjectDepertments('F5nYbyrl6QPZgNAChGsR');
+    // this.depertments$.valueChanges().subscribe(depertments => {
+    //   this.depertments = depertments;
+    //   this.getDepertments();
+    //   console.log("Start - 2" + this.depertments);
+    // });
+
+    this.projectService.getProjectById(this.projectService.getCurrentProjectId()).subscribe(response => {
+      this.project = response;
       this.getDepertments();
-      console.log("Start - 2" + this.depertments);
     });
+
+
   }
 
   public getDepertments() {
-    this.depertments.forEach(element => {
+    // this.project.departments.forEach(element => {
+    //   this.departments.push(element);
+    // });
 
-      this.db.collection('projects').doc('F5nYbyrl6QPZgNAChGsR')
-        .collection('depertments').doc(element.id).
-        collection('pending').valueChanges().subscribe(positions => {
-          element.pending = positions;
-        })
-
-      this.db.collection('projects').doc('F5nYbyrl6QPZgNAChGsR')
-        .collection('depertments').doc(element.id).
-        collection('added').valueChanges().subscribe(positions => {
-          element.added = positions;
-        })
-
+    this.projectService.getDepartmentsByProjectId(this.projectService.getCurrentProjectId()).subscribe((response: Department[]) => {
+      this.departments = response;
+      console.log(this.departments);
     });
+
   }
 
   async getPosition(depertmentId: string): Promise<Position> {
@@ -99,10 +101,17 @@ export class ProjectApplicationComponent implements OnInit {
     this.router.navigate(["/projects"]);
   }
 
-  public editPosition() {
-    console.log('Edit Position');
-    console.log(this.depertments);
+  public editPosition(departmentId: string) {
+    console.log('Edit Position'+ departmentId);
+    this.projectService.setCurrentDepartmentId(departmentId);
+    this.router.navigate(["projects/dashboard/application/stuffs"]);
+    // console.log(this.depertments);
+  }
 
+  public addPositions(departmentId: string) {
+    console.log(departmentId);
+    this.projectService.setCurrentDepartmentId(departmentId);
+    this.router.navigate(["projects/dashboard/application/stuffs"]);
   }
 
   public getPositions(depertmentId: string) {

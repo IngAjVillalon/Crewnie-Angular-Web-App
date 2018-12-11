@@ -1,67 +1,71 @@
-<div class="card card--position">
+<!-- <form [formGroup]="positionForm"> -->
+  <div class="card card--position">
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0px" class="details__item__wrapper">
 
-        <div fxFlex="20" class="position">
-          <h3 class="position__title"><span class="bullets">{{position.positionIndex}}.</span>{{position.position}}</h3>
-        </div>
-
-        <div fxFlex="20" class="selection">
-          <mat-form-field>
-            <mat-label style="color: #fc4000;">Location</mat-label>
-            <mat-select>
-              <mat-option value="la">Los Angeles</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="20" class="selection salary">
-          <mat-form-field>
-            <mat-label style="color: #fc4000;">Salary</mat-label>
-            <span matPrefix>$ &nbsp;</span>
-            <input matInput placeholder="Enter salary" value="2000 - 3000">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="20" class="selection preiod">
-          <mat-form-field>
-            <mat-label style="color: #fc4000;"></mat-label>
-            <mat-select placeholder="Select Duration">
-              <mat-option value="la">Daily</mat-option>
-              <mat-option value="la">Weekly</mat-option>
-              <mat-option value="la">Monthly</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="5" class="selection vacants">
-          <mat-form-field>
-            <mat-label style="color: #fc4000;">Vacants</mat-label>
-            <input type="number" matInput placeholder="Vacants number" value="0">
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="20" class="selection working__date">
-          <mat-form-field>
-              <mat-label style="color: #fc4000;">Working dates</mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="Start date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div fxFlex="20" class="selection working__date">
-          <mat-form-field>
-              <mat-label style="color: #fc4000;"></mat-label>
-            <input matInput [matDatepicker]="picker2" placeholder="End date">
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="5" class="selection delete__position">
-          <button mat-button class="close__btn" (click)="test(position)">
-            <span class="icon-crewnie-icon-close svg-icon"></span>
-          </button>
-        </div>
-
+      <div fxFlex="20" class="position">
+        <h3 class="position__title"><span class="bullets">{{position.index}}.</span>{{position.title}}</h3>
       </div>
+
+      <div fxFlex="20" class="selection">
+        <mat-form-field>
+          <mat-label style="color: #fc4000;">Location</mat-label>
+          <mat-select [(ngModel)]="position.location" (change)="positionDataChangeEvent()">
+            <mat-option value="losangeles">Los Angeles</mat-option>
+            <mat-option value="california">California</mat-option>
+            <mat-option value="mexico">Mexico</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="20" class="selection salary">
+        <mat-form-field>
+          <mat-label style="color: #fc4000;">Salary</mat-label>
+          <span matPrefix>$ &nbsp;</span>
+          <input matInput placeholder="Enter salary" [(ngModel)]="position.salary"  (change)="positionDataChangeEvent()">
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="20" class="selection preiod">
+        <mat-form-field>
+          <mat-label style="color: #fc4000;"></mat-label>
+          <mat-select placeholder="Select Duration" [(ngModel)]="position.duration" value="daily" (change)="positionDataChangeEvent()">
+            <mat-option value="daily">Daily</mat-option>
+            <mat-option value="weekly">Weekly</mat-option>
+            <mat-option value="monthly">Monthly</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="5" class="selection vacants">
+        <mat-form-field>
+          <mat-label style="color: #fc4000;">Vacants</mat-label>
+          <input type="number" matInput placeholder="Vacants number" value="0" (change)="positionDataChangeEvent()" [(ngModel)]="position.vacancy">
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="20" class="selection working__date">
+        <mat-form-field>
+          <mat-label style="color: #fc4000;">Working dates</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Start date" (change)="positionDataChangeEvent()" [(ngModel)]="position.startDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxFlex="20" class="selection working__date">
+        <mat-form-field>
+          <mat-label style="color: #fc4000;"></mat-label>
+          <input matInput [matDatepicker]="picker2" placeholder="End date" (change)="positionDataChangeEvent()" [(ngModel)]="position.endDate">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="5" class="selection delete__position">
+        <button mat-button class="close__btn" (click)="deletePosition(position.index)">
+          <span class="icon-crewnie-icon-close svg-icon"></span>
+        </button>
+      </div>
+
+    </div>
   </div>
+<!-- </form> -->
