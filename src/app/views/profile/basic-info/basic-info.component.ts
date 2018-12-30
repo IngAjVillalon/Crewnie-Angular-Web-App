@@ -21,7 +21,7 @@ import {
 } from "@angular/fire/storage";
 
 import { Router, ActivatedRoute } from "@angular/router";
-import { AuthService } from "src/app/core/services/auth.service";
+import { AuthService } from "src/app/core/services/auth/auth.service";
 import { User } from "firebase";
 import { FormGroup, FormControl } from "@angular/forms";
 import { finalize } from "rxjs/operators";

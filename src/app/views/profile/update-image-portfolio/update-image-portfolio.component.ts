@@ -1,6 +1,6 @@
 import { Location, DatePipe } from "@angular/common";
 import { ActiveUser, portfolioItem } from "src/app/core/models/models";
-import { AuthService } from "src/app/core/services/auth.service";
+import { AuthService } from "src/app/core/services/auth/auth.service";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { AngularFireAuth } from "@angular/fire/auth";

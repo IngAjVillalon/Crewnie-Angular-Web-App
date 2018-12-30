@@ -2,11 +2,11 @@
   <div class="session-container" fxLayout="row wrap" fxLayout.lt-md="column wrap">
     <div fxFlex="50" t-color-white>
       <div t-width-xs>
-          <img class="session-logo" src="../../../../assets//images/logo.png" alt="">
-          <h3 t-font-regular t-width-200 t-mb-05>You don't have an account?</h3>
-          <p class="session-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum,
-            harum id. Sit odio similique consectetur voluptatum sunt dolores doloribus?</p>
-          <button mat-stroked-button t-wide color="primary" routerLink="/sessions/signup">Sign Up</button>
+        <img class="session-logo" src="../../../../assets//images/logo.png" alt="">
+        <h3 t-font-regular t-width-200 t-mb-05>You don't have an account?</h3>
+        <p class="session-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum,
+          harum id. Sit odio similique consectetur voluptatum sunt dolores doloribus?</p>
+        <button mat-stroked-button t-wide color="primary" routerLink="/sessions/signup">Sign Up</button>
       </div>
     </div>
     <div fxFlex="50" fxLayout="row">
@@ -16,19 +16,30 @@
         <p>Lorem ipsum dolor sit amet consectetur.</p>
         <form action="" class="t-pt-1" [formGroup]="signinForm" (ngSubmit)="signIn()">
           <mat-form-field t-width-full>
-            <input matInput type="text" placeholder="Email" formControlName="email">
+            <input matInput type="text" placeholder="Email" formControlName="email" name="email" required email>
           </mat-form-field>
+          <small class="t-color-warn" *ngIf="signinForm.controls.email.invalid && (signinForm.controls.email.dirty || signinForm.controls.email.touched)">
+            Please, enter a valid email!
+          </small>
+
           <mat-form-field t-width-full>
-            <input matInput type="password" placeholder="Password" formControlName="password">
+            <input matInput type="password" placeholder="Password" formControlName="password" name="password" minlength="6" maxlength="50"
+              required>
           </mat-form-field>
-          <mat-checkbox color="primary">Remember me</mat-checkbox>
+          <div>
+            <small class="t-color-warn" *ngIf="signinForm.controls.password.invalid && (signinForm.controls.password.dirty || signinForm.controls.password.touched)">
+              It does not even seem like a password that we would allow ... </small>
+            <br />
+          </div>
+
+          <mat-checkbox color="primary" formControlName="remember">Remember me</mat-checkbox>
           <div t-mb-05 t-mt-05 fxLayout="row wrap">
             <span fxFlex></span>
-            <button mat-flat-button t-wide color="primary">Sign in</button>
+            <button mat-flat-button t-wide color="primary"  [disabled]="signinForm.invalid">Sign in</button>
           </div>
           <div fxLayout="row wrap">
             <span fxFlex></span>
-            <a class="t-color-primary" href="" (click)="openForgotDialog($event)"> <u>Troubles with your user or password?</u> </a>
+            <a class="t-color-primary" href="" (click)="openForgotDialog($event)"> <u>Did you forget your password?</u> </a>
           </div>
         </form>
 

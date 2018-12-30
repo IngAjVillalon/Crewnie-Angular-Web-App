@@ -1,4 +1,4 @@
-import { AuthService } from "./../../../core/services/auth.service";
+import { AuthService } from "../../../core/services/auth/auth.service";
 import { ActiveUser, portfolioItem, commentItem } from "src/app/core/models/models";
 import { Component, OnInit } from "@angular/core";
 import { Location } from "@angular/common";

@@ -3,12 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { BlankLayoutComponent } from './core/components/blank-layout/blank-layout.component';
 import { SidenavLayoutComponent } from './core/components/sidenav-layout/sidenav-layout.component';
 
+// Guards
+import { AuthGuard } from './core/services/auth/auth-guard.service';
+
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'sessions/signin',
-    pathMatch: 'full'
-  },
+  { path: '', redirectTo: 'projects', pathMatch: 'full' },
+  { path: 'action', redirectTo: 'projects', pathMatch: 'full' },
+  { path: 'login', redirectTo: 'sessions/signin', pathMatch: 'full' },
+  { path: 'signin', redirectTo: 'sessions/signin', pathMatch: 'full' },
+  { path: 'signup', redirectTo: 'sessions/signup', pathMatch: 'full' },
+  { path: 'register', redirectTo: 'sessions/signup', pathMatch: 'full' },
   {
     path: 'style',
     loadChildren: './views/style-guide/style-guide.module#StyleGuideModule'
@@ -27,7 +31,8 @@ const routes: Routes = [
       },
       {
         path: 'projects',
-        loadChildren: './views/project/project.module#ProjectModule'
+        loadChildren: './views/project/project.module#ProjectModule',
+        canLoad: [ AuthGuard ]
       }
     ]
   },

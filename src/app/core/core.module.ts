@@ -9,7 +9,7 @@ import { MatSidenavHelperDirective, MatSidenavTogglerDirective } from './directi
 import { BlankLayoutComponent } from './components/blank-layout/blank-layout.component';
 import { SidenavLayoutComponent } from './components/sidenav-layout/sidenav-layout.component';
 import { CommonMatsModule } from './modules/common-mats.module';
-import {NgcFloatButtonModule} from 'ngc-float-button';
+import { NgcFloatButtonModule } from 'ngc-float-button';
 
 import { VgCoreModule } from "videogular2/core";
 import { VgControlsModule } from "videogular2/controls";
@@ -22,6 +22,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../../environments/environment';
 import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
+
+//Guards
+import { AuthGuard } from './services/auth/auth-guard.service';
 
 
 const declarations = [
@@ -60,6 +63,9 @@ const declarations = [
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     PasswordStrengthBarModule
-    ]
+  ],
+  providers: [
+    AuthGuard
+  ]
 })
 export class CoreModule { }

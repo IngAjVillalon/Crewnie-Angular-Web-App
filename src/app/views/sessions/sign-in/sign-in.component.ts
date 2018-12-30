@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "src/app/core/services/auth.service";
+import { AuthService } from "src/app/core/services/auth/auth.service";
 import { Router } from "@angular/router";
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { MatDialog } from "@angular/material";
 import { ForgotDialogComponent } from "../forgot-dialog/forgot-dialog.component";
-import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
   selector: "app-sign-in",
@@ -13,112 +13,60 @@ import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 })
 export class SignInComponent implements OnInit {
 
-  isNewUser = false;
-  email = "";
-  password = "";
-  errorMessage = "";
-  error: { name: string; message: string } = { name: "", message: "" };
-
   signinForm = new FormGroup({
     email: new FormControl(""),
-    password: new FormControl("")
+    password: new FormControl(""),
+    remember: new FormControl("")
   });
 
   constructor(
     private dialog: MatDialog,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
-    // this.openForgotDialog()
+
   }
 
   openForgotDialog(e) {
     e.preventDefault();
-    // console.log(e)
     const dialogRef = this.dialog.open(ForgotDialogComponent, {
       width: "450px",
       disableClose: true,
-      data: {}
+      data: {
+        email: this.signinForm.value.email
+      }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("The dialog was closed");
+    dialogRef.afterClosed().subscribe(email => {
+      if (email) this.signinForm.setValue({
+        email: email,
+        password: '',
+        remember: true
+      });
     });
   }
 
   checkUserInfo() {
     if (this.authService.isUserEmailLoggedIn) {
-      this.router.navigate(['/user'])
+      this.router.navigate(['/action'])
     }
-  }
-
-  clearErrorMessage() {
-    this.errorMessage = '';
-    this.error = { name: '', message: '' };
-  }
-
-  changeForm() {
-    this.isNewUser = !this.isNewUser
   }
 
 
   signIn() {
-    if (this.validateForm(this.signinForm.controls.email.value, this.signinForm.controls.password.value)) {
-      this.authService
-        .signInWithEmail(this.signinForm.controls.email.value, this.signinForm.controls.password.value)
-        .then(() => {
-          this.router.navigate(["/profile/info"]);
-        })
-        .catch(_error => {
-          this.error = _error;
-          this.router.navigate(["/"]);
-        });
-    }
-  }
+    const email: string = this.signinForm.value.email;
+    const password: string = this.signinForm.value.password;
+    const remember: boolean = this.signinForm.value.remember;
 
-  validateForm(email: string, password: string): boolean {
-    if (email.length === 0) {
-      this.errorMessage = "Please enter Email!";
-      return false;
-    }
+    const redirectUrl = this.authService.redirectUrl || 'action';
 
-    if (password.length === 0) {
-      this.errorMessage = "Please enter Password!";
-      return false;
-    }
-
-    if (password.length < 6) {
-      this.errorMessage = "Password should be at least 6 characters!";
-      return false;
-    }
-
-    this.errorMessage = "";
-
-    return true;
-  }
-
-  isValidMailFormat(email: string) {
-    const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
-
-    if (email.length === 0 && !EMAIL_REGEXP.test(email)) {
-      return false;
-    }
-
-    return true;
+    this.authService.signInWithEmail(email, password, remember, redirectUrl);
   }
 
   signUpWithGmali() {
-    this.authService
-      .signUpWithGmail()
-      .then(() => {
-        this.router.navigate(["/profile/info"]);
-      })
-      .catch(_error => {
-        this.error = _error;
-        this.router.navigate(["/sessions/signup"]);
-      });
+    this.authService.signUpWithGmail();
   }
 
   // sendResetEmail() {

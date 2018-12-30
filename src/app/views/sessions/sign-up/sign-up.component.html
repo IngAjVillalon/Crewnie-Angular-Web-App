@@ -7,27 +7,44 @@
         <h2 t-font-light t-color-primary t-mb-1>Welcome to Crewnie</h2>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
         <form class="t-pt-1" [formGroup]="signupForm" (ngSubmit)="signUp()">
+
           <mat-form-field t-width-full>
-            <input matInput type="text" placeholder="Name" formControlName="name">
+            <input matInput type="text" placeholder="Name" formControlName="name" name="name" required minlength="4">
           </mat-form-field>
+          <small class="t-color-warn" *ngIf="signupForm.controls.name.invalid && (signupForm.controls.name.dirty || signupForm.controls.name.touched)">
+            How do you want to be known?
+          </small>
+
           <mat-form-field t-width-full>
-            <input matInput type="text" placeholder="Email" formControlName="email">
+            <input matInput type="text" placeholder="Email" formControlName="email" name="email" required email>
           </mat-form-field>
+          <small class="t-color-warn" *ngIf="signupForm.controls.email.invalid && (signupForm.controls.email.dirty || signupForm.controls.email.touched)">
+            Please, enter a valid email!
+          </small>
+
           <mat-form-field t-width-full>
-            <input matInput type="password" id="password" placeholder="Password" formControlName="password" minlength="5"
-              maxlength="50" required>
+            <input matInput type="password" id="password" placeholder="Password" formControlName="password" name="password" minlength="6" maxlength="50" required>
             <ng2-password-strength-bar [passwordToCheck]="account.password" [barColors]="myColors" class="password-strength-bar"></ng2-password-strength-bar>
           </mat-form-field>
-          <!-- <mat-checkbox color="primary">Remember me</mat-checkbox> -->
+          <div>
+            <small class="t-color-warn" *ngIf="signupForm.controls.password.invalid && (signupForm.controls.password.dirty || signupForm.controls.password.touched)">
+              Please, enter a strong password!
+            </small>
+            <br />
+          </div>
 
           <div t-mb-05 t-mt-05 fxLayout="row wrap">
             <div fxFlex="50" fxLayout="row wrap">
-              <mat-checkbox color="primary" formControlName="toc_agreed"></mat-checkbox>
+              <mat-checkbox color="primary" formControlName="toc_agreed" required></mat-checkbox>
               <p fxFlex="80" t-ml-05 t-mb-0>I've read and agree to <a href="#" class="t-color-primary">terms and
-                  conditions</a></p>
+                  conditions</a>
+              </p>
+              <small class="t-color-warn" *ngIf="signupForm.controls.toc_agreed.invalid && (signupForm.controls.toc_agreed.dirty || signupForm.controls.toc_agreed.touched)">
+                Please, accept the terms and conditions!
+              </small>
             </div>
             <div fxFlex="50" fxLayoutAlign="end end">
-              <button mat-flat-button t-wide color="primary">Sign Up</button>
+              <button mat-flat-button t-wide color="primary" [disabled]="signupForm.invalid">Sign Up</button>
             </div>
           </div>
 
@@ -35,8 +52,8 @@
         <p class="social-signup-title">You Also Can Sign Up With</p>
         <div class="social-buttons">
           <button mat-icon-button class="social-sign-in-google" (click)="signUpWithGmali()"><i class="fab fa-google"></i></button>
-          <button mat-icon-button class="social-sign-in-google" (click)="signUpWithFacebook()"><i class="fab fa-facebook-f"></i></button>
-          <button mat-icon-button class="social-sign-in-google"><i class="fab fa-twitter"></i></button>
+          <!-- <button mat-icon-button class="social-sign-in-google" (click)="signUpWithFacebook()"><i class="fab fa-facebook-f"></i></button>
+          <button mat-icon-button class="social-sign-in-google"><i class="fab fa-twitter"></i></button> -->
         </div>
 
       </mat-card>

@@ -16,7 +16,7 @@ import { environment } from '../environments/environment';
 
 import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { MatInputModule } from "@angular/material";
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ToastrModule } from 'ngx-toastr';
@@ -46,4 +46,4 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

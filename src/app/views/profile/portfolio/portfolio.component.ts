@@ -1,5 +1,5 @@
 import { ActiveUser } from 'src/app/core/models/models';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ViewVideoPortfolioComponent } from './../view-video-portfolio/view-video-portfolio.component';
 import { Component, OnInit } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';

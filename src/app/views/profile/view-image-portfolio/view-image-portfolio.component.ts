@@ -1,5 +1,5 @@
 import { ActiveUser, portfolioItem, commentItem } from "src/app/core/models/models";
-import { AuthService } from "src/app/core/services/auth.service";
+import { AuthService } from "src/app/core/services/auth/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { Location, DatePipe } from "@angular/common";
 import { DomSanitizer } from "@angular/platform-browser";

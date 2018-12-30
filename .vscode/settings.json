@@ -1,7 +1,0 @@
-{
-    "editor.fontSize": 14,
-    "editor.multiCursorModifier": "ctrlCmd",
-    "vscode_custom_css.imports": [""],
-    "vscode_custom_css.policy": true,
-}
-

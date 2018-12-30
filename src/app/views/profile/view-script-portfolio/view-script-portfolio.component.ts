@@ -1,4 +1,4 @@
-import { AuthService } from './../../../core/services/auth.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
 import { ActiveUser, portfolioItem, commentItem } from "src/app/core/models/models";
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
