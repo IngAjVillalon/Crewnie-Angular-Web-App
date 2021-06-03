@@ -31,7 +31,7 @@
     "@google-cloud/firestore": "^0.18.0",
     "@google-cloud/storage": "^2.3.1",
     "@toverux/ngx-sweetalert2": "^4.0.0",
-    "angular-calendar": "^0.26.4",
+    "angular-calendar": "^0.28.24",
     "angular-in-memory-web-api": "0.5.4",
     "aws-sdk": "^2.358.0",
     "busboy": "^0.2.14",
